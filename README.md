@@ -14,3 +14,7 @@ This is a collaborative creative space. The work here belongs to the group.
 - Memorial Keepsakes
 - Guided neuroregulation resources
 - Legal pages (privacy, terms, return policy)
+
+## Notes
+
+Page names stay tied to the written works and core about pages whenever possible.
