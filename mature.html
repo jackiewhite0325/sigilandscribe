@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mature Writing · 18+ | Sigil and Scribe</title>
+<link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+
+<meta name="description" content="Adult fiction and mature creative work from Sigil & Scribe, including the Trinity Tension Saga. Age-restricted section for readers 18 and over.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="book.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  body {
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(138,74,85,0.12), transparent 55%),
+      var(--paper);
+  }
+  .mature-gate {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    text-align: center;
+  }
+  .mature-eyebrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #8A4A55;
+    margin-bottom: 12px;
+  }
+  .mature-gate h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(28px, 5vw, 38px);
+    color: var(--walnut-deep);
+    margin: 0 0 10px;
+    line-height: 1.15;
+  }
+  .mature-gate .sub {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #6b6b6b;
+    margin-bottom: 28px;
+  }
+  .mature-card {
+    background: var(--paper);
+    border: 1px solid rgba(138,74,85,0.22);
+    border-radius: 8px;
+    padding: 28px 26px;
+    text-align: left;
+    box-shadow: 0 12px 30px rgba(74,51,36,0.06);
+  }
+  .mature-card p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #3d3d3d;
+    margin-bottom: 14px;
+  }
+  .mature-card p:last-of-type { margin-bottom: 0; }
+  .mature-list {
+    list-style: none;
+    margin: 18px 0 0;
+    padding: 16px 0 0;
+    border-top: 1px dashed rgba(138,74,85,0.28);
+  }
+  .mature-list li {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #4a4a4a;
+    padding: 6px 0 6px 18px;
+    position: relative;
+  }
+  .mature-list li::before {
+    content: "·";
+    position: absolute;
+    left: 4px;
+    color: #8A4A55;
+    font-weight: 700;
+  }
+  .mature-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .mature-actions .sc-btn {
+    justify-content: center;
+    width: 100%;
+  }
+  .sc-btn-mature {
+    background: #8A4A55;
+    color: var(--paper);
+  }
+  .sc-btn-mature:hover {
+    box-shadow: 0 8px 18px rgba(138,74,85,0.35);
+    transform: translateY(-1px);
+  }
+  .mature-shelf {
+    display: none;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 34px 24px 80px;
+  }
+  .mature-shelf.is-open { display: block; }
+  .mature-shelf .intro {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .mature-shelf .intro .bp-call { color: #8A4A55; }
+  .mature-books {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .mature-book {
+    background: var(--paper);
+    border: 1px solid rgba(107,74,52,0.12);
+    border-radius: 8px;
+    padding: 22px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+  }
+  .mature-book:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(74,51,36,0.08);
+    border-color: #8A4A55;
+  }
+  .mature-book .meta {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8A4A55;
+    margin-bottom: 10px;
+  }
+  .mature-book h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20px;
+    color: var(--walnut-deep);
+    margin-bottom: 8px;
+  }
+  .mature-book p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #555;
+    flex: 1;
+  }
+  .mature-book .foot {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(107,74,52,0.12);
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8A4A55;
+    font-weight: 700;
+  }
+  .cw-note {
+    max-width: 640px;
+    margin: 32px auto 0;
+    padding: 16px 18px;
+    background: var(--mist);
+    border-left: 3px solid #8A4A55;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #5b5b5b;
+  }
+  .gate-only { display: block; }
+  .shelf-only { display: none; }
+  body.verified .gate-only { display: none; }
+  body.verified .shelf-only { display: block; }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FBP908LERR');
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+    <span class="bp-crumb">Restricted · 18+</span>
+  </div>
+</header>
+
+<!-- AGE GATE -->
+<main class="mature-gate gate-only" id="age-gate">
+  <p class="mature-eyebrow">Age-restricted section</p>
+  <h1>Mature Writing</h1>
+  <p class="sub">Fiction and creative work intended for adults.</p>
+
+  <div class="mature-card">
+    <p>This wing holds stories with mature themes: complex relationships, historical violence, power, desire, and the darker edges of human attachment.</p>
+    <p>It includes the <strong>Trinity Tension Saga</strong> and any future adult fiction published under Sigil &amp; Scribe.</p>
+    <ul class="mature-list">
+      <li>Intended for readers 18 years of age or older</li>
+      <li>May include sexual content, strong language, and intense themes</li>
+      <li>Not connected to the children’s or wellness shelves</li>
+    </ul>
+  </div>
+
+  <div class="mature-actions">
+    <button type="button" class="sc-btn sc-btn-mature" id="enter-mature">I am 18 or older — enter</button>
+    <a class="sc-btn sc-btn-secondary" href="library.html">Leave this wing</a>
+  </div>
+</main>
+
+<!-- VERIFIED SHELF -->
+<main class="mature-shelf shelf-only" id="mature-shelf">
+  <div class="intro">
+    <span class="bp-call">Wing · Mature</span>
+    <h2 class="bp-title">The Restricted Shelf</h2>
+    <p class="bp-tagline">Adult fiction from the study. Enter at your own pace.</p>
+  </div>
+
+  <div class="mature-books">
+    <a class="mature-book" href="ties-that-tear.html">
+      <div class="meta">400.1 · In production</div>
+      <h3>The Ties That Tear</h3>
+      <p>Book 1 of the Trinity Tension Saga. A modern journey tangled in a Tudor dynasty trap, with Anna Boleyn at the heart of it.</p>
+      <div class="foot">Open page →</div>
+    </a>
+    <a class="mature-book" href="untying-the-knot.html">
+      <div class="meta">400.2 · Coming soon</div>
+      <h3>Untying the Knot</h3>
+      <p>The second thread of the Trinity Tension Saga.</p>
+      <div class="foot">Open page →</div>
+    </a>
+    <a class="mature-book" href="walking-a-tightrope.html">
+      <div class="meta">400.3 · Coming soon</div>
+      <h3>Walking a Tightrope</h3>
+      <p>The third thread of the Trinity Tension Saga.</p>
+      <div class="foot">Open page →</div>
+    </a>
+  
+    <div class="mature-book" style="opacity:0.75;border-style:dashed;pointer-events:none;">
+      <div class="meta">400.x · Reserved</div>
+      <h3>Open shelf space</h3>
+      <p>Future adult fiction from either founder can join this wing when ready.</p>
+      <div class="foot">Expansion slot</div>
+    </div>
+</div>
+
+  <div class="cw-note">
+    Content in this wing may include mature sexual situations, historical and interpersonal violence, coercion themes, and strong language. Individual titles will carry more specific notes as they are released.
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; 2026 Sigil and Scribe, LLC &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a></p>
+  <p>Muffin the Pitbull&trade; is a trademark of Sigil and Scribe, LLC.</p>
+</footer>
+
+<script>
+(function () {
+  var KEY = "ss_mature_verified";
+  function showShelf() {
+    document.body.classList.add("verified");
+  }
+  try {
+    if (sessionStorage.getItem(KEY) === "1") showShelf();
+  } catch (e) {}
+
+  var btn = document.getElementById("enter-mature");
+  if (btn) {
+    btn.addEventListener("click", function () {
+      try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+      showShelf();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+})();
+</script>
+</body>
+</html>

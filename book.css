@@ -1,0 +1,556 @@
+/* ==========================================================================
+   SIGIL AND SCRIBE — UNIFIED MASTER PLATFORM STYLESHEET
+   ========================================================================= */
+
+:root {
+  --paper:#FDFBF7; --mist:#F2F5F3; --ink:#2B2B2B; --amber:#D4A373; --amber-deep:#B8874F;
+  --sage:#A3B19B; --sage-deep:#7E8F76; --walnut:#6B4A34; --walnut-dark:#4A3324; --walnut-deep:#38251A;
+  --card:#F7EFDD; --ease:cubic-bezier(0.2,0.8,0.2,1);
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+
+body {
+  background: var(--paper);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  min-height:100vh;
+}
+
+a { color:inherit; text-decoration:none; }
+::selection { background:var(--amber); color:var(--paper); }
+
+/* ==========================================================================
+   HEADER & UNIVERSAL FIXED NAVIGATION
+   ========================================================================== */
+.site-header {
+  position:sticky;
+  top:0;
+  z-index:500;
+  background:var(--walnut-deep);
+  color:var(--paper);
+  box-shadow:0 4px 14px rgba(31,22,17,0.35);
+}
+
+.site-header .inner {
+  max-width:1200px;
+  margin:0 auto;
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.brand {
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:700;
+  font-size:1.25rem;
+  letter-spacing:0.01em;
+  cursor:pointer;
+}
+.brand span { color:var(--amber); }
+
+.bp-crumb {
+  font-family:'Courier Prime',monospace;
+  font-size:10.5px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--sage);
+}
+
+/* ==========================================================================
+   LOBBY LAYOUT SPACING CORE
+   ========================================================================== */
+.lobby-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+.lobby-intro {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.bp-call {
+  font-family:'Courier Prime',monospace;
+  font-size:11px;
+  color:var(--amber-deep);
+  letter-spacing:0.12em;
+  text-transform: uppercase;
+}
+.bp-title {
+  font-family:'Playfair Display',Georgia,serif;
+  font-size: clamp(28px, 4vw, 38px);
+  color: var(--walnut-deep);
+  margin-top: 8px;
+}
+.bp-tagline {
+  font-family:'Playfair Display',Georgia,serif;
+  font-style:italic;
+  color:#6b6b6b;
+  font-size:16px;
+  margin-top: 6px;
+}
+
+/* ==========================================================================
+   THE SYMMETRICAL WINGS GRID (100% Color Uniformity)
+   ========================================================================== */
+.lobby-wings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.lobby-wing-card {
+  background: var(--paper);
+  border: 1px solid rgba(107,74,52,0.12);
+  border-radius: 8px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 250px;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s ease;
+  text-decoration: none;
+}
+
+.lobby-wing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(74,51,36,0.06);
+  border-color: var(--amber);
+}
+
+.card-meta {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber-deep);
+  margin-bottom: 12px;
+}
+.wing-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--walnut-deep);
+  margin-bottom: 10px;
+}
+.wing-pitch {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.card-footer-action {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(107,74,52,0.12);
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--amber-deep);
+  font-weight: bold;
+}
+
+.gate-restricted:hover {
+  border-color: #c95252;
+}
+
+/* ==========================================================================
+   BOOK PAGE LAYOUT (covers constrained — no native-size blowouts)
+   ========================================================================== */
+.page {
+  max-width:1080px;
+  margin:0 auto;
+  padding:34px 24px 70px;
+}
+
+.bp-grid {
+  display:grid;
+  grid-template-columns:minmax(220px,300px) 1fr;
+  gap:40px;
+  align-items:start;
+}
+@media (max-width:700px){
+  .bp-grid { grid-template-columns:1fr; gap:22px; }
+}
+
+.bp-cover { position:relative; max-width:300px; }
+.bp-cover img {
+  width:100%;
+  max-width:300px;
+  height:auto;
+  border-radius:4px;
+  box-shadow:0 30px 50px -22px rgba(56,37,26,0.55);
+  display:block;
+}
+
+.bp-badge {
+  position:absolute;
+  top:12px;
+  right:-10px;
+  background:var(--amber);
+  color:var(--walnut-deep);
+  font-family:'Courier Prime',monospace;
+  font-size:10px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  padding:5px 10px;
+  border-radius:3px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.25);
+  transform:rotate(2deg);
+}
+.bp-badge.sage { background:var(--sage); color:var(--paper); }
+
+.sc-ph-cover {
+  width:100%;
+  max-width:300px;
+  aspect-ratio:2/3;
+  border-radius:4px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:20px 16px 16px;
+  color:var(--paper);
+  overflow:hidden;
+  box-shadow:0 30px 50px -22px rgba(56,37,26,0.55);
+  font-family:'Playfair Display',Georgia,serif;
+}
+.sc-ph-children { background:linear-gradient(160deg,#E0AE79 0%,#B8874F 60%,#8C6142 100%); }
+.sc-ph-wellness { background:linear-gradient(160deg,#A3B19B 0%,#7E8F76 60%,#5E6E57 100%); }
+.sc-ph-more { background:linear-gradient(160deg,#8C6142 0%,#6B4A34 60%,#4A3324 100%); }
+.sc-ph-fiction { background:linear-gradient(160deg,#8A4A55 0%,#6B3540 60%,#4A2229 100%); }
+.sc-ph-cover::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 30% 15%, rgba(255,255,255,0.14), transparent 45%);
+  pointer-events:none;
+}
+.sc-ph-top {
+  font-family:'Courier Prime',monospace;
+  font-size:10px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  opacity:0.9;
+}
+.sc-ph-title { font-size:21px; font-weight:700; line-height:1.2; margin:10px 0 6px; }
+.sc-ph-sub {
+  font-family:'Courier Prime',monospace;
+  font-size:9.5px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  opacity:0.85;
+}
+.sc-ph-bottom {
+  border-top:1px solid rgba(253,251,247,0.35);
+  padding-top:10px;
+  font-family:'Courier Prime',monospace;
+  font-size:9.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  opacity:0.9;
+}
+
+.bp-author {
+  font-family:'Courier Prime',monospace;
+  font-size:11px;
+  color:var(--sage-deep);
+  margin-left:8px;
+}
+h2.bp-title {
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(26px,4vw,34px);
+  margin:8px 0 4px;
+  color:var(--walnut-deep);
+  line-height:1.15;
+}
+.bp-desc { line-height:1.7; font-size:14.5px; }
+.bp-note {
+  background:var(--mist);
+  border-radius:6px;
+  padding:14px 16px;
+  font-size:13px;
+  color:#6b6b6b;
+  margin-top:16px;
+  border-left:3px solid var(--sage);
+}
+.bp-actions {
+  margin-top:22px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.sc-btn {
+  font-family:'Inter',sans-serif;
+  font-size:13.5px;
+  font-weight:600;
+  padding:11px 18px;
+  border-radius:24px;
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:box-shadow 0.25s ease, transform 0.2s ease;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+}
+.sc-btn-primary { background:var(--amber); color:var(--paper); }
+.sc-btn-primary:hover {
+  box-shadow:0 8px 18px rgba(212,163,115,0.4);
+  transform:translateY(-1px);
+}
+.sc-btn-secondary {
+  background:var(--mist);
+  color:var(--ink);
+  border-color:rgba(107,74,52,0.15);
+}
+
+.bp-shelf-wrap {
+  margin-top:48px;
+  padding-top:26px;
+  border-top:1px dashed rgba(184,135,79,0.4);
+}
+.bp-shelf-label {
+  font-family:'Courier Prime',monospace;
+  font-size:10.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--sage-deep);
+  margin-bottom:14px;
+}
+.sc-section-label {
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+}
+.sc-section-label h2 {
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:21px;
+  color:var(--walnut-dark);
+}
+.sc-section-label span {
+  font-family:'Courier Prime',monospace;
+  font-size:11px;
+  color:var(--amber-deep);
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  border-bottom:1px dashed rgba(184,135,79,0.5);
+  padding-bottom:2px;
+}
+.sc-shelf {
+  position:relative;
+  background:var(--mist);
+  border-radius:6px;
+  padding:20px 20px 0;
+  display:flex;
+  align-items:flex-end;
+  gap:12px;
+  min-height:210px;
+  flex-wrap:wrap;
+  box-shadow:inset 0 0 0 1px rgba(107,74,52,0.08);
+}
+.sc-shelf-board {
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:16px;
+  background:linear-gradient(180deg,var(--walnut) 0%,var(--walnut-dark) 70%,var(--walnut-deep) 100%);
+  border-radius:0 0 6px 6px;
+  box-shadow:0 8px 14px -6px rgba(56,37,26,0.4);
+}
+.sc-book-wrapper { position:relative; z-index:1; margin-bottom:4px; }
+.sc-spine {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  padding:12px 5px 8px;
+  border-radius:3px 3px 2px 2px;
+  color:var(--paper);
+  font-family:'Playfair Display',Georgia,serif;
+  box-shadow:inset -3px 0 6px rgba(0,0,0,0.15), inset 3px 0 6px rgba(255,255,255,0.08), 0 4px 8px rgba(43,43,43,0.15);
+  transition:transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+  min-height:180px;
+}
+.sc-spine:hover {
+  transform:translateY(-14px);
+  box-shadow:0 12px 24px rgba(212,163,115,0.35), inset -3px 0 6px rgba(0,0,0,0.15);
+}
+.sc-spine .sc-stitle {
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-size:13px;
+  font-weight:600;
+  line-height:1.22;
+  margin-top:6px;
+  letter-spacing:0.01em;
+  white-space:nowrap;
+}
+.sc-spine .sc-sauthor {
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:'Courier Prime',monospace;
+  font-size:8px;
+  opacity:0.8;
+  margin-top:4px;
+  letter-spacing:0.03em;
+  white-space:nowrap;
+}
+.sc-spine .sc-call {
+  font-family:'Courier Prime',monospace;
+  font-size:8.5px;
+  letter-spacing:0.04em;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  opacity:0.85;
+  margin-top:5px;
+  white-space:nowrap;
+}
+.sc-spine.sc-children { width:42px; background:linear-gradient(180deg,#E0AE79,#C98F56); }
+.sc-spine.sc-children.sc-v2 { background:linear-gradient(180deg,#EABF90,#D19E64); }
+.sc-spine.sc-wellness { width:42px; background:linear-gradient(180deg,#A3B19B,#8CA187); }
+.sc-spine.sc-wellness.sc-v2 { background:linear-gradient(180deg,#B3C0AB,#94A28C); }
+.sc-spine.sc-more { width:40px; background:linear-gradient(180deg,#8C6142,#6B4A34); }
+.sc-spine.sc-more.sc-v2 { background:linear-gradient(180deg,#9C7B54,#7A5A3A); }
+.sc-spine.sc-more.sc-v3 { background:linear-gradient(180deg,#7E5A3F,#5B3F2A); }
+.sc-spine.sc-fiction { width:40px; background:linear-gradient(180deg,#8A4A55,#6B3540); }
+.sc-spine.sc-fiction.sc-v2 { background:linear-gradient(180deg,#9A5A65,#7A4550); }
+.sc-spine.sc-coming { opacity:0.85; }
+.sc-spine.sc-current {
+  box-shadow:inset 0 0 0 2px rgba(253,251,247,0.55), inset -3px 0 6px rgba(0,0,0,0.15);
+  cursor:default;
+}
+.sc-spine.sc-current:hover {
+  transform:none;
+  box-shadow:inset 0 0 0 2px rgba(253,251,247,0.55), inset -3px 0 6px rgba(0,0,0,0.15);
+}
+
+/* ==========================================================================
+   MEMORIAL PAGE (muffin-memorial)
+   ========================================================================== */
+.mem-hero { text-align:center; padding:30px 0 8px; }
+.mem-eyebrow {
+  font-family:'Courier Prime',monospace;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  font-size:12px;
+  color:var(--walnut);
+  opacity:0.75;
+}
+.mem-hero h1 {
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:700;
+  font-size:clamp(34px,6vw,56px);
+  color:var(--walnut-deep);
+  margin:8px 0 6px;
+}
+.mem-hero p.sub {
+  font-family:'Playfair Display',Georgia,serif;
+  font-style:italic;
+  font-size:17px;
+  color:#5b5b5b;
+}
+.mem-photos {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:34px auto 0;
+  max-width:860px;
+}
+.mem-photos img {
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:6px;
+  box-shadow:0 18px 34px -18px rgba(56,37,26,0.5);
+}
+@media (max-width:700px){
+  .mem-photos { grid-template-columns:1fr; }
+  .mem-photos img { height:auto; }
+}
+.mem-traits {
+  font-family:'Courier Prime',monospace;
+  font-size:11px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--sage-deep);
+  margin-top:26px;
+  text-align:center;
+}
+.mem-body { max-width:720px; margin:0 auto; padding:8px 0 0; }
+.mem-body h2 {
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:24px;
+  color:var(--walnut-dark);
+  margin:34px 0 14px;
+}
+.mem-body p { line-height:1.75; font-size:15px; color:#3d3d3d; margin-bottom:16px; }
+.mem-quote {
+  background:var(--mist);
+  border-radius:6px;
+  padding:24px 26px;
+  text-align:center;
+  margin:28px 0;
+  border-left:4px solid var(--amber);
+}
+.mem-quote p {
+  font-family:'Playfair Display',Georgia,serif;
+  font-style:italic;
+  font-size:17px;
+  color:var(--walnut-dark);
+  margin:0;
+  line-height:1.6;
+}
+.mem-note {
+  font-family:'Courier Prime',monospace;
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--sage-deep);
+  text-align:center;
+  margin:26px 0 8px;
+}
+.mem-cta { text-align:center; margin:20px 0 10px; }
+
+/* ==========================================================================
+   MOBILE VIEW OPTIMIZATIONS
+   ========================================================================== */
+@media (max-width: 600px) {
+  .lobby-wings-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .lobby-wing-card {
+    min-height: auto;
+    padding: 24px;
+  }
+  .lobby-container {
+    padding: 30px 16px 60px;
+  }
+  .bp-cover,
+  .bp-cover img,
+  .sc-ph-cover {
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ==========================================================================
+   PLATFORM SITE FOOTER
+   ========================================================================== */
+.site-footer {
+  text-align:center;
+  padding:40px 20px 50px;
+  font-family:'Courier Prime',monospace;
+  font-size:11px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--sage-deep);
+}
