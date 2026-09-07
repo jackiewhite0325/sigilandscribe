@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Izzy's Keep | Sigil and Scribe</title>
+<meta name="description" content="Your keepsake story is in. Izzy reads every word and photo herself, then replies by email with a plan and one price.">
+<link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
+<meta property="og:title" content="Your story is in | Izzy's Keep">
+<meta property="og:description" content="Thank you for trusting me with their name. I read every word and every photo, then I reply by email.">
+<meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/thanks.html">
+<meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/izzy/portrait.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --frost: #F4F8FA;
+    --charcoal: #232A31;
+    --ice: #9FD8F0;
+    --silver: #C7D3DA;
+    --cyan: #5BB8E8;
+    --hero: #1C232B;
+    --muted: #5A6670;
+    --line: rgba(199, 211, 218, 0.65);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--frost);
+    color: var(--charcoal);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+  a { color: var(--cyan); }
+  a:hover { color: #3a9fd0; }
+  ::selection { background: var(--ice); color: var(--hero); }
+
+  /* Header */
+  .site-header {
+    background: rgba(244, 248, 250, 0.92);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .site-header .inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+  .brand span { color: var(--cyan); }
+  .back-link {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--cyan); }
+
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px 56px;
+  }
+
+  /* Confirm card */
+  .confirm {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 44px 40px 36px;
+    margin-top: 40px;
+    text-align: center;
+  }
+  @media (max-width: 560px) {
+    .confirm { padding: 32px 22px 26px; }
+  }
+  .confirm .emblem {
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid rgba(91, 184, 232, 0.45);
+    margin-bottom: 18px;
+  }
+  .eyebrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 12px;
+  }
+  .confirm h1 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 36px);
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .confirm .lead {
+    font-size: 19px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Ice shard divider */
+  .shard {
+    height: 1px;
+    margin: 34px 0;
+    background: linear-gradient(90deg, transparent, var(--silver) 15%, var(--ice) 50%, var(--silver) 85%, transparent);
+    position: relative;
+  }
+  .shard::before,
+  .shard::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    background: var(--frost);
+    border: 1px solid var(--ice);
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .shard::before { left: 22%; }
+  .shard::after { right: 22%; }
+
+  .next h2 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 16px;
+    text-align: left;
+  }
+  .steps {
+    list-style: none;
+    counter-reset: step;
+    text-align: left;
+  }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 44px;
+    margin-bottom: 14px;
+    font-size: 17.5px;
+    color: var(--charcoal);
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--ice);
+    background: #fff;
+    color: var(--cyan);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gentle {
+    background: linear-gradient(165deg, #eef5f9, #f7fbfd);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 24px;
+    text-align: left;
+  }
+  .gentle p {
+    font-size: 17px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .links-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 6px;
+  }
+  .link-chip {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--hero);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 16px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .link-chip:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+
+  footer {
+    text-align: center;
+    padding: 36px 20px 48px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+  }
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  footer a:hover { color: var(--cyan); }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FBP908LERR');
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+    <a class="back-link" href="library.html">&larr; Back to the Library</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="confirm">
+    <img class="emblem" src="images/izzy/emblem.jpg" alt="Izzy crest emblem" width="52" height="52">
+    <p class="eyebrow">Keepsake intake &middot; received</p>
+    <h1>Your story is in.</h1>
+    <p class="lead">Thank you for trusting me with their name and their photos. I read every submission myself, every word and every picture, and I reply to the email you left in the form with a plan and one price. Nothing is owed until the plan reads right to you.</p>
+  </section>
+
+  <div class="shard" aria-hidden="true"></div>
+
+  <section class="next">
+    <h2>What happens next</h2>
+    <ol class="steps">
+      <li>Your intake is read by me, not a machine. Every word, and every photo one by one.</li>
+      <li>My reply lands in the inbox you wrote in the form. It carries the shape of the book and one price.</li>
+      <li>You approve the plan, or we adjust it until it reads true. Money moves only then, through one link made for your order.</li>
+      <li>The finished PDF arrives by email. A printed copy for the shelf is offered after you approve the digital book.</li>
+    </ol>
+  </section>
+
+  <div class="shard" aria-hidden="true"></div>
+
+  <div class="gentle">
+    <p>No payment was taken today. This is a reading, not a sale: if the plan does not feel true to your dog, you owe nothing and the door stays open. If my reply does not find you, check the spam folder. And take your time. There is no rush on our side.</p>
+  </div>
+
+  <div class="shard" aria-hidden="true"></div>
+
+  <div class="links-row">
+    <a class="link-chip" href="izzy.html">Back to Izzy's Keep</a>
+    <a class="link-chip" href="library.html">Return to the Library</a>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2026 Sigil and Scribe, LLC &middot; Izzy's Keep<br>
+  <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a>
+</footer>
+
+</body>
+</html>
