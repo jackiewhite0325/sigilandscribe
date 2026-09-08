@@ -10,7 +10,7 @@
  * cleared out on the next visit.
  */
 
-const CACHE_NAME = "manuscript-map-shell-v4-free";
+const CACHE_NAME = "manuscript-map-shell-v5-sidebar";
 
 const APP_SHELL = [
   "./",
