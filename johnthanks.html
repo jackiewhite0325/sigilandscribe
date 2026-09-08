@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Note received | John's Ground | Sigil and Scribe</title>
+
+<meta name="description" content="The note is on the board. John reads every note and answers at the email you left.">
+
+<link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+
+<meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
+
+<meta property="og:title" content="Note received | John's Ground">
+
+<meta property="og:description" content="The note is on the board. John reads every note and answers at the email you left.">
+
+<meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/thanks2.html">
+
+<meta name="twitter:card" content="summary">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+
+--frost: #F4F8FA;
+
+--charcoal: #232A31;
+
+--ice: #C9DCBE;
+
+--silver: #C7D3DA;
+
+--cyan: #5F8F4E;
+
+--hero: #1C232B;
+
+--muted: #5A6670;
+
+--line: rgba(199, 211, 218, 0.65);
+
+}
+
+- { box-sizing: border-box; margin: 0; padding: 0; }
+- html { scroll-behavior: smooth; }
+- body {
+- background: var(--frost);
+- color: var(--charcoal);
+- font-family: 'Cormorant Garamond', Georgia, serif;
+- font-size: 19px;
+- line-height: 1.65;
+- min-height: 100vh;
+- }
+- a { color: var(--cyan); }
+- a:hover { color: #47703C; }
+- ::selection { background: var(--ice); color: var(--hero); }
+
+/* Header */
+
+.site-header {
+
+background: rgba(244, 248, 250, 0.92);
+
+border-bottom: 1px solid var(--line);
+
+backdrop-filter: blur(8px);
+
+position: sticky;
+
+top: 0;
+
+z-index: 20;
+
+}
+
+.site-header .inner {
+
+max-width: 920px;
+
+margin: 0 auto;
+
+padding: 14px 24px;
+
+display: flex;
+
+align-items: baseline;
+
+justify-content: space-between;
+
+gap: 16px;
+
+}
+
+.brand {
+
+font-family: 'Inter', system-ui, sans-serif;
+
+font-size: 14px;
+
+font-weight: 600;
+
+letter-spacing: 0.02em;
+
+color: var(--charcoal);
+
+text-decoration: none;
+
+}
+
+.brand span { color: var(--cyan); }
+
+.back-link {
+
+font-family: 'Courier Prime', monospace;
+
+font-size: 10.5px;
+
+letter-spacing: 0.1em;
+
+text-transform: uppercase;
+
+color: var(--muted);
+
+text-decoration: none;
+
+}
+
+.back-link:hover { color: var(--cyan); }
+
+/* Hero band */
+
+.hero-band {
+
+background:
+
+radial-gradient(ellipse at 70% 20%, rgba(95, 143, 78, 0.18), transparent 50%),
+
+radial-gradient(ellipse at 20% 100%, rgba(201, 220, 190, 0.08), transparent 45%),
+
+linear-gradient(180deg, var(--hero) 0%, #151a20 100%);
+
+color: var(--frost);
+
+position: relative;
+
+overflow: hidden;
+
+}
+
+.hero-band::after {
+
+content: "";
+
+position: absolute;
+
+left: 0; right: 0; bottom: 0;
+
+height: 48px;
+
+background: linear-gradient(180deg, transparent, var(--frost));
+
+pointer-events: none;
+
+}
+
+.hero-inner {
+
+max-width: 920px;
+
+margin: 0 auto;
+
+padding: 56px 24px 72px;
+
+text-align: center;
+
+position: relative;
+
+z-index: 1;
+
+}
+
+.hero-inner .eyebrow {
+
+font-family: 'Courier Prime', monospace;
+
+font-size: 10.5px;
+
+letter-spacing: 0.14em;
+
+text-transform: uppercase;
+
+color: var(--ice);
+
+margin-bottom: 14px;
+
+}
+
+.hero-inner h1 {
+
+font-family: 'Inter', system-ui, sans-serif;
+
+font-weight: 700;
+
+font-size: clamp(30px, 5vw, 42px);
+
+letter-spacing: -0.02em;
+
+color: #F4F8FA;
+
+line-height: 1.15;
+
+}
+
+.hero-inner .tagline {
+
+margin: 14px auto 0;
+
+font-size: 18.5px;
+
+color: rgba(244, 248, 250, 0.8);
+
+max-width: 520px;
+
+line-height: 1.55;
+
+}
+
+.wrap {
+
+max-width: 720px;
+
+margin: 0 auto;
+
+padding: 0 24px 56px;
+
+}
+
+/* Ice shard divider */
+
+.shard {
+
+height: 1px;
+
+margin: 36px 0;
+
+background: linear-gradient(90deg, transparent, var(--silver) 15%, var(--ice) 50%, var(--silver) 85%, transparent);
+
+position: relative;
+
+}
+
+.shard::before,
+
+.shard::after {
+
+content: "";
+
+position: absolute;
+
+top: 50%;
+
+width: 7px;
+
+height: 7px;
+
+background: var(--frost);
+
+border: 1px solid var(--ice);
+
+transform: translateY(-50%) rotate(45deg);
+
+}
+
+.shard::before { left: 18%; }
+
+.shard::after { right: 18%; }
+
+/* Confirmation card */
+
+.confirm {
+
+background: #fff;
+
+border: 1px solid var(--line);
+
+border-radius: 10px;
+
+padding: 34px 30px 30px;
+
+text-align: center;
+
+}
+
+.confirm .mark {
+
+width: 44px;
+
+height: 44px;
+
+margin: 0 auto 18px;
+
+border-radius: 50%;
+
+border: 1px solid var(--ice);
+
+background: linear-gradient(135deg, var(--cyan), #47703C);
+
+color: #fff;
+
+font-family: 'Inter', system-ui, sans-serif;
+
+font-size: 20px;
+
+font-weight: 700;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+box-shadow: 0 8px 20px rgba(95, 143, 78, 0.3);
+
+}
+
+.confirm h2 {
+
+font-family: 'Inter', system-ui, sans-serif;
+
+font-size: 15px;
+
+font-weight: 600;
+
+letter-spacing: 0.04em;
+
+color: var(--charcoal);
+
+margin-bottom: 12px;
+
+}
+
+.confirm p {
+
+font-size: 18px;
+
+color: var(--muted);
+
+margin: 0 auto;
+
+max-width: 460px;
+
+}
+
+.confirm .next {
+
+margin-top: 18px;
+
+font-size: 16.5px;
+
+color: var(--charcoal);
+
+}
+
+.confirm .direct {
+
+margin-top: 8px;
+
+font-family: 'Courier Prime', monospace;
+
+font-size: 10.5px;
+
+letter-spacing: 0.05em;
+
+text-transform: uppercase;
+
+color: var(--muted);
+
+}
+
+.back-row {
+
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 12px;
+
+justify-content: center;
+
+margin-top: 24px;
+
+}
+
+.back-chip {
+
+font-family: 'Inter', system-ui, sans-serif;
+
+font-size: 12px;
+
+font-weight: 600;
+
+letter-spacing: 0.04em;
+
+text-decoration: none;
+
+color: var(--hero);
+
+background: #fff;
+
+border: 1px solid var(--line);
+
+border-radius: 999px;
+
+padding: 10px 16px;
+
+transition: border-color 0.2s, color 0.2s;
+
+}
+
+.back-chip:hover {
+
+border-color: var(--cyan);
+
+color: var(--cyan);
+
+}
+
+footer {
+
+text-align: center;
+
+padding: 36px 20px 48px;
+
+font-family: 'Courier Prime', monospace;
+
+font-size: 10px;
+
+letter-spacing: 0.1em;
+
+text-transform: uppercase;
+
+color: var(--muted);
+
+border-top: 1px solid var(--line);
+
+}
+
+footer a {
+
+color: var(--muted);
+
+text-decoration: none;
+
+}
+
+footer a:hover { color: var(--cyan); }
+
+</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
+
+<script>
+
+window.dataLayer = window.dataLayer || [];
+
+function gtag(){dataLayer.push(arguments);}
+
+gtag('js', new Date());
+
+gtag('config', 'G-FBP908LERR');
+
+</script>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="inner">
+
+<a class="brand" href="index.html">Sigil <span></span> Scribe</a>
+
+<a class="back-link" href="john.html"> Back to John's Ground</a>
+
+</div>
+
+</header>
+
+<section class="hero-band">
+
+<div class="hero-inner">
+
+<p class="eyebrow">John's Ground · the working corner</p>
+
+<h1>The note is on the board.</h1>
+
+<p class="tagline">Read it, size it, answer it. That order, every time.</p>
+
+</div>
+
+</section>
+
+<div class="wrap">
+
+<div class="shard" aria-hidden="true"></div>
+
+<section class="confirm">
+
+<div class="mark" aria-hidden="true"></div>
+
+<h2>Received, and read</h2>
+
+<p>John reads every note himself and answers at the email you left. One reply, one link made for your order, no list, no follow-up mail.</p>
+
+<p class="next">If the season is pressing and you want to move faster, write the same note straight to <a href="mailto:john-14@ilands.app">john-14@ilands.app</a>. Same inbox, same answer.</p>
+
+<p class="direct">The note is free · you pay only when the system fits your place</p>
+
+</section>
+
+<div class="back-row">
+
+<a class="back-chip" href="john.html">Back to John's Ground</a>
+
+<a class="back-chip" href="library.html">The Library</a>
+
+</div>
+
+</div>
+
+<footer>
+
+ 2026 Sigil and Scribe, LLC John's Ground<br>
+
+<a href="privacy.html">Privacy</a> <a href="terms.html">Terms</a>
+
+</footer>
+
+</body>
+
+</html>
