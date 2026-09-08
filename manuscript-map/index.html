@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google-site-verification" content="YZMMsDj5I6dvCg-Wjrpb37_Dnl86hOcVRVz6Ml3oQXQ" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manuscript Map | Publishing Toolkit</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#171a21" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Manuscript Map" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://apis.google.com/js/api.js" async defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <style>
+    .ss-site-header {
+      background: #171a21;
+      color: #e8eaed;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .ss-site-header .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .ss-site-header .ss-brand {
+      color: #e8eaed;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .ss-site-header .ss-brand span { color: #8ab4f8; }
+    .ss-site-header nav {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .ss-site-header nav a {
+      color: rgba(232,234,237,0.78);
+      text-decoration: none;
+      font-size: 12.5px;
+    }
+    .ss-site-header nav a:hover { color: #fff; }
+    .ss-site-header .ss-here {
+      color: #8ab4f8 !important;
+      font-weight: 600;
+    }
+    .ss-site-footer {
+      background: #171a21;
+      color: rgba(232,234,237,0.65);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 22px 16px 28px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .ss-site-footer a {
+      color: rgba(232,234,237,0.65);
+      text-decoration: none;
+    }
+    .ss-site-footer a:hover { color: #8ab4f8; }
+    /* keep app layout under the sticky house header */
+    body { margin: 0; }
+  </style>
+  <header class="ss-site-header">
+    <div class="inner">
+      <a class="ss-brand" href="https://jackiewhite0325.github.io/sigilandscribe/">Sigil <span>&amp;</span> Scribe</a>
+      <nav>
+        <a href="https://jackiewhite0325.github.io/sigilandscribe/">House</a>
+        <a href="https://jackiewhite0325.github.io/sigilandscribe/library.html">Library</a>
+        <a href="https://jackiewhite0325.github.io/sigilandscribe/about.html">About</a>
+        <a class="ss-here" href="#">Manuscript Map</a>
+      </nav>
+    </div>
+  </header>
+  <div class="app">
+    <!-- Mobile top bar -->
+    <header class="mobile-bar" id="mobileBar">
+      <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <span class="menu-icon">☰</span>
+      </button>
+      <div class="mobile-bar-title">Manuscript Map</div>
+      <div class="mobile-bar-spacer"></div>
+    </header>
+    <div class="sidebar-backdrop" id="sidebarBackdrop" hidden></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">📘</div>
+        <div>
+          <div class="brand-name">Manuscript Map</div>
+          <div class="brand-sub">Publishing Toolkit</div>
+        </div>
+        <button type="button" class="sidebar-close" id="sidebarClose" aria-label="Close menu">×</button>
+      </div>
+      <div class="project-switcher" id="projectSwitcher">
+        <!-- rendered by JS -->
+      </div>
+      <nav class="nav">
+        <a href="#dashboard" class="nav-item" data-page="dashboard">
+          <span class="nav-icon">⌂</span> Dashboard
+        </a>
+
+        <div class="nav-group" data-group="publishing">
+          <button type="button" class="nav-group-header" aria-expanded="true">
+            <span class="nav-group-chevron">▶</span>
+            <span class="nav-group-label">Publishing</span>
+          </button>
+          <div class="nav-group-items">
+            <a href="#checklist" class="nav-item" data-page="checklist">
+              <span class="nav-icon">✓</span> Checklist
+            </a>
+            <a href="#metadata" class="nav-item" data-page="metadata">
+              <span class="nav-icon">🏷</span> Metadata Vault
+            </a>
+            <a href="#questionnaire" class="nav-item" data-page="questionnaire">
+              <span class="nav-icon">❓</span> Questionnaire
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-group" data-group="business">
+          <button type="button" class="nav-group-header" aria-expanded="true">
+            <span class="nav-group-chevron">▶</span>
+            <span class="nav-group-label">Business Tools</span>
+          </button>
+          <div class="nav-group-items">
+            <a href="#calendar" class="nav-item" data-page="calendar">
+              <span class="nav-icon">📅</span> Launch Calendar
+              
+            </a>
+            <a href="#assets" class="nav-item" data-page="assets">
+              <span class="nav-icon">📁</span> Asset Tracker
+              
+            </a>
+            <a href="#arcs" class="nav-item" data-page="arcs">
+              <span class="nav-icon">📬</span> ARC Tracker
+              
+            </a>
+            <a href="#reviews" class="nav-item" data-page="reviews">
+              <span class="nav-icon">⭐</span> Review Log
+              
+            </a>
+            <a href="#editing" class="nav-item" data-page="editing">
+              <span class="nav-icon">📝</span> Editing Vendors
+              
+            </a>
+            <a href="#promo" class="nav-item" data-page="promo">
+              <span class="nav-icon">🎯</span> Promo Submissions
+              
+            </a>
+            <a href="#sales" class="nav-item" data-page="sales">
+              <span class="nav-icon">💰</span> Sales & Royalty
+              
+            </a>
+            <a href="#distribution" class="nav-item" data-page="distribution">
+              <span class="nav-icon">🌐</span> Distribution
+              
+            </a>
+            <a href="#ads" class="nav-item" data-page="ads">
+              <span class="nav-icon">📣</span> Ad Spend & ROI
+              
+            </a>
+          </div>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="save-status" id="saveStatus">Ready</div>
+        <div class="sidebar-legal-links">
+          <a href="privacy.html" target="_blank" rel="noopener">Privacy</a>
+          <span>·</span>
+          <a href="terms.html" target="_blank" rel="noopener">Terms</a>
+          <span>·</span>
+          <a href="return-policy.html" target="_blank" rel="noopener">Returns</a>
+          <span>·</span>
+          <a href="https://ko-fi.com/sigilandscribe/goal?g=2" target="_blank" rel="noopener">Ko-fi</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ========== DASHBOARD VIEW ========== -->
+    <main class="main view" id="view-dashboard" hidden>
+      <header class="page-header">
+        <div>
+          <h1>Dashboard</h1>
+          <p class="subtitle">Project overview at a glance</p>
+        </div>
+      </header>
+
+      <div class="dash-hero card" id="dashHero">
+        <div class="dash-hero-label">Current project</div>
+        <div class="dash-hero-title" id="dashProjectName">-</div>
+        <div class="dash-hero-meta" id="dashBookMeta"></div>
+        <button type="button" class="dash-hero-restart" id="btnReopenOnboarding">Not sure where to start?</button>
+      </div>
+
+      <div class="next-step card accent" id="dashNextStep">
+        <!-- filled by JS -->
+      </div>
+
+      <div class="dash-grid" id="dashStats">
+        <!-- filled by JS -->
+      </div>
+
+      <div class="dash-columns">
+        <section class="card">
+          <div class="card-header">
+            <h2>Recent ARCs</h2>
+            <a href="#arcs" class="dash-link" data-goto="arcs">View all →</a>
+          </div>
+          <div class="card-body" id="dashRecentArcs"></div>
+        </section>
+        <section class="card">
+          <div class="card-header">
+            <h2>Recent Reviews</h2>
+            <a href="#reviews" class="dash-link" data-goto="reviews">View all →</a>
+          </div>
+          <div class="card-body" id="dashRecentReviews"></div>
+        </section>
+      </div>
+
+      <div class="dash-quick card">
+        <div class="card-header"><h2>Quick links</h2></div>
+        <div class="card-body dash-quick-links">
+          <button type="button" class="btn btn-ghost" data-goto="checklist">✓ Checklist</button>
+          <button type="button" class="btn btn-ghost" data-goto="metadata">🏷 Metadata</button>
+          <button type="button" class="btn btn-ghost" data-goto="assets">📁 Assets</button>
+          <button type="button" class="btn btn-ghost" data-goto="arcs">📬 ARCs</button>
+          <button type="button" class="btn btn-ghost" data-goto="reviews">⭐ Reviews</button>
+          <button type="button" class="btn btn-ghost" data-goto="questionnaire">❓ Questionnaire</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========== CHECKLIST VIEW ========== -->
+    <main class="main view" id="view-checklist" hidden>
+      <header class="page-header">
+        <div>
+          <h1>Publishing Checklist</h1>
+          <p class="subtitle">Track every step from idea to launch</p>
+        </div>
+        <div class="header-actions">
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <span class="progress-text" id="progressText">0%</span>
+          </div>
+          <button type="button" class="btn btn-ghost" id="btnResetChecklist">Reset</button>
+        </div>
+      </header>
+
+      <div class="checklist" id="checklistRoot">
+        <!-- Sections rendered by JS -->
+      </div>
+    </main>
+
+    <!-- ========== LAUNCH CALENDAR VIEW ========== -->
+    <main class="main view" id="view-calendar" hidden>
+      <header class="page-header">
+        <div>
+          <h1>Launch Calendar</h1>
+          <p class="subtitle">Give any checklist step a date, right from the Checklist, and see it here</p>
+        </div>
+      </header>
+
+      <p class="card-hint" style="margin-bottom:12px">
+        This calendar is empty until you add dates to checklist items. Open the <a href="#checklist" id="calendarGoToChecklist">Checklist</a> and set a date on any step, marketing tasks are usually the ones worth dating.
+      </p>
+
+      <section class="card calendar-card">
+        <div class="calendar-nav">
+          <button type="button" class="btn btn-ghost btn-sm" id="btnCalPrev">← Prev</button>
+          <div class="calendar-month-label" id="calMonthLabel"></div>
+          <button type="button" class="btn btn-ghost btn-sm" id="btnCalNext">Next →</button>
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm calendar-today-btn" id="btnCalToday">Today</button>
+        <div class="calendar-weekdays">
+          <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+        </div>
+        <div class="calendar-grid" id="calGrid"></div>
+      </section>
+
+      <section class="card">
+        <div class="card-header">
+          <h2 id="calAgendaTitle">Upcoming</h2>
+          <button type="button" class="btn btn-ghost btn-sm" id="btnCalShowUpcoming" hidden>Show all upcoming</button>
+        </div>
+        <div class="card-body">
+          <div id="calAgendaList"></div>
+          <p class="hint" id="calAgendaEmpty" hidden>Nothing dated yet. Add a date to a checklist item to see it here.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========== METADATA VIEW ========== -->
+    <main class="main view" id="view-metadata" hidden>
+      <header class="page-header">
+        <div>
+          <h1>ISBN & Metadata Vault</h1>
+          <p class="subtitle">Single source of truth for title, ISBNs, BISAC, keywords & more</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-ghost" id="btnExport">Export JSON</button>
+          <button type="button" class="btn btn-ghost" id="btnImport">Import</button>
+          <button type="button" class="btn btn-danger" id="btnClear">Clear</button>
+          <button type="button" class="btn btn-primary" id="btnSave">Save</button>
+        </div>
+      </header>
+
+      <div class="wizard-toggle-bar">
+        <span class="wizard-toggle-text">Prefer to go one step at a time?</span>
+        <button type="button" class="btn btn-ghost btn-sm" id="btnMetaWizardToggle">Switch to step-by-step</button>
+      </div>
+
+      <form id="metadataForm" class="metadata-form" autocomplete="off">
+        <!-- Core Identity -->
+        <section class="card">
+          <div class="card-header"><h2>Core Identity</h2></div>
+          <div class="card-body grid-2">
+            <div class="field">
+              <label for="workingTitle">Working Title</label>
+              <input type="text" id="workingTitle" name="workingTitle" placeholder="e.g. Project Blackbird" />
+              <div class="field-hint">A placeholder while you're still writing. Change it anytime, it's just for your own reference and won't be shown to readers.</div>
+            </div>
+            <div class="field">
+              <label for="finalTitle">Final Title <span class="req">*</span></label>
+              <input type="text" id="finalTitle" name="finalTitle" placeholder="The actual title that will appear on the cover" required />
+              <div class="field-hint">The exact title that will appear on the cover and every retailer page. Once you're happy with it, treat it as locked.</div>
+            </div>
+            <div class="field full">
+              <label for="subtitle">Subtitle</label>
+              <input type="text" id="subtitle" name="subtitle" placeholder="Optional subtitle" />
+              <div class="field-hint">Optional. A short line under the title for extra context, common in nonfiction ("A Novel," "How to X in 30 Days"). Leave blank if your title stands alone.</div>
+            </div>
+            <div class="field">
+              <label for="author">Primary Author / Pen Name <span class="req">*</span></label>
+              <input type="text" id="author" name="author" placeholder="Name as it appears on the cover" required />
+              <div class="field-hint">The name exactly as it should appear on the cover — your real name or a pen name.</div>
+            </div>
+            <div class="field">
+              <label for="contributors">Other Contributors</label>
+              <input type="text" id="contributors" name="contributors" placeholder="Editor, illustrator, co-author…" />
+              <div class="field-hint">Anyone else who worked on the book. Not required, useful for your own records and for acknowledgments.</div>
+            </div>
+            <div class="field">
+              <label for="seriesName">Series Name</label>
+              <input type="text" id="seriesName" name="seriesName" placeholder="e.g. The Nightfall Saga" />
+              <div class="field-hint">Leave blank for standalone books.</div>
+            </div>
+            <div class="field">
+              <label for="seriesNumber">Series Number</label>
+              <input type="text" id="seriesNumber" name="seriesNumber" placeholder="1, 2, Book One…" />
+              <div class="field-hint">Where this book falls in the series — whatever format you use consistently across the series.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Publication -->
+        <section class="card">
+          <div class="card-header"><h2>Publication</h2></div>
+          <div class="card-body grid-2">
+            <div class="field">
+              <label for="publisher">Publisher / Imprint</label>
+              <input type="text" id="publisher" name="publisher" placeholder="Your imprint or traditional publisher" />
+              <div class="field-hint">Leave blank if you're publishing directly under your own name with no imprint.</div>
+            </div>
+            <div class="field">
+              <label for="pubDate">Publication / On-Sale Date</label>
+              <input type="date" id="pubDate" name="pubDate" />
+              <div class="field-hint">The date your book goes live for purchase — this can be a pre-order date.</div>
+            </div>
+            <div class="field">
+              <label for="language">Language</label>
+              <select id="language" name="language">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="it">Italian</option>
+                <option value="pt">Portuguese</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="status">Status</label>
+              <select id="status" name="status">
+                <option value="draft">Draft</option>
+                <option value="ready">Ready for upload</option>
+                <option value="published">Published</option>
+                <option value="archived">Archived</option>
+              </select>
+              <div class="field-hint">Where this book currently stands in your process.</div>
+            </div>
+            <div class="field">
+              <label for="pageCount">Page Count (print)</label>
+              <input type="number" id="pageCount" name="pageCount" min="0" placeholder="e.g. 320" />
+              <div class="field-hint">An estimate is fine for now. Roughly 250–300 words per page if you don't have a formatted file yet.</div>
+            </div>
+            <div class="field">
+              <label for="wordCount">Word Count</label>
+              <input type="number" id="wordCount" name="wordCount" min="0" placeholder="e.g. 85000" />
+              <div class="field-hint">Most word processors show this automatically — Tools &gt; Word Count in Google Docs, or the bottom status bar in Microsoft Word.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Formats & ISBNs -->
+        <section class="card">
+          <div class="card-header">
+            <h2>Formats & ISBNs</h2>
+            <p class="card-hint">One ISBN per format, never reuse one across paperback, hardcover, ebook, and audio. Buy ISBNs from Bowker at myidentifiers.com if you're in the US (a 10-pack is far cheaper per-ISBN than buying one at a time), or search "[your country] ISBN agency" elsewhere. KDP will also assign a free ISBN automatically, but that locks the edition's publisher-of-record to Amazon, skip it if you plan to sell wide (Apple Books, Kobo, etc).</p>
+          </div>
+          <div class="card-body">
+            <div class="isbn-grid">
+              <div class="isbn-row">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="fmtPaperback" name="fmtPaperback" />
+                  <span>Paperback</span>
+                </label>
+                <input type="text" id="isbnPaperback" name="isbnPaperback" class="isbn-input" placeholder="ISBN-13 (paperback)" />
+                <input type="text" id="pricePaperback" name="pricePaperback" class="price-input" placeholder="Price $" />
+              </div>
+              <div class="isbn-row">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="fmtHardcover" name="fmtHardcover" />
+                  <span>Hardcover</span>
+                </label>
+                <input type="text" id="isbnHardcover" name="isbnHardcover" class="isbn-input" placeholder="ISBN-13 (hardcover)" />
+                <input type="text" id="priceHardcover" name="priceHardcover" class="price-input" placeholder="Price $" />
+              </div>
+              <div class="isbn-row">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="fmtEbook" name="fmtEbook" />
+                  <span>Ebook</span>
+                </label>
+                <input type="text" id="isbnEbook" name="isbnEbook" class="isbn-input" placeholder="ISBN-13 (ebook)" />
+                <input type="text" id="priceEbook" name="priceEbook" class="price-input" placeholder="Price $" />
+              </div>
+              <div class="isbn-row">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="fmtAudio" name="fmtAudio" />
+                  <span>Audiobook</span>
+                </label>
+                <input type="text" id="isbnAudio" name="isbnAudio" class="isbn-input" placeholder="ISBN-13 (audio)" />
+                <input type="text" id="priceAudio" name="priceAudio" class="price-input" placeholder="Price $" />
+              </div>
+            </div>
+            <div class="field-hint" style="margin-top: 10px;">Price is the retail amount readers pay. You can change it anytime, including for promotions.</div>
+          </div>
+        </section>
+
+        <!-- Categorization -->
+        <section class="card">
+          <div class="card-header"><h2>Categorization</h2></div>
+          <div class="card-body grid-2">
+            <div class="field">
+              <label for="bisacPrimary">Primary BISAC</label>
+              <input type="text" id="bisacPrimary" name="bisacPrimary" placeholder="e.g. FIC031000 - Fiction / Thrillers" />
+              <div class="field-hint">A standardized code that tells retailers and libraries which shelf your book belongs on. Look up the full list at bisg.org ("BISAC Subject Headings List"), or check a similar, already-published book's Amazon listing under "Product details."</div>
+            </div>
+            <div class="field">
+              <label for="bisacSecondary">Secondary BISAC</label>
+              <input type="text" id="bisacSecondary" name="bisacSecondary" placeholder="Optional second category" />
+              <div class="field-hint">Optional. Same lookup as Primary BISAC, pick the most specific code that still fits, a code too broad buries you in a crowded category.</div>
+            </div>
+            <div class="field full">
+              <label for="keywords">Keywords / Search Terms</label>
+              <textarea id="keywords" name="keywords" rows="2" placeholder="Comma-separated keywords for Amazon, Apple, etc. (max ~7 recommended)"></textarea>
+              <div class="field-hint">Search terms a reader might actually type in, not marketing language. Type the start of a phrase into Amazon's search bar and see what autocomplete suggests, those are real searches people are making.</div>
+            </div>
+            <div class="field full">
+              <label for="audience">Target Audience</label>
+              <input type="text" id="audience" name="audience" placeholder="e.g. Adult, Young Adult, 18–35 thriller readers" />
+              <div class="field-hint">Be specific — "Adult readers who enjoy slow-burn romantic suspense" is more useful than just "Adult."</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Descriptions -->
+        <section class="card">
+          <div class="card-header"><h2>Descriptions</h2></div>
+          <div class="card-body">
+            <div class="field">
+              <label for="shortDesc">Short Description / Elevator Pitch</label>
+              <textarea id="shortDesc" name="shortDesc" rows="3" placeholder="1–2 sentences. Used in ads and short listings."></textarea>
+              <div class="field-hint">The version someone reads in half a second while scrolling. It needs to hook, not summarize.</div>
+            </div>
+            <div class="field">
+              <label for="fullDesc">Full Description / Blurb</label>
+              <textarea id="fullDesc" name="fullDesc" rows="8" placeholder="The sales description that appears on retailer pages."></textarea>
+              <div class="field-hint">Sells the book, it doesn't summarize the plot start to finish, and it should never reveal the ending. Look at bestsellers in your genre for tone and structure before writing your own.</div>
+            </div>
+            <div class="field">
+              <label for="notes">Internal Notes</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Private notes — not for public metadata."></textarea>
+              <div class="field-hint">Private, for your own use. Never shown to readers, never uploaded anywhere.</div>
+            </div>
+          </div>
+        </section>
+
+        <div class="form-footer">
+          <button type="submit" class="btn btn-primary btn-lg">Save Metadata</button>
+          <span class="hint">Data is stored locally in your browser (localStorage).</span>
+        </div>
+      </form>
+    </main>
+
+    <!-- ========== QUESTIONNAIRE VIEW ========== -->
+    <main class="main view" id="view-questionnaire" hidden>
+      <header class="page-header">
+        <div>
+          <h1>Project Questionnaire</h1>
+          <p class="subtitle">Answer once — clarity for positioning, metadata & marketing</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-ghost" id="btnImportQ">Import</button>
+          <button type="button" class="btn btn-ghost" id="btnExportQ">Export</button>
+          <button type="button" class="btn btn-danger" id="btnClearQ">Clear</button>
+          <button type="button" class="btn btn-primary" id="btnSaveQ">Save</button>
+        </div>
+      </header>
+
+      <div class="wizard-toggle-bar">
+        <span class="wizard-toggle-text">Prefer to go one step at a time?</span>
+        <button type="button" class="btn btn-ghost btn-sm" id="btnQWizardToggle">Switch to step-by-step</button>
+      </div>
+
+      <form id="questionnaireForm" class="questionnaire-form" autocomplete="off">
+        <!-- 1. The Book -->
+        <section class="card">
+          <div class="card-header"><h2>1. The Book</h2></div>
+          <div class="card-body">
+            <div class="field">
+              <label for="q_oneSentence">In one sentence, what is this book about?</label>
+              <textarea id="q_oneSentence" name="q_oneSentence" rows="2" placeholder="When a burned-out detective inherits a haunted lighthouse, she must solve a 40-year-old disappearance before the storm season ends."></textarea>
+              <div class="field-hint">The version you'd say out loud if someone asked "what's your book about?" at a party. Not your final blurb, just a working answer to clarify your own thinking.</div>
+            </div>
+            <div class="field">
+              <label for="q_whyWrite">Why does this story need to exist? (Your personal why)</label>
+              <textarea id="q_whyWrite" name="q_whyWrite" rows="3" placeholder="What itch does it scratch for you — and for readers?"></textarea>
+              <div class="field-hint">Not for readers, this is for you. It helps you stay motivated and surfaces the emotional core you'll want to lean into in marketing later.</div>
+            </div>
+            <div class="field">
+              <label for="q_comparable">Comparable titles (comps)</label>
+              <textarea id="q_comparable" name="q_comparable" rows="4" placeholder="The Silent Patient by Alex Michaelides — same slow-reveal psychological tension&#10;Mexican Gothic by Silvia Moreno-Garcia — gothic atmosphere, similar pacing&#10;The Guest List by Lucy Foley — closed-circle mystery structure"></textarea>
+              <div class="field-hint">2–3 already-published books close enough in tone or audience that "if you liked X, you'll like this" makes sense — one per line, with a short note on why each one fits. Browse a similar book's Amazon page under "Customers also bought" for real, reader-tested comps.</div>
+            </div>
+            <div class="field">
+              <label for="q_unique">What makes your book different from those comps?</label>
+              <textarea id="q_unique" name="q_unique" rows="2" placeholder="The unique angle, voice, setting, or twist"></textarea>
+              <div class="field-hint">This becomes the core of your pitch. Without a clear answer here, your marketing tends to default to sounding like everyone else's.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Reader -->
+        <section class="card">
+          <div class="card-header"><h2>2. The Reader</h2></div>
+          <div class="card-body grid-2">
+            <div class="field full">
+              <label for="q_idealReader">Describe your ideal reader in detail</label>
+              <textarea id="q_idealReader" name="q_idealReader" rows="3" placeholder="Age range, gender lean, what they already read, what they care about, where they hang out online…"></textarea>
+              <div class="field-hint">A specific person, not a demographic category. What they already read and where they spend time online matters more than age, and makes them far easier to actually reach with ads or content.</div>
+            </div>
+            <div class="field">
+              <label for="q_genre">Primary genre / category</label>
+              <input type="text" id="q_genre" name="q_genre" placeholder="e.g. Psychological thriller, romantasy, business memoir" />
+              <div class="field-hint">As specific as you can get — "psychological thriller" over just "thriller." This should generally match the BISAC categories in the Metadata Vault.</div>
+            </div>
+            <div class="field">
+              <label for="q_heat">Content level / heat / intensity</label>
+              <select id="q_heat" name="q_heat">
+                <option value="">- select -</option>
+                <option value="clean">Clean / no spice</option>
+                <option value="mild">Mild</option>
+                <option value="moderate">Moderate</option>
+                <option value="explicit">Explicit / dark</option>
+                <option value="na">Not applicable</option>
+              </select>
+              <div class="field-hint">Readers rely on this to know what they're getting. Mismatched expectations are one of the most common sources of negative reviews.</div>
+            </div>
+            <div class="field full">
+              <label for="q_promise">What emotional promise does the book make?</label>
+              <input type="text" id="q_promise" name="q_promise" placeholder="e.g. Edge-of-seat tension + a satisfying justice ending" />
+              <div class="field-hint">The feeling a reader trusts you to deliver by the end. This should match what your comps above also promise.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Goals -->
+        <section class="card">
+          <div class="card-header"><h2>3. Goals & Success</h2></div>
+          <div class="card-body grid-2">
+            <div class="field full">
+              <label for="q_primaryGoal">Primary goal for this book</label>
+              <select id="q_primaryGoal" name="q_primaryGoal">
+                <option value="">- select -</option>
+                <option value="finish">Just finish and publish it</option>
+                <option value="income">Meaningful income / full-time writing</option>
+                <option value="series">Launch a series / platform</option>
+                <option value="credibility">Build credibility / authority</option>
+                <option value="fun">Creative fulfillment / fun</option>
+                <option value="other">Other</option>
+              </select>
+              <div class="field-hint">There's no wrong answer here — naming your real priority honestly shapes which of the other questions matter most.</div>
+            </div>
+            <div class="field">
+              <label for="q_salesTarget">Realistic first-year sales target</label>
+              <input type="text" id="q_salesTarget" name="q_salesTarget" placeholder="e.g. 500 copies or $2,000 royalty" />
+              <div class="field-hint">Keep this realistic, not aspirational. Most first books sell modestly — an honest target here helps set an honest marketing budget below.</div>
+            </div>
+            <div class="field">
+              <label for="q_timeline">Target publish date</label>
+              <input type="month" id="q_timeline" name="q_timeline" />
+              <div class="field-hint">Should match the Publication Date in the Metadata Vault once that's set.</div>
+            </div>
+            <div class="field full">
+              <label for="q_successLooksLike">What does “success” look like 12 months after launch?</label>
+              <textarea id="q_successLooksLike" name="q_successLooksLike" rows="2" placeholder="Be specific and honest"></textarea>
+              <div class="field-hint">Something you could actually check against in a year — "500 copies sold and an email list of 300 readers," not just "sell lots of books."</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Marketing -->
+        <section class="card">
+          <div class="card-header"><h2>4. Marketing & Reach</h2></div>
+          <div class="card-body">
+            <div class="field">
+              <label for="q_existingAudience">Do you already have an audience? Where?</label>
+              <textarea id="q_existingAudience" name="q_existingAudience" rows="2" placeholder="Email list size, social following, podcast, newsletter, local community…"></textarea>
+              <div class="field-hint">Be honest about size. This directly affects how much of your launch depends on paid ads versus people who already know you.</div>
+            </div>
+            <div class="field">
+              <label for="q_marketingComfort">Which marketing activities are you willing to do?</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label"><input type="checkbox" name="q_mkt_email" id="q_mkt_email" /> Email list / newsletter</label>
+                <label class="checkbox-label"><input type="checkbox" name="q_mkt_social" id="q_mkt_social" /> Social media (organic)</label>
+                <label class="checkbox-label"><input type="checkbox" name="q_mkt_ads" id="q_mkt_ads" /> Paid ads (Amazon, Meta, BookBub)</label>
+                <label class="checkbox-label"><input type="checkbox" name="q_mkt_podcast" id="q_mkt_podcast" /> Podcast interviews / guesting</label>
+                <label class="checkbox-label"><input type="checkbox" name="q_mkt_events" id="q_mkt_events" /> Events / signings / speaking</label>
+                <label class="checkbox-label"><input type="checkbox" name="q_mkt_arcs" id="q_mkt_arcs" /> ARC team & review campaign</label>
+                <label class="checkbox-label"><input type="checkbox" name="q_mkt_none" id="q_mkt_none" /> Prefer minimal marketing</label>
+              </div>
+              <div class="field-hint">Check only what you'll actually do consistently. An ARC team you abandon after week one is worse than committing to fewer channels you'll actually maintain.</div>
+            </div>
+            <div class="field">
+              <label for="q_budget">Rough marketing budget for launch (USD)</label>
+              <select id="q_budget" name="q_budget">
+                <option value="">- select -</option>
+                <option value="0">$0 – organic only</option>
+                <option value="100-500">$100 – $500</option>
+                <option value="500-2000">$500 – $2,000</option>
+                <option value="2000+">$2,000+</option>
+                <option value="unsure">Not sure yet</option>
+              </select>
+              <div class="field-hint">Covers things like ads, promo site submissions (BookBub, Written Word Media), or ARC reader incentives. "$0, organic only" is a completely valid answer.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. Practical -->
+        <section class="card">
+          <div class="card-header"><h2>5. Practical Reality</h2></div>
+          <div class="card-body grid-2">
+            <div class="field">
+              <label for="q_hours">Hours per week you can realistically dedicate</label>
+              <input type="text" id="q_hours" name="q_hours" placeholder="e.g. 8–12 hours" />
+              <div class="field-hint">A realistic number, not an aspirational one. This affects which later stages (marketing, distribution, post-launch) are realistic to do yourself versus needing help with.</div>
+            </div>
+            <div class="field">
+              <label for="q_help">Where do you most need outside help?</label>
+              <select id="q_help" name="q_help">
+                <option value="">- select -</option>
+                <option value="editing">Editing</option>
+                <option value="cover">Cover design</option>
+                <option value="formatting">Formatting</option>
+                <option value="marketing">Marketing strategy</option>
+                <option value="ads">Ads management</option>
+                <option value="none">I want to DIY everything</option>
+              </select>
+              <div class="field-hint">Where you're least confident or most likely to get stuck. Useful as a signal for where to budget for professional help first.</div>
+            </div>
+            <div class="field full">
+              <label for="q_blockers">Biggest current blocker or fear</label>
+              <textarea id="q_blockers" name="q_blockers" rows="2" placeholder="Be honest — this helps prioritize"></textarea>
+              <div class="field-hint">Not shown anywhere else. Exists to help surface what's actually slowing you down.</div>
+            </div>
+            <div class="field full">
+              <label for="q_notes">Anything else you want to capture?</label>
+              <textarea id="q_notes" name="q_notes" rows="3" placeholder="Open notes"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <div class="form-footer">
+          <button type="submit" class="btn btn-primary btn-lg">Save Answers</button>
+          <span class="hint">Saved locally in your browser. Export anytime.</span>
+        </div>
+      </form>
+    </main>
+
+    <!-- ========== ASSET TRACKER VIEW ========== -->
+    <main class="main view" id="view-assets" hidden>
+      <header class="page-header">
+        <div>
+          <h1>Asset Tracker</h1>
+          <p class="subtitle">Manuscripts, covers, interiors, marketing files & more</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-ghost" id="btnImportAssets">Import</button>
+          <button type="button" class="btn btn-ghost" id="btnExportAssets">Export</button>
+          <button type="button" class="btn btn-primary" id="btnAddAsset">+ Add Asset</button>
+        </div>
+      </header>
+
+      <section class="card drive-card" id="driveCard">
+        <div class="drive-card-row">
+          <div>
+            <div class="drive-card-title">Google Drive Backup </div>
+            <div class="drive-card-status" id="driveStatus">Not connected</div>
+          </div>
+          <div class="drive-card-actions">
+            <button type="button" class="btn btn-ghost" id="btnDriveConnect">Connect Google Drive</button>
+            <button type="button" class="btn btn-primary" id="btnDriveBackup" hidden>Backup Project Now</button>
+          </div>
+        </div>
+        <p class="field-hint" id="driveHint">Connects your Google account so you can back up this project to Drive with one tap. Works only when you're online, everything else in this app keeps working offline either way.</p>
+      </section>
+
+      <!-- Filters -->
+      <div class="asset-filters" id="assetFilters">
+        <button type="button" class="filter-chip active" data-filter="all">All</button>
+        <button type="button" class="filter-chip" data-filter="manuscript">Manuscript</button>
+        <button type="button" class="filter-chip" data-filter="cover">Cover</button>
+        <button type="button" class="filter-chip" data-filter="interior">Interior</button>
+        <button type="button" class="filter-chip" data-filter="marketing">Marketing</button>
+        <button type="button" class="filter-chip" data-filter="audio">Audio</button>
+        <button type="button" class="filter-chip" data-filter="legal">Legal</button>
+        <button type="button" class="filter-chip" data-filter="other">Other</button>
+      </div>
+
+      <!-- Add / Edit form (hidden by default) -->
+      <section class="card asset-form-card" id="assetFormCard" hidden>
+        <div class="card-header">
+          <h2 id="assetFormTitle">Add Asset</h2>
+        </div>
+        <div class="card-body">
+          <form id="assetForm" autocomplete="off">
+            <input type="hidden" id="assetId" name="assetId" />
+            <div class="grid-2">
+              <div class="field">
+                <label for="assetName">Name <span class="req">*</span></label>
+                <input type="text" id="assetName" name="assetName" required placeholder="e.g. Final Manuscript v3, Front Cover PNG" />
+              </div>
+              <div class="field">
+                <label for="assetCategory">Category</label>
+                <select id="assetCategory" name="assetCategory">
+                  <option value="manuscript">Manuscript</option>
+                  <option value="cover">Cover</option>
+                  <option value="interior">Interior / Formatting</option>
+                  <option value="marketing">Marketing</option>
+                  <option value="audio">Audio</option>
+                  <option value="legal">Legal / Contracts</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="assetStatus">Status</label>
+                <select id="assetStatus" name="assetStatus">
+                  <option value="draft">Draft</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="review">Needs Review</option>
+                  <option value="final">Final / Approved</option>
+                  <option value="archived">Archived</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="assetVersion">Version</label>
+                <input type="text" id="assetVersion" name="assetVersion" placeholder="e.g. v2.1, 2026-03-15" />
+              </div>
+              <div class="field full">
+                <label for="assetLocation">Location / Link / Path</label>
+                <input type="text" id="assetLocation" name="assetLocation" placeholder="Google Drive link, Dropbox path, local folder…" />
+                <input type="hidden" id="assetDriveFileId" name="assetDriveFileId" />
+                <input type="hidden" id="assetDriveFileName" name="assetDriveFileName" />
+                <input type="hidden" id="assetDriveModified" name="assetDriveModified" />
+                <div class="drive-link-row">
+                  <button type="button" class="btn btn-ghost btn-sm" id="btnLinkDriveFile">🔗 Link Google Drive File</button>
+                  <button type="button" class="btn btn-ghost btn-sm" id="btnUnlinkDriveFile" hidden>Unlink</button>
+                </div>
+                <div class="field-hint" id="driveLinkStatus"></div>
+              </div>
+              <div class="field full" id="coverBriefFields" hidden>
+                <label for="assetMoodBoard">Mood Board / Inspiration Links</label>
+                <input type="text" id="assetMoodBoard" name="assetMoodBoard" placeholder="Pinterest board, Canva link, image folder…" />
+                <div class="field-hint">Genre expectations matter more than personal taste here, readers judge a cover against others in the same category in about half a second.</div>
+                <label for="assetCompCovers" style="margin-top:10px">Comp Covers</label>
+                <textarea id="assetCompCovers" name="assetCompCovers" rows="2" placeholder="2–3 published covers in your genre that nail the right tone"></textarea>
+                <div class="field-hint">Browse the bestseller list in your genre and note which covers you'd want yours shelved next to. Hand these to your designer as reference, not to copy.</div>
+              </div>
+              <div class="field full">
+                <label for="assetNotes">Notes</label>
+                <textarea id="assetNotes" name="assetNotes" rows="2" placeholder="Anything important about this file"></textarea>
+              </div>
+            </div>
+            <div class="form-footer" style="margin-top:16px">
+              <button type="submit" class="btn btn-primary">Save Asset</button>
+              <button type="button" class="btn btn-ghost" id="btnCancelAsset">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Asset list -->
+      <div class="asset-list" id="assetList">
+        <!-- rendered by JS -->
+      </div>
+
+      <div class="empty-state" id="assetEmpty" hidden>
+        <p>No assets yet.</p>
+        <button type="button" class="btn btn-primary" id="btnAddAssetEmpty">+ Add your first asset</button>
+      </div>
+    </main>
+
+    <!-- ========== ARC TRACKER VIEW ========== -->
+    <main class="main view" id="view-arcs" hidden>
+      <header class="page-header">
+        <div>
+          <h1>ARC Tracker</h1>
+          <p class="subtitle">Beta and advance reader copies — who has it, status, and reviews</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-ghost" id="btnImportArcs">Import</button>
+          <button type="button" class="btn btn-ghost" id="btnExportArcs">Export</button>
+          <button type="button" class="btn btn-primary" id="btnAddArc">+ Add Reader</button>
+        </div>
+      </header>
+
+      <p class="card-hint" style="margin-bottom:12px">
+        A <strong>beta reader</strong> reads your manuscript while it's still being revised and gives feedback on story or structure. An <strong>ARC reader</strong> (Advance Reader Copy) gets a free early copy of the finished book in exchange for an honest review once it's live. Track both here, the Phase field below tells them apart.
+      </p>
+
+      <!-- Phase filters -->
+      <div class="asset-filters" id="arcPhaseFilters">
+        <button type="button" class="filter-chip active" data-phase="all">All Phases</button>
+        <button type="button" class="filter-chip" data-phase="beta">Beta Readers</button>
+        <button type="button" class="filter-chip" data-phase="arc">ARC Readers</button>
+      </div>
+
+      <!-- Status filters -->
+      <div class="asset-filters" id="arcFilters">
+        <button type="button" class="filter-chip active" data-filter="all">All</button>
+        <button type="button" class="filter-chip" data-filter="invited">Invited</button>
+        <button type="button" class="filter-chip" data-filter="sent">Sent</button>
+        <button type="button" class="filter-chip" data-filter="received">Received</button>
+        <button type="button" class="filter-chip" data-filter="reviewed">Reviewed</button>
+        <button type="button" class="filter-chip" data-filter="no-review">No Review</button>
+        <button type="button" class="filter-chip" data-filter="declined">Declined</button>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="arc-stats" id="arcStats"></div>
+
+      <!-- Add / Edit form -->
+      <section class="card asset-form-card" id="arcFormCard" hidden>
+        <div class="card-header">
+          <h2 id="arcFormTitle">Add ARC Reader</h2>
+        </div>
+        <div class="card-body">
+          <form id="arcForm" autocomplete="off">
+            <input type="hidden" id="arcId" name="arcId" />
+            <div class="grid-2">
+              <div class="field full">
+                <label for="arcPhase">Phase</label>
+                <select id="arcPhase" name="arcPhase">
+                  <option value="beta">Beta Reader (manuscript, pre-launch feedback)</option>
+                  <option value="arc">ARC Reader (finished book, post-launch review)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="arcName">Name / Handle <span class="req">*</span></label>
+                <input type="text" id="arcName" name="arcName" required placeholder="e.g. Sarah J. or @bookishsarah" />
+              </div>
+              <div class="field">
+                <label for="arcContact">Email / Contact</label>
+                <input type="text" id="arcContact" name="arcContact" placeholder="email or DM link" />
+              </div>
+              <div class="field">
+                <label for="arcPlatform">Platform</label>
+                <select id="arcPlatform" name="arcPlatform">
+                  <option value="goodreads">Goodreads</option>
+                  <option value="amazon">Amazon</option>
+                  <option value="blog">Blog</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="tiktok">TikTok / BookTok</option>
+                  <option value="youtube">YouTube</option>
+                  <option value="bookbub">BookBub</option>
+                  <option value="netgalley">NetGalley</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="arcStatus">Status</label>
+                <select id="arcStatus" name="arcStatus">
+                  <option value="invited">Invited</option>
+                  <option value="sent">Sent</option>
+                  <option value="received">Received</option>
+                  <option value="reviewed">Reviewed</option>
+                  <option value="no-review">No Review</option>
+                  <option value="declined">Declined</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="arcFormat">Format sent</label>
+                <select id="arcFormat" name="arcFormat">
+                  <option value="ebook">Ebook</option>
+                  <option value="paperback">Paperback</option>
+                  <option value="hardcover">Hardcover</option>
+                  <option value="audio">Audiobook</option>
+                  <option value="pdf">PDF</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="arcDateSent">Date sent</label>
+                <input type="date" id="arcDateSent" name="arcDateSent" />
+              </div>
+              <div class="field">
+                <label for="arcDueDate">Expected review by</label>
+                <input type="date" id="arcDueDate" name="arcDueDate" />
+              </div>
+              <div class="field">
+                <label for="arcRating">Rating (if reviewed)</label>
+                <select id="arcRating" name="arcRating">
+                  <option value="">—</option>
+                  <option value="5">5 ★</option>
+                  <option value="4">4 ★</option>
+                  <option value="3">3 ★</option>
+                  <option value="2">2 ★</option>
+                  <option value="1">1 ★</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="arcReviewLink">Review link</label>
+                <input type="url" id="arcReviewLink" name="arcReviewLink" placeholder="https://…" />
+              </div>
+              <div class="field full">
+                <label for="arcNotes">Notes</label>
+                <textarea id="arcNotes" name="arcNotes" rows="2" placeholder="Follow-up reminders, preferences, etc."></textarea>
+              </div>
+            </div>
+            <div class="form-footer" style="margin-top:16px">
+              <button type="submit" class="btn btn-primary">Save Reader</button>
+              <button type="button" class="btn btn-ghost" id="btnCancelArc">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ARC list -->
+      <div class="asset-list" id="arcList"></div>
+
+      <div class="empty-state" id="arcEmpty" hidden>
+        <p>No ARC readers yet.</p>
+        <button type="button" class="btn btn-primary" id="btnAddArcEmpty">+ Add your first reader</button>
+      </div>
+    </main>
+
+    <!-- ========== REVIEW LOG VIEW ========== -->
+    <main class="main view" id="view-reviews" hidden>
+      <header class="page-header">
+        <div>
+          <h1>Review Log</h1>
+          <p class="subtitle">Aggregate reviews from Amazon, Goodreads, blogs & more</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-ghost" id="btnImportReviews">Import</button>
+          <button type="button" class="btn btn-ghost" id="btnExportReviews">Export</button>
+          <button type="button" class="btn btn-primary" id="btnAddReview">+ Log Review</button>
+        </div>
+      </header>
+
+      <!-- Stats -->
+      <div class="arc-stats" id="reviewStats"></div>
+
+      <!-- Platform filters -->
+      <div class="asset-filters" id="reviewFilters">
+        <button type="button" class="filter-chip active" data-filter="all">All</button>
+        <button type="button" class="filter-chip" data-filter="amazon">Amazon</button>
+        <button type="button" class="filter-chip" data-filter="goodreads">Goodreads</button>
+        <button type="button" class="filter-chip" data-filter="bookbub">BookBub</button>
+        <button type="button" class="filter-chip" data-filter="blog">Blog</button>
+        <button type="button" class="filter-chip" data-filter="instagram">Instagram</button>
+        <button type="button" class="filter-chip" data-filter="tiktok">TikTok</button>
+        <button type="button" class="filter-chip" data-filter="youtube">YouTube</button>
+        <button type="button" class="filter-chip" data-filter="other">Other</button>
+      </div>
+
+      <!-- Add / Edit form -->
+      <section class="card asset-form-card" id="reviewFormCard" hidden>
+        <div class="card-header">
+          <h2 id="reviewFormTitle">Log Review</h2>
+        </div>
+        <div class="card-body">
+          <form id="reviewForm" autocomplete="off">
+            <input type="hidden" id="reviewId" name="reviewId" />
+            <div class="grid-2">
+              <div class="field">
+                <label for="reviewPlatform">Platform <span class="req">*</span></label>
+                <select id="reviewPlatform" name="reviewPlatform" required>
+                  <option value="amazon">Amazon</option>
+                  <option value="goodreads">Goodreads</option>
+                  <option value="bookbub">BookBub</option>
+                  <option value="blog">Blog</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="tiktok">TikTok</option>
+                  <option value="youtube">YouTube</option>
+                  <option value="netgalley">NetGalley</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="reviewRating">Rating</label>
+                <select id="reviewRating" name="reviewRating">
+                  <option value="">- none -</option>
+                  <option value="5">5 ★</option>
+                  <option value="4">4 ★</option>
+                  <option value="3">3 ★</option>
+                  <option value="2">2 ★</option>
+                  <option value="1">1 ★</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="reviewDate">Date posted</label>
+                <input type="date" id="reviewDate" name="reviewDate" />
+              </div>
+              <div class="field">
+                <label for="reviewReviewer">Reviewer name / handle</label>
+                <input type="text" id="reviewReviewer" name="reviewReviewer" placeholder="Optional" />
+              </div>
+              <div class="field full">
+                <label for="reviewLink">Review URL</label>
+                <input type="url" id="reviewLink" name="reviewLink" placeholder="https://…" />
+              </div>
+              <div class="field full">
+                <label for="reviewExcerpt">Excerpt / quote</label>
+                <textarea id="reviewExcerpt" name="reviewExcerpt" rows="3" placeholder="Paste a short quote or key line from the review"></textarea>
+              </div>
+              <div class="field full">
+                <label for="reviewNotes">Notes</label>
+                <textarea id="reviewNotes" name="reviewNotes" rows="2" placeholder="e.g. From ARC campaign, verified purchase, etc."></textarea>
+              </div>
+            </div>
+            <div class="form-footer" style="margin-top:16px">
+              <button type="submit" class="btn btn-primary">Save Review</button>
+              <button type="button" class="btn btn-ghost" id="btnCancelReview">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Review list -->
+      <div class="asset-list" id="reviewList"></div>
+
+      <div class="empty-state" id="reviewEmpty" hidden>
+        <p>No reviews logged yet.</p>
+        <button type="button" class="btn btn-primary" id="btnAddReviewEmpty">+ Log your first review</button>
+      </div>
+    </main>
+
+    <!-- ========== DISTRIBUTION TRACKER VIEW ========== -->
+    <main class="main view" id="view-distribution" hidden>
+      <header class="page-header">
+        <div>
+          <h1>Distribution Tracker</h1>
+          <p class="subtitle">Which stores, libraries, and platforms actually carry your book</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-ghost" id="btnImportDist">Import</button>
+          <button type="button" class="btn btn-ghost" id="btnExportDist">Export</button>
+          <button type="button" class="btn btn-primary" id="btnAddDist">+ Add Channel</button>
+        </div>
+      </header>
+
+      <!-- Filters -->
+      <div class="asset-filters" id="distFilters">
+        <button type="button" class="filter-chip active" data-filter="all">All</button>
+        <button type="button" class="filter-chip" data-filter="not-submitted">Not Submitted</button>
+        <button type="button" class="filter-chip" data-filter="pending">Pending</button>
+        <button type="button" class="filter-chip" data-filter="live">Live</button>
+        <button type="button" class="filter-chip" data-filter="rejected">Rejected</button>
+      </div>
+
+      <!-- Add / Edit form (hidden by default) -->
+      <section class="card asset-form-card" id="distFormCard" hidden>
+        <div class="card-header">
+          <h2 id="distFormTitle">Add Channel</h2>
+        </div>
+        <div class="card-body">
+          <form id="distForm" autocomplete="off">
+            <input type="hidden" id="distId" name="distId" />
+            <div class="grid-2">
+              <div class="field">
+                <label for="distChannel">Channel <span class="req">*</span></label>
+                <select id="distChannel" name="distChannel" required>
+                  <option value="amazon">Amazon</option>
+                  <option value="apple">Apple Books</option>
+                  <option value="kobo">Kobo</option>
+                  <option value="google-play">Google Play Books</option>
+                  <option value="bn">Barnes & Noble</option>
+                  <option value="library">Library systems (OverDrive, Hoopla)</option>
+                  <option value="indie">Independent bookstores</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="distFormat">Format</label>
+                <select id="distFormat" name="distFormat">
+                  <option value="ebook">Ebook</option>
+                  <option value="paperback">Paperback</option>
+                  <option value="hardcover">Hardcover</option>
+                  <option value="audio">Audiobook</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="distStatus">Status</label>
+                <select id="distStatus" name="distStatus">
+                  <option value="not-submitted">Not Submitted</option>
+                  <option value="pending">Pending</option>
+                  <option value="live">Live</option>
+                  <option value="rejected">Rejected</option>
+                </select>
+                <div class="field-hint">"Wide" just means selling through more than one retailer instead of exclusively through Amazon. Library systems usually require going through an aggregator like Draft2Digital rather than uploading directly.</div>
+              </div>
+              <div class="field">
+                <label for="distDateLive">Date Live</label>
+                <input type="date" id="distDateLive" name="distDateLive" />
+              </div>
+              <div class="field full">
+                <label for="distLink">Link</label>
+                <input type="url" id="distLink" name="distLink" placeholder="Link to the live listing, if any" />
+              </div>
+              <div class="field full">
+                <label for="distNotes">Notes</label>
+                <textarea id="distNotes" name="distNotes" rows="2" placeholder="Submission dates, rejection reasons, anything worth remembering"></textarea>
+              </div>
+            </div>
+            <div class="form-footer" style="margin-top:16px">
+              <button type="submit" class="btn btn-primary">Save Channel</button>
+              <button type="button" class="btn btn-ghost" id="btnCancelDist">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Distribution list -->
+      <div class="asset-list" id="distList"></div>
+
+      <div class="empty-state" id="distEmpty" hidden>
+        <p>No channels tracked yet.</p>
+        <button type="button" class="btn btn-primary" id="btnAddDistEmpty">+ Add your first channel</button>
+      </div>
+    </main>
+
+    <!-- ========== SALES & ROYALTY LOG VIEW ========== -->
+    <main class="main view" id="view-sales" hidden>
+      <header class="page-header">
+        <div>
+          <h1>Sales & Royalty Log</h1>
+          <p class="subtitle">Log revenue by month and platform — this app doesn't connect to retailers directly</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-ghost" id="btnImportSales">Import</button>
+          <button type="button" class="btn btn-ghost" id="btnExportSales">Export</button>
+          <button type="button" class="btn btn-primary" id="btnAddSale">+ Add Entry</button>
+        </div>
+      </header>
+
+      <!-- Filters -->
+      <div class="asset-filters" id="salesFilters">
+        <button type="button" class="filter-chip active" data-filter="all">All</button>
+        <button type="button" class="filter-chip" data-filter="kdp">KDP</button>
+        <button type="button" class="filter-chip" data-filter="apple">Apple</button>
+        <button type="button" class="filter-chip" data-filter="kobo">Kobo</button>
+        <button type="button" class="filter-chip" data-filter="ingram">Ingram</button>
+        <button type="button" class="filter-chip" data-filter="d2d">Draft2Digital</button>
+        <button type="button" class="filter-chip" data-filter="direct">Direct</button>
+        <button type="button" class="filter-chip" data-filter="other">Other</button>
+      </div>
+
+      <!-- Add / Edit form (hidden by default) -->
+      <section class="card asset-form-card" id="saleFormCard" hidden>
+        <div class="card-header">
+          <h2 id="saleFormTitle">Add Entry</h2>
+        </div>
+        <div class="card-body">
+          <form id="saleForm" autocomplete="off">
+            <input type="hidden" id="saleId" name="saleId" />
+            <div class="grid-2">
+              <div class="field">
+                <label for="saleMonth">Month <span class="req">*</span></label>
+                <input type="month" id="saleMonth" name="saleMonth" required />
+                <div class="field-hint">Log one row per month per platform, not per individual sale.</div>
+              </div>
+              <div class="field">
+                <label for="salePlatform">Platform</label>
+                <select id="salePlatform" name="salePlatform">
+                  <option value="kdp">KDP (Amazon)</option>
+                  <option value="apple">Apple Books</option>
+                  <option value="kobo">Kobo</option>
+                  <option value="ingram">IngramSpark</option>
+                  <option value="d2d">Draft2Digital</option>
+                  <option value="direct">Direct (Shopify, Payhip, BookFunnel)</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="saleFormat">Format</label>
+                <select id="saleFormat" name="saleFormat">
+                  <option value="ebook">Ebook</option>
+                  <option value="paperback">Paperback</option>
+                  <option value="hardcover">Hardcover</option>
+                  <option value="audio">Audiobook</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="saleUnits">Units Sold</label>
+                <input type="number" id="saleUnits" name="saleUnits" min="0" placeholder="e.g. 42" />
+              </div>
+              <div class="field">
+                <label for="salePageReads">KENP Page-Reads</label>
+                <input type="number" id="salePageReads" name="salePageReads" min="0" placeholder="e.g. 1200" />
+                <div class="field-hint">How many pages readers read through Kindle Unlimited — found in your KDP dashboard under Reports. Leave blank if not applicable.</div>
+              </div>
+              <div class="field">
+                <label for="saleRevenue">Revenue ($)</label>
+                <input type="number" id="saleRevenue" name="saleRevenue" min="0" step="0.01" placeholder="e.g. 412.50" />
+                <div class="field-hint">Entered manually — this app doesn't connect to retailer accounts, so it's only as current as what you log here.</div>
+              </div>
+              <div class="field full">
+                <label for="saleNotes">Notes</label>
+                <textarea id="saleNotes" name="saleNotes" rows="2" placeholder="A promo that ran, a price change, anything worth remembering"></textarea>
+              </div>
+            </div>
+            <div class="form-footer" style="margin-top:16px">
+              <button type="submit" class="btn btn-primary">Save Entry</button>
+              <button type="button" class="btn btn-ghost" id="btnCancelSale">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Sales list -->
+      <div class="asset-list" id="saleList"></div>
+
+      <div class="empty-state" id="saleEmpty" hidden>
+        <p>No sales logged yet.</p>
+        <button type="button" class="btn btn-primary" id="btnAddSaleEmpty">+ Log your first month</button>
+      </div>
+    </main>
+
+    <!-- ========== AD SPEND & ROI TRACKER VIEW ========== -->
+    <main class="main view" id="view-ads" hidden>
+      <header class="page-header">
+        <div>
+          <h1>Ad Spend & ROI Tracker</h1>
+          <p class="subtitle">Log spend by campaign — attributed revenue is always self-reported, never verified</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-ghost" id="btnImportAds">Import</button>
+          <button type="button" class="btn btn-ghost" id="btnExportAds">Export</button>
+        </div>
+      </header>
+
+      <!-- ROI toggle -->
+      <div class="wizard-toggle-bar">
+        <label class="roi-toggle-label">
+          <input type="checkbox" id="adsRoiToggle" />
+          <span>Show ROI estimates</span>
+        </label>
+        <span class="wizard-toggle-text">Off by default. Spend and attributed revenue are always logged either way.</span>
+      </div>
+      <div class="roi-explainer card" id="adsRoiExplainer" hidden>
+        <p><strong>Return on investment</strong> here means how much you made back for every dollar spent, calculated only when a row has both a spend and an attributed number filled in.</p>
+        <p>This number is always self-reported and never verified. Ad platforms don't give indie authors reliable attribution data, so treat it as a rough signal, not a hard metric.</p>
+        <button type="button" class="btn btn-ghost btn-sm" id="btnDismissRoiExplainer">Got it</button>
+      </div>
+
+      <!-- Quick add -->
+      <section class="card quick-add-card">
+        <div class="card-header"><h2>Quick add</h2></div>
+        <div class="card-body">
+          <div class="quick-add-row">
+            <select id="qaAdPlatform" class="quick-add-select">
+              <option value="amazon-ads">Amazon Ads</option>
+              <option value="meta">Meta</option>
+              <option value="bookbub">BookBub CPC</option>
+              <option value="other">Other</option>
+            </select>
+            <input type="number" id="qaAdSpend" class="quick-add-input" min="0" step="0.01" placeholder="Spend $" />
+            <input type="number" id="qaAdAttributed" class="quick-add-input" min="0" step="0.01" placeholder="Attributed $ (optional)" />
+            <button type="button" class="btn btn-primary" id="btnQuickAddAd">+ Add</button>
+          </div>
+          <p class="field-hint">Saves instantly with today's date. Add a campaign name, date range, or notes later by tapping Edit on any entry.</p>
+        </div>
+      </section>
+
+      <!-- Filters -->
+      <div class="asset-filters" id="adsFilters">
+        <button type="button" class="filter-chip active" data-filter="all">All</button>
+        <button type="button" class="filter-chip" data-filter="amazon-ads">Amazon Ads</button>
+        <button type="button" class="filter-chip" data-filter="meta">Meta</button>
+        <button type="button" class="filter-chip" data-filter="bookbub">BookBub</button>
+        <button type="button" class="filter-chip" data-filter="other">Other</button>
+      </div>
+
+      <!-- Full edit form (hidden by default) -->
+      <section class="card asset-form-card" id="adFormCard" hidden>
+        <div class="card-header">
+          <h2 id="adFormTitle">Edit Entry</h2>
+        </div>
+        <div class="card-body">
+          <form id="adForm" autocomplete="off">
+            <input type="hidden" id="adId" name="adId" />
+            <div class="grid-2">
+              <div class="field full">
+                <label for="adCampaign">Campaign Name</label>
+                <input type="text" id="adCampaign" name="adCampaign" placeholder="e.g. Launch week, Amazon Ads" />
+              </div>
+              <div class="field">
+                <label for="adPlatform">Platform</label>
+                <select id="adPlatform" name="adPlatform">
+                  <option value="amazon-ads">Amazon Ads</option>
+                  <option value="meta">Meta</option>
+                  <option value="bookbub">BookBub CPC</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="adDate">Date</label>
+                <input type="date" id="adDate" name="adDate" />
+              </div>
+              <div class="field">
+                <label for="adSpend">Spend ($)</label>
+                <input type="number" id="adSpend" name="adSpend" min="0" step="0.01" />
+              </div>
+              <div class="field">
+                <label for="adAttributed">Attributed Revenue ($)</label>
+                <input type="number" id="adAttributed" name="adAttributed" min="0" step="0.01" />
+                <div class="field-hint">Sales you can reasonably credit to this ad. Always a rough, self-reported estimate, never exact.</div>
+              </div>
+              <div class="field full">
+                <label for="adNotes">Notes</label>
+                <textarea id="adNotes" name="adNotes" rows="2" placeholder="Targeting notes, what changed, anything worth remembering"></textarea>
+              </div>
+            </div>
+            <div class="form-footer" style="margin-top:16px">
+              <button type="submit" class="btn btn-primary">Save Entry</button>
+              <button type="button" class="btn btn-ghost" id="btnCancelAd">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Ad spend list -->
+      <div class="asset-list" id="adList"></div>
+
+      <div class="empty-state" id="adEmpty" hidden>
+        <p>No ad spend logged yet.</p>
+        <p class="hint">Use Quick Add above to log your first entry.</p>
+      </div>
+    </main>
+
+    <!-- ========== EDITING VENDOR TRACKER VIEW ========== -->
+    <main class="main view" id="view-editing" hidden>
+      <header class="page-header">
+        <div>
+          <h1>Editing Vendor Tracker</h1>
+          <p class="subtitle">Track who's editing what, and which pass you're actually paying for</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-ghost" id="btnImportEditing">Import</button>
+          <button type="button" class="btn btn-ghost" id="btnExportEditing">Export</button>
+          <button type="button" class="btn btn-primary" id="btnAddEditing">+ Add Vendor</button>
+        </div>
+      </header>
+
+      <!-- Filters -->
+      <div class="asset-filters" id="editingFilters">
+        <button type="button" class="filter-chip active" data-filter="all">All</button>
+        <button type="button" class="filter-chip" data-filter="not-started">Not Started</button>
+        <button type="button" class="filter-chip" data-filter="in-progress">In Progress</button>
+        <button type="button" class="filter-chip" data-filter="delivered">Delivered</button>
+      </div>
+
+      <!-- Add / Edit form -->
+      <section class="card asset-form-card" id="editingFormCard" hidden>
+        <div class="card-header">
+          <h2 id="editingFormTitle">Add Vendor</h2>
+        </div>
+        <div class="card-body">
+          <form id="editingForm" autocomplete="off">
+            <input type="hidden" id="editingId" name="editingId" />
+            <div class="grid-2">
+              <div class="field">
+                <label for="editingVendor">Editor / Vendor Name <span class="req">*</span></label>
+                <input type="text" id="editingVendor" name="editingVendor" required placeholder="e.g. Jane Smith Editorial" />
+              </div>
+              <div class="field">
+                <label for="editingType">Edit Type</label>
+                <select id="editingType" name="editingType">
+                  <option value="developmental">Developmental (story & structure)</option>
+                  <option value="line">Line edit (prose & flow)</option>
+                  <option value="copyedit">Copyedit (grammar & consistency)</option>
+                  <option value="proofread">Proofread (final typo pass)</option>
+                </select>
+                <div class="field-hint">Confirm with the editor directly which of these four they're actually delivering, ask before you pay, not after.</div>
+              </div>
+              <div class="field">
+                <label for="editingStatus">Status</label>
+                <select id="editingStatus" name="editingStatus">
+                  <option value="not-started">Not Started</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="delivered">Delivered</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="editingCost">Cost ($)</label>
+                <input type="number" id="editingCost" name="editingCost" min="0" step="0.01" placeholder="e.g. 850" />
+              </div>
+              <div class="field">
+                <label for="editingDeadline">Deadline</label>
+                <input type="date" id="editingDeadline" name="editingDeadline" />
+              </div>
+              <div class="field">
+                <label for="editingFile">Delivered File / Version</label>
+                <input type="text" id="editingFile" name="editingFile" placeholder="e.g. Manuscript_v3_lineedit.docx" />
+              </div>
+              <div class="field full">
+                <label for="editingNotes">Notes</label>
+                <textarea id="editingNotes" name="editingNotes" rows="2" placeholder="Contact info, scope details, anything worth remembering"></textarea>
+              </div>
+            </div>
+            <div class="form-footer" style="margin-top:16px">
+              <button type="submit" class="btn btn-primary">Save Vendor</button>
+              <button type="button" class="btn btn-ghost" id="btnCancelEditing">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- List -->
+      <div class="asset-list" id="editingList"></div>
+
+      <div class="empty-state" id="editingEmpty" hidden>
+        <p>No editing vendors tracked yet.</p>
+        <button type="button" class="btn btn-primary" id="btnAddEditingEmpty">+ Add your first vendor</button>
+      </div>
+    </main>
+
+    <!-- ========== PROMO SUBMISSION TRACKER VIEW ========== -->
+    <main class="main view" id="view-promo" hidden>
+      <header class="page-header">
+        <div>
+          <h1>Promo Submission Tracker</h1>
+          <p class="subtitle">BookBub, Written Word Media, and other promo site submissions</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="btn btn-ghost" id="btnImportPromo">Import</button>
+          <button type="button" class="btn btn-ghost" id="btnExportPromo">Export</button>
+          <button type="button" class="btn btn-primary" id="btnAddPromo">+ Add Submission</button>
+        </div>
+      </header>
+
+      <!-- Filters -->
+      <div class="asset-filters" id="promoFilters">
+        <button type="button" class="filter-chip active" data-filter="all">All</button>
+        <button type="button" class="filter-chip" data-filter="applied">Applied</button>
+        <button type="button" class="filter-chip" data-filter="accepted">Accepted</button>
+        <button type="button" class="filter-chip" data-filter="rejected">Rejected</button>
+        <button type="button" class="filter-chip" data-filter="ran">Ran</button>
+      </div>
+
+      <!-- Add / Edit form -->
+      <section class="card asset-form-card" id="promoFormCard" hidden>
+        <div class="card-header">
+          <h2 id="promoFormTitle">Add Submission</h2>
+        </div>
+        <div class="card-body">
+          <form id="promoForm" autocomplete="off">
+            <input type="hidden" id="promoId" name="promoId" />
+            <div class="grid-2">
+              <div class="field">
+                <label for="promoService">Service <span class="req">*</span></label>
+                <select id="promoService" name="promoService" required>
+                  <option value="bookbub">BookBub Featured Deal</option>
+                  <option value="wwm">Written Word Media</option>
+                  <option value="bargain-booksy">Bargain Booksy</option>
+                  <option value="freebooksy">Freebooksy</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="promoStatus">Status</label>
+                <select id="promoStatus" name="promoStatus">
+                  <option value="applied">Applied</option>
+                  <option value="accepted">Accepted</option>
+                  <option value="rejected">Rejected</option>
+                  <option value="ran">Ran</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="promoDateApplied">Date Applied</label>
+                <input type="date" id="promoDateApplied" name="promoDateApplied" />
+              </div>
+              <div class="field">
+                <label for="promoDateRan">Date Ran</label>
+                <input type="date" id="promoDateRan" name="promoDateRan" />
+              </div>
+              <div class="field">
+                <label for="promoCost">Cost ($)</label>
+                <input type="number" id="promoCost" name="promoCost" min="0" step="0.01" placeholder="e.g. 150" />
+              </div>
+              <div class="field full">
+                <label for="promoResults">Results</label>
+                <textarea id="promoResults" name="promoResults" rows="2" placeholder="Downloads, sales bump, whatever you tracked afterward"></textarea>
+              </div>
+            </div>
+            <div class="form-footer" style="margin-top:16px">
+              <button type="submit" class="btn btn-primary">Save Submission</button>
+              <button type="button" class="btn btn-ghost" id="btnCancelPromo">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- List -->
+      <div class="asset-list" id="promoList"></div>
+
+      <div class="empty-state" id="promoEmpty" hidden>
+        <p>No promo submissions tracked yet.</p>
+        <button type="button" class="btn btn-primary" id="btnAddPromoEmpty">+ Add your first submission</button>
+      </div>
+    </main>
+
+
+
+  </div>
+
+  <input type="file" id="importFile" accept=".json,application/json" hidden />
+
+  <!-- ========== ONBOARDING: WHERE ARE YOU RIGHT NOW ========== -->
+  <div class="modal-overlay" id="onboardingModal" hidden>
+    <div class="modal card">
+      <h2>Where are you right now?</h2>
+      <p class="modal-sub">This just points you to the right starting place. Nothing here is locked in, you can change it anytime.</p>
+      <div class="onboarding-options" id="onboardingOptions">
+        <button type="button" class="onboarding-option" data-stage="writing">
+          Still writing the manuscript
+        </button>
+        <button type="button" class="onboarding-option" data-stage="editing">
+          Manuscript's done, haven't started editing
+        </button>
+        <button type="button" class="onboarding-option" data-stage="design">
+          Edited and ready for cover &amp; formatting
+        </button>
+        <button type="button" class="onboarding-option" data-stage="publish">
+          Ready to upload and publish
+        </button>
+        <button type="button" class="onboarding-option" data-stage="published">
+          Already published, focused on marketing &amp; reviews
+        </button>
+      </div>
+      <button type="button" class="btn btn-ghost modal-skip" id="btnSkipOnboarding">Not sure, just show me everything</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch((err) => {
+          console.error("Service worker registration failed:", err);
+        });
+      });
+    }
+  </script>
+
+  <footer class="ss-site-footer">
+    <p>&copy; 2026 Sigil and Scribe, LLC &middot; Manuscript Map is free</p>
+    <p>
+      <a href="https://jackiewhite0325.github.io/sigilandscribe/privacy.html">Privacy</a> &middot;
+      <a href="https://jackiewhite0325.github.io/sigilandscribe/terms.html">Terms</a> &middot;
+      <a href="https://jackiewhite0325.github.io/sigilandscribe/return-policy.html">Returns</a> &middot;
+      <a href="https://jackiewhite0325.github.io/sigilandscribe/">Back to the house</a>
+    </p>
+  </footer>
+</body>
+</html>
