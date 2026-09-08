@@ -8,6 +8,13 @@
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
+function syncAppTopOffset() {
+  const app = $(".app");
+  if (!app) return;
+  const top = Math.max(0, Math.round(app.getBoundingClientRect().top));
+  document.documentElement.style.setProperty("--app-top-offset", `${top}px`);
+}
+
 // ============================================================
 //  MULTI-PROJECT
 // ============================================================
@@ -4223,6 +4230,8 @@ function initDashboard() {
 //  BOOT
 // ============================================================
 document.addEventListener("DOMContentLoaded", () => {
+  syncAppTopOffset();
+  window.addEventListener("resize", syncAppTopOffset);
   ensureProjectsMigrated();
   renderProjectSwitcher();
   initMobileNav();
