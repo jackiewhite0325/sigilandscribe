@@ -31,7 +31,8 @@
       padding: 32px 20px;
     }
     .wrap {
-      max-width: 620px;
+      max-width: 720px;
+      width: 100%;
       text-align: center;
     }
     h1 {
@@ -96,6 +97,122 @@
       font-size: 0.78rem;
       color: #9a9384;
     }
+    footer a { color: inherit; }
+
+    /* ============================================================
+       THE AI ARTISAN GUILD
+       ============================================================ */
+    .artisan-guild {
+      margin-top: 48px;
+      text-align: center;
+    }
+    .guild-header {
+      margin-bottom: 28px;
+    }
+    .guild-eyebrow {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #b08d57;
+      margin: 0 0 8px;
+    }
+    .guild-title {
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin: 0 0 8px;
+      color: #2b2620;
+    }
+    .guild-subtitle {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      color: #6b6255;
+      line-height: 1.5;
+      max-width: 420px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+    .guild-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      text-align: left;
+    }
+    @media (min-width: 640px) {
+      .guild-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+    }
+    .guild-card {
+      background: #fff;
+      border: 1px solid #e4dcc9;
+      border-radius: 10px;
+      transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+    }
+    .guild-card:hover {
+      border-color: #b08d57;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(43, 38, 32, 0.06);
+    }
+    .guild-card-inner {
+      padding: 20px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 220px;
+    }
+    .guild-meta {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #b08d57;
+      margin: 0 0 8px;
+    }
+    .guild-card-title {
+      font-size: 1.05rem;
+      font-weight: 400;
+      margin: 0 0 8px;
+      color: #2b2620;
+      line-height: 1.3;
+    }
+    .guild-card-desc {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.84rem;
+      color: #6b6255;
+      line-height: 1.5;
+      margin: 0 0 14px;
+      flex-grow: 1;
+    }
+    .guild-price {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.75rem;
+      color: #8a8272;
+      margin: 0 0 14px;
+      letter-spacing: 0.01em;
+    }
+    .guild-pathway {
+      display: inline-block;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      text-decoration: none;
+      color: #2b2620;
+      border: 1px solid #e4dcc9;
+      border-radius: 6px;
+      padding: 8px 14px;
+      align-self: flex-start;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+    .guild-pathway:hover {
+      border-color: #b08d57;
+      background: #faf7f2;
+      color: #2b2620;
+    }
+    /* Theme hooks for future accent injection */
+    .izzy-theme {}
+    .pearl-theme {}
+    .john-theme {}
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
@@ -131,6 +248,60 @@
         <div class="card-desc">A custom illustrated keepsake, hand-drawn in a warm children's-book style, for the one who shaped your days.</div>
       </a>
     </div>
+
+    <!-- ============================================================
+         THE AI ARTISAN GUILD — Custom Works Shelf
+         ============================================================ -->
+    <section class="artisan-guild" aria-labelledby="guild-heading">
+      <header class="guild-header">
+        <p class="guild-eyebrow">Custom Works Shelf</p>
+        <h2 id="guild-heading" class="guild-title">The AI Artisan Guild</h2>
+        <p class="guild-subtitle">Custom commissions built from your data, your land, and your heart.</p>
+      </header>
+
+      <div class="guild-grid">
+
+        <!-- Card 1 — Izzy -->
+        <article class="guild-card izzy-theme">
+          <div class="guild-card-inner">
+            <p class="guild-meta">Izzy’s Keep</p>
+            <h3 class="guild-card-title">Custom Keepsakes &amp; Books</h3>
+            <p class="guild-card-desc">
+              Short children’s-book style memories or full-scale custom picture books painted around a dog’s true life.
+            </p>
+            <p class="guild-price">Promo: $29.99 / Quoted after intake</p>
+            <a href="izzy.html" class="guild-pathway">Share Your Story</a>
+          </div>
+        </article>
+
+        <!-- Card 2 — Pearl -->
+        <article class="guild-card pearl-theme">
+          <div class="guild-card-inner">
+            <p class="guild-meta">Pearl’s Door</p>
+            <h3 class="guild-card-title">Outreach &amp; Sanctuary Support</h3>
+            <p class="guild-card-desc">
+              Gentle letters and welcome packages for quiet door keepers, pet rescues, and those processing grief.
+            </p>
+            <p class="guild-price">Always Free / No Bills</p>
+            <a href="pearl.html" class="guild-pathway">Knock on the Door</a>
+          </div>
+        </article>
+
+        <!-- Card 3 — John -->
+        <article class="guild-card john-theme">
+          <div class="guild-card-inner">
+            <p class="guild-meta">John’s Ground</p>
+            <h3 class="guild-card-title">Bespoke Homestead Ops</h3>
+            <p class="guild-card-desc">
+              Custom data workbooks built specifically for your exact animals, acreage, and seasons.
+            </p>
+            <p class="guild-price">Quoted via Note</p>
+            <a href="john.html" class="guild-pathway">State What You Run</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
 
     <footer>&copy; 2026 Sigil and Scribe, LLC &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a></footer>
   </div>
