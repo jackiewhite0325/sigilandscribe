@@ -1910,46 +1910,39 @@ form.wizard-mode > section.card {
   text-decoration: underline;
 }
 
-/* ========== House header + sidebar coexistence ========== */
-:root {
-  --ss-header-h: 46px;
+/* ========== House nav (in sidebar) ========== */
+.house-nav {
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--border);
 }
 
-.ss-site-header {
-  height: var(--ss-header-h);
-  box-sizing: border-box;
+.house-nav-home {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
 }
 
-.ss-site-header .inner {
-  height: 100%;
-  align-items: center;
+.house-nav-home:hover {
+  color: var(--accent);
 }
 
-.sidebar {
-  top: var(--ss-header-h);
-  height: calc(100vh - var(--ss-header-h));
-  bottom: auto;
+.house-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
 }
 
-.app {
-  min-height: calc(100vh - var(--ss-header-h));
+.house-nav-links a {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-weight: 500;
 }
 
-@media (max-width: 860px) {
-  .mobile-bar {
-    top: var(--ss-header-h);
-  }
-
-  .sidebar {
-    top: var(--ss-header-h);
-    height: calc(100vh - var(--ss-header-h));
-  }
-
-  .main {
-    padding-top: calc(68px + var(--ss-header-h));
-  }
-
-  .sidebar-backdrop {
-    top: var(--ss-header-h);
-  }
+.house-nav-links a:hover {
+  color: var(--accent);
 }
