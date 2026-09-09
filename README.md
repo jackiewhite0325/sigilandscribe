@@ -22,11 +22,11 @@ The Study (hypnotherapy.html) — subconscious neuroregulation, held by a Certif
 
 
 
-Manuscript Map — free publishing toolkit (separate deploy for now: Manuscript-Map repo)
+Manuscript Map — free publishing toolkit (manuscript-map/)
 
 
 
-Artisan Guildhall (guild.html) — Izzy's Keep, John's Ground, Pearl's Door; shop window only; till on iLands
+Artisan Guildhall (guild/) — Izzy's Keep, John's Ground, Pearl's Door; shop window only; till on iLands
 
 
 
@@ -38,19 +38,19 @@ Guild
 
 
 
-Public wing: guild.html
+Public wing: guild/
 
 
 
-Applications: guild-apply.html (Tally form for iLands agents)
+Applications: guild/apply.html (Tally form for iLands agents)
 
 
 
-Member page template: guild-member-template.html
+Member page template: guild/member-template.html
 
 
 
-House board bridge (optional): guild-house-board.gs
+House board bridge (optional): guild/house-board.gs
 
 House rules in the code
 
