@@ -8,13 +8,6 @@
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
-function syncAppTopOffset() {
-  const app = $(".app");
-  if (!app) return;
-  const top = Math.max(0, Math.round(app.getBoundingClientRect().top));
-  document.documentElement.style.setProperty("--app-top-offset", `${top}px`);
-}
-
 // ============================================================
 //  MULTI-PROJECT
 // ============================================================
@@ -26,7 +19,6 @@ const MODULE_KEYS = [
   "author-os-checklist-dates",
   "author-os-metadata-vault",
   "author-os-questionnaire",
-  "author-os-manuscript-map",
   "author-os-assets",
   "author-os-arcs",
   "author-os-reviews",
@@ -283,8 +275,6 @@ function reloadAllModules() {
     if (f) f.reset();
   }
   applyQuestionnaireAutoChecks();
-  hideManuscriptMapForm();
-  renderManuscriptMap();
   renderAssets();
   renderArcs();
   renderReviews();
@@ -1219,14 +1209,14 @@ function initRouter() {
 
   // Handle initial hash or default
   const hash = (location.hash || "#dashboard").replace("#", "");
-  const valid = ["dashboard", "checklist", "calendar", "metadata", "questionnaire", "manuscript-map", "assets", "arcs", "reviews", "distribution", "sales", "ads", "editing", "promo"].includes(hash)
+  const valid = ["dashboard", "checklist", "calendar", "metadata", "questionnaire", "assets", "arcs", "reviews", "distribution", "sales", "ads", "editing", "promo"].includes(hash)
     ? hash
     : "dashboard";
   showPage(valid);
 
   window.addEventListener("hashchange", () => {
     const p = (location.hash || "#dashboard").replace("#", "");
-    if (["dashboard", "checklist", "calendar", "metadata", "questionnaire", "manuscript-map", "assets", "arcs", "reviews", "distribution", "sales", "ads", "editing", "promo"].includes(p)) showPage(p);
+    if (["dashboard", "checklist", "calendar", "metadata", "questionnaire", "assets", "arcs", "reviews", "distribution", "sales", "ads", "editing", "promo"].includes(p)) showPage(p);
   });
 }
 
@@ -1905,194 +1895,6 @@ function initQuestionnaire() {
       "Last section, just a gut check on time and support.",
     ],
     onFinish: saveQuestionnaire,
-  });
-}
-
-// ============================================================
-//  MANUSCRIPT MAP
-// ============================================================
-const MANUSCRIPT_MAP_KEY = "author-os-manuscript-map";
-let editingManuscriptNodeId = null;
-
-const MANUSCRIPT_MAP_TYPE_LABELS = {
-  act: "Act",
-  chapter: "Chapter",
-  scene: "Scene",
-  beat: "Beat",
-};
-
-const MANUSCRIPT_MAP_STATUS_LABELS = {
-  planned: "Planned",
-  drafting: "Drafting",
-  revised: "Revised",
-  complete: "Complete",
-};
-
-function loadManuscriptMap() {
-  try {
-    const raw = localStorage.getItem(sk(MANUSCRIPT_MAP_KEY));
-    const data = raw ? JSON.parse(raw) : [];
-    return Array.isArray(data) ? data : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveManuscriptMap(list) {
-  try {
-    localStorage.setItem(sk(MANUSCRIPT_MAP_KEY), JSON.stringify(list));
-    setStatus("Manuscript map saved", "saved");
-    return true;
-  } catch (e) {
-    setStatus("Save failed", "saving");
-    console.error(e);
-    return false;
-  }
-}
-
-function getManuscriptMapStats(list = loadManuscriptMap()) {
-  return {
-    total: list.length,
-    chapters: list.filter((item) => item.type === "chapter").length,
-    scenes: list.filter((item) => item.type === "scene").length,
-    complete: list.filter((item) => item.status === "complete").length,
-    drafting: list.filter((item) => item.status === "drafting").length,
-  };
-}
-
-function getManuscriptStatusTag(status) {
-  return {
-    drafting: "status-in-progress",
-    revised: "status-review",
-    complete: "status-final",
-  }[status] || "";
-}
-
-function showManuscriptMapForm(entry = null) {
-  const card = $("#manuscriptMapFormCard");
-  if (!card) return;
-  card.hidden = false;
-  editingManuscriptNodeId = entry ? entry.id : null;
-  $("#manuscriptMapFormTitle").textContent = entry ? "Edit Manuscript Entry" : "Add Manuscript Entry";
-  $("#manuscriptMapId").value = entry ? entry.id : "";
-  $("#manuscriptMapTitle").value = entry ? entry.title || "" : "";
-  $("#manuscriptMapType").value = entry ? entry.type || "chapter" : "chapter";
-  $("#manuscriptMapStatus").value = entry ? entry.status || "planned" : "planned";
-  $("#manuscriptMapPov").value = entry ? entry.pov || "" : "";
-  $("#manuscriptMapSummary").value = entry ? entry.summary || "" : "";
-  $("#manuscriptMapNotes").value = entry ? entry.notes || "" : "";
-  $("#manuscriptMapTitle").focus();
-}
-
-function hideManuscriptMapForm() {
-  const card = $("#manuscriptMapFormCard");
-  if (card) card.hidden = true;
-  editingManuscriptNodeId = null;
-  $("#manuscriptMapForm")?.reset();
-}
-
-function renderManuscriptMap() {
-  const list = loadManuscriptMap()
-    .slice()
-    .sort((a, b) => (a.createdAt || "").localeCompare(b.createdAt || ""));
-  const stats = getManuscriptMapStats(list);
-
-  $("#manuscriptMapTotal").textContent = String(stats.total);
-  $("#manuscriptMapChapters").textContent = String(stats.chapters);
-  $("#manuscriptMapScenes").textContent = String(stats.scenes);
-  $("#manuscriptMapComplete").textContent = String(stats.complete);
-
-  const container = $("#manuscriptMapList");
-  const empty = $("#manuscriptMapEmpty");
-  if (!container) return;
-  container.innerHTML = "";
-
-  if (list.length === 0) {
-    if (empty) empty.hidden = false;
-    return;
-  }
-
-  if (empty) empty.hidden = true;
-
-  list.forEach((entry) => {
-    const card = document.createElement("div");
-    card.className = "asset-card";
-    card.dataset.id = entry.id;
-
-    const summaryHtml = entry.summary
-      ? `<div class="asset-notes">${escapeHtml(entry.summary)}</div>`
-      : "";
-    const notesHtml = entry.notes
-      ? `<div class="asset-notes">${escapeHtml(entry.notes)}</div>`
-      : "";
-
-    card.innerHTML = `
-      <div class="asset-card-main">
-        <div class="asset-name">${escapeHtml(entry.title)}</div>
-        <div class="asset-meta">
-          <span class="asset-tag">${MANUSCRIPT_MAP_TYPE_LABELS[entry.type] || "Entry"}</span>
-          <span class="asset-tag ${getManuscriptStatusTag(entry.status)}">${MANUSCRIPT_MAP_STATUS_LABELS[entry.status] || "Planned"}</span>
-          ${entry.pov ? `<span class="asset-tag">${escapeHtml(entry.pov)}</span>` : ""}
-        </div>
-        ${summaryHtml}
-        ${notesHtml}
-      </div>
-      <div class="asset-actions">
-        <button type="button" class="btn btn-ghost btn-edit-manuscript">Edit</button>
-        <button type="button" class="btn btn-danger btn-delete-manuscript">Delete</button>
-      </div>
-    `;
-
-    card.querySelector(".btn-edit-manuscript").addEventListener("click", () => {
-      showManuscriptMapForm(entry);
-    });
-    card.querySelector(".btn-delete-manuscript").addEventListener("click", () => {
-      if (!confirm(`Delete “${entry.title}”?`)) return;
-      const next = loadManuscriptMap().filter((item) => item.id !== entry.id);
-      saveManuscriptMap(next);
-      renderManuscriptMap();
-      renderDashboard();
-    });
-
-    container.appendChild(card);
-  });
-}
-
-function initManuscriptMap() {
-  renderManuscriptMap();
-
-  $("#btnAddManuscriptNode")?.addEventListener("click", () => showManuscriptMapForm());
-  $("#btnAddManuscriptNodeEmpty")?.addEventListener("click", () => showManuscriptMapForm());
-  $("#btnCancelManuscriptNode")?.addEventListener("click", hideManuscriptMapForm);
-
-  $("#manuscriptMapForm")?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const title = $("#manuscriptMapTitle").value.trim();
-    if (!title) return;
-
-    const list = loadManuscriptMap();
-    const payload = {
-      id: editingManuscriptNodeId || uid(),
-      title,
-      type: $("#manuscriptMapType").value,
-      status: $("#manuscriptMapStatus").value,
-      pov: $("#manuscriptMapPov").value.trim(),
-      summary: $("#manuscriptMapSummary").value.trim(),
-      notes: $("#manuscriptMapNotes").value.trim(),
-      createdAt: editingManuscriptNodeId
-        ? (list.find((item) => item.id === editingManuscriptNodeId)?.createdAt || new Date().toISOString())
-        : new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    };
-
-    const idx = list.findIndex((item) => item.id === payload.id);
-    if (idx >= 0) list[idx] = payload;
-    else list.push(payload);
-
-    if (!saveManuscriptMap(list)) return;
-    hideManuscriptMapForm();
-    renderManuscriptMap();
-    renderDashboard();
   });
 }
 
@@ -4108,10 +3910,8 @@ function renderDashboard() {
   const progress = getChecklistProgress();
   renderNextStepCard();
   const assets = loadAssets();
-  const manuscriptMap = loadManuscriptMap();
   const arcs = loadArcs();
   const reviews = loadReviews();
-  const manuscriptStats = getManuscriptMapStats(manuscriptMap);
   const arcsReviewed = arcs.filter((a) => a.status === "reviewed").length;
   const arcsPending = arcs.filter((a) => ["invited", "sent", "received"].includes(a.status)).length;
   const withRating = reviews.filter((r) => r.rating);
@@ -4132,10 +3932,6 @@ function renderDashboard() {
       <div class="dash-stat" data-goto="assets">
         <div class="dash-stat-value">${assets.length}</div>
         <div class="dash-stat-label">Assets</div>
-      </div>
-      <div class="dash-stat" data-goto="manuscript-map">
-        <div class="dash-stat-value">${manuscriptStats.total}</div>
-        <div class="dash-stat-label">Manuscript Map · ${manuscriptStats.complete} complete</div>
       </div>
       <div class="dash-stat" data-goto="arcs">
         <div class="dash-stat-value">${arcs.length}</div>
@@ -4230,8 +4026,6 @@ function initDashboard() {
 //  BOOT
 // ============================================================
 document.addEventListener("DOMContentLoaded", () => {
-  syncAppTopOffset();
-  window.addEventListener("resize", syncAppTopOffset);
   ensureProjectsMigrated();
   renderProjectSwitcher();
   initMobileNav();
@@ -4240,7 +4034,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderChecklist();
   initMetadata();
   initQuestionnaire();
-  initManuscriptMap();
   initAssets();
   initArcs();
   initReviews();
