@@ -76,9 +76,6 @@
             <a href="#questionnaire" class="nav-item" data-page="questionnaire">
               <span class="nav-icon">❓</span> Questionnaire
             </a>
-            <a href="#manuscript-map" class="nav-item" data-page="manuscript-map">
-              <span class="nav-icon">🗺</span> Manuscript Map
-            </a>
           </div>
         </div>
 
@@ -136,7 +133,7 @@
           <span>·</span>
           <a href="return-policy.html" target="_blank" rel="noopener">Returns</a>
           <span>·</span>
-          <a href="https://ko-fi.com/sigilandscribe/goal?g=2" target="_blank" rel="noopener">Ko-fi</a>
+          <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a>
         </div>
       </div>
     </aside>
@@ -187,7 +184,6 @@
         <div class="card-body dash-quick-links">
           <button type="button" class="btn btn-ghost" data-goto="checklist">✓ Checklist</button>
           <button type="button" class="btn btn-ghost" data-goto="metadata">🏷 Metadata</button>
-          <button type="button" class="btn btn-ghost" data-goto="manuscript-map">🗺 Manuscript Map</button>
           <button type="button" class="btn btn-ghost" data-goto="assets">📁 Assets</button>
           <button type="button" class="btn btn-ghost" data-goto="arcs">📬 ARCs</button>
           <button type="button" class="btn btn-ghost" data-goto="reviews">⭐ Reviews</button>
@@ -661,90 +657,6 @@
           <span class="hint">Saved locally in your browser. Export anytime.</span>
         </div>
       </form>
-    </main>
-
-    <!-- ========== MANUSCRIPT MAP VIEW ========== -->
-    <main class="main view" id="view-manuscript-map" hidden>
-      <header class="page-header">
-        <div>
-          <h1>Manuscript Map</h1>
-          <p class="subtitle">Map your acts, chapters, scenes, and beats for this project</p>
-        </div>
-        <div class="header-actions">
-          <button type="button" class="btn btn-primary" id="btnAddManuscriptNode">+ Add Entry</button>
-        </div>
-      </header>
-
-      <section class="card">
-        <div class="card-body">
-          <div class="arc-stats">
-            <div class="arc-stat highlight"><strong id="manuscriptMapTotal">0</strong> total entries</div>
-            <div class="arc-stat"><strong id="manuscriptMapChapters">0</strong> chapters</div>
-            <div class="arc-stat"><strong id="manuscriptMapScenes">0</strong> scenes</div>
-            <div class="arc-stat"><strong id="manuscriptMapComplete">0</strong> complete</div>
-          </div>
-          <p class="card-hint">Use this space to keep a lightweight structure map for the active project. Each project stores its own outline separately.</p>
-        </div>
-      </section>
-
-      <section class="card asset-form-card" id="manuscriptMapFormCard" hidden>
-        <div class="card-header">
-          <h2 id="manuscriptMapFormTitle">Add Manuscript Entry</h2>
-        </div>
-        <div class="card-body">
-          <form id="manuscriptMapForm" autocomplete="off">
-            <input type="hidden" id="manuscriptMapId" />
-            <div class="grid-2">
-              <div class="field">
-                <label for="manuscriptMapTitle">Title <span class="req">*</span></label>
-                <input type="text" id="manuscriptMapTitle" name="manuscriptMapTitle" placeholder="Act I, Chapter 7, Balcony scene…" required />
-              </div>
-              <div class="field">
-                <label for="manuscriptMapType">Type</label>
-                <select id="manuscriptMapType" name="manuscriptMapType">
-                  <option value="act">Act</option>
-                  <option value="chapter">Chapter</option>
-                  <option value="scene">Scene</option>
-                  <option value="beat">Beat</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="manuscriptMapStatus">Status</label>
-                <select id="manuscriptMapStatus" name="manuscriptMapStatus">
-                  <option value="planned">Planned</option>
-                  <option value="drafting">Drafting</option>
-                  <option value="revised">Revised</option>
-                  <option value="complete">Complete</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="manuscriptMapPov">POV / Focus</label>
-                <input type="text" id="manuscriptMapPov" name="manuscriptMapPov" placeholder="Mara, dual POV, villain interlude…" />
-              </div>
-              <div class="field full">
-                <label for="manuscriptMapSummary">What happens here?</label>
-                <textarea id="manuscriptMapSummary" name="manuscriptMapSummary" rows="3" placeholder="Brief summary of the key turn, reveal, or purpose of this entry"></textarea>
-              </div>
-              <div class="field full">
-                <label for="manuscriptMapNotes">Notes</label>
-                <textarea id="manuscriptMapNotes" name="manuscriptMapNotes" rows="2" placeholder="Loose ends, continuity notes, emotional beats, etc."></textarea>
-              </div>
-            </div>
-
-            <div class="form-footer">
-              <button type="submit" class="btn btn-primary">Save Entry</button>
-              <button type="button" class="btn btn-ghost" id="btnCancelManuscriptNode">Cancel</button>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <div class="asset-list" id="manuscriptMapList"></div>
-
-      <section class="card empty-state" id="manuscriptMapEmpty">
-        <p>No manuscript entries yet. Start with acts, chapters, or scenes.</p>
-        <button type="button" class="btn btn-primary" id="btnAddManuscriptNodeEmpty">Add first entry</button>
-      </section>
     </main>
 
     <!-- ========== ASSET TRACKER VIEW ========== -->
