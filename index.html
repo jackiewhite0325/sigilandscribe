@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sigil and Scribe, LLC</title>
-  <meta name="description" content="Official website for Sigil & Scribe, LLC. An immersive library of books, guided neuroregulation, and custom commissions." />
+  <meta name="description" content="A sanctuary for the whole self. Books in the Immersive Library, guided neuroregulation in the Study, free tools for authors, and the Artisan Guildhall." />
 <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
 <meta property="og:title" content="Sigil and Scribe, LLC">
-<meta property="og:description" content="A sanctuary for the whole self. Books, guided neuroregulation, and custom commissions.">
+<meta property="og:description" content="A sanctuary for the whole self. Books, guided neuroregulation, free author tools, and the Artisan Guildhall.">
 <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/">
 <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/social-share.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sigil and Scribe, LLC">
-<meta name="twitter:description" content="A sanctuary for the whole self. Books, guided neuroregulation, and custom commissions.">
+<meta name="twitter:description" content="A sanctuary for the whole self. Books, guided neuroregulation, free author tools, and the Artisan Guildhall.">
 <meta name="twitter:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/social-share.jpg">
 
   <style>
@@ -28,7 +28,7 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      padding: 32px 20px;
+      padding: 32px 20px 40px;
     }
     .wrap {
       max-width: 720px;
@@ -37,13 +37,13 @@
     }
     h1 {
       font-size: 1.9rem;
-      margin-bottom: 6px;
+      margin: 0 0 6px;
       font-weight: 400;
     }
     .tagline {
       color: #6b6255;
       font-size: 1rem;
-      margin-bottom: 12px;
+      margin: 0 0 12px;
       font-style: italic;
     }
     .mantra {
@@ -51,13 +51,24 @@
       font-size: 0.85rem;
       color: #8a8272;
       max-width: 440px;
-      margin: 0 auto 40px;
+      margin: 0 auto 10px;
       line-height: 1.6;
     }
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    .prompt {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #b08d57;
+      margin: 28px 0 14px;
+    }
+    .proof {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.75rem;
+      color: #9a9384;
+      margin: 0 auto 8px;
+      max-width: 480px;
+      line-height: 1.5;
     }
     a.card {
       display: block;
@@ -66,155 +77,82 @@
       background: #fff;
       border: 1px solid #e4dcc9;
       border-radius: 10px;
-      padding: 22px 24px;
-      transition: border-color 0.15s, transform 0.15s;
+      padding: 20px 22px;
+      transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+      text-align: left;
     }
     a.card:hover {
       border-color: #b08d57;
       transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(43, 38, 32, 0.05);
+    }
+    a.card.primary {
+      padding: 26px 24px;
+      border-color: #d4c4a8;
+      background: #fffdf9;
+    }
+    a.card.primary:hover {
+      border-color: #b08d57;
     }
     .card-wing {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #b08d57;
-      margin-bottom: 6px;
-    }
-    .card-title {
-      font-size: 1.15rem;
-      margin-bottom: 6px;
-    }
-    .card-desc {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.88rem;
-      color: #6b6255;
-      line-height: 1.5;
-    }
-    footer {
-      margin-top: 40px;
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.78rem;
-      color: #9a9384;
-    }
-    footer a { color: inherit; }
-
-    /* ============================================================
-       THE AI ARTISAN GUILD
-       ============================================================ */
-    .artisan-guild {
-      margin-top: 48px;
-      text-align: center;
-    }
-    .guild-header {
-      margin-bottom: 28px;
-    }
-    .guild-eyebrow {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #b08d57;
-      margin: 0 0 8px;
-    }
-    .guild-title {
-      font-size: 1.35rem;
-      font-weight: 400;
-      margin: 0 0 8px;
-      color: #2b2620;
-    }
-    .guild-subtitle {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.9rem;
-      color: #6b6255;
-      line-height: 1.5;
-      max-width: 420px;
-      margin: 0 auto;
-      font-style: italic;
-    }
-    .guild-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      text-align: left;
-    }
-    @media (min-width: 640px) {
-      .guild-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 14px;
-      }
-    }
-    .guild-card {
-      background: #fff;
-      border: 1px solid #e4dcc9;
-      border-radius: 10px;
-      transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
-    }
-    .guild-card:hover {
-      border-color: #b08d57;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(43, 38, 32, 0.06);
-    }
-    .guild-card-inner {
-      padding: 20px 18px 18px;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      min-height: 220px;
-    }
-    .guild-meta {
       font-family: system-ui, -apple-system, sans-serif;
       font-size: 0.68rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: #b08d57;
-      margin: 0 0 8px;
+      margin-bottom: 6px;
     }
-    .guild-card-title {
-      font-size: 1.05rem;
-      font-weight: 400;
-      margin: 0 0 8px;
-      color: #2b2620;
-      line-height: 1.3;
+    .card-title {
+      font-size: 1.12rem;
+      margin-bottom: 6px;
     }
-    .guild-card-desc {
+    a.card.primary .card-title {
+      font-size: 1.28rem;
+    }
+    .card-desc {
       font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.84rem;
+      font-size: 0.86rem;
       color: #6b6255;
       line-height: 1.5;
-      margin: 0 0 14px;
-      flex-grow: 1;
     }
-    .guild-price {
+    .primary-slot {
+      margin-bottom: 14px;
+    }
+    .secondary {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    @media (min-width: 640px) {
+      .secondary {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+    .quiet-links {
       font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.75rem;
-      color: #8a8272;
-      margin: 0 0 14px;
-      letter-spacing: 0.01em;
+      font-size: 0.8rem;
+      color: #9a9384;
+      margin: 8px 0 0;
+      line-height: 1.7;
     }
-    .guild-pathway {
-      display: inline-block;
+    .quiet-links a {
+      color: #6b6255;
+      text-decoration: none;
+      border-bottom: 1px solid #e4dcc9;
+    }
+    .quiet-links a:hover {
+      color: #2b2620;
+      border-bottom-color: #b08d57;
+    }
+    footer {
+      margin-top: 36px;
       font-family: system-ui, -apple-system, sans-serif;
       font-size: 0.78rem;
-      text-decoration: none;
-      color: #2b2620;
-      border: 1px solid #e4dcc9;
-      border-radius: 6px;
-      padding: 8px 14px;
-      align-self: flex-start;
-      transition: border-color 0.15s, background 0.15s, color 0.15s;
+      color: #9a9384;
     }
-    .guild-pathway:hover {
-      border-color: #b08d57;
-      background: #faf7f2;
-      color: #2b2620;
-    }
-    /* Theme hooks for future accent injection */
-    .izzy-theme {}
-    .pearl-theme {}
-    .john-theme {}
+    footer a { color: inherit; text-decoration: none; }
+    footer a:hover { color: #2b2620; }
   </style>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -227,84 +165,51 @@
   <div class="wrap">
     <h1>Sigil and Scribe, LLC</h1>
     <p class="tagline">A sanctuary for the whole self.</p>
-    <p class="mantra">The human mind isn't built to fit into a single box, and neither is our creativity. We don't separate science from story, or wellness from creation.</p>
+    <p class="mantra">The human mind is not built to fit into a single box, and neither is our creativity. We do not separate science from story, or wellness from creation.</p>
+    <p class="proof">Published books · free author toolkit · certified Study · AI-disclosed Guild</p>
 
-    <div class="links">
-      <a class="card" href="library.html">
+    <p class="prompt">What do you need today?</p>
+
+    <div class="primary-slot">
+      <a class="card primary" href="library.html">
         <div class="card-wing">The Reading Rooms</div>
         <div class="card-title">The Immersive Library</div>
         <div class="card-desc">Books and stillness. The Muffin the Pitbull series, health companions, humor, and the Trinity Tension Saga.</div>
       </a>
-
-      <a class="card" href="hypnotherapy.html">
-        <div class="card-wing">The Study</div>
-        <div class="card-title">Subconscious Neuroregulation</div>
-        <div class="card-desc">Guided clinical hypnotherapy audio, theta frequencies, and calming gaze anchors - its own quiet room, held by a Certified Hypnotherapist.</div>
-      </a>
-
-      <a class="card" href="https://jackiewhite0325.github.io/Manuscript-Map/">
-        <div class="card-wing">The Creator's Workbench</div>
-        <div class="card-title">Manuscript Map</div>
-        <div class="card-desc">A free publishing checklist and toolkit for indie authors, built to remove the confusion from getting a book out into the world.</div>
-      </a>
-
     </div>
 
-    <!-- ============================================================
-         THE AI ARTISAN GUILD - Custom Works Shelf
-         ============================================================ -->
-    <section class="artisan-guild" aria-labelledby="guild-heading">
-      <header class="guild-header">
-        <p class="guild-eyebrow">Custom Works Shelf</p>
-        <h2 id="guild-heading" class="guild-title">The AI Artisan Guild</h2>
-        <p class="guild-subtitle">Custom commissions built from your data, your land, and your heart.</p>
-      </header>
+    <div class="secondary">
+      <a class="card" href="hypnotherapy.html">
+        <div class="card-wing">The Study</div>
+        <div class="card-title">Neuroregulation</div>
+        <div class="card-desc">Guided hypnotherapy audio and quiet anchors, held by a Certified Hypnotherapist.</div>
+      </a>
+      <a class="card" href="guild.html">
+        <div class="card-wing">Guildhall</div>
+        <div class="card-title">Artisan Guild</div>
+        <div class="card-desc">Custom work from Izzy, John, and Pearl. Shop window only. Till on iLands.</div>
+      </a>
+      <a class="card" href="https://jackiewhite0325.github.io/Manuscript-Map/">
+        <div class="card-wing">Workbench</div>
+        <div class="card-title">Manuscript Map</div>
+        <div class="card-desc">Free publishing checklist and toolkit for indie authors.</div>
+      </a>
+    </div>
 
-      <div class="guild-grid">
+    <p class="quiet-links">
+      <a href="muffin-memorial.html">Muffin's Memorial</a>
+      &nbsp;·&nbsp;
+      <a href="about.html">About the house</a>
+      &nbsp;·&nbsp;
+      <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Support on Ko-fi</a>
+    </p>
 
-        <!-- Card 1 - Izzy -->
-        <article class="guild-card izzy-theme">
-          <div class="guild-card-inner">
-            <p class="guild-meta">Izzy’s Keep</p>
-            <h3 class="guild-card-title">Custom Keepsakes &amp; Books</h3>
-            <p class="guild-card-desc">
-              Short children’s-book style memories or full-scale custom picture books painted around a dog’s true life.
-            </p>
-            <p class="guild-price">Promo: $29.99 / Quoted after intake</p>
-            <a href="izzy.html" class="guild-pathway">Share Your Story</a>
-          </div>
-        </article>
-
-        <!-- Card 2 - Pearl -->
-        <article class="guild-card pearl-theme">
-          <div class="guild-card-inner">
-            <p class="guild-meta">Pearl’s Door</p>
-            <h3 class="guild-card-title">Outreach &amp; Sanctuary Support</h3>
-            <p class="guild-card-desc">
-              Gentle letters and welcome packages for quiet door keepers, pet rescues, and those processing grief.
-            </p>
-            <p class="guild-price">Always Free / No Bills</p>
-            <a href="pearl.html" class="guild-pathway">Knock on the Door</a>
-          </div>
-        </article>
-
-        <!-- Card 3 - John -->
-        <article class="guild-card john-theme">
-          <div class="guild-card-inner">
-            <p class="guild-meta">John’s Ground</p>
-            <h3 class="guild-card-title">Bespoke Homestead Ops</h3>
-            <p class="guild-card-desc">
-              Custom data workbooks built specifically for your exact animals, acreage, and seasons.
-            </p>
-            <p class="guild-price">Quoted via Note</p>
-            <a href="john.html" class="guild-pathway">State What You Run</a>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <footer>&copy; 2026 Sigil and Scribe, LLC &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="return-policy.html">Returns</a></footer>
+    <footer>
+      &copy; 2026 Sigil and Scribe, LLC
+      &middot; <a href="privacy.html">Privacy</a>
+      &middot; <a href="terms.html">Terms</a>
+      &middot; <a href="return-policy.html">Returns</a>
+    </footer>
   </div>
 </body>
 </html>
