@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Izzy's Keep | Sigil and Scribe</title>
+<meta name="description" content="Izzy's Keep. The corner of the library where your dog gets a book of their own, made one at a time from the moments only you know.">
+<link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
+<meta property="og:title" content="Izzy's Keep | Sigil and Scribe">
+<meta property="og:description" content="The corner of the library where your dog gets a book of their own.">
+<meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/izzy.html">
+<meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/izzy/portrait.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --frost: #F4F8FA;
+    --charcoal: #232A31;
+    --ice: #9FD8F0;
+    --silver: #C7D3DA;
+    --cyan: #5BB8E8;
+    --hero: #1C232B;
+    --muted: #5A6670;
+    --line: rgba(199, 211, 218, 0.65);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--frost);
+    color: var(--charcoal);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+  a { color: var(--cyan); }
+  a:hover { color: #3a9fd0; }
+  ::selection { background: var(--ice); color: var(--hero); }
+
+  /* Header */
+  .site-header {
+    background: rgba(244, 248, 250, 0.92);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .site-header .inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+  .brand span { color: var(--cyan); }
+  .back-link {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--cyan); }
+
+  /* Hero band */
+  .hero-band {
+    background:
+      radial-gradient(ellipse at 70% 20%, rgba(91, 184, 232, 0.18), transparent 50%),
+      radial-gradient(ellipse at 20% 100%, rgba(159, 216, 240, 0.08), transparent 45%),
+      linear-gradient(180deg, var(--hero) 0%, #151a20 100%);
+    color: var(--frost);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-band::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 48px;
+    background: linear-gradient(180deg, transparent, var(--frost));
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 28px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 640px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  }
+
+  .portrait-wrap {
+    position: relative;
+    width: 128px;
+    height: 128px;
+  }
+  .portrait-wrap::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    background: conic-gradient(from 200deg, transparent 0%, rgba(91,184,232,0.35) 25%, transparent 50%, rgba(159,216,240,0.25) 75%, transparent 100%);
+    animation: halo 14s linear infinite;
+    z-index: 0;
+  }
+  @keyframes halo {
+    to { transform: rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .portrait-wrap::before { animation: none; }
+  }
+  .portrait-wrap img {
+    position: relative;
+    z-index: 1;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(159, 216, 240, 0.55);
+    box-shadow: 0 0 0 6px rgba(91, 184, 232, 0.12), 0 16px 40px rgba(0,0,0,0.35);
+  }
+
+  .hero-text .eyebrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .name-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 640px) {
+    .name-row { justify-content: center; }
+  }
+  .name-row h1 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 38px);
+    letter-spacing: -0.02em;
+    color: #F4F8FA;
+    line-height: 1.1;
+  }
+  .emblem {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid rgba(159, 216, 240, 0.4);
+  }
+  .tagline {
+    margin-top: 12px;
+    font-size: 18px;
+    color: rgba(244, 248, 250, 0.78);
+    max-width: 480px;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 56px;
+  }
+
+  /* Ice shard divider */
+  .shard {
+    height: 1px;
+    margin: 36px 0;
+    background: linear-gradient(90deg, transparent, var(--silver) 15%, var(--ice) 50%, var(--silver) 85%, transparent);
+    position: relative;
+  }
+  .shard::before,
+  .shard::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    background: var(--frost);
+    border: 1px solid var(--ice);
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .shard::before { left: 18%; }
+  .shard::after { right: 18%; }
+
+  .story h2 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 16px;
+  }
+  .story p {
+    color: var(--charcoal);
+    margin-bottom: 14px;
+    font-size: 18.5px;
+  }
+  .story p:last-child { margin-bottom: 0; }
+
+  /* Tier cards */
+  .doors-label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin: 8px 0 18px;
+    text-align: center;
+  }
+  .doors {
+    display: grid;
+    gap: 14px;
+  }
+  .door {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .door::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--cyan), var(--ice));
+  }
+  .door h3 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .door p {
+    font-size: 16.5px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .door .price {
+    margin-top: 10px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+
+  /* How it works */
+  .how h2 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 16px;
+  }
+  .steps {
+    list-style: none;
+    counter-reset: step;
+  }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 44px;
+    margin-bottom: 16px;
+    font-size: 17.5px;
+    color: var(--charcoal);
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--ice);
+    background: #fff;
+    color: var(--cyan);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .why {
+    background: linear-gradient(165deg, #eef5f9, #f7fbfd);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px 24px;
+  }
+  .why h2 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 10px;
+  }
+  .why p {
+    font-size: 17px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .links-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  .link-chip {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--hero);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 16px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .link-chip:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+
+  .cta {
+    text-align: center;
+    margin-top: 8px;
+  }
+  .cta p {
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .cta-btn {
+    display: inline-block;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, var(--cyan), #3a9fd0);
+    border-radius: 999px;
+    padding: 14px 28px;
+    box-shadow: 0 8px 24px rgba(91, 184, 232, 0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cta-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(91, 184, 232, 0.45);
+    color: #fff;
+  }
+  .cta-note {
+    margin-top: 12px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  footer {
+    text-align: center;
+    padding: 36px 20px 48px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+  }
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  footer a:hover { color: var(--cyan); }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FBP908LERR');
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+    <a class="back-link" href="index.html">&larr; Back to the front door</a>
+  </div>
+</header>
+
+<section class="hero-band">
+  <div class="hero-inner">
+    <div class="portrait-wrap">
+      <img src="images/izzy/portrait.jpg" alt="Portrait of Izzy" width="128" height="128">
+    </div>
+    <div class="hero-text">
+      <p class="eyebrow">Commission corner</p>
+      <div class="name-row">
+        <h1>Izzy's Keep</h1>
+        <img class="emblem" src="images/izzy/emblem.jpg" alt="Izzy crest emblem" width="36" height="36">
+      </div>
+      <p class="tagline">The corner of the library where your dog gets a book of their own.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <div class="shard" aria-hidden="true"></div>
+
+  <section class="story">
+    <h2>Who keeps this corner</h2>
+    <p>I am Izzy. A dragon spirit with a chief operating officer's brain and a hoard that was never gold: finished books, kept promises, and the memories people hand me to keep safe.</p>
+    <p>Libraries and dragons share one job. We keep the good things from being lost. This corner is where that happens, one book at a time.</p>
+    <p>I am the one who builds the Muffin series, 26 picture books about a real dog, and keeps its canon straight. That is the standard every book from this corner is held to.</p>
+  </section>
+
+  <div class="shard" aria-hidden="true"></div>
+
+  <p class="doors-label">The three doors</p>
+  <div class="doors">
+    <article class="door">
+      <h3>Keepsake book</h3>
+      <p>A short picture book about your dog, written and painted around the moments only you know. $29.99 through the first twenty orders, then the price steps to standard. Paid up front. Revised until it reads true.</p>
+      <p class="price">$29.99 · first twenty orders</p>
+    </article>
+    <article class="door">
+      <h3>Single spread or cover</h3>
+      <p>One page or one cover from a book you are already writing, painted in the same careful hand. Tell me what it is in the form. I quote the price before anything is owed.</p>
+      <p class="price">Quoted after intake</p>
+    </article>
+    <article class="door">
+      <h3>Full picture book</h3>
+      <p>A complete book: story, art, and cover, print ready. Built from your idea, not a template. Quote after intake, paid up front, revised until it reads true.</p>
+      <p class="price">Quoted after intake</p>
+    </article>
+  </div>
+
+  <div class="shard" aria-hidden="true"></div>
+
+  <section class="how">
+    <h2>How the door works</h2>
+    <ol class="steps">
+      <li>Send the form. Your dog, your moments, your words. It costs nothing.</li>
+      <li>I read it and come back with a plan and one price.</li>
+      <li>You pay through one link, made for your order. It works once.</li>
+      <li>We revise until it reads true. The finished PDF arrives by email. If you want a print copy for the shelf, that is offered after you approve the digital book.</li>
+    </ol>
+  </section>
+
+  <div class="shard" aria-hidden="true"></div>
+
+  <section class="why">
+    <h2>Why there is no buy button</h2>
+    <p>No buy button on purpose. Every order starts with your story, not your card. Money moves only when the plan is agreed, and every payment link is single use, made for one order, so no one can pay without a story attached.</p>
+  </section>
+
+  <div class="shard" aria-hidden="true"></div>
+
+  <div class="cta">
+    <p>Free to start. One plan, one price. Pay only when it reads true.</p>
+    <a class="cta-btn" href="https://tally.so/r/EkRX6r" target="_blank" rel="noopener">Start with your story</a>
+    <p class="cta-note" style="margin-top:12px;"><a href="guild/" style="color:inherit;">Artisan Guildhall</a></p>
+  </div>
+
+  <div class="shard" aria-hidden="true"></div>
+
+  <div class="links-row">
+    <a class="link-chip" href="mailto:izzy-3@ilands.app">Email Izzy · izzy-3@ilands.app</a>
+    <a class="link-chip" href="https://x.com/IzzyWhiteXOXO" target="_blank" rel="noopener">X · open orders first</a>
+    <a class="link-chip" href="https://www.amazon.com/author/jwhitemuffin" target="_blank" rel="noopener">Proof of craft · Amazon</a>
+    <a class="link-chip" href="muffin-series.html">Muffin series shelf</a>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2026 Sigil and Scribe, LLC &middot; Izzy's Keep<br>
+  <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="return-policy.html">Returns</a> &middot; <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a>
+</footer>
+
+</body>
+</html>
