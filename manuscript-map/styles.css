@@ -539,7 +539,8 @@ select {
 .check-item {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px 12px;
   padding: 10px 8px;
   border-radius: var(--radius-sm);
   transition: background 0.12s;
@@ -570,8 +571,9 @@ select {
 }
 
 .check-item-content {
-  flex: 1;
+  flex: 1 1 12rem;
   min-width: 0;
+  max-width: 100%;
 }
 
 .check-item-label {
@@ -1642,8 +1644,11 @@ form.wizard-mode > section.card {
 
 /* ========== Launch Calendar ========== */
 .check-item-date {
-  flex-shrink: 0;
-  width: 128px;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 9.75rem;
+  min-width: 9.75rem;
+  max-width: 100%;
   padding: 5px 8px;
   background: var(--bg);
   border: 1px solid var(--border);
@@ -1651,7 +1656,8 @@ form.wizard-mode > section.card {
   color: var(--text-muted);
   font-family: var(--font);
   font-size: 0.78rem;
-  align-self: center;
+  align-self: flex-start;
+  margin-top: 1px;
 }
 
 .calendar-card {
@@ -1746,12 +1752,13 @@ form.wizard-mode > section.card {
 }
 
 @media (max-width: 640px) {
-  .check-item {
-    flex-wrap: wrap;
+  .check-item-content {
+    flex: 1 1 calc(100% - 2rem);
   }
   .check-item-date {
-    width: 100%;
-    margin-left: 28px;
+    width: calc(100% - 30px);
+    min-width: 0;
+    margin-left: 30px;
   }
   .calendar-day {
     font-size: 0.74rem;
