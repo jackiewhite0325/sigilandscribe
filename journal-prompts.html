@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Journal Prompts | Sigil and Scribe</title>
+  <meta name="description" content="Quiet daily journal prompts across gratitude, reflection, creativity, body, relationships, and more. Local save and print. Free tool from Sigil & Scribe." />
+  <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
+  <meta property="og:title" content="Daily Journal Prompts | Sigil and Scribe">
+  <meta property="og:description" content="Quiet daily journal prompts with categories, local save, and print.">
+  <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/journal-prompts.html">
+  <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Daily Journal Prompts | Sigil and Scribe">
+  <meta name="twitter:description" content="Quiet daily journal prompts with categories, local save, and print.">
+  <meta name="twitter:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="book.css">
+
+  <style>
+    :root {
+      --paper: #FDFBF7;
+      --mist: #F2F5F3;
+      --ink: #2B2B2B;
+      --amber: #D4A373;
+      --amber-deep: #B8874F;
+      --sage: #A3B19B;
+      --sage-deep: #7E8F76;
+      --walnut: #6B4A34;
+      --walnut-dark: #4A3324;
+      --walnut-deep: #38251A;
+      --card: #F7EFDD;
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    body {
+      background: radial-gradient(ellipse at 20% 0%, rgba(212, 163, 115, 0.07), transparent 55%), var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+    }
+
+    .tool-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .tool-intro {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .tool-intro .bp-call {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      color: var(--amber-deep);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .tool-intro h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      color: var(--walnut-deep);
+      margin: 8px 0 10px;
+      font-weight: 600;
+    }
+
+    .tool-intro .lead {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #5a5a5a;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .panel {
+      background: #fff;
+      border: 1px solid rgba(107, 74, 52, 0.14);
+      border-radius: 10px;
+      padding: 28px 26px;
+      box-shadow: 0 4px 18px rgba(56, 37, 26, 0.04);
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-end;
+      margin-bottom: 22px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1 1 180px;
+    }
+
+    .field label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage-deep);
+    }
+
+    select {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.95rem;
+      padding: 10px 12px;
+      border: 1px solid rgba(107, 74, 52, 0.22);
+      border-radius: 6px;
+      background: var(--paper);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: var(--amber-deep);
+      box-shadow: 0 0 0 3px rgba(184, 135, 79, 0.18);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    button {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .btn-primary {
+      background: var(--walnut-deep);
+      color: var(--paper);
+      border-color: var(--walnut-deep);
+    }
+    .btn-primary:hover {
+      background: var(--walnut-dark);
+    }
+
+    .btn-secondary {
+      background: var(--paper);
+      color: var(--walnut-deep);
+      border-color: rgba(107, 74, 52, 0.25);
+    }
+    .btn-secondary:hover {
+      border-color: var(--amber-deep);
+      background: #fffdf9;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #6b6b6b;
+      border-color: transparent;
+      font-size: 0.82rem;
+    }
+    .btn-ghost:hover {
+      color: var(--walnut-deep);
+      background: var(--mist);
+    }
+
+    .prompt-box {
+      background: var(--mist);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+      min-height: 72px;
+    }
+
+    .prompt-label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber-deep);
+      margin-bottom: 8px;
+    }
+
+    .prompt-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.5;
+      color: var(--walnut-deep);
+      margin: 0;
+    }
+
+    .entry-label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage-deep);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 220px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.98rem;
+      line-height: 1.65;
+      padding: 14px 16px;
+      border: 1px solid rgba(107, 74, 52, 0.18);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      resize: vertical;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--amber-deep);
+      box-shadow: 0 0 0 3px rgba(184, 135, 79, 0.15);
+    }
+
+    .status {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      color: var(--sage-deep);
+      margin-top: 12px;
+      min-height: 1.2em;
+    }
+
+    .status.saved { color: var(--sage-deep); }
+    .status.warn { color: #8a5a3a; }
+
+    .note {
+      margin-top: 28px;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: #7a7a7a;
+      text-align: center;
+    }
+
+    /* Print */
+    @media print {
+      body {
+        background: #fff;
+      }
+      .site-header,
+      .controls,
+      .btn-row,
+      .status,
+      .note,
+      .site-footer,
+      .no-print {
+        display: none !important;
+      }
+      .tool-wrap {
+        padding: 0;
+        max-width: 100%;
+      }
+      .panel {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+      }
+      .prompt-box {
+        background: none;
+        border-left: 2px solid #999;
+        margin-bottom: 24px;
+      }
+      textarea {
+        border: none;
+        min-height: auto;
+        height: auto !important;
+        overflow: visible;
+        resize: none;
+        white-space: pre-wrap;
+      }
+      .print-meta {
+        display: block !important;
+        font-family: 'Courier Prime', monospace;
+        font-size: 11px;
+        color: #666;
+        margin-bottom: 16px;
+      }
+    }
+
+    .print-meta {
+      display: none;
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FBP908LERR');
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+      <div class="bp-crumb">Workbench · Free Tools</div>
+    </div>
+  </header>
+
+  <main class="tool-wrap">
+    <header class="tool-intro">
+      <span class="bp-call">Daily Practice</span>
+      <h1>Journal Prompts</h1>
+      <p class="lead">One prompt at a time. Choose a category, write, save locally, or print. Nothing leaves this browser unless you print or copy it.</p>
+    </header>
+
+    <div class="panel">
+      <div class="print-meta" id="printMeta"></div>
+
+      <div class="controls no-print">
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category" aria-label="Prompt category">
+            <option value="gratitude">Gratitude</option>
+            <option value="checkin">Emotional check-in</option>
+            <option value="creativity">Creativity &amp; writing</option>
+            <option value="body">Body / chronic illness</option>
+            <option value="relationships">Relationships</option>
+            <option value="shadow">Shadow / hard truths</option>
+            <option value="daily">Daily life &amp; seasons</option>
+            <option value="free">Free write</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn-primary" id="newPrompt">New prompt</button>
+          <button type="button" class="btn-secondary" id="saveEntry">Save</button>
+          <button type="button" class="btn-secondary" id="loadEntry">Load last</button>
+          <button type="button" class="btn-ghost" id="clearEntry">Clear</button>
+          <button type="button" class="btn-ghost" id="printEntry">Print</button>
+        </div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Today’s prompt</div>
+        <p class="prompt-text" id="promptText">Choose a category and press New prompt.</p>
+      </div>
+
+      <label class="entry-label" for="entry">Your entry</label>
+      <textarea id="entry" placeholder="Write here…" spellcheck="true"></textarea>
+
+      <p class="status" id="status" aria-live="polite"></p>
+    </div>
+
+    <p class="note no-print">
+      Entries are stored only in this browser (localStorage). Clearing site data or switching devices will remove them.
+      This is a reflection tool, not therapy or medical advice.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Sigil and Scribe, LLC &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="return-policy.html">Returns</a> &middot; <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></p>
+  </footer>
+
+  <script>
+    const PROMPTS = {
+      gratitude: [
+        "Name three ordinary things that made today slightly easier.",
+        "Who or what showed up for you this week that you almost overlooked?",
+        "What is one small capacity you still have, even on hard days?",
+        "Write about a place, object, or ritual that reliably steadies you.",
+        "What kindness did you receive recently that you haven’t fully let in yet?",
+        "List five sensory details from today you are glad you noticed.",
+        "What did your body allow you to do today that you might take for granted?"
+      ],
+      checkin: [
+        "Where in your body is the day’s weather sitting right now?",
+        "If your current mood had a color, temperature, and texture, what would they be?",
+        "What are you carrying that isn’t actually yours to hold?",
+        "What do you need less of this week? What do you need more of?",
+        "Name the feeling underneath the surface feeling.",
+        "What would ‘enough for today’ look like if you stopped negotiating with yourself?",
+        "Write a short letter to the part of you that is tired of performing."
+      ],
+      creativity: [
+        "Describe a scene you keep returning to in your mind—no plot required.",
+        "What story are you avoiding writing, and what is the first true sentence of it?",
+        "If your current project had a weather system, what is the forecast?",
+        "Steal one sensory detail from today and put it in a fictional character’s pocket.",
+        "What would you make if no one ever saw it?",
+        "Write the opposite of the last paragraph you wrote (or thought of writing).",
+        "Name the constraint that is currently helping your work, even if it feels like an obstacle."
+      ],
+      body: [
+        "What is your body asking for that your schedule keeps refusing?",
+        "Map the day’s energy: where it rose, where it dropped, what shifted it.",
+        "What does ‘pacing’ mean in practice for you today—not in theory?",
+        "Write about a symptom without trying to fix, explain, or apologize for it.",
+        "What boundary with your body have you been negotiating instead of keeping?",
+        "Describe one way your body has adapted that still surprises you.",
+        "If pain or fatigue could leave a short note, what would it say—and what would you reply?"
+      ],
+      relationships: [
+        "Who do you feel most like yourself around, and what do they do that allows it?",
+        "What conversation have you been rehearsing that still needs a first sentence?",
+        "Where are you giving more than you have, and what would honest capacity look like?",
+        "Write about a repair you want to make—or a repair you need to stop waiting for.",
+        "What did someone teach you recently by how they treated you?",
+        "Name a relationship pattern you recognize and one small way you could interrupt it.",
+        "What do you wish someone understood about your limits without you having to explain again?"
+      ],
+      shadow: [
+        "What are you pretending not to know?",
+        "Where are you still performing strength that costs you more than it protects?",
+        "Write the thing you are afraid saying out loud would make real.",
+        "What resentment is pointing at a need you haven’t claimed?",
+        "Describe the story you tell about yourself that no longer fits.",
+        "What would change if you stopped defending the version of you that needs defending?",
+        "Name one place you are still waiting for permission that will never arrive."
+      ],
+      daily: [
+        "What season are you actually in—calendar season and personal season?",
+        "Capture three ordinary moments from today without ranking them.",
+        "What is one unfinished loop that is taking more energy than finishing it would?",
+        "Write about the light, the weather, and the temperature of the room you are in.",
+        "What did you put off today, and what did putting it off protect?",
+        "If today were a chapter title, what would it be?",
+        "What small threshold did you cross this week that no one else noticed?"
+      ],
+      free: [
+        "Start with the first true sentence and keep going until the page feels finished.",
+        "Write without a destination for ten minutes. Cross out nothing.",
+        "Describe what is in front of you, then what is behind the thing in front of you.",
+        "Let the entry be a list, a letter, a rant, or a fragment—whatever is honest.",
+        "Write the page you would write if no one would ever read it.",
+        "Begin with ‘I don’t know what to write, but…’ and continue from there.",
+        "Use this space for whatever needs room today. No prompt required."
+      ]
+    };
+
+    const STORAGE_KEY = 'sigil-journal-v1';
+
+    const categoryEl = document.getElementById('category');
+    const promptEl = document.getElementById('promptText');
+    const entryEl = document.getElementById('entry');
+    const statusEl = document.getElementById('status');
+    const printMetaEl = document.getElementById('printMeta');
+
+    let currentPrompt = '';
+    let currentCategory = 'gratitude';
+
+    function setStatus(msg, type) {
+      statusEl.textContent = msg || '';
+      statusEl.className = 'status' + (type ? ' ' + type : '');
+    }
+
+    function pickPrompt(cat) {
+      const list = PROMPTS[cat] || PROMPTS.free;
+      let next = list[Math.floor(Math.random() * list.length)];
+      // avoid immediate repeat when possible
+      if (list.length > 1 && next === currentPrompt) {
+        next = list[Math.floor(Math.random() * list.length)];
+      }
+      currentPrompt = next;
+      currentCategory = cat;
+      promptEl.textContent = next;
+      setStatus('');
+    }
+
+    function save() {
+      const data = {
+        category: currentCategory,
+        prompt: currentPrompt || promptEl.textContent,
+        entry: entryEl.value,
+        savedAt: new Date().toISOString()
+      };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        const when = new Date(data.savedAt).toLocaleString();
+        setStatus('Saved locally · ' + when, 'saved');
+      } catch (e) {
+        setStatus('Could not save (storage full or blocked).', 'warn');
+      }
+    }
+
+    function load() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          setStatus('No saved entry found on this browser.', 'warn');
+          return;
+        }
+        const data = JSON.parse(raw);
+        if (data.category && PROMPTS[data.category]) {
+          categoryEl.value = data.category;
+          currentCategory = data.category;
+        }
+        if (data.prompt) {
+          currentPrompt = data.prompt;
+          promptEl.textContent = data.prompt;
+        }
+        entryEl.value = data.entry || '';
+        const when = data.savedAt ? new Date(data.savedAt).toLocaleString() : 'unknown time';
+        setStatus('Loaded last save · ' + when, 'saved');
+      } catch (e) {
+        setStatus('Could not read saved entry.', 'warn');
+      }
+    }
+
+    function clearAll() {
+      if (entryEl.value && !confirm('Clear the text area? (Saved entry in storage is not deleted until you save over it.)')) {
+        return;
+      }
+      entryEl.value = '';
+      setStatus('Cleared.');
+    }
+
+    function doPrint() {
+      const catLabel = categoryEl.options[categoryEl.selectedIndex].text;
+      const when = new Date().toLocaleString();
+      printMetaEl.textContent = catLabel + ' · ' + when;
+      window.print();
+    }
+
+    document.getElementById('newPrompt').addEventListener('click', () => {
+      pickPrompt(categoryEl.value);
+    });
+
+    categoryEl.addEventListener('change', () => {
+      pickPrompt(categoryEl.value);
+    });
+
+    document.getElementById('saveEntry').addEventListener('click', save);
+    document.getElementById('loadEntry').addEventListener('click', load);
+    document.getElementById('clearEntry').addEventListener('click', clearAll);
+    document.getElementById('printEntry').addEventListener('click', doPrint);
+
+    // first prompt on load
+    pickPrompt(categoryEl.value);
+  </script>
+</body>
+</html>
