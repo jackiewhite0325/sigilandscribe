@@ -20,8 +20,6 @@
   --font: "DM Sans", system-ui, -apple-system, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
   --sidebar-w: 240px;
-  --app-top-offset: 0px;
-  --mobile-bar-h: 52px;
 }
 
 *,
@@ -59,7 +57,7 @@ body {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: var(--app-top-offset);
+  top: 0;
   left: 0;
   bottom: 0;
   z-index: 20;
@@ -612,23 +610,6 @@ select {
   text-decoration: underline;
 }
 
-@media (min-width: 861px) {
-  .check-item {
-    align-items: center;
-  }
-
-  .check-item input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    margin-top: 0;
-  }
-
-  .check-item-label {
-    font-size: 0.95rem;
-    line-height: 1.45;
-  }
-}
-
 /* ========== Responsive / Mobile nav ========== */
 @media (max-width: 860px) {
   .mobile-bar {
@@ -636,10 +617,10 @@ select {
     align-items: center;
     gap: 12px;
     position: fixed;
-    top: var(--app-top-offset);
+    top: 0;
     left: 0;
     right: 0;
-    height: var(--mobile-bar-h);
+    height: 52px;
     padding: 0 14px;
     background: var(--bg-elevated);
     border-bottom: 1px solid var(--border);
@@ -677,7 +658,6 @@ select {
   .sidebar {
     transform: translateX(-105%);
     transition: transform 0.22s ease;
-    top: calc(var(--app-top-offset) + var(--mobile-bar-h));
     z-index: 40;
     box-shadow: none;
   }
@@ -694,10 +674,7 @@ select {
   .sidebar-backdrop {
     display: block;
     position: fixed;
-    top: calc(var(--app-top-offset) + var(--mobile-bar-h));
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
     background: rgba(0, 0, 0, 0.55);
     z-index: 35;
   }
@@ -708,7 +685,7 @@ select {
 
   .main {
     margin-left: 0;
-    padding: calc(var(--mobile-bar-h) + 16px) 16px 48px;
+    padding: 68px 16px 48px;
   }
 
   .page-header {
