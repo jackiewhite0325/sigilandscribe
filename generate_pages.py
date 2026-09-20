@@ -188,7 +188,7 @@ def build_page(item, all_items):
     if item.get("note"):
         note_html = '<p class="bp-note">{0}</p>'.format(item["note"])
     if item.get("section") == "fiction" and not item.get("note"):
-        note_html = '<p class="bp-note">18+ · Mature themes. This title lives on the restricted shelf. <a href="mature.html" style="color:var(--amber-deep);text-decoration:underline;">Return to the mature wing</a>.</p>'
+        note_html = '<p class="bp-note">Fiction · Adult readers. Mature themes noted as content information. <a href="fiction.html" style="color:var(--amber-deep);text-decoration:underline;">Back to the fiction shelf</a>.</p>'
 
     section_label, call_range = SECTIONS[item["section"]]
     cls = SECTION_CLASS[item["section"]]
