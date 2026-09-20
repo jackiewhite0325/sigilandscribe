@@ -27,7 +27,7 @@ ITEMS = [
          cover="images/children/book1-cover-v2.png",
          tagline="Book 1 of the Muffin the Pitbull Puppy series.",
          shelf_note='Book 1 of 26 · <a href="muffin-series.html" style="color:var(--amber-deep);text-decoration:underline;">View full Muffin series shelf</a>',
-         description="A 26-book series helping kids understand and cope with chronic illness, inspired by a real dog who had seizures and taught her family what courage looks like. Five percent of net series royalties are donated quarterly to St. Jude Children's Research Hospital in her name.",
+         description="A 26-book series helping kids understand and cope with chronic illness, inspired by a real dog who had seizures and taught her family what courage looks like. Five percent of net series royalties are donated quarterly to St. Jude Children's Research Hospital in Muffin's name.",
          meta_desc="A 26-book series helping kids understand and cope with chronic illness, inspired by a real dog who had seizures and taught her family what courage looks like.",
          links=[("Buy: Kindle", "https://www.amazon.com/dp/B0HDYB7624?tag=jwhitemuffin-20"), ("Buy: Paperback", "https://www.amazon.com/dp/B0HF43T8BV?tag=jwhitemuffin-20")]),
 
