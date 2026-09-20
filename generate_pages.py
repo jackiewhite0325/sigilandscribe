@@ -35,6 +35,7 @@ ITEMS = [
          cover="images/health-wellness/bingo-cover-v2.jpg",
          tagline="A dark humor validation sheet for the weary.",
          description="A sharp, funny, deeply validating look at the endless parade of advice chronically ill people face, from yoga to kale smoothies to "just stop talking about it." Fifteen chapters unpack the myths behind the most common miracle cures, each closing with its own Bingo Card breakdown, verdict scripts for the hard conversations, and community rants. A survival guide for anyone living with chronic illness, or loving someone who is.",
+         meta_desc="A sharp, funny, validating look at the miracle-cure advice chronically ill people face, with a Bingo Card breakdown in every chapter.",
          links=[("Buy: Paperback", "https://www.amazon.com/dp/B0G4V4SGJ1?tag=jwhitemuffin-20")]),
 
     dict(id="many-faces-of-grace", call="200.2", title="The Many Faces of Grace", author="J. White", section="wellness",
