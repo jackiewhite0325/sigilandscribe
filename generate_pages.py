@@ -34,7 +34,7 @@ ITEMS = [
     dict(id="bingo-card-chronic-illness", call="200.1", title="The Bingo Card of Chronic Illness: Have you tried this?", author="J. White", section="wellness",
          cover="images/health-wellness/bingo-cover-v2.jpg",
          tagline="A dark humor validation sheet for the weary.",
-         description="An interactive workbook for those tracking difficult symptoms, medical gaslighting, and recovery milestones. Designed as a soft place to land when standard self-care frameworks fall short.",
+         description="A sharp, funny, deeply validating look at the endless parade of advice chronically ill people face, from yoga to kale smoothies to "just stop talking about it." Fifteen chapters unpack the myths behind the most common miracle cures, each closing with its own Bingo Card breakdown, verdict scripts for the hard conversations, and community rants. A survival guide for anyone living with chronic illness, or loving someone who is.",
          links=[("Buy: Paperback", "https://www.amazon.com/dp/B0G4V4SGJ1?tag=jwhitemuffin-20")]),
 
     dict(id="many-faces-of-grace", call="200.2", title="The Many Faces of Grace", author="J. White", section="wellness",
