@@ -38,8 +38,8 @@ ITEMS = [
          meta_desc="A sharp, funny, validating look at the miracle-cure advice chronically ill people face, with a Bingo Card breakdown in every chapter.",
          links=[("Buy: Paperback", "https://www.amazon.com/dp/B0G4V4SGJ1?tag=jwhitemuffin-20")]),
 
-    dict(id="many-faces-of-grace", call="200.2", title="The Many Faces of Grace", author="J. White", section="wellness",
-         cover="images/health-wellness/grace-cover-v2.png",
+    dict(id="many-faces-of-grace", call="300.2", title="The Many Faces of Grace", author="J. White", section="more",
+         cover="images/more-books/grace-cover-v2.png",
          tagline="Cross-cultural perspectives and interpretations.",
          description="Across cultures, religions, languages, and eras, the word grace has carried countless shades of beauty, mercy, favor, compassion, and transcendence. A sweeping journey through how a single word shaped spiritual thought, connection, creativity, and the search for meaning.",
          links=[("Buy: Paperback", "https://www.amazon.com/dp/B0G4CTRVQZ?tag=jwhitemuffin-20")]),
