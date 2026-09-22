@@ -527,5 +527,21 @@
   <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="return-policy.html">Returns</a> &middot; <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a>
 </footer>
 
+<script>
+  // Channel tagging: a post links izzy.html?src=ig (or fb, tt, x, li).
+  // The tag rides to the order form and into analytics, so a sale can name its road.
+  (function () {
+    var src = (new URLSearchParams(window.location.search).get('src') || '')
+      .toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 24);
+    if (!src) return;
+    document.querySelectorAll('a[href*="tally.so/r/EkRX6r"]').forEach(function (a) {
+      var u = new URL(a.href);
+      u.searchParams.set('src', src);
+      a.href = u.toString();
+    });
+    if (window.gtag) { window.gtag('event', 'funnel_src', { src: src }); }
+  })();
+</script>
+
 </body>
 </html>
