@@ -26,6 +26,7 @@ ITEMS = [
     dict(id="muffin-wiggles", call="100.1", title="Muffin Gets the Wiggles", author="J. White", section="children",
          cover="images/children/book1-cover-v2.png",
          tagline="Book 1 of the Muffin the Pitbull Puppy series.",
+         memorial=True,
          shelf_note='Book 1 of 26 · <a href="muffin-series.html" style="color:var(--amber-deep);text-decoration:underline;">View full Muffin series shelf</a>',
          description="A 26-book series helping kids understand and cope with chronic illness, inspired by a real dog who had seizures and taught her family what courage looks like. Five percent of net series royalties are donated quarterly to St. Jude Children's Research Hospital in Muffin's name.",
          meta_desc="A 26-book series helping kids understand and cope with chronic illness, inspired by a real dog who had seizures and taught her family what courage looks like.",
@@ -34,6 +35,7 @@ ITEMS = [
     dict(id="bingo-card-chronic-illness", call="200.1", title="The Bingo Card of Chronic Illness: Have you tried this?", author="J. White", section="wellness",
          cover="images/health-wellness/bingo-cover-v2.jpg",
          tagline="A dark humor validation sheet for the weary.",
+         memorial=True,
          description="A sharp, funny, deeply validating look at the endless parade of advice chronically ill people face, from yoga to kale smoothies to \"just stop talking about it.\" Fifteen chapters unpack the myths behind the most common miracle cures, each closing with its own Bingo Card breakdown, verdict scripts for the hard conversations, and community rants. A survival guide for anyone living with chronic illness, or loving someone who is.",
          meta_desc="A sharp, funny, validating look at the miracle-cure advice chronically ill people face, with a Bingo Card breakdown in every chapter.",
          links=[("Buy: Paperback", "https://www.amazon.com/dp/B0G4V4SGJ1?tag=jwhitemuffin-20")]),
@@ -41,12 +43,14 @@ ITEMS = [
     dict(id="many-faces-of-grace", call="300.2", title="The Many Faces of Grace", author="J. White", section="more",
          cover="images/more-books/grace-cover-v2.png",
          tagline="Cross-cultural perspectives and interpretations.",
+         memorial=True,
          description="Across cultures, religions, languages, and eras, the word grace has carried countless shades of beauty, mercy, favor, compassion, and transcendence. A sweeping journey through how a single word shaped spiritual thought, connection, creativity, and the search for meaning.",
          links=[("Buy: Paperback", "https://www.amazon.com/dp/B0G4CTRVQZ?tag=jwhitemuffin-20")]),
 
     dict(id="dont-quote-me", call="300.1", title="Don't Quote Me: Smart Mouths", author="J. White", section="more",
          cover="images/more-books/dqm-cover-v2.jpg",
          tagline="Wit, wisdom, and sass from history's greatest thinkers.",
+         memorial=True,
          description="A witty and insightful collection that captures the essence of clever wordplay and memorable expressions, with sharp observations and thoughtful commentary on the power of language. Quotes from history's greatest thinkers, for language enthusiasts and anyone who appreciates the art of smart conversation.",
          meta_desc="A witty and insightful collection of clever wordplay and memorable expressions, with sharp observations on the power of language.",
          links=[("Get the Book", "https://www.amazon.com/dp/B0FL9V16YT?tag=jwhitemuffin-20")],
@@ -193,6 +197,13 @@ def build_page(item, all_items):
 
     section_label, call_range = SECTIONS[item["section"]]
     cls = SECTION_CLASS[item["section"]]
+
+    memorial_html = ""
+    if item.get("memorial"):
+        memorial_html = ('<p class="bp-note"><a href="muffin-memorial.html" '
+                         'style="color:var(--amber-deep);text-decoration:underline;">The story behind the series</a> '
+                         'starts with a real dog named Muffin and the human who loved her.</p>')
+        note_html = note_html + memorial_html
 
     siblings = [s for s in all_items if s["section"] == item["section"]]
     shelf_parts = []
