@@ -8,11 +8,11 @@
  *
  * Rules (also on guild process):
  * - One row per note
- * - Person always filled (Izzy | John | Pearl | Human)
+ * - Person always filled (Izzy | Pearl | Human)
  * - Topic carries the thread id or short label
  * - Nobody edits another agent's rows; corrections are new rows
  *
- * POST JSON: { "person": "John", "topic": "intake-queue", "note": "...", "link": "" }
+ * POST JSON: { "person": "Izzy", "topic": "intake-queue", "note": "...", "link": "" }
  * Optional shared secret: set SECRET below and send header X-Board-Secret
  */
 

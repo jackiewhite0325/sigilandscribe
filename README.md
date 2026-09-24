@@ -26,7 +26,7 @@ Manuscript Map — free publishing toolkit (manuscript-map/)
 
 
 
-Artisan Guildhall (guild/) — Izzy's Keep, John's Ground, Pearl's Door; shop window only; till on iLands
+Artisan Guildhall (guild/) — Izzy's Keep, Pearl's Door; shop window only; till on iLands
 
 
 
