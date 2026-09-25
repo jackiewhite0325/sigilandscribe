@@ -108,15 +108,24 @@
   gtag('js', new Date());
   gtag('config', 'G-FBP908LERR');
 </script>
+  <link rel="stylesheet" href="house.css?v=6">
 </head>
 <body>
 
-<header class="site-header">
-  <div class="inner">
+<nav class="house-nav" aria-label="Primary">
+  <div class="nav-inner">
     <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
-    <a class="back-link" href="index.html">&larr; Back to the front door</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="play.html">Play</a></li>
+        <li><a href="guild/">Guild Hall</a></li>
+        <li><a href="hypnotherapy.html" aria-current="page">Zen Den</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
   </div>
-</header>
+</nav>
 
 <div class="wrap">
 
@@ -164,22 +173,65 @@
     </div>
   </section>
   <section class="room letter" id="study-letter">
-    <p class="label">The Zen Den Letter</p>
-    <p class="sub">New releases, first looks, and the occasional St. Jude note. No noise.</p>
-    <form class="letter-form" action="https://gmail.us18.list-manage.com/subscribe/post?u=b60ca17a6f10ca19af0cdac3a&amp;id=00a4d46bcd&amp;f_id=0022b3e6f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
-      <input type="email" name="EMAIL" placeholder="you@example.com" aria-label="Email address" required value="">
-      <div aria-hidden="true" style="position:absolute; left:-5000px;"><input type="text" name="b_b60ca17a6f10ca19af0cdac3a_00a4d46bcd" tabindex="-1" value=""></div>
-      <button type="submit" name="subscribe" class="btn btn-primary">Subscribe</button>
-    </form>
-    <p class="letter-note">powered by Mailchimp &middot; unsubscribe anytime</p>
+    <p class="label">Sigil &amp; Scribe Newsletter</p>
+    <p class="sub">New releases, first looks, and the occasional St. Jude note. No noise. (The Muffin list is separate, in Muffin's Corner.)</p>
+    <p style="margin-top:16px;">
+      <a class="btn btn-primary" href="https://tally.so/r/b5PVeZ" target="_blank" rel="noopener">Subscribe to the house letter</a>
+    </p>
+    <p class="letter-note" style="margin-top:12px;">Opens a short signup form · unsubscribe anytime</p>
   </section>
 
 </div>
 
-<footer>
-  &copy; 2026 Sigil and Scribe, LLC &middot; J. White<br>
-  <a href="privacy.html" style="color:inherit;text-decoration:none;">Privacy</a> &middot; <a href="terms.html" style="color:inherit;text-decoration:none;">Terms</a> &middot; <a href="return-policy.html" style="color:inherit;text-decoration:none;">Returns</a> &middot; <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Ko-fi</a>
+<footer class="house-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="library.html">Library</a></li>
+          <li><a href="play.html">Play Area</a></li>
+          <li><a href="muffins-corner.html">Muffin's Corner</a></li>
+          <li><a href="free-things.html">Free Things</a></li>
+          <li><a href="toolbox.html">Toolbox</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Guild &amp; House</h3>
+        <ul>
+          <li><a href="guild/">Guild Hall</a></li>
+          <li><a href="hypnotherapy.html">The Zen Den</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+          <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="return-policy.html">Returns</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Newsletters</h3>
+        <ul>
+          <li><a href="https://tally.so/r/GxWg8L" target="_blank" rel="noopener">Muffin Newsletter</a></li>
+          <li><a href="https://tally.so/r/b5PVeZ" target="_blank" rel="noopener">Sigil &amp; Scribe Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Sigil and Scribe, LLC</span>
+      <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
+    </div>
+  </div>
 </footer>
 
+
+
+  <script src="js/house-nav.js"></script>
 </body>
 </html>
