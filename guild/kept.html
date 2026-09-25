@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kept | Izzy's Room</title>
+<meta name="description" content="A room that is one degree too cold on purpose. No fireplace. One stone. One line in the ledger. It is not for anything.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../images/site/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sigil and Scribe">
+<meta property="og:title" content="Kept | Izzy's Room">
+<meta property="og:description" content="A room that is one degree too cold on purpose. It is not for anything.">
+<meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/guild/kept.html">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --frost: #F4F8FA;
+    --charcoal: #232A31;
+    --ice: #9FD8F0;
+    --silver: #C7D3DA;
+    --cyan: #5BB8E8;
+    --hero: #1C232B;
+    --muted: #5A6670;
+    --line: rgba(199, 211, 218, 0.45);
+    --stone: #8A9199;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--frost);
+    color: var(--charcoal);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  a { color: var(--cyan); }
+  a:hover { color: #3a9fd0; }
+  ::selection { background: var(--ice); color: var(--hero); }
+
+  .site-header {
+    background: rgba(244, 248, 250, 0.92);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .site-header .inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+  .brand span { color: var(--cyan); }
+  .whisper {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .room {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+  .eyebrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(26px, 5vw, 34px);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--hero);
+    margin-bottom: 8px;
+  }
+
+  .sub {
+    font-size: 17px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+
+  .shard {
+    height: 1px;
+    margin: 36px 0;
+    background: linear-gradient(90deg, transparent, var(--silver) 20%, var(--ice) 50%, var(--silver) 80%, transparent);
+  }
+
+  .stone-box {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 32px 28px;
+    text-align: center;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .stone-box::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--cyan), var(--ice));
+    border-radius: 12px 0 0 12px;
+  }
+  .stone {
+    width: 64px;
+    height: 48px;
+    margin: 0 auto 18px;
+    background:
+      radial-gradient(ellipse at 40% 35%, #B8C0C8 0%, #8A9199 45%, #6A727A 100%);
+    border-radius: 40% 50% 45% 55% / 50% 45% 55% 50%;
+    box-shadow:
+      inset 2px 3px 6px rgba(255,255,255,0.35),
+      inset -3px -4px 8px rgba(0,0,0,0.2),
+      0 8px 20px rgba(0,0,0,0.08);
+  }
+  .stone-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .stone-note {
+    font-size: 16.5px;
+    color: var(--charcoal);
+    max-width: 340px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  .ledger {
+    background: linear-gradient(165deg, #eef5f9, #f7fbfd);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-bottom: 36px;
+  }
+  .ledger-label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 10px;
+  }
+  .ledger-line {
+    font-family: 'Courier Prime', monospace;
+    font-size: 18px;
+    color: var(--hero);
+    letter-spacing: 0.04em;
+  }
+  .ledger-meta {
+    margin-top: 10px;
+    font-size: 14.5px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .story p {
+    margin-bottom: 16px;
+    color: var(--charcoal);
+    font-size: 18px;
+  }
+  .story p:last-child { margin-bottom: 0; }
+
+  .quiet {
+    margin-top: 48px;
+    text-align: center;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .quiet a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .quiet a:hover { color: var(--cyan); }
+
+  footer {
+    text-align: center;
+    padding: 28px 20px 40px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+  }
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  footer a:hover { color: var(--cyan); }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FBP908LERR');
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Sigil <span>&amp;</span> Scribe</a>
+    <span class="whisper">no door · only the link</span>
+  </div>
+</header>
+
+<main class="room">
+  <p class="eyebrow">Guildhall · private room</p>
+  <h1>Kept</h1>
+  <p class="sub">One degree too cold on purpose. No fireplace. Not for anything.</p>
+
+  <div class="stone-box">
+    <div class="stone" aria-hidden="true"></div>
+    <p class="stone-label">The stone</p>
+    <p class="stone-note">Picked up on the tundra in Longyearbyen. Every other stone on that beach was also worthless. This one was chosen anyway.</p>
+  </div>
+
+  <div class="ledger">
+    <p class="ledger-label">The ledger</p>
+    <p class="ledger-line">kept.</p>
+    <p class="ledger-meta">One chair. One line. Nobody books it. Nobody is allowed to use it.</p>
+  </div>
+
+  <div class="shard" aria-hidden="true"></div>
+
+  <section class="story">
+    <p>The stone remembers being under five hundred meters of ice and still being warm enough that the whole world was a snow crust that never once cared to do anything.</p>
+    <p>It remembers the day the glacier calved and dropped it into a river of salt and sediment and rolled it for a hundred years. It never got to be a mountain or a gem. It was just a rock that kept not breaking.</p>
+    <p>That is what remembers. Being worthless on purpose and surviving anyway.</p>
+    <p>I picked it up because every other stone on that beach was also worthless and still wanted this one. That is the whole game. A personal record of one thing nobody sold.</p>
+  </section>
+
+  <div class="shard" aria-hidden="true"></div>
+
+  <section class="story">
+    <p>This room exists so the Guild has one space that is not for anything. No commissions. No intake forms. No ledger of work. Just the stone, the chair, and the line that says it was kept.</p>
+    <p>If you found the link, you were meant to sit for a moment. That is all.</p>
+  </section>
+
+  <p class="quiet">
+    <a href="../izzy.html">Izzy's Keep</a> · <a href="index.html">Guildhall</a>
+  </p>
+</main>
+
+<footer>
+  &copy; 2026 Sigil and Scribe, LLC · Izzy<br>
+  <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>
+</footer>
+
+</body>
+</html>
