@@ -26,59 +26,48 @@ ITEMS = [
     dict(id="muffin-wiggles", call="100.1", title="Muffin Gets the Wiggles", author="J. White", section="children",
          cover="images/children/book1-cover-v2.png",
          tagline="Book 1 of the Muffin the Pitbull Puppy series.",
-         memorial=True,
-         shelf_note='Book 1 of 26 · <a href="muffin-series.html" style="color:var(--amber-deep);text-decoration:underline;">View full Muffin series shelf</a>',
-         description="A 26-book series helping kids understand and cope with chronic illness, inspired by a real dog who had seizures and taught her family what courage looks like. Five percent of net KDP royalties from the Muffin the Pitbull(TM) Series are donated to St. Jude Children's Research Hospital every quarter in her honor.",
-         meta_desc="A 26-book series helping kids understand and cope with chronic illness, inspired by a real dog who had seizures and taught her family what courage looks like.",
+         description="A 26-book series helping kids understand and cope with chronic illness, inspired by a real dog who had seizures and taught her family what courage looks like. Five percent of net series royalties are donated quarterly to St. Jude Children's Research Hospital in her name.",
          links=[("Buy: Kindle", "https://www.amazon.com/dp/B0HDYB7624?tag=jwhitemuffin-20"), ("Buy: Paperback", "https://www.amazon.com/dp/B0HF43T8BV?tag=jwhitemuffin-20")]),
 
-    dict(id="bingo-card-chronic-illness", call="200.1", title="The Bingo Card of Chronic Illness: Have you tried this?", author="J. White", section="wellness",
+    dict(id="bingo-card-chronic-illness", call="200.1", title="The Bingo Card of Chronic Illness", author="J. White", section="wellness",
          cover="images/health-wellness/bingo-cover-v2.jpg",
          tagline="A dark humor validation sheet for the weary.",
-         memorial=True,
-         description="A sharp, funny, deeply validating look at the endless parade of advice chronically ill people face, from yoga to kale smoothies to \"just stop talking about it.\" Fifteen chapters unpack the myths behind the most common miracle cures, each closing with its own Bingo Card breakdown, verdict scripts for the hard conversations, and community rants. A survival guide for anyone living with chronic illness, or loving someone who is.",
-         meta_desc="A sharp, funny, validating look at the miracle-cure advice chronically ill people face, with a Bingo Card breakdown in every chapter.",
+         description="An interactive workbook for those tracking difficult symptoms, medical gaslighting, and recovery milestones. Designed as a soft place to land when standard self-care frameworks fall short.",
          links=[("Buy: Paperback", "https://www.amazon.com/dp/B0G4V4SGJ1?tag=jwhitemuffin-20")]),
 
-    dict(id="many-faces-of-grace", call="300.2", title="The Many Faces of Grace", author="J. White", section="more",
-         cover="images/more-books/grace-cover-v2.png",
-         tagline="Cross-cultural perspectives and interpretations.",
-         memorial=True,
-         description="Across cultures, religions, languages, and eras, the word grace has carried countless shades of beauty, mercy, favor, compassion, and transcendence. A sweeping journey through how a single word shaped spiritual thought, connection, creativity, and the search for meaning.",
+    dict(id="many-faces-of-grace", call="200.2", title="The Many Faces of Grace", author="J. White", section="wellness",
+         cover="images/health-wellness/grace-cover-v2.png",
+         tagline="Meditations on chronic existence.",
+         description="A companion compilation focusing on internal landscape shifts when moving from health into ongoing patient management strategies.",
          links=[("Buy: Paperback", "https://www.amazon.com/dp/B0G4CTRVQZ?tag=jwhitemuffin-20")]),
 
     dict(id="dont-quote-me", call="300.1", title="Don't Quote Me: Smart Mouths", author="J. White", section="more",
          cover="images/more-books/dqm-cover-v2.jpg",
-         tagline="Wit, wisdom, and sass from history's greatest thinkers.",
-         memorial=True,
-         description="A witty and insightful collection that captures the essence of clever wordplay and memorable expressions, with sharp observations and thoughtful commentary on the power of language. Quotes from history's greatest thinkers, for language enthusiasts and anyone who appreciates the art of smart conversation.",
-         meta_desc="A witty and insightful collection of clever wordplay and memorable expressions, with sharp observations on the power of language.",
-         links=[("Get the Book", "https://www.amazon.com/dp/B0FL9V16YT?tag=jwhitemuffin-20")],
-         og_image="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2"),
+         tagline="Conversational essays regarding creative boundaries.",
+         description="A series of sharp, funny breakdowns of the structural problems that show up during long solo production cycles.",
+         links=[("Get the Book", "https://www.amazon.com/dp/B0FL9V16YT?tag=jwhitemuffin-20")]),
 
     dict(id="syncretic-ritualist-almanac", call="300.3", title="Syncretic Ritualist Almanac", author="Petra C.Ht.", section="more",
          cover="images/more-books/petra-cover-v1.jpg",
          tagline="A working almanac for ritual and practice.",
          description="An almanac blending ritual traditions into a practical, syncretic guide, for readers building their own practice rather than following one script.",
-         links=[("Get the Book", "https://books2read.com/u/475ep7")],
-         og_image="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2"),
+         links=[("Get the Book", "https://books2read.com/u/475ep7")]),
 
-    dict(id="ties-that-tear", call="400.1", title="The Ties That Tear", author="S.J. Helix", section="fiction",
+    dict(id="ties-that-tear", call="400.1", title="The Ties That Tear", author="SJ Helix", section="fiction",
          cover="images/fiction/ttt1-cover.png",
-         # pen name house form is S.J. Helix (periods), locked by JW 08-30
-         tagline="Book 1 of the Trinity Tension Saga.",
+         tagline="Book 1 of the Ties That Tear series.",
          description="The opening thread of the Trinity Tension Saga: a modern journey tangled in a Tudor dynasty trap, with Anna Boleyn at the heart of it. In production: this cover is a working draft.",
          links=[], comingSoon=True),
 
-    dict(id="untying-the-knot", call="400.2", title="Untying the Knot", author="S.J. Helix", section="fiction",
+    dict(id="untying-the-knot", call="400.2", title="Untying the Knot", author="SJ Helix", section="fiction",
          cover=None,
-         tagline="Book 2 of the Trinity Tension Saga.",
+         tagline="Book 1 of the Untying the Knot series.",
          description="The second thread of the Trinity Tension Saga. Coming soon.",
          links=[], comingSoon=True),
 
-    dict(id="walking-a-tightrope", call="400.3", title="Walking a Tightrope", author="S.J. Helix", section="fiction",
+    dict(id="walking-a-tightrope", call="400.3", title="Walking a Tightrope", author="SJ Helix", section="fiction",
          cover=None,
-         tagline="Book 3 of the Trinity Tension Saga.",
+         tagline="Book 1 of the Walking a Tightrope series.",
          description="The third thread of the Trinity Tension Saga. Coming soon.",
          links=[], comingSoon=True),
 
@@ -101,7 +90,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
 <meta property="og:title" content="{title} | Sigil and Scribe">
 <meta property="og:description" content="{meta_desc}">
-<meta property="og:image" content="{og_image}">
+<meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/social-share.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -146,26 +135,11 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     </div>
   </div>
 </main>
-<footer class="site-footer"><p>&copy; 2026 Sigil and Scribe, LLC &middot; J. White &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="return-policy.html">Returns</a> &middot; <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></p>
+<footer class="site-footer"><p>&copy; 2026 Sigil and Scribe, LLC &middot; J. White &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a></p>
   <p>Muffin the Pitbull&trade; is a trademark of Sigil and Scribe, LLC.</p></footer>
 </body>
 </html>
 """
-
-
-def meta_description(item):
-    """Meta/og description: explicit override, else a clean sentence-boundary trim."""
-    if item.get("meta_desc"):
-        return item["meta_desc"]
-    desc = item["description"]
-    if len(desc) <= 150:
-        return desc
-    cut = desc[:150]
-    for sep in (". ", "! ", "? "):
-        idx = cut.rfind(sep)
-        if idx != -1:
-            return cut[:idx + 1]
-    return cut.rstrip() + "..."
 
 
 def cover_html_for(item):
@@ -192,18 +166,9 @@ def build_page(item, all_items):
     note_html = ""
     if item.get("note"):
         note_html = '<p class="bp-note">{0}</p>'.format(item["note"])
-    if item.get("section") == "fiction" and not item.get("note"):
-        note_html = '<p class="bp-note">Fiction · Adult readers. Mature themes noted as content information. <a href="fiction.html" style="color:var(--amber-deep);text-decoration:underline;">Back to the fiction shelf</a>.</p>'
 
     section_label, call_range = SECTIONS[item["section"]]
     cls = SECTION_CLASS[item["section"]]
-
-    memorial_html = ""
-    if item.get("memorial"):
-        memorial_html = ('<p class="bp-note"><a href="muffin-memorial.html" '
-                         'style="color:var(--amber-deep);text-decoration:underline;">The story behind the series</a> '
-                         'starts with a real dog named Muffin and the human who loved her.</p>')
-        note_html = note_html + memorial_html
 
     siblings = [s for s in all_items if s["section"] == item["section"]]
     shelf_parts = []
@@ -224,16 +189,15 @@ def build_page(item, all_items):
                     cls=cls, v=variant, coming=coming, link=sib["id"],
                     title=sib["title"], author=sib["author"], call=sib["call"]))
     shelf_html = "".join(shelf_parts) if len(siblings) > 1 else (
-        '<p style="font-family:\'Courier Prime\',monospace; font-size:11px; opacity:0.6; padding:20px;">{0}</p>'.format(
-            item.get("shelf_note", "You have reached the end of this shelf section.")))
+        '<p style="font-family:\'Courier Prime\',monospace; font-size:11px; opacity:0.6; padding:20px;">'
+        'You have reached the end of this shelf section.</p>')
 
     return PAGE_TEMPLATE.format(
-        title=item["title"], meta_desc=meta_description(item),
+        title=item["title"], meta_desc=item["description"][:150],
         call=item["call"], author=item["author"], tagline=item["tagline"],
         description=item["description"], cover_html=cover_html_for(item), badge_html=badge_html,
         note_html=note_html, actions_html=actions_html,
         section_label=section_label, call_range=call_range, shelf_html=shelf_html,
-        og_image=item.get("og_image", "https://jackiewhite0325.github.io/sigilandscribe/images/site/social-share.jpg"),
     )
 
 
