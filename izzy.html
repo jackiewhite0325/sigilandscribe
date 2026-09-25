@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Izzy's Keep | Sigil and Scribe</title>
-<meta name="description" content="Izzy's Keep. A pet memorial keepsake made from your own photos and words: six illustrated pages, built one at a time and delivered as a finished digital book.">
+<meta name="description" content="Izzy's Keep. The corner of the library where your dog gets a book of their own, made one at a time from the moments only you know.">
 <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
 <meta property="og:title" content="Izzy's Keep | Sigil and Scribe">
-<meta property="og:description" content="A pet memorial keepsake made from your own photos and words.">
+<meta property="og:description" content="The corner of the library where your dog gets a book of their own.">
 <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/izzy.html">
 <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/izzy/portrait.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -401,23 +401,6 @@
     text-transform: uppercase;
     color: var(--muted);
   }
-  .soft-door {
-    margin: 14px auto 0;
-    max-width: 470px;
-    font-family: 'Courier Prime', monospace;
-    font-size: 10.5px;
-    line-height: 1.75;
-    color: var(--muted);
-  }
-  .soft-door a {
-    color: var(--muted);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(154, 146, 132, 0.35);
-  }
-  .soft-door a:hover {
-    color: var(--ink);
-    border-bottom-color: var(--gold);
-  }
 
   footer {
     text-align: center;
@@ -442,15 +425,24 @@
   gtag('js', new Date());
   gtag('config', 'G-FBP908LERR');
 </script>
+  <link rel="stylesheet" href="house.css?v=6">
 </head>
 <body>
 
-<header class="site-header">
-  <div class="inner">
+<nav class="house-nav" aria-label="Primary">
+  <div class="nav-inner">
     <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
-    <a class="back-link" href="index.html">&larr; Back to the front door</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="play.html">Play</a></li>
+        <li><a href="guild/" aria-current="page">Guild Hall</a></li>
+        <li><a href="hypnotherapy.html">Zen Den</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
   </div>
-</header>
+</nav>
 
 <section class="hero-band">
   <div class="hero-inner">
@@ -463,7 +455,7 @@
         <h1>Izzy's Keep</h1>
         <img class="emblem" src="images/izzy/emblem.jpg" alt="Izzy crest emblem" width="36" height="36">
       </div>
-      <p class="tagline">The corner of the library where a pet becomes a keepsake, made from your own photos and words.</p>
+      <p class="tagline">The corner of the library where your dog gets a book of their own.</p>
     </div>
   </div>
 </section>
@@ -484,9 +476,8 @@
   <p class="doors-label">The three doors</p>
   <div class="doors">
     <article class="door">
-      <h3>Memorial keepsake</h3>
-      <p>A pet memorial keepsake made gently from your own photos and words. Six illustrated pages, built in-house and delivered as a finished digital book. Two revisions are included, and your piece stays private by default.</p>
-      <p>Asking about a person, a place, or a moment? Tell me. The same six-page keepsake can often hold it, and I review every request before I begin.</p>
+      <h3>Keepsake book</h3>
+      <p>A short picture book about your dog, written and painted around the moments only you know. $29.99 through the first twenty orders, then the price steps to standard. Paid up front. Revised until it reads true.</p>
       <p class="price">$29.99 · first twenty orders</p>
     </article>
     <article class="door">
@@ -506,7 +497,7 @@
   <section class="how">
     <h2>How the door works</h2>
     <ol class="steps">
-      <li>Send the form. Your pet, your moments, your words. It costs nothing.</li>
+      <li>Send the form. Your dog, your moments, your words. It costs nothing.</li>
       <li>I read it and come back with a plan and one price.</li>
       <li>You pay through one link, made for your order. It works once.</li>
       <li>We revise until it reads true. The finished PDF arrives by email. If you want a print copy for the shelf, that is offered after you approve the digital book.</li>
@@ -525,8 +516,7 @@
   <div class="cta">
     <p>Free to start. One plan, one price. Pay only when it reads true.</p>
     <a class="cta-btn" href="https://tally.so/r/EkRX6r" target="_blank" rel="noopener">Start with your story</a>
-    <p class="soft-door">Not ready yet? There is a softer door. <a href="mailbox.html">Muffin's Mailbox</a> is one short letter now and then, plus a free coloring page when you join. Step over to the <a href="mailbox.html">mailbox</a>.</p>
-    <p class="cta-note" style="margin-top:12px;"><a href="guild/" style="color:inherit;">Artisan Guildhall</a></p>
+    <p class="cta-note" style="margin-top:12px;"><a href="guild/" style="color:inherit;">Guild Hall</a></p>
   </div>
 
   <div class="shard" aria-hidden="true"></div>
@@ -540,26 +530,55 @@
 
 </div>
 
-<footer>
-  &copy; 2026 Sigil and Scribe, LLC &middot; Izzy's Keep<br>
-  <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="return-policy.html">Returns</a> &middot; <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a>
+<footer class="house-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="library.html">Library</a></li>
+          <li><a href="play.html">Play Area</a></li>
+          <li><a href="muffins-corner.html">Muffin's Corner</a></li>
+          <li><a href="free-things.html">Free Things</a></li>
+          <li><a href="toolbox.html">Toolbox</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Guild &amp; House</h3>
+        <ul>
+          <li><a href="guild/">Guild Hall</a></li>
+          <li><a href="hypnotherapy.html">The Zen Den</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+          <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="return-policy.html">Returns</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Newsletters</h3>
+        <ul>
+          <li><a href="https://tally.so/r/GxWg8L" target="_blank" rel="noopener">Muffin Newsletter</a></li>
+          <li><a href="https://tally.so/r/b5PVeZ" target="_blank" rel="noopener">Sigil &amp; Scribe Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Sigil and Scribe, LLC</span>
+      <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
+    </div>
+  </div>
 </footer>
 
-<script>
-  // Channel tagging: a post links izzy.html?src=ig (or fb, tt, x, li).
-  // The tag rides to the order form and into analytics, so a sale can name its road.
-  (function () {
-    var src = (new URLSearchParams(window.location.search).get('src') || '')
-      .toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 24);
-    if (!src) return;
-    document.querySelectorAll('a[href*="tally.so/r/EkRX6r"]').forEach(function (a) {
-      var u = new URL(a.href);
-      u.searchParams.set('src', src);
-      a.href = u.toString();
-    });
-    if (window.gtag) { window.gtag('event', 'funnel_src', { src: src }); }
-  })();
-</script>
 
+
+  <script src="js/house-nav.js"></script>
 </body>
 </html>
