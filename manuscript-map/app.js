@@ -319,285 +319,52 @@ function collectProjectBackup() {
 }
 
 // ============================================================
-//  GOOGLE DRIVE BACKUP
+//  GOOGLE DRIVE / OAUTH — REMOVED
+//  Manuscript Map is local-only. Use Export for backups.
 // ============================================================
-// Client ID is public by design — safe to ship in client-side code, unlike a client secret.
-const GOOGLE_CLIENT_ID = "283452539082-s23o3vcikgpt53rt903n2o39ml5ppjqe.apps.googleusercontent.com";
-// API key is restricted to this site's origin and to Drive/Picker APIs only — safe to ship.
-const GOOGLE_API_KEY = "AIzaSyCBKH9IzQTdoEMST8IE3h6P9G0E4Qg8e28";
-const DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.file";
-
-// Kept in memory only, never localStorage — this is a static site with no backend,
-// so there's no safe long-term place to hold a token. Reconnecting each session
-// is the honest tradeoff of that, not an oversight.
 let driveAccessToken = null;
 let driveTokenClient = null;
-// If something (like linking a Drive file) needs a token first, it queues itself
-// here and the token callback runs it once a token actually comes back.
 let pendingDriveAction = null;
 
-function setDriveStatus(text, connected) {
-  const el = $("#driveStatus");
-  if (!el) return;
-  el.textContent = text;
-  el.classList.toggle("connected", Boolean(connected));
-}
-
-function initDriveTokenClient() {
-  if (driveTokenClient || !window.google?.accounts?.oauth2) return driveTokenClient;
-  driveTokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: GOOGLE_CLIENT_ID,
-    scope: DRIVE_SCOPE,
-    callback: (response) => {
-      if (response.error) {
-        setDriveStatus("Connection failed — try again", false);
-        setStatus("Google Drive connection failed", "saving");
-        return;
-      }
-      driveAccessToken = response.access_token;
-      setDriveStatus("Connected", true);
-      const backupBtn = $("#btnDriveBackup");
-      const connectBtn = $("#btnDriveConnect");
-      if (backupBtn) backupBtn.hidden = false;
-      if (connectBtn) connectBtn.textContent = "Reconnect";
-
-      if (pendingDriveAction) {
-        const action = pendingDriveAction;
-        pendingDriveAction = null;
-        action();
-      }
-    },
-  });
-  return driveTokenClient;
-}
-
+function setDriveStatus() { /* no-op */ }
+function initDriveTokenClient() { return null; }
 function connectGoogleDrive() {
-  if (!navigator.onLine) {
-    setDriveStatus("You're offline — connect once you're back online", false);
-    return;
-  }
-  if (!window.google?.accounts?.oauth2) {
-    setDriveStatus("Still loading — try again in a moment", false);
-    return;
-  }
-  const client = initDriveTokenClient();
-  if (!client) {
-    setDriveStatus("Couldn't start Google sign-in — try again", false);
-    return;
-  }
-  client.requestAccessToken();
+  setStatus("Google Drive backup is not available — use Export instead", "saving");
 }
-
 async function backupProjectToDrive() {
-  if (!navigator.onLine) {
-    setStatus("Offline — Drive backup needs a connection", "saving");
-    return;
-  }
-  if (!driveAccessToken) {
-    setStatus("Connect Google Drive first", "saving");
-    return;
-  }
-
-  const backup = collectProjectBackup();
-  const projectName = (backup.project.name || "project").replace(/[^\w\- ]+/g, "").trim() || "project";
-  const fileName = `${projectName} — Manuscript Map backup — ${new Date().toISOString().slice(0, 10)}.json`;
-
-  const metadata = { name: fileName, mimeType: "application/json" };
-  const boundary = "authoros-boundary-" + uid();
-  const body =
-    `--${boundary}\r\n` +
-    `Content-Type: application/json; charset=UTF-8\r\n\r\n` +
-    `${JSON.stringify(metadata)}\r\n` +
-    `--${boundary}\r\n` +
-    `Content-Type: application/json\r\n\r\n` +
-    `${JSON.stringify(backup, null, 2)}\r\n` +
-    `--${boundary}--`;
-
-  setStatus("Backing up to Drive…", "saving");
-
-  try {
-    const res = await fetch(
-      "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${driveAccessToken}`,
-          "Content-Type": `multipart/related; boundary=${boundary}`,
-        },
-        body,
-      }
-    );
-
-    if (res.status === 401) {
-      driveAccessToken = null;
-      setDriveStatus("Session expired — reconnect", false);
-      const backupBtn = $("#btnDriveBackup");
-      if (backupBtn) backupBtn.hidden = true;
-      setStatus("Drive session expired — reconnect and try again", "saving");
-      return;
-    }
-
-    if (!res.ok) {
-      setStatus("Drive backup failed — try again", "saving");
-      return;
-    }
-
-    const now = new Date().toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
-    setDriveStatus(`Connected — last backup ${now}`, true);
-    setStatus("Backed up to Google Drive", "saved");
-  } catch (e) {
-    console.error(e);
-    setStatus("Drive backup failed — check your connection", "saving");
-  }
+  setStatus("Google Drive backup is not available — use Export instead", "saving");
 }
-
-function initDriveBackup() {
-  $("#btnDriveConnect")?.addEventListener("click", connectGoogleDrive);
-  $("#btnDriveBackup")?.addEventListener("click", backupProjectToDrive);
-}
-
+function initDriveBackup() { /* removed */ }
 function ensureDriveConnectedThen(action) {
-  if (driveAccessToken) {
-    action();
-    return;
-  }
-  if (!navigator.onLine) {
-    setStatus("Offline — connect to Google Drive once you're back online", "saving");
-    return;
-  }
-  pendingDriveAction = action;
-  connectGoogleDrive();
+  setStatus("Google Drive is not available — use Export instead", "saving");
 }
 
 // ============================================================
-//  GOOGLE DRIVE PICKER — link an Asset Tracker entry to a real file
+//  GOOGLE DRIVE PICKER — REMOVED
 // ============================================================
 let pickerApiLoaded = false;
-
-function loadPickerApi(callback) {
-  if (pickerApiLoaded) {
-    callback();
-    return;
-  }
-  if (!window.gapi) {
-    setStatus("Google Picker still loading — try again in a moment", "saving");
-    return;
-  }
-  gapi.load("picker", () => {
-    pickerApiLoaded = true;
-    callback();
-  });
-}
-
+function loadPickerApi() { /* no-op */ }
 function openDrivePickerForAsset() {
-  loadPickerApi(() => {
-    const view = new google.picker.DocsView().setIncludeFolders(false).setSelectFolderEnabled(false);
-    const picker = new google.picker.PickerBuilder()
-      .addView(view)
-      .setOAuthToken(driveAccessToken)
-      .setDeveloperKey(GOOGLE_API_KEY)
-      .setCallback(onDriveFileSelected)
-      .build();
-    picker.setVisible(true);
-  });
+  setStatus("Google Drive linking is not available", "saving");
 }
-
-async function onDriveFileSelected(data) {
-  if (data.action !== google.picker.Action.PICKED) return;
-  const doc = data.docs && data.docs[0];
-  if (!doc) return;
-
-  setStatus("Fetching file details…", "saving");
-  try {
-    const res = await fetch(
-      `https://www.googleapis.com/drive/v3/files/${doc.id}?fields=id,name,modifiedTime,webViewLink`,
-      { headers: { Authorization: `Bearer ${driveAccessToken}` } }
-    );
-    if (!res.ok) throw new Error("Drive metadata fetch failed");
-    const file = await res.json();
-    applyDriveFileToForm(file);
-    setStatus("Linked to Google Drive", "saved");
-  } catch (e) {
-    console.error(e);
-    setStatus("Couldn't fetch file details — try again", "saving");
-  }
-}
-
-function applyDriveFileToForm(file) {
-  $("#assetDriveFileId").value = file.id;
-  $("#assetDriveFileName").value = file.name;
-  $("#assetDriveModified").value = file.modifiedTime;
-  $("#assetLocation").value = file.webViewLink;
-  renderDriveLinkStatus();
-}
-
+async function onDriveFileSelected() { /* no-op */ }
+function applyDriveFileToForm() { /* no-op */ }
 function renderDriveLinkStatus() {
   const statusEl = $("#driveLinkStatus");
-  const unlinkBtn = $("#btnUnlinkDriveFile");
-  const linkBtn = $("#btnLinkDriveFile");
-  if (!statusEl) return;
-
-  const fileId = $("#assetDriveFileId")?.value;
-  const fileName = $("#assetDriveFileName")?.value;
-  const modified = $("#assetDriveModified")?.value;
-
-  if (fileId) {
-    const modifiedText = modified
-      ? new Date(modified).toLocaleString([], { dateStyle: "medium", timeStyle: "short" })
-      : "unknown";
-    statusEl.textContent = `Linked to "${fileName}" — last modified ${modifiedText}. This updates automatically whenever you refresh it.`;
-    if (unlinkBtn) unlinkBtn.hidden = false;
-    if (linkBtn) linkBtn.textContent = "Change linked file";
-  } else {
-    statusEl.textContent = "Not linked to a Drive file — Location above is just a plain note unless you link one.";
-    if (unlinkBtn) unlinkBtn.hidden = true;
-    if (linkBtn) linkBtn.textContent = "🔗 Link Google Drive File";
-  }
+  if (statusEl) statusEl.textContent = "Drive linking is not available. Use a plain location note if needed.";
 }
-
 function unlinkDriveFile() {
-  $("#assetDriveFileId").value = "";
-  $("#assetDriveFileName").value = "";
-  $("#assetDriveModified").value = "";
+  const id = $("#assetDriveFileId");
+  const name = $("#assetDriveFileName");
+  const mod = $("#assetDriveModified");
+  if (id) id.value = "";
+  if (name) name.value = "";
+  if (mod) mod.value = "";
   renderDriveLinkStatus();
 }
+async function refreshAssetDriveMetadata() { /* no-op */ }
 
-async function refreshAssetDriveMetadata(assetId) {
-  const list = loadAssets();
-  const asset = list.find((a) => a.id === assetId);
-  if (!asset || !asset.driveFileId) return;
 
-  ensureDriveConnectedThen(async () => {
-    setStatus("Checking Drive for updates…", "saving");
-    try {
-      const res = await fetch(
-        `https://www.googleapis.com/drive/v3/files/${asset.driveFileId}?fields=name,modifiedTime,webViewLink`,
-        { headers: { Authorization: `Bearer ${driveAccessToken}` } }
-      );
-      if (res.status === 401) {
-        driveAccessToken = null;
-        setStatus("Drive session expired — reconnect on Asset Tracker", "saving");
-        return;
-      }
-      if (!res.ok) throw new Error("refresh failed");
-      const file = await res.json();
-
-      const freshList = loadAssets();
-      const target = freshList.find((a) => a.id === assetId);
-      if (target) {
-        target.driveFileName = file.name;
-        target.driveModified = file.modifiedTime;
-        target.location = file.webViewLink;
-        saveAssets(freshList);
-        renderAssets();
-        setStatus("Updated from Drive", "saved");
-      }
-    } catch (e) {
-      console.error(e);
-      setStatus("Couldn't refresh from Drive — try again", "saving");
-    }
-  });
-}
 
 function exportCurrentProject() {
   const backup = collectProjectBackup();
@@ -1400,7 +1167,7 @@ function renderChecklist() {
           <label class="check-item-label" for="${item.id}">${item.label}</label>
           ${item.hint ? `<div class="check-item-hint">${item.hint}</div>` : ""}
         </div>
-        <input type="date" class="check-item-date" data-item-id="${item.id}" value="${dueDate}" title="Set a date — shows on the Launch Calendar" />
+        <input type="date" class="check-item-date" data-item-id="${item.id}" value="${dueDate}" title="Set a date - shows on the Launch Calendar" />
       `;
       body.appendChild(row);
     });
@@ -2160,7 +1927,6 @@ function initAssets() {
   });
 
   $("#assetCategory")?.addEventListener("change", toggleCoverBriefFields);
-  $("#btnLinkDriveFile")?.addEventListener("click", () => ensureDriveConnectedThen(openDrivePickerForAsset));
   $("#btnUnlinkDriveFile")?.addEventListener("click", unlinkDriveFile);
 
   // Filters
@@ -4043,7 +3809,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initEditing();
   initPromo();
   initCalendar();
-  initDriveBackup();
+  /* initDriveBackup removed */
   initDashboard();
   initOnboarding();
   initProModal();
