@@ -14,8 +14,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Manuscript Map" />
   <link rel="stylesheet" href="styles.css" />
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="https://apis.google.com/js/api.js" async defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -673,20 +671,6 @@
         </div>
       </header>
 
-      <section class="card drive-card" id="driveCard">
-        <div class="drive-card-row">
-          <div>
-            <div class="drive-card-title">Google Drive Backup </div>
-            <div class="drive-card-status" id="driveStatus">Not connected</div>
-          </div>
-          <div class="drive-card-actions">
-            <button type="button" class="btn btn-ghost" id="btnDriveConnect">Connect Google Drive</button>
-            <button type="button" class="btn btn-primary" id="btnDriveBackup" hidden>Backup Project Now</button>
-          </div>
-        </div>
-        <p class="field-hint" id="driveHint">Connects your Google account so you can back up this project to Drive with one tap. Works only when you're online, everything else in this app keeps working offline either way.</p>
-      </section>
-
       <!-- Filters -->
       <div class="asset-filters" id="assetFilters">
         <button type="button" class="filter-chip active" data-filter="all">All</button>
@@ -744,11 +728,7 @@
                 <input type="hidden" id="assetDriveFileId" name="assetDriveFileId" />
                 <input type="hidden" id="assetDriveFileName" name="assetDriveFileName" />
                 <input type="hidden" id="assetDriveModified" name="assetDriveModified" />
-                <div class="drive-link-row">
-                  <button type="button" class="btn btn-ghost btn-sm" id="btnLinkDriveFile">🔗 Link Google Drive File</button>
-                  <button type="button" class="btn btn-ghost btn-sm" id="btnUnlinkDriveFile" hidden>Unlink</button>
-                </div>
-                <div class="field-hint" id="driveLinkStatus"></div>
+<div class="field-hint" id="driveLinkStatus" hidden></div>
               </div>
               <div class="field full" id="coverBriefFields" hidden>
                 <label for="assetMoodBoard">Mood Board / Inspiration Links</label>
