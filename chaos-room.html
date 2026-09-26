@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chaos Room | Play Area | Sigil and Scribe</title>
+  <meta name="description" content="Generators, experiments, and playful challenges. Intentional energy, not noise.">
+  <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="book.css">
+  <link rel="stylesheet" href="house.css?v=6">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FBP908LERR');</script>
+  <style>
+    .chaos-toy {
+      background: #fff;
+      border: 1px solid #e8d4b8;
+      border-radius: 10px;
+      padding: 20px 18px;
+      margin-bottom: 14px;
+    }
+    .chaos-toy h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.1rem;
+      margin: 0 0 8px;
+      color: #38251A;
+    }
+    .chaos-toy p { font-size: 0.9rem; color: #6b6255; margin: 0 0 12px; line-height: 1.5; }
+    .chaos-out {
+      min-height: 2.4em;
+      padding: 12px 14px;
+      background: #F7EFDD;
+      border-radius: 6px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.9rem;
+      color: #4A3324;
+      margin-bottom: 12px;
+    }
+    .chaos-toy button {
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      padding: 10px 16px;
+      min-height: 44px;
+      border-radius: 6px;
+      border: 1px solid #B8874F;
+      background: #D4A373;
+      color: #38251A;
+      cursor: pointer;
+    }
+    .chaos-toy button:hover { background: #B8874F; color: #fff; }
+    .chaos-toy button:focus-visible { outline: 2px solid #6B4A34; outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      .chaos-toy * { transition: none !important; }
+    }
+  </style>
+</head>
+<body class="room-chaos">
+  <nav class="house-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="play.html" aria-current="page">Play</a></li>
+        <li><a href="guild/">Guild Hall</a></li>
+        <li><a href="hypnotherapy.html">Zen Den</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="room-shell">
+    <p class="eyebrow" style="font-family:'Courier Prime',monospace;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:#B8874F;margin-bottom:8px;">Play Area · Energy</p>
+    <h1>Chaos Room</h1>
+    <p class="room-lead">Deliberately playful. Generators and odd combinations. Chaos here means intentional mischief, not broken usability. Respects reduced motion.</p>
+
+    <div class="chaos-toy">
+      <h2>Prompt scramble</h2>
+      <p>A random creative nudge. Press again for another.</p>
+      <div class="chaos-out" id="prompt-out" role="status" aria-live="polite">Press the button.</div>
+      <button type="button" id="prompt-btn">Scramble a prompt</button>
+    </div>
+
+    <div class="chaos-toy">
+      <h2>Word mash</h2>
+      <p>Two ordinary words, one unexpected pair.</p>
+      <div class="chaos-out" id="mash-out" role="status" aria-live="polite">Press the button.</div>
+      <button type="button" id="mash-btn">Mash words</button>
+    </div>
+
+    <div class="empty-state" style="margin-top:20px;">
+      <p>Two toys for now. More experiments when they earn a place here.</p>
+      <p class="hint">No points. No leaderboard. Just the scramble.</p>
+    </div>
+
+    <p style="margin-top:28px;font-size:0.85rem;"><a href="play.html" style="color:#B8874F;">← Back to Play Area</a></p>
+  </main>
+
+  <footer class="house-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="play.html">Play Area</a></li>
+            <li><a href="muffins-corner.html">Muffin's Corner</a></li>
+            <li><a href="free-things.html">Free Things</a></li>
+            <li><a href="toolbox.html">Toolbox</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Guild &amp; House</h3>
+          <ul>
+            <li><a href="guild/">Guild Hall</a></li>
+            <li><a href="hypnotherapy.html">The Zen Den</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+            <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="return-policy.html">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Newsletters</h3>
+          <ul>
+            <li><a href="https://tally.so/r/GxWg8L" target="_blank" rel="noopener">Muffin Newsletter</a></li>
+            <li><a href="https://tally.so/r/b5PVeZ" target="_blank" rel="noopener">Sigil &amp; Scribe Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Sigil and Scribe, LLC</span>
+        <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="js/house-nav.js"></script>
+  <script>
+  (function () {
+    var prompts = [
+      'Describe a door that only opens for someone who is already tired.',
+      'Write three sentences about a color that does not exist yet.',
+      'A character finds a receipt from a place they have never been.',
+      'What does silence smell like in your kitchen at 3 a.m.?',
+      'Invent a small ritual that costs nothing and changes nothing visible.',
+      'Two strangers share one umbrella and neither speaks first.',
+      'Name a fear that is also a superpower for one afternoon only.',
+      'A dog remembers a name the humans forgot.'
+    ];
+    var wordsA = ['velvet', 'rust', 'midnight', 'paper', 'salt', 'ember', 'glass', 'moss', 'copper', 'fog'];
+    var wordsB = ['lullaby', 'engine', 'promise', 'shadow', 'recipe', 'threshold', 'echo', 'harvest', 'knot', 'compass'];
+
+    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+    document.getElementById('prompt-btn').addEventListener('click', function () {
+      document.getElementById('prompt-out').textContent = pick(prompts);
+    });
+    document.getElementById('mash-btn').addEventListener('click', function () {
+      document.getElementById('mash-out').textContent = pick(wordsA) + ' · ' + pick(wordsB);
+    });
+  })();
+  </script>
+</body>
+</html>
