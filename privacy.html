@@ -60,12 +60,23 @@ h1 { font-family:'Playfair Display',Georgia,serif; font-size:26px; text-align:ce
 
   gtag('config', 'G-FBP908LERR');
 </script>
+  <link rel="stylesheet" href="house.css?v=6">
 </head>
 <body>
-<header class="site-header">
-  <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
-  <a class="back-link" href="index.html">&larr; Back to the Study</a>
-</header>
+<nav class="house-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="play.html">Play</a></li>
+        <li><a href="guild/">Guild Hall</a></li>
+        <li><a href="hypnotherapy.html">Zen Den</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
 
 <main>
   <article class="legal-card">
@@ -109,16 +120,8 @@ h1 { font-family:'Playfair Display',Georgia,serif; font-size:26px; text-align:ce
 <p>traffic patterns.</p>
 <p>We may also disclose your information if required to do so by law, court order, or to protect the legal rights, safety, and property of Sigil &amp; Scribe, LLC, our users, or the public.</p>
 
-<h2>4.1 GOOGLE SIGN-IN AND MANUSCRIPT MAP</h2>
-<p>Manuscript Map (a free publishing checklist and toolkit offered by Sigil &amp; Scribe, LLC) may offer optional sign-in through Google OAuth so you can save progress across devices. If you choose to sign in with Google:</p>
-<ul>
-<li>We receive basic account identifiers that Google shares with authorized apps (typically your name, email address, and a unique Google account ID).</li>
-<li>We use that information only to authenticate you and store your Manuscript Map checklist progress.</li>
-<li>We do not receive or store your Google password.</li>
-<li>You can revoke access at any time in your Google Account security settings.</li>
-<li>Google’s use of information is governed by Google’s Privacy Policy.</li>
-</ul>
-<p>If you do not use Google Sign-In, Manuscript Map can still be used without creating an account, subject to the limits of browser-based storage.</p>
+<h2>4.1 MANUSCRIPT MAP</h2>
+<p>Manuscript Map is a free publishing toolkit that stores your data locally in your browser. There is no account, no Google Sign-In, and no server-side login. Optional export to a JSON file on your device is the only backup path. Clearing browser data may erase Map data; export regularly if you need a copy.</p>
 
 <h2>5. DATA SECURITY AND RETENTION</h2>
 <p>We implement industry-standard security measures designed to safeguard your personal data from unauthorized access, loss, or alteration. We retain your personal data only as long as necessary to fulfill the purposes outlined in this policy, service your active newsletter subscription, or comply with legal, tax, and accounting reporting requirements.</p>
@@ -142,8 +145,53 @@ h1 { font-family:'Playfair Display',Georgia,serif; font-size:26px; text-align:ce
   </article>
 </main>
 
-<footer class="site-footer">
-  <p>&copy; 2026 Sigil and Scribe, LLC &middot; <a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="return-policy.html">Returns</a> &middot; <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a> &middot; <a href="about.html">About the Founders</a></p>
+<footer class="house-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="library.html">Library</a></li>
+          <li><a href="play.html">Play Area</a></li>
+          <li><a href="muffins-corner.html">Muffin's Corner</a></li>
+          <li><a href="free-things.html">Free Things</a></li>
+          <li><a href="toolbox.html">Toolbox</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Guild &amp; House</h3>
+        <ul>
+          <li><a href="guild/">Guild Hall</a></li>
+          <li><a href="hypnotherapy.html">The Zen Den</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+          <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="return-policy.html">Returns</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Newsletters</h3>
+        <ul>
+          <li><a href="https://tally.so/r/GxWg8L" target="_blank" rel="noopener">Muffin Newsletter</a></li>
+          <li><a href="https://tally.so/r/b5PVeZ" target="_blank" rel="noopener">Sigil &amp; Scribe Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Sigil and Scribe, LLC</span>
+      <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
+    </div>
+  </div>
 </footer>
+
+<script src="js/house-nav.js"></script>
 </body>
 </html>
