@@ -9,11 +9,12 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
 <meta property="og:title" content="Humor &amp; More Books | Sigil and Scribe">
-<meta property="og:description" content="Essays, humor, and practical almanacs from the study.">
+<meta property="og:description" content="Essays, humor, and practical almanacs from the Zen Den.">
 <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/more-books.html">
 <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="book.css">
+  <link rel="stylesheet" href="house.css?v=6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -45,12 +46,20 @@
 </script>
 </head>
 <body>
-<header class="site-header">
- <div class="inner">
- <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
- <span class="bp-crumb">300s · Humor &amp; More</span>
- </div>
-</header>
+<nav class="house-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html" aria-current="page">Library</a></li>
+        <li><a href="play.html">Play</a></li>
+        <li><a href="guild/">Guild Hall</a></li>
+        <li><a href="hypnotherapy.html">Zen Den</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
 
 <section class="series-hero">
  <span class="bp-call">Wing 05 · Recreation</span>
@@ -58,7 +67,7 @@
  <p class="lead">Sharp essays and practical almanacs - lighter shelves that still belong in the same study.</p>
  <div class="series-stats">
  <span>300s shelf</span>
- <span>3 titles</span>
+ <span>2 titles</span>
  
  </div>
 </section>
@@ -70,12 +79,6 @@
  <p>A curated quote book of sharp minds through history, from Aristotle to Benjamin Franklin.</p>
  <div class="foot">Open book →</div>
  </a>
- <a class="book-card" href="many-faces-of-grace.html">
- <div class="num">300.2</div>
- <h2>The Many Faces of Grace</h2>
- <p>Cross-cultural meditations on grace as gift, practice, and human resilience.</p>
- <div class="foot">Open book →</div>
- </a>
  <a class="book-card" href="syncretic-ritualist-almanac.html">
  <div class="num">300.3</div>
  <h2>Syncretic Ritualist Almanac</h2>
@@ -84,9 +87,53 @@
  </a>
 </div>
 
-<footer class="site-footer">
- <p>&copy; 2026 Sigil and Scribe, LLC &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="return-policy.html">Returns</a> &middot; <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></p>
- <p>Muffin the Pitbull&trade; is a trademark of Sigil and Scribe, LLC.</p>
+<footer class="house-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="library.html">Library</a></li>
+          <li><a href="play.html">Play Area</a></li>
+          <li><a href="muffins-corner.html">Muffin's Corner</a></li>
+          <li><a href="free-things.html">Free Things</a></li>
+          <li><a href="toolbox.html">Toolbox</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Guild &amp; House</h3>
+        <ul>
+          <li><a href="guild/">Guild Hall</a></li>
+          <li><a href="hypnotherapy.html">The Zen Den</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+          <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="return-policy.html">Returns</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Newsletters</h3>
+        <ul>
+          <li><a href="https://tally.so/r/GxWg8L" target="_blank" rel="noopener">Muffin Newsletter</a></li>
+          <li><a href="https://tally.so/r/b5PVeZ" target="_blank" rel="noopener">Sigil &amp; Scribe Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Sigil and Scribe, LLC</span>
+      <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
+    </div>
+  </div>
 </footer>
+
+<script src="js/house-nav.js"></script>
 </body>
 </html>
