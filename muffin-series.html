@@ -4,16 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Muffin the Pitbull Series | Sigil and Scribe</title>
-<meta name="description" content="The Muffin the Pitbull Puppy series: 26 picture books helping kids understand and cope with chronic illness. Inspired by a real rescued pitbull. 5% of net royalties to St. Jude Children's Research Hospital.">
+<meta name="description" content="The Muffin the Pitbull Puppy series: 26 picture books helping kids understand and cope with chronic illness. Inspired by a real rescued pitbull. 5% of net KDP royalties from the Muffin the Pitbull series are donated every quarter to St. Jude Children's Research Hospital.">
 <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
 <meta property="og:title" content="Muffin the Pitbull Series | Sigil and Scribe">
 <meta property="og:description" content="26 picture books helping kids understand chronic illness, inspired by a real rescued pitbull.">
 <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/muffin-series.html">
-<meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/social-share.jpg">
+<meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="book.css">
+  <link rel="stylesheet" href="house.css?v=6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -71,41 +72,6 @@
  text-decoration: underline;
  text-underline-offset: 3px;
  }
- .mailbox-band {
- max-width: 640px;
- margin: 26px auto 8px;
- padding: 26px 24px;
- background: var(--card);
- border: 1px solid rgba(184,135,79,0.35);
- border-radius: 14px;
- text-align: center;
- }
- .mailbox-band h2 {
- font-family: 'Playfair Display', Georgia, serif;
- font-weight: 600;
- font-size: 24px;
- color: var(--walnut-deep);
- margin: 0 0 10px;
- }
- .mailbox-band p {
- font-size: 15px;
- line-height: 1.7;
- color: #4a4a4a;
- margin: 0 0 18px;
- }
- .mailbox-btn {
- display: inline-block;
- background: var(--amber-deep);
- color: #fff;
- font-family: 'Courier Prime', monospace;
- font-size: 12px;
- letter-spacing: 0.07em;
- text-transform: uppercase;
- text-decoration: none;
- padding: 13px 26px;
- border-radius: 8px;
- }
- .mailbox-btn:hover { background: var(--walnut); }
  .book-grid {
  max-width: 960px;
  margin: 28px auto 50px;
@@ -180,6 +146,60 @@
  line-height: 1.65;
  color: #5b5b5b;
  }
+
+ .donation-panel {
+ max-width: 640px;
+ margin: 8px auto 28px;
+ padding: 22px 22px;
+ background: #fff;
+ border: 1px solid #e4dcc9;
+ border-radius: 10px;
+ text-align: left;
+ font-family: system-ui, sans-serif;
+ }
+ .donation-panel h2 {
+ font-family: 'Playfair Display', Georgia, serif;
+ font-size: 1.25rem;
+ font-weight: 600;
+ color: var(--walnut-deep);
+ margin: 0 0 12px;
+ }
+ .donation-panel p {
+ font-size: 0.92rem;
+ line-height: 1.55;
+ color: #5a5348;
+ margin: 0 0 10px;
+ }
+ .donation-panel p:last-child { margin-bottom: 0; }
+ .donation-note { font-size: 0.82rem !important; color: #8a8272 !important; }
+ .ko-inline { color: #b08d57; font-weight: 500; }
+ .book-card.live-book {
+ cursor: default;
+ }
+ .buy-row {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ margin-top: 12px;
+ }
+ .buy-btn {
+ display: inline-block;
+ font-family: system-ui, sans-serif;
+ font-size: 0.78rem;
+ font-weight: 600;
+ text-decoration: none;
+ color: #fff;
+ background: #6b4a34;
+ border: 1px solid #6b4a34;
+ border-radius: 6px;
+ padding: 8px 12px;
+ }
+ .buy-btn:hover { background: #4a3324; }
+ .buy-btn.ghost {
+ background: transparent;
+ color: #6b4a34;
+ }
+ .buy-btn.ghost:hover { background: rgba(107,74,52,0.08); }
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
 <script>
@@ -190,45 +210,100 @@
 </script>
 </head>
 <body>
-<header class="site-header">
- <div class="inner">
- <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
- <span class="bp-crumb"><a href="children-shelf.html" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">100s · Children's</a> · Muffin Series</span>
- </div>
-</header>
+<nav class="house-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="play.html">Play</a></li>
+        <li><a href="guild/">Guild Hall</a></li>
+        <li><a href="hypnotherapy.html">Zen Den</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
 
 <section class="series-hero">
- <span class="bp-call">Inside Wing 01 · Youth</span>
+ <span class="bp-call">Library · Children's series</span>
  <h1>Muffin the Pitbull&trade; Series</h1>
  <p class="lead">Twenty-six picture books helping kids understand and cope with chronic illness - inspired by a real rescued pitbull who had seizures and taught her family what courage looks like.</p>
  <div class="series-stats">
  <span>26 books planned</span>
  <span>Book 1 available now</span>
- <span>5% of net royalties → St. Jude</span>
+ <span>5% net KDP royalties → St. Jude quarterly</span>
  </div>
- <a class="memorial-link" href="muffin-memorial.html">In loving memory of Muffin →</a><br>
- <a class="memorial-link" href="children-shelf.html" style="margin-top:8px;display:inline-block;">← Back to Children's shelf</a>
+ <a class="memorial-link" href="muffin-memorial.html">In loving memory of Muffin →</a>
+ <a class="memorial-link" href="library.html" style="margin-top:8px;display:inline-block;">← Card catalogue</a>
 </section>
 
-<section class="mailbox-band">
-  <h2>Join Muffin's Mailbox</h2>
-  <p>A free printable Muffin coloring page the moment you join, plus first look at every new Muffin Series book and the memorial keepsakes we make for pet families. One short letter, now and then. No noise, leave anytime.</p>
-  <a class="mailbox-btn" href="mailbox.html">Join the mailbox</a>
+<section class="donation-panel" aria-labelledby="donation-heading">
+ <h2 id="donation-heading">Donation commitment</h2>
+ <p><strong>5% of net KDP royalties</strong> from the Muffin the Pitbull series are donated every quarter to <strong>St. Jude Children's Research Hospital</strong>.</p>
+ <p>This is an ongoing house commitment in Muffin's name, not a one-time campaign. Buying a book from this series supports that quarterly gift. Support is optional beyond the book itself; the stories stay available either way.</p>
+ <p class="donation-note">Figures are a fixed percent of net KDP royalties, calculated and sent each calendar quarter. No invented dollar totals on this page.</p>
+ <p><a class="ko-inline" href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Optional house support on Ko-fi</a></p>
 </section>
 
 <div class="book-grid" id="series-grid">
- <!-- Book 1 live; 2-26 filled by script -->
- <a class="book-card" href="muffin-wiggles.html">
+ <article class="book-card live-book">
  <div class="num">100.1 · Book 1</div>
  <h2>Muffin Gets the Wiggles</h2>
- <p>The opening story of the series - available in Kindle and paperback.</p>
- <div class="foot">Open book →</div>
- </a>
+ <p>The opening story of the series. Available in Kindle and paperback.</p>
+ <div class="buy-row">
+ <a class="buy-btn" href="https://www.amazon.com/dp/B0HDYB7624?tag=jwhitemuffin-20" target="_blank" rel="noopener">Buy Kindle</a>
+ <a class="buy-btn" href="https://www.amazon.com/dp/B0HF43T8BV?tag=jwhitemuffin-20" target="_blank" rel="noopener">Buy paperback</a>
+ <a class="buy-btn ghost" href="muffin-wiggles.html">Book page</a>
+ </div>
+ </article>
 </div>
 
-<footer class="site-footer">
- <p>&copy; 2026 Sigil and Scribe, LLC &middot; J. White &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="return-policy.html">Returns</a> &middot; <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></p>
- <p>Muffin the Pitbull&trade; is a trademark of Sigil and Scribe, LLC.</p>
+<footer class="house-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="library.html">Library</a></li>
+          <li><a href="play.html">Play Area</a></li>
+          <li><a href="muffins-corner.html">Muffin's Corner</a></li>
+          <li><a href="free-things.html">Free Things</a></li>
+          <li><a href="toolbox.html">Toolbox</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Guild &amp; House</h3>
+        <ul>
+          <li><a href="guild/">Guild Hall</a></li>
+          <li><a href="hypnotherapy.html">The Zen Den</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+          <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="return-policy.html">Returns</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Newsletters</h3>
+        <ul>
+          <li><a href="https://tally.so/r/GxWg8L" target="_blank" rel="noopener">Muffin Newsletter</a></li>
+          <li><a href="https://tally.so/r/b5PVeZ" target="_blank" rel="noopener">Sigil &amp; Scribe Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Sigil and Scribe, LLC</span>
+      <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
+    </div>
+  </div>
 </footer>
 
 <script>
@@ -247,5 +322,6 @@
  }
 })();
 </script>
+  <script src="js/house-nav.js"></script>
 </body>
 </html>
