@@ -14,12 +14,21 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FBP908LERR');</script>
   <style>
-    .quiet-prompts {
+    .quiet-prompts,
+    .quiet-invite,
+    .quiet-shelf,
+    .quiet-aside {
       max-width: 28rem;
-      margin: 1.5rem auto 0;
+      margin-left: auto;
+      margin-right: auto;
       text-align: left;
     }
-    .quiet-prompts h2 {
+    .quiet-prompts {
+      margin-top: 1.5rem;
+    }
+    .quiet-prompts h2,
+    .quiet-invite h2,
+    .quiet-shelf h2 {
       font-family: 'Courier Prime', monospace;
       font-size: 0.7rem;
       font-weight: 400;
@@ -41,14 +50,80 @@
       margin: 0 0 14px;
     }
     .quiet-prompts li:last-child { margin-bottom: 0; }
+    .quiet-invite {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid #e4dcc9;
+    }
+    .quiet-invite p {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: #5a5348;
+      margin: 0 0 10px;
+    }
+    .quiet-invite .quiet-lead {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: #2b2620;
+      margin: 0 0 12px;
+    }
+    .quiet-invite ul {
+      margin: 0 0 10px;
+      padding: 0 0 0 1.15rem;
+      list-style: disc;
+    }
+    .quiet-invite li {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #6b6255;
+      margin: 0 0 6px;
+    }
+    .quiet-invite .quiet-hint {
+      font-size: 0.85rem;
+      color: #8a8272;
+      margin: 0;
+    }
+    .quiet-shelf {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid #e4dcc9;
+    }
+    .quiet-shelf ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .quiet-shelf li {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #6b6255;
+      margin: 0 0 8px;
+      padding-left: 0.85rem;
+      position: relative;
+    }
+    .quiet-shelf li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: #b08d57;
+    }
+    .quiet-shelf .quiet-hint {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #8a8272;
+      margin: 10px 0 0;
+    }
     .quiet-aside {
       font-family: system-ui, -apple-system, sans-serif;
       font-size: 0.85rem;
       line-height: 1.5;
       color: #8a8272;
-      max-width: 28rem;
-      margin: 1.25rem auto 0;
-      text-align: left;
+      margin-top: 1.5rem;
     }
   </style>
 </head>
@@ -83,6 +158,47 @@
         <li>Write six words about something unfinished. Leave them unfinished if that fits.</li>
         <li>If a page could hold one small kindness for a later you, what would it say?</li>
       </ol>
+    </div>
+
+    <div class="quiet-invite">
+      <h2>The Noticing Window</h2>
+      <p class="quiet-lead">Look around you. Find something you normally don’t notice. Spend a minute looking at it.</p>
+      <ul>
+        <li>What colour is it?</li>
+        <li>What texture does it have?</li>
+        <li>What changed when you actually looked?</li>
+      </ul>
+    </div>
+
+    <div class="quiet-invite">
+      <h2>The Tiny Drawing</h2>
+      <p class="quiet-lead">Draw the shape of your mood without drawing a person, object, or symbol.</p>
+      <p>Or draw something using only five lines.</p>
+      <p class="quiet-hint">Paper is perfectly fine. There is no canvas here.</p>
+    </div>
+
+    <div class="quiet-invite">
+      <h2>The Six-Word Room</h2>
+      <p class="quiet-lead">Describe this moment in six words. No more. No less. No explaining.</p>
+    </div>
+
+    <div class="quiet-invite">
+      <h2>The Unfinished Thing</h2>
+      <p class="quiet-lead">Start a sentence. Stop wherever you want. You don’t have to finish it.</p>
+    </div>
+
+    <div class="quiet-shelf">
+      <h2>Quiet Shelf</h2>
+      <p class="quiet-hint" style="margin-top:0;margin-bottom:12px;">Things you might notice. Not a checklist. Pick one, or none.</p>
+      <ul>
+        <li>something blue</li>
+        <li>something older than you</li>
+        <li>something that makes a sound</li>
+        <li>something you have never really looked at</li>
+        <li>something that has survived</li>
+        <li>something soft</li>
+        <li>something that doesn’t need fixing</li>
+      </ul>
     </div>
 
     <p class="quiet-aside">These stay on the page. Nothing is saved here. If you want a fuller prompt set with local save and print, the journal prompts tool lives in the Toolbox.</p>
