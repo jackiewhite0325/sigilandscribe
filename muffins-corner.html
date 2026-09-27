@@ -403,6 +403,29 @@
     margin: 0;
     line-height: 1.45;
   }
+  .world-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 14px 0 0;
+    padding: 0;
+  }
+  .world-links a {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--mc-amber);
+    color: #fff;
+    text-decoration: none;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+  }
+  .world-links a:hover,
+  .world-links a:focus-visible {
+    background: var(--mc-amber-deep);
+  }
 
   .grownup {
     margin-top: 28px;
@@ -571,11 +594,16 @@
     <button type="button" class="mc-btn" id="story-btn">Another tiny story</button>
   </section>
 
-  <a class="world-door" href="muffins-world.html">
+  <section class="world-door" aria-labelledby="world-h">
     <p class="tag">Next door</p>
-    <h2>Muffin’s World</h2>
-    <p>More Muffin paths, series, memorial, and activities as they grow.</p>
-  </a>
+    <h2 id="world-h">Muffin’s World</h2>
+    <p>More Muffin paths, out beyond this room.</p>
+    <ul class="world-links">
+      <li><a href="muffin-series.html">Series &amp; books</a></li>
+      <li><a href="muffin-memorial.html">Memorial</a></li>
+      <li><a href="muffin-wiggles.html">Wiggles</a></li>
+    </ul>
+  </section>
 
   <div class="grownup">
     <h3>For grown-ups</h3>
@@ -601,7 +629,6 @@
           <li><a href="library.html">Library</a></li>
           <li><a href="play.html">Play Area</a></li>
           <li><a href="muffins-corner.html">Muffin’s Corner</a></li>
-          <li><a href="muffins-world.html">Muffin’s World</a></li>
           <li><a href="muffin-series.html">Muffin Series</a></li>
         </ul>
       </div>
