@@ -3,121 +3,480 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muffin's Corner | Ages 3-6 | Sigil and Scribe</title>
-<meta name="description" content="Muffin's Corner: an early learning play area for ages 3 to 6, centered on Muffin the Pitbull. Simple skills, gentle play, LeapFrog-style learning energy.">
+<title>Muffin’s Corner | Ages 3–7 | Sigil and Scribe</title>
+<meta name="description" content="Muffin’s Corner: a free playroom for ages 3 to 7 with Muffin the Pitbull. Letters, numbers, wiggles, feelings, pretend, and story time. No accounts, no locks.">
 <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="Muffin's Corner | Ages 3-6">
-<meta property="og:description" content="Young children's play and early learning with Muffin. Ages 3 to 6.">
+<meta property="og:title" content="Muffin’s Corner | Ages 3–7">
+<meta property="og:description" content="Visit Muffin. Free early-learning play for little ones. Ages 3 to 7.">
 <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/muffins-corner.html">
 <link rel="stylesheet" href="book.css">
-<link rel="stylesheet" href="house.css?v=6">
+<link rel="stylesheet" href="house.css?v=8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&family=Courier+Prime&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600;700&family=Courier+Prime&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FBP908LERR');</script>
 <style>
-  body { margin: 0; background: #faf7f2; color: #2b2620; }
+  :root {
+    --mc-cream: #FFF9F0;
+    --mc-paper: #FFFDF8;
+    --mc-ink: #3A2E24;
+    --mc-muted: #6B5E52;
+    --mc-amber: #D4A373;
+    --mc-amber-deep: #B8874F;
+    --mc-sage: #7E9A72;
+    --mc-sky: #7BA3C9;
+    --mc-rose: #D4899A;
+    --mc-sun: #E8B84A;
+  }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse at 12% 0%, rgba(232, 184, 74, 0.14), transparent 50%),
+      radial-gradient(ellipse at 90% 20%, rgba(123, 163, 201, 0.12), transparent 45%),
+      var(--mc-cream);
+    color: var(--mc-ink);
+  }
   .corner {
     max-width: 720px;
     margin: 0 auto;
-    padding: 32px 20px 56px;
+    padding: 28px 16px 64px;
   }
   .eyebrow {
     font-family: 'Courier Prime', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #b08d57;
+    color: var(--mc-amber-deep);
     margin: 0 0 8px;
   }
-  h1 {
+  .corner > h1 {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.6rem, 4vw, 2rem);
+    font-size: clamp(1.7rem, 5vw, 2.15rem);
     font-weight: 600;
     margin: 0 0 10px;
+    color: var(--mc-ink);
   }
   .lead {
-    font-family: system-ui, sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #6b6255;
-    max-width: 34rem;
-    margin: 0 0 8px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--mc-muted);
+    max-width: 36rem;
+    margin: 0 0 10px;
   }
   .age-pill {
     display: inline-block;
     font-family: system-ui, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.78rem;
+    font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #6b4a34;
-    background: rgba(176, 141, 87, 0.15);
-    border: 1px solid #e4dcc9;
+    color: #5a3d28;
+    background: rgba(232, 184, 74, 0.28);
+    border: 1px solid rgba(184, 135, 79, 0.35);
     border-radius: 999px;
-    padding: 6px 12px;
-    margin: 12px 0 28px;
+    padding: 8px 14px;
+    margin: 8px 0 20px;
   }
-  .skill-grid {
+  .muffin-hello {
+    background: var(--mc-paper);
+    border: 2px solid rgba(184, 135, 79, 0.35);
+    border-radius: 16px;
+    padding: 18px 18px;
+    margin-bottom: 28px;
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--mc-ink);
+  }
+  .muffin-hello strong { color: var(--mc-amber-deep); }
+
+  /* Station nav */
+  .station-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+  .station-nav a {
+    font-family: system-ui, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--mc-ink);
+    background: #fff;
+    border: 2px solid #e4dcc9;
+    border-radius: 999px;
+    padding: 10px 14px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .station-nav a:hover,
+  .station-nav a:focus-visible {
+    border-color: var(--mc-amber-deep);
+    background: #fff8ee;
+  }
+  .station-nav a:focus-visible {
+    outline: 3px solid var(--mc-amber);
+    outline-offset: 2px;
+  }
+
+  /* Stations */
+  .station {
+    background: var(--mc-paper);
+    border: 2px solid #e4dcc9;
+    border-radius: 16px;
+    padding: 22px 18px;
+    margin-bottom: 18px;
+  }
+  .station h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+    color: var(--mc-ink);
+  }
+  .station .how {
+    font-family: system-ui, sans-serif;
+    font-size: 0.95rem;
+    color: var(--mc-muted);
+    margin: 0 0 16px;
+    line-height: 1.45;
+  }
+  .play-feedback {
+    min-height: 1.4em;
+    font-family: system-ui, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--mc-sage);
+    margin: 12px 0 0;
+    text-align: center;
+  }
+
+  /* Letter station */
+  .letter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .letter-btn {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+    border-radius: 14px;
+    border: 2px solid var(--mc-amber-deep);
+    background: #fff;
+    font-family: system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--mc-ink);
+    cursor: pointer;
+  }
+  .letter-btn:hover,
+  .letter-btn:focus-visible {
+    background: #fff3e0;
+  }
+  .letter-btn:focus-visible {
+    outline: 3px solid var(--mc-amber);
+    outline-offset: 2px;
+  }
+  .letter-btn.is-on {
+    background: var(--mc-amber);
+    color: #3A2E24;
+  }
+
+  /* Number station */
+  .count-stage {
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .treat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    min-height: 52px;
+    margin-bottom: 12px;
+  }
+  .treat {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #f5d0a9, #c47a4a);
+    border: 2px solid #8a5230;
+  }
+  .count-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .mc-btn {
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    min-height: 48px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 2px solid var(--mc-amber-deep);
+    background: var(--mc-amber);
+    color: #3A2E24;
+    cursor: pointer;
+  }
+  .mc-btn:hover { background: var(--mc-amber-deep); color: #fff; }
+  .mc-btn:focus-visible {
+    outline: 3px solid #6B4A34;
+    outline-offset: 2px;
+  }
+  .mc-btn.ghost {
+    background: #fff;
+    color: var(--mc-ink);
+  }
+  .mc-btn.ghost:hover {
+    background: #fff3e0;
+    color: var(--mc-ink);
+  }
+  .count-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--mc-amber-deep);
+    margin: 0 0 8px;
+  }
+
+  /* Wiggle station */
+  .wiggle-moves {
     display: grid;
-    gap: 12px;
+    gap: 10px;
   }
-  @media (min-width: 560px) {
-    .skill-grid { grid-template-columns: 1fr 1fr; }
+  @media (min-width: 480px) {
+    .wiggle-moves { grid-template-columns: 1fr 1fr; }
   }
-  .skill-card {
+  .wiggle-btn {
+    font-family: system-ui, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    min-height: 56px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 2px solid #e4dcc9;
+    background: #fff;
+    color: var(--mc-ink);
+    cursor: pointer;
+    text-align: left;
+  }
+  .wiggle-btn:hover,
+  .wiggle-btn:focus-visible {
+    border-color: var(--mc-sky);
+    background: #f0f7fc;
+  }
+  .wiggle-btn:focus-visible {
+    outline: 3px solid var(--mc-sky);
+    outline-offset: 2px;
+  }
+  .wiggle-btn.is-active {
+    border-color: var(--mc-sage);
+    background: #eef5ea;
+  }
+
+  /* Feelings */
+  .feel-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media (min-width: 520px) {
+    .feel-row { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  }
+  .feel-btn {
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    min-height: 72px;
+    padding: 12px;
+    border-radius: 14px;
+    border: 2px solid #e4dcc9;
+    background: #fff;
+    color: var(--mc-ink);
+    cursor: pointer;
+  }
+  .feel-btn:hover,
+  .feel-btn:focus-visible {
+    border-color: var(--mc-rose);
+    background: #fdf0f3;
+  }
+  .feel-btn:focus-visible {
+    outline: 3px solid var(--mc-rose);
+    outline-offset: 2px;
+  }
+  .feel-btn .emoji {
+    display: block;
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+
+  /* Pretend */
+  .pretend-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .pretend-list li {
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.45;
+    background: #fff;
+    border: 2px dashed #e4dcc9;
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: var(--mc-ink);
+  }
+  .pretend-list .step {
+    font-weight: 700;
+    color: var(--mc-amber-deep);
+    margin-right: 6px;
+  }
+
+  /* Story */
+  .story-box {
+    background: #fff;
+    border: 2px solid #e4dcc9;
+    border-radius: 12px;
+    padding: 16px;
+    font-family: system-ui, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--mc-ink);
+    margin-bottom: 12px;
+  }
+  .story-box .who {
+    font-weight: 700;
+    color: var(--mc-amber-deep);
+  }
+
+  /* World + grown-up strip */
+  .world-door {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(180deg, #fff 0%, #fff8ee 100%);
+    border: 2px solid var(--mc-amber);
+    border-radius: 16px;
+    padding: 20px 18px;
+    margin: 28px 0 18px;
+  }
+  .world-door:hover,
+  .world-door:focus-visible {
+    border-color: var(--mc-amber-deep);
+    box-shadow: 0 6px 18px rgba(107, 74, 52, 0.08);
+  }
+  .world-door:focus-visible {
+    outline: 3px solid var(--mc-amber);
+    outline-offset: 3px;
+  }
+  .world-door .tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mc-amber-deep);
+    margin: 0 0 6px;
+  }
+  .world-door h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    margin: 0 0 6px;
+  }
+  .world-door p {
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+    color: var(--mc-muted);
+    margin: 0;
+    line-height: 1.45;
+  }
+  .world-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 14px 0 0;
+    padding: 0;
+  }
+  .world-links a {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--mc-amber);
+    color: #fff;
+    text-decoration: none;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+  }
+  .world-links a:hover,
+  .world-links a:focus-visible {
+    background: var(--mc-amber-deep);
+  }
+
+  .grownup {
+    margin-top: 28px;
+    padding: 18px;
     background: #fff;
     border: 1px solid #e4dcc9;
     border-radius: 12px;
-    padding: 18px 16px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.88rem;
+    color: var(--mc-muted);
+    line-height: 1.55;
   }
-  .skill-card .tag {
+  .grownup h3 {
     font-family: 'Courier Prime', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #b08d57;
-    margin: 0 0 6px;
+    color: var(--mc-amber-deep);
+    font-weight: 400;
+    margin: 0 0 10px;
   }
-  .skill-card h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin: 0 0 8px;
-  }
-  .skill-card p {
-    font-family: system-ui, sans-serif;
-    font-size: 0.88rem;
-    line-height: 1.5;
-    color: #6b6255;
-    margin: 0;
-  }
-  .skill-card.soon {
-    border-style: dashed;
-    background: #fffcf7;
-  }
-  .note {
-    margin-top: 28px;
-    padding: 16px 18px;
-    background: #fff;
-    border: 1px solid #e4dcc9;
-    border-radius: 10px;
-    font-family: system-ui, sans-serif;
-    font-size: 0.88rem;
-    color: #6b6255;
-    line-height: 1.5;
-  }
-  .note a { color: #b08d57; }
-  .back {
-    display: inline-block;
+  .grownup p { margin: 0 0 10px; }
+  .grownup p:last-child { margin: 0; }
+  .grownup a { color: var(--mc-amber-deep); }
+
+  .back-row {
     margin-top: 24px;
     font-family: system-ui, sans-serif;
-    font-size: 0.85rem;
-    color: #b08d57;
-    text-decoration: none;
+    font-size: 0.9rem;
   }
-  .back:hover { text-decoration: underline; }
+  .back-row a {
+    color: var(--mc-amber-deep);
+    text-decoration: none;
+    margin-right: 16px;
+  }
+  .back-row a:hover,
+  .back-row a:focus-visible { text-decoration: underline; }
+  .back-row a:focus-visible {
+    outline: 2px solid var(--mc-amber);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .letter-btn,
+    .mc-btn,
+    .wiggle-btn,
+    .feel-btn,
+    .world-door {
+      transition: none;
+    }
+  }
 </style>
 </head>
 <body>
@@ -137,52 +496,127 @@
 </nav>
 
 <main class="corner">
-  <p class="eyebrow">Play Area · Early learning</p>
-  <h1>Muffin's Corner</h1>
-  <p class="lead">A play space for little ones ages 3 to 6, centered on Muffin. Short, friendly activities in the spirit of early learning toys: letters, numbers, bodies, feelings, and pretend, one small skill at a time.</p>
-  <span class="age-pill">Ages 3 to 6</span>
+  <p class="eyebrow">Play Area · Visit Muffin</p>
+  <h1>Muffin’s Corner</h1>
+  <p class="lead">A free playroom for little ones. Tap, count, wiggle, name a feeling, and play pretend with Muffin. No accounts. No locks. Grown-ups can help when needed.</p>
+  <span class="age-pill">Ages 3 to 7 · Free</span>
 
-  <div class="skill-grid">
-    <article class="skill-card soon">
-      <p class="tag">Letters</p>
-      <h2>Letter paws</h2>
-      <p>Trace and name letters with Muffin as the guide. Coming as simple on-page play, not an app store download.</p>
-    </article>
-    <article class="skill-card soon">
-      <p class="tag">Numbers</p>
-      <h2>Count with Muffin</h2>
-      <p>Count treats, steps, and wiggles up to ten. Built for short attention and big grins.</p>
-    </article>
-    <article class="skill-card soon">
-      <p class="tag">Body</p>
-      <h2>Wiggle break</h2>
-      <p>Move like Muffin: stretch, freeze, shake the wiggles out. Gross-motor play for living rooms.</p>
-    </article>
-    <article class="skill-card soon">
-      <p class="tag">Feelings</p>
-      <h2>How does Muffin feel?</h2>
-      <p>Name happy, tired, brave, and still. Soft vocabulary for hard days, sized for preschool hearts.</p>
-    </article>
-    <article class="skill-card soon">
-      <p class="tag">Pretend</p>
-      <h2>Vet clinic</h2>
-      <p>Care for a stuffed friend the way Muffin's people cared for her. Imagination first, no screens required.</p>
-    </article>
-    <article class="skill-card soon">
-      <p class="tag">Listen</p>
-      <h2>Story time</h2>
-      <p>Short read-aloud moments tied to the series. Links to Book 1 when you want the full story on the shelf.</p>
-    </article>
+  <div class="muffin-hello" role="note">
+    <strong>Woof, hi!</strong> I’m Muffin. Pick a station below. You can play as long as you like. If you need a rest, that is okay too.
   </div>
 
-  <div class="note">
-    <p><strong>Not the series storefront.</strong> Books and the St. Jude donation commitment live on the
-    <a href="muffin-series.html">Muffin the Pitbull&trade; Series</a> page in the Library. This corner is play and early learning only.</p>
-    <p style="margin-top:10px;margin-bottom:0;">Activities above are planned stations. Nothing is sold or unlocked here. When a station is ready, the card will open.</p>
+  <nav class="station-nav" aria-label="Play stations">
+    <a href="#letters">Letters</a>
+    <a href="#numbers">Numbers</a>
+    <a href="#wiggles">Wiggles</a>
+    <a href="#feelings">Feelings</a>
+    <a href="#pretend">Pretend</a>
+    <a href="#story">Story</a>
+  </nav>
+
+  <!-- LETTERS -->
+  <section class="station" id="letters" aria-labelledby="letters-h">
+    <h2 id="letters-h">Letter paws</h2>
+    <p class="how">Tap a letter. Say its name out loud. Muffin is listening.</p>
+    <div class="letter-row" id="letter-row" role="group" aria-label="Letters A to J"></div>
+    <p class="play-feedback" id="letter-feedback" aria-live="polite"></p>
+  </section>
+
+  <!-- NUMBERS -->
+  <section class="station" id="numbers" aria-labelledby="numbers-h">
+    <h2 id="numbers-h">Count with Muffin</h2>
+    <p class="how">Add a treat or take one away. Count out loud up to ten.</p>
+    <div class="count-stage">
+      <p class="count-num" id="count-num" aria-live="polite">0</p>
+      <div class="treat-row" id="treat-row" aria-hidden="true"></div>
+    </div>
+    <div class="count-controls">
+      <button type="button" class="mc-btn" id="count-add">+ One treat</button>
+      <button type="button" class="mc-btn ghost" id="count-sub">− One treat</button>
+      <button type="button" class="mc-btn ghost" id="count-reset">Start over</button>
+    </div>
+    <p class="play-feedback" id="count-feedback" aria-live="polite"></p>
+  </section>
+
+  <!-- WIGGLES -->
+  <section class="station" id="wiggles" aria-labelledby="wiggles-h">
+    <h2 id="wiggles-h">Wiggle break</h2>
+    <p class="how">Pick a move. Do it with your body. Grown-up can join.</p>
+    <div class="wiggle-moves" role="group" aria-label="Movement choices">
+      <button type="button" class="wiggle-btn" data-move="Stretch tall like a morning stretch.">Stretch tall</button>
+      <button type="button" class="wiggle-btn" data-move="Shake the wiggles out of your paws.">Shake the wiggles</button>
+      <button type="button" class="wiggle-btn" data-move="Freeze! Hold still like a statue puppy.">Freeze</button>
+      <button type="button" class="wiggle-btn" data-move="March in place, left, right, left, right.">March in place</button>
+      <button type="button" class="wiggle-btn" data-move="Soft tip-toes around the room.">Tip-toe walk</button>
+      <button type="button" class="wiggle-btn" data-move="Big belly breath in… and slow breath out.">Belly breath</button>
+    </div>
+    <p class="play-feedback" id="wiggle-feedback" aria-live="polite"></p>
+  </section>
+
+  <!-- FEELINGS -->
+  <section class="station" id="feelings" aria-labelledby="feelings-h">
+    <h2 id="feelings-h">How does Muffin feel?</h2>
+    <p class="how">Tap a feeling. You can feel that way too. All feelings are welcome here.</p>
+    <div class="feel-row" role="group" aria-label="Feelings">
+      <button type="button" class="feel-btn" data-feel="Happy, tail wags and warm sun."><span class="emoji" aria-hidden="true">😊</span>Happy</button>
+      <button type="button" class="feel-btn" data-feel="Tired, soft stretch and a cozy nap."><span class="emoji" aria-hidden="true">😴</span>Tired</button>
+      <button type="button" class="feel-btn" data-feel="Brave, a small step is still a step."><span class="emoji" aria-hidden="true">💪</span>Brave</button>
+      <button type="button" class="feel-btn" data-feel="Still, quiet body, quiet heart."><span class="emoji" aria-hidden="true">🌿</span>Still</button>
+      <button type="button" class="feel-btn" data-feel="Silly, giggles and goofy faces allowed."><span class="emoji" aria-hidden="true">🤪</span>Silly</button>
+      <button type="button" class="feel-btn" data-feel="Curious, what happens if we look closer?"><span class="emoji" aria-hidden="true">🔍</span>Curious</button>
+      <button type="button" class="feel-btn" data-feel="Sad, hugs help. You are not alone."><span class="emoji" aria-hidden="true">💙</span>Sad</button>
+      <button type="button" class="feel-btn" data-feel="Proud, you tried, and that matters."><span class="emoji" aria-hidden="true">⭐</span>Proud</button>
+    </div>
+    <p class="play-feedback" id="feel-feedback" aria-live="polite"></p>
+  </section>
+
+  <!-- PRETEND -->
+  <section class="station" id="pretend" aria-labelledby="pretend-h">
+    <h2 id="pretend-h">Vet clinic</h2>
+    <p class="how">Use a stuffed friend, a doll, or your hands. Follow the steps. No screen needed after you read them.</p>
+    <ol class="pretend-list">
+      <li><span class="step">1.</span> Soft voice: “Hello, friend. I am the helper today.”</li>
+      <li><span class="step">2.</span> Gentle check: ears, paws, tummy, one at a time.</li>
+      <li><span class="step">3.</span> A pretend bandage or a soft blanket.</li>
+      <li><span class="step">4.</span> Water and rest. “You are safe.”</li>
+      <li><span class="step">5.</span> A thank-you hug or high-five.</li>
+    </ol>
+    <p class="play-feedback" id="pretend-feedback">Care is a kind of courage.</p>
+  </section>
+
+  <!-- STORY -->
+  <section class="station" id="story" aria-labelledby="story-h">
+    <h2 id="story-h">Story time</h2>
+    <p class="how">A tiny story you can hear out loud. Press for another.</p>
+    <div class="story-box" id="story-box" aria-live="polite">
+      <span class="who">Muffin:</span> Once there was a small gray dog who loved pillows and people. When the wiggles came, her family stayed close. That was enough.
+    </div>
+    <button type="button" class="mc-btn" id="story-btn">Another tiny story</button>
+  </section>
+
+  <section class="world-door" aria-labelledby="world-h">
+    <p class="tag">Next door</p>
+    <h2 id="world-h">Muffin’s World</h2>
+    <p>More Muffin paths, out beyond this room.</p>
+    <ul class="world-links">
+      <li><a href="muffin-series.html">Series &amp; books</a></li>
+      <li><a href="muffin-memorial.html">Memorial</a></li>
+      <li><a href="muffin-wiggles.html">Wiggles</a></li>
+    </ul>
+  </section>
+
+  <div class="grownup">
+    <h3>For grown-ups</h3>
+    <p><strong>This corner is free play only.</strong> It is not a book shop and not a catalogue. Series books and the donation commitment live on the <a href="muffin-series.html">Muffin the Pitbull&trade; Series</a> page in the Library.</p>
+    <p><strong>Donation language:</strong> 5% of net series royalties from the Muffin the Pitbull™ Series are donated every quarter to St. Jude Children’s Research Hospital. Update checkpoints: December 20, March 20, June 20, September 20. No dollar totals are shown here.</p>
+    <p><strong>Newsletter</strong> (grown-up email signup, not for children to fill in alone): <a href="https://tally.so/r/GxWg8L" target="_blank" rel="noopener">Muffin Newsletter</a>.</p>
+    <p>Nothing here asks a child for a name, email, photo, or location.</p>
   </div>
 
-  <a class="back" href="play.html">← Back to Play Area</a>
-  <a class="back" href="muffin-series.html" style="margin-left:16px;">Series &amp; books →</a>
+  <p class="back-row">
+    <a href="play.html">← Back to Play Area</a>
+    <a href="muffin-series.html">Series &amp; books →</a>
+  </p>
 </main>
 
 <footer class="house-footer">
@@ -194,7 +628,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="library.html">Library</a></li>
           <li><a href="play.html">Play Area</a></li>
-          <li><a href="muffins-corner.html">Muffin's Corner</a></li>
+          <li><a href="muffins-corner.html">Muffin’s Corner</a></li>
           <li><a href="muffin-series.html">Muffin Series</a></li>
         </ul>
       </div>
@@ -218,6 +652,7 @@
         <h3>Newsletters</h3>
         <ul>
           <li><a href="https://tally.so/r/GxWg8L" target="_blank" rel="noopener">Muffin Newsletter</a></li>
+          <li><a href="https://tally.so/r/b5PVeZ" target="_blank" rel="noopener">Sigil &amp; Scribe Newsletter</a></li>
         </ul>
       </div>
     </div>
@@ -227,6 +662,97 @@
     </div>
   </div>
 </footer>
+
 <script src="js/house-nav.js"></script>
+<script>
+(function () {
+  // --- Letters A–J ---
+  var letters = 'ABCDEFGHIJ'.split('');
+  var letterRow = document.getElementById('letter-row');
+  var letterFb = document.getElementById('letter-feedback');
+  var letterNames = {
+    A: 'A, like apple', B: 'B, like ball', C: 'C, like cat', D: 'D, like dog',
+    E: 'E, like egg', F: 'F, like fun', G: 'G, like go', H: 'H, like hug',
+    I: 'I, like in', J: 'J, like jump'
+  };
+  letters.forEach(function (L) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'letter-btn';
+    b.textContent = L;
+    b.setAttribute('aria-label', 'Letter ' + L);
+    b.addEventListener('click', function () {
+      letterRow.querySelectorAll('.letter-btn').forEach(function (x) { x.classList.remove('is-on'); });
+      b.classList.add('is-on');
+      letterFb.textContent = letterNames[L] || ('Letter ' + L);
+    });
+    letterRow.appendChild(b);
+  });
+
+  // --- Count 0–10 ---
+  var count = 0;
+  var treatRow = document.getElementById('treat-row');
+  var countNum = document.getElementById('count-num');
+  var countFb = document.getElementById('count-feedback');
+  function renderCount() {
+    countNum.textContent = String(count);
+    treatRow.innerHTML = '';
+    for (var i = 0; i < count; i++) {
+      var t = document.createElement('span');
+      t.className = 'treat';
+      t.setAttribute('aria-hidden', 'true');
+      treatRow.appendChild(t);
+    }
+    if (count === 0) countFb.textContent = 'No treats yet. Add one!';
+    else if (count === 10) countFb.textContent = 'Ten treats! High five!';
+    else countFb.textContent = 'You have ' + count + (count === 1 ? ' treat.' : ' treats.');
+  }
+  document.getElementById('count-add').addEventListener('click', function () {
+    if (count < 10) { count++; renderCount(); }
+    else countFb.textContent = 'Ten is the top for now. Start over to play again.';
+  });
+  document.getElementById('count-sub').addEventListener('click', function () {
+    if (count > 0) { count--; renderCount(); }
+  });
+  document.getElementById('count-reset').addEventListener('click', function () {
+    count = 0; renderCount();
+  });
+  renderCount();
+
+  // --- Wiggles ---
+  var wiggleFb = document.getElementById('wiggle-feedback');
+  document.querySelectorAll('.wiggle-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.wiggle-btn').forEach(function (x) { x.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      wiggleFb.textContent = btn.getAttribute('data-move') || '';
+    });
+  });
+
+  // --- Feelings ---
+  var feelFb = document.getElementById('feel-feedback');
+  document.querySelectorAll('.feel-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      feelFb.textContent = btn.getAttribute('data-feel') || '';
+    });
+  });
+
+  // --- Stories ---
+  var stories = [
+    { who: 'Muffin', text: 'Once there was a small gray dog who loved pillows and people. When the wiggles came, her family stayed close. That was enough.' },
+    { who: 'Muffin', text: 'On a sunny morning Muffin found a soft sock. She did not need the whole world, just one cozy thing and a friend nearby.' },
+    { who: 'Friend', text: '“Muffin,” said the child, “I feel big feelings today.” Muffin sat close. Sitting close is a kind of answer.' },
+    { who: 'Muffin', text: 'Some days the body shakes. Some days it rests. Both days Muffin was still Muffin, brave, small, and loved.' },
+    { who: 'Muffin', text: 'The pillow tug-of-war was serious business. Muffin dug in, then shared a victory nose-boop. Play can be fierce and kind.' }
+  ];
+  var storyIdx = 0;
+  var storyBox = document.getElementById('story-box');
+  document.getElementById('story-btn').addEventListener('click', function () {
+    storyIdx = (storyIdx + 1) % stories.length;
+    var s = stories[storyIdx];
+    storyBox.innerHTML = '<span class="who">' + s.who + ':</span> ' + s.text;
+  });
+})();
+</script>
 </body>
 </html>
