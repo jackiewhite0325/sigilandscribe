@@ -13,6 +13,79 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FBP908LERR');</script>
+  <style>
+    .chaos-handoff {
+      max-width: 32rem;
+      margin: 1.75rem auto 0;
+      padding-top: 1.25rem;
+      border-top: 1px solid #e4dcc9;
+      text-align: left;
+    }
+    .chaos-handoff .handoff-label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a8272;
+      margin: 0 0 8px;
+    }
+    .chaos-handoff .handoff-lead {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.4;
+      color: #2b2620;
+      margin: 0 0 14px;
+    }
+    .chaos-handoff .handoff-choices {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+    .chaos-handoff .handoff-choices a,
+    .chaos-handoff .handoff-stay {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: #fffcf5;
+      border: 1px solid #e4dcc9;
+      border-radius: 6px;
+      padding: 12px 14px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .chaos-handoff .handoff-choices a:hover,
+    .chaos-handoff .handoff-choices a:focus-visible {
+      border-color: #b08d57;
+      box-shadow: 0 2px 8px rgba(43, 38, 32, 0.06);
+    }
+    .chaos-handoff .handoff-choices a:focus-visible {
+      outline: 2px solid #b08d57;
+      outline-offset: 2px;
+    }
+    .chaos-handoff .handoff-stay {
+      cursor: default;
+    }
+    .chaos-handoff .choice-kicker {
+      display: block;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #b08d57;
+      margin-bottom: 4px;
+    }
+    .chaos-handoff .choice-body {
+      display: block;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: #5a5348;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .chaos-handoff .handoff-choices a { transition: none; }
+    }
+  </style>
 </head>
 <body class="room-chaos">
   <nav class="house-nav" aria-label="Primary">
@@ -65,6 +138,31 @@
       <div class="chaos-out" id="coin-out" role="status" aria-live="polite">Press the button.</div>
       <button type="button" id="coin-btn">Flip the coin</button>
     </div>
+
+    <section class="chaos-handoff" aria-labelledby="chaos-handoff-label">
+      <p class="handoff-label" id="chaos-handoff-label">After the scramble</p>
+      <p class="handoff-lead">You made something odd. What do you want to do with it?</p>
+      <ul class="handoff-choices">
+        <li>
+          <a href="toolbox.html">
+            <span class="choice-kicker">Make it myself</span>
+            <span class="choice-body">Take it to the Toolbox. Manuscript Map and journal prompts are free, no account required.</span>
+          </a>
+        </li>
+        <li>
+          <a href="guild/">
+            <span class="choice-kicker">Get help</span>
+            <span class="choice-body">Bring it to Guild Hall. Ask for a pathway or send a work order when you are ready.</span>
+          </a>
+        </li>
+        <li>
+          <div class="handoff-stay">
+            <span class="choice-kicker">I’m not sure yet</span>
+            <span class="choice-body">Stay. Scramble again. Leave when you feel like it. Nothing here is waiting on an answer.</span>
+          </div>
+        </li>
+      </ul>
+    </section>
 
     <div class="empty-state" style="margin-top:20px;">
       <p>Four toys for now. More experiments when they earn a place here.</p>
@@ -162,8 +260,8 @@
     ];
     var coinFaces = [
       'Yes, but make it weird.',
-      'No, try the opposite.',
-      'Maybe, flip again after tea.',
+      'No. Try the opposite.',
+      'Maybe. Flip again after tea.',
       'Ask Pearl. She will raise one eyebrow.',
       'Neither. Invent a third option.',
       'Yes, if the dog approves.'
