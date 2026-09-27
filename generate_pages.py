@@ -1,3 +1,6 @@
+# !! STALE GENERATOR - DO NOT RUN AS-IS (flagged 2026-09-27).
+# It emits book pages with the OLD template (site-header, no house.css / house-nav.js)
+# and will overwrite the live book pages. Regenerate the template before using.
 #!/usr/bin/env python3
 # Sigil and Scribe - single page generator (replaces gen_pages.py + patch_gen.py)
 #

@@ -3,21 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Subconscious Shelf | Sigil and Scribe</title>
+<title>The Zen Den | Sigil and Scribe</title>
 <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
-<meta name="description" content="Guided hypnotherapy audio, theta and isochronic acoustic tracks, and digital gaze anchors, curated by a Certified Hypnotherapist.">
+<meta name="description" content="The Zen Den, Petra C.Ht.'s hypnotherapy room. Guided neuroregulation audio, theta and isochronic tracks, and a quiet gaze anchor. Educational and relaxation focused.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sigil and Scribe">
+<meta property="og:title" content="The Zen Den | Sigil and Scribe">
+<meta property="og:description" content="Petra C.Ht.'s hypnotherapy room. Guided neuroregulation, acoustic tracks, and a slow breathing light.">
+<meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/hypnotherapy.html">
+<meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #D4A373; --gold-deep: #B8874F; --gold-bright: #E8C89A;
-    --lounge-1: #14100C; --lounge-2: #0A0806; --ivory: #EFE4D0;
+    --gold: #D4A373;
+    --gold-deep: #B8874F;
+    --gold-bright: #E8C89A;
+    --lounge-1: #14100C;
+    --lounge-2: #0A0806;
+    --ivory: #EFE4D0;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
   body {
-    background: radial-gradient(ellipse at 50% -10%, rgba(212,163,115,0.10), transparent 55%), var(--lounge-1);
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(212,163,115,0.10), transparent 55%),
+      var(--lounge-1);
     color: var(--ivory);
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 19px;
@@ -26,81 +42,302 @@
   }
   a { color: inherit; }
   ::selection { background: var(--gold); color: var(--lounge-2); }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
 
-  .site-header { padding: 20px 24px; }
-  .site-header .inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-  .brand { font-family: 'Playfair Display', Georgia, serif; font-size: 15px; letter-spacing: 0.03em;
-    color: rgba(239,228,208,0.85); text-decoration: none; }
-  .brand span { color: var(--gold); }
-  .back-link { font-family: 'Courier Prime', monospace; font-size: 10.5px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: rgba(239,228,208,0.55); text-decoration: none; }
-  .back-link:hover { color: var(--gold); }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
 
-  .wrap { max-width: 620px; margin: 0 auto; padding: 0 24px; }
+  /* ---- Hero / private room entry ---- */
+  .hero {
+    text-align: center;
+    padding: 28px 0 36px;
+  }
+  .eyebrow {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(212,163,115,0.75);
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(30px, 6vw, 44px);
+    color: var(--ivory);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .hero p.lede {
+    max-width: 460px;
+    margin: 0 auto;
+    color: rgba(239,228,208,0.75);
+    font-size: 18px;
+  }
+  .hero-note {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(212,163,115,0.55);
+    margin-top: 18px;
+  }
 
-  .hero { text-align: center; padding: 30px 0 50px; }
-  .orb { width: 128px; height: 128px; margin: 0 auto 26px; border-radius: 50%;
+  /* ---- Breathing light (gaze anchor) ---- */
+  .gaze {
+    text-align: center;
+    padding: 8px 0 28px;
+  }
+  .gaze-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(212,163,115,0.7);
+    margin-bottom: 18px;
+  }
+  .orb-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .orb {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
     background: radial-gradient(circle at 38% 32%, var(--gold-bright), var(--gold) 55%, var(--gold-deep));
-    box-shadow: 0 0 60px rgba(212,163,115,0.45); animation: breathe 12s ease-in-out infinite; }
-  @keyframes breathe { 0%, 100% { transform: scale(0.7); opacity: 0.5; } 33% { transform: scale(1); opacity: 1; } 66% { transform: scale(1); opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { .orb { animation: none; } }
-  .eyebrow { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 15px;
-    color: rgba(212,163,115,0.75); margin-bottom: 10px; }
-  .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: clamp(30px, 6vw, 46px);
-    color: var(--ivory); margin-bottom: 14px; line-height: 1.2; }
-  .hero p.lede { max-width: 460px; margin: 0 auto; color: rgba(239,228,208,0.75); font-size: 19px; }
-  .hero-art { width:min(100%, 320px); max-height:180px; object-fit:cover; border-radius:10px;
-  margin:0 auto 18px; display:block; border:1px solid rgba(212,163,115,0.25); opacity:0.95; }
-  .hero-note { font-family: 'Courier Prime', monospace; font-size: 10.5px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: rgba(212,163,115,0.6); margin-top: 22px; }
+    box-shadow: 0 0 48px rgba(212,163,115,0.35);
+    transition: box-shadow 0.3s ease;
+  }
+  .orb:hover {
+    box-shadow: 0 0 64px rgba(212,163,115,0.5);
+  }
+  .orb.is-breathing {
+    animation: breathe 12s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(0.72); opacity: 0.55; }
+    33% { transform: scale(1); opacity: 1; }
+    66% { transform: scale(1); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orb.is-breathing { animation: none; }
+    .orb.is-breathing {
+      box-shadow: 0 0 56px rgba(212,163,115,0.55);
+      opacity: 1;
+    }
+  }
+  .orb-phase {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(239,228,208,0.55);
+    min-height: 1.2em;
+  }
+  .orb-hint {
+    font-size: 15.5px;
+    color: rgba(239,228,208,0.55);
+    max-width: 360px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
 
-  .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
-  .btn { font-family: 'Courier Prime', monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 12px 22px; border-radius: 30px; text-decoration: none; transition: all 0.2s ease; display: inline-block; }
-  .btn-primary { background: var(--gold); color: var(--lounge-2); }
-  .btn-primary:hover { background: var(--gold-bright); transform: translateY(-1px); }
-  .btn-ghost { border: 1px solid rgba(212,163,115,0.4); color: var(--ivory); }
-  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  /* ---- Sections ---- */
+  section.room {
+    padding: 40px 0;
+    border-top: 1px solid rgba(212,163,115,0.15);
+  }
+  section.room .label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(212,163,115,0.7);
+    margin-bottom: 20px;
+    text-align: center;
+  }
 
-  section.room { padding: 46px 0; border-top: 1px solid rgba(212,163,115,0.15); }
-  section.room .label { font-family: 'Courier Prime', monospace; font-size: 10.5px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: rgba(212,163,115,0.7); margin-bottom: 22px; text-align: center; }
+  /* Audio shelf, near top */
+  .audio-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .audio-card {
+    background: rgba(239,228,208,0.04);
+    border: 1px solid rgba(212,163,115,0.18);
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+  }
+  .audio-card .status {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(212,163,115,0.65);
+    margin-bottom: 6px;
+  }
+  .audio-card.is-live .status { color: var(--gold); }
+  .audio-card h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: var(--ivory);
+    margin: 0 0 6px;
+  }
+  .audio-card p {
+    font-size: 16px;
+    color: rgba(239,228,208,0.65);
+    line-height: 1.5;
+    margin: 0 0 12px;
+  }
+  .audio-card audio {
+    width: 100%;
+    height: 40px;
+    margin-top: 4px;
+  }
+  .audio-empty {
+    font-size: 15.5px;
+    color: rgba(239,228,208,0.5);
+    font-style: italic;
+    margin: 0;
+  }
 
-  .offering { display: flex; gap: 18px; align-items: baseline; padding: 16px 0;
-    border-bottom: 1px solid rgba(212,163,115,0.12); }
+  .offering {
+    display: flex;
+    gap: 18px;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(212,163,115,0.12);
+  }
   .offering:last-child { border-bottom: none; }
-  .offering .status { font-family: 'Courier Prime', monospace; font-size: 9.5px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: rgba(239,228,208,0.4); flex-shrink: 0; width: 76px; padding-top: 3px; }
+  .offering .status {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(239,228,208,0.4);
+    flex-shrink: 0;
+    width: 76px;
+    padding-top: 3px;
+  }
   .offering.is-live .status { color: var(--gold); }
-  .offering h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 20px;
-    color: var(--ivory); margin-bottom: 3px; }
-  .offering p { font-size: 16.5px; color: rgba(239,228,208,0.65); line-height: 1.5; }
+  .offering h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--ivory);
+    margin-bottom: 3px;
+  }
+  .offering p {
+    font-size: 16.5px;
+    color: rgba(239,228,208,0.65);
+    line-height: 1.5;
+  }
 
   .practitioner { text-align: center; }
-  .practitioner-name { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; color: var(--gold);
-    margin-bottom: 10px; }
-  .practitioner p { color: rgba(239,228,208,0.75); font-size: 18px; margin: 0 auto 14px; max-width: 480px; }
-  .cred-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin-top: 20px; }
-  .cred-row span { font-family: 'Courier Prime', monospace; font-size: 10.5px; letter-spacing: 0.04em;
-    color: rgba(212,163,115,0.65); }
+  .practitioner-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .practitioner p {
+    color: rgba(239,228,208,0.75);
+    font-size: 18px;
+    margin: 0 auto 14px;
+    max-width: 480px;
+  }
+  .cred-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 18px;
+    margin-top: 20px;
+  }
+  .cred-row span {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: rgba(212,163,115,0.65);
+  }
 
   .letter { text-align: center; }
-  .letter p.sub { color: rgba(239,228,208,0.65); font-size: 17px; max-width: 420px; margin: 0 auto 22px; }
-  .letter-form { display: flex; gap: 10px; max-width: 400px; margin: 0 auto; }
-  .letter-form input[type="email"] { flex: 1; min-width: 0; padding: 12px 14px; border-radius: 30px;
-    border: 1px solid rgba(212,163,115,0.35); background: rgba(239,228,208,0.06); color: var(--ivory);
-    font-family: 'Cormorant Garamond', Georgia, serif; font-size: 17px; }
-  .letter-form input[type="email"]::placeholder { color: rgba(239,228,208,0.4); }
-  .letter-form input[type="email"]:focus { outline: none; border-color: var(--gold); }
-  .letter-form .btn { border: none; cursor: pointer; }
-  .letter-note { font-family: 'Courier Prime', monospace; font-size: 9.5px; color: rgba(239,228,208,0.35);
-    margin-top: 14px; letter-spacing: 0.04em; }
-  @media (max-width: 480px) { .letter-form { flex-direction: column; } }
+  .letter p.sub {
+    color: rgba(239,228,208,0.65);
+    font-size: 17px;
+    max-width: 420px;
+    margin: 0 auto 22px;
+  }
+  .btn {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--lounge-2);
+  }
+  .btn-primary:hover {
+    background: var(--gold-bright);
+  }
+  .btn-ghost {
+    border: 1px solid rgba(212,163,115,0.4);
+    color: var(--ivory);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+    .btn-primary:hover { transform: none; }
+  }
+  .letter-note {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9.5px;
+    color: rgba(239,228,208,0.35);
+    margin-top: 14px;
+    letter-spacing: 0.04em;
+  }
 
-  footer { text-align: center; padding: 40px 20px 50px; font-family: 'Courier Prime', monospace; font-size: 10px;
-    letter-spacing: 0.1em; text-transform: uppercase; color: rgba(239,228,208,0.3); }
+  .actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  /* Soften house footer on this dark room without redesigning it */
+  .house-footer {
+    margin-top: 24px;
+  }
 </style>
+<link rel="stylesheet" href="house.css?v=8">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -108,7 +345,6 @@
   gtag('js', new Date());
   gtag('config', 'G-FBP908LERR');
 </script>
-  <link rel="stylesheet" href="house.css?v=6">
 </head>
 <body>
 
@@ -117,45 +353,76 @@
     <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
     <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
     <ul class="nav-links" id="primary-nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="library.html">Library</a></li>
-        <li><a href="play.html">Play</a></li>
-        <li><a href="guild/">Guild Hall</a></li>
-        <li><a href="hypnotherapy.html" aria-current="page">Zen Den</a></li>
-        <li><a href="about.html">About</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="library.html">Library</a></li>
+      <li><a href="play.html">Play</a></li>
+      <li><a href="guild/">Guild Hall</a></li>
+      <li><a href="hypnotherapy.html" aria-current="page">Zen Den</a></li>
+      <li><a href="about.html">About</a></li>
     </ul>
   </div>
 </nav>
 
-<div class="wrap">
+<main class="wrap">
 
-  <section class="hero">
-    <div class="orb" role="img" aria-label="A soft amber light pulsing on a slow breathing cycle"></div>
-    <img class="hero-art" src="images/site/study_illustration.jpg" alt="Illustration for The Zen Den" width="320" height="180">
-    <p class="eyebrow">Sigil and Scribe</p>
-    <h1>The Subconscious Shelf</h1>
+  <header class="hero">
+    <p class="eyebrow">Petra’s room</p>
+    <h1>The Zen Den</h1>
     <p class="lede">Come in, sit down, let your shoulders drop. Guided neuroregulation, one track at a time, curated by a Certified Hypnotherapist.</p>
-    <p class="hero-note">follow the glow &middot; a relaxation aid, not a medical device</p>
-    <div class="actions">
-      <a class="btn btn-primary" href="#study-letter">Join The Zen Den Letter</a>
-      <a class="btn btn-ghost" href="#practitioner">Meet Petra</a>
+    <p class="hero-note">A relaxation aid, not a medical device · education and rest, not treatment</p>
+  </header>
+
+  <!-- Gaze anchor near the top -->
+  <section class="gaze" aria-labelledby="gaze-heading">
+    <p class="gaze-label" id="gaze-heading">Gaze anchor</p>
+    <div class="orb-wrap">
+      <button
+        type="button"
+        class="orb"
+        id="breathe-orb"
+        aria-pressed="false"
+        aria-label="Start the breathing light. Slow cycle: expand, hold, ease."
+        title="Tap to start or pause the breathing light">
+      </button>
+      <p class="orb-phase" id="orb-phase" aria-live="polite">Tap the light to begin</p>
+      <p class="orb-hint">A slow visual cue you can return to anytime. Follow the glow if it helps; look away if it does not.</p>
     </div>
   </section>
 
-  <section class="room">
-    <p class="label">What's on this shelf</p>
+  <!-- Audio near the top -->
+  <section class="room" id="audio" aria-labelledby="audio-heading">
+    <p class="label" id="audio-heading">Audio on this shelf</p>
+    <ul class="audio-list">
+      <li class="audio-card">
+        <div class="status">In preparation</div>
+        <h2>Guided hypnotherapy audio</h2>
+        <p>Vocal-guided sessions for insomnia, nervous system regulation, and tinnitus habituation. Players will appear here when the first recordings are ready to host.</p>
+        <p class="audio-empty">No tracks embedded yet, this card stays honest until they are.</p>
+      </li>
+      <li class="audio-card">
+        <div class="status">In preparation</div>
+        <h2>Theta &amp; isochronic tracks</h2>
+        <p>Acoustic frequency tracks meant to sit quietly in the background while you work, rest, or wind down.</p>
+        <p class="audio-empty">No tracks embedded yet, this card stays honest until they are.</p>
+      </li>
+    </ul>
+  </section>
 
+  <section class="room" aria-labelledby="shelf-heading">
+    <p class="label" id="shelf-heading">Also in this room</p>
     <div class="offering is-live">
       <span class="status">Live now</span>
-      <div><h3>Gaze Anchor</h3><p>The breathing light above. A slow 4-4-4 pacing cue you can return to anytime.</p></div>
+      <div>
+        <h3>Gaze Anchor</h3>
+        <p>The breathing light above. A slow pacing cue you can start and pause.</p>
+      </div>
     </div>
     <div class="offering">
       <span class="status">Recording</span>
-      <div><h3>Guided Hypnotherapy Audio</h3><p>Vocal-guided sessions for insomnia, nervous system regulation, and tinnitus habituation.</p></div>
-    </div>
-    <div class="offering">
-      <span class="status">Recording</span>
-      <div><h3>Theta &amp; Isochronic Tracks</h3><p>Acoustic frequency tracks designed to sit quietly in the background while you work, rest, or wind down.</p></div>
+      <div>
+        <h3>Guided sessions</h3>
+        <p>Listed under Audio when files are published here.</p>
+      </div>
     </div>
   </section>
 
@@ -166,22 +433,27 @@
     <p>Her practice areas include tinnitus habituation, insomnia and nervous system regulation, academic acceleration, and chronic illness support.</p>
     <div class="cred-row">
       <span>Certified Hypnotherapist (C.Ht.)</span>
-      <span>&middot;</span>
+      <span>·</span>
       <span>HMI Honors Graduate</span>
-      <span>&middot;</span>
+      <span>·</span>
       <span>B.S. Business Mgmt, Summa Cum Laude</span>
     </div>
-  </section>
-  <section class="room letter" id="study-letter">
-    <p class="label">Sigil &amp; Scribe Newsletter</p>
-    <p class="sub">New releases, first looks, and the occasional St. Jude note. No noise. (The Muffin list is separate, in Muffin's Corner.)</p>
-    <p style="margin-top:16px;">
-      <a class="btn btn-primary" href="https://tally.so/r/b5PVeZ" target="_blank" rel="noopener">Subscribe to the house letter</a>
-    </p>
-    <p class="letter-note" style="margin-top:12px;">Opens a short signup form · unsubscribe anytime</p>
+    <div class="actions">
+      <a class="btn btn-ghost" href="#study-letter">Zen Den Letter</a>
+      <a class="btn btn-ghost" href="about.html">About the house</a>
+    </div>
   </section>
 
-</div>
+  <section class="room letter" id="study-letter">
+    <p class="label">Sigil &amp; Scribe Newsletter</p>
+    <p class="sub">New releases, first looks, and the occasional St. Jude note. No noise. (The Muffin list is separate, in Muffin’s Corner.)</p>
+    <p>
+      <a class="btn btn-primary" href="https://tally.so/r/b5PVeZ" target="_blank" rel="noopener">Subscribe to the house letter</a>
+    </p>
+    <p class="letter-note">Opens a short signup form · unsubscribe anytime</p>
+  </section>
+
+</main>
 
 <footer class="house-footer">
   <div class="footer-inner">
@@ -192,7 +464,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="library.html">Library</a></li>
           <li><a href="play.html">Play Area</a></li>
-          <li><a href="muffins-corner.html">Muffin's Corner</a></li>
+          <li><a href="muffins-corner.html">Muffin’s Corner</a></li>
           <li><a href="free-things.html">Free Things</a></li>
           <li><a href="toolbox.html">Toolbox</a></li>
         </ul>
@@ -230,8 +502,64 @@
   </div>
 </footer>
 
+<script src="js/house-nav.js"></script>
+<script>
+(function () {
+  var orb = document.getElementById('breathe-orb');
+  var phase = document.getElementById('orb-phase');
+  if (!orb || !phase) return;
 
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timer = null;
+  var running = false;
+  // 12s cycle: ~4s expand, ~4s hold, ~4s ease (matches prior keyframes)
+  var cycleMs = 12000;
+  var segmentMs = 4000;
 
-  <script src="js/house-nav.js"></script>
+  function setPhase(text) {
+    phase.textContent = text;
+  }
+
+  function stopCycle() {
+    running = false;
+    orb.classList.remove('is-breathing');
+    orb.setAttribute('aria-pressed', 'false');
+    orb.setAttribute('aria-label', 'Start the breathing light. Slow cycle: expand, hold, ease.');
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+    setPhase(reduce ? 'Light is still · tap again if you need the cue' : 'Paused · tap the light to resume');
+  }
+
+  function startCycle() {
+    running = true;
+    orb.classList.add('is-breathing');
+    orb.setAttribute('aria-pressed', 'true');
+    orb.setAttribute('aria-label', 'Pause the breathing light');
+    if (reduce) {
+      setPhase('Steady light · motion reduced');
+      return;
+    }
+    var t0 = Date.now();
+    function tick() {
+      if (!running) return;
+      var elapsed = (Date.now() - t0) % cycleMs;
+      if (elapsed < segmentMs) setPhase('Expand');
+      else if (elapsed < segmentMs * 2) setPhase('Hold');
+      else setPhase('Ease');
+    }
+    tick();
+    timer = setInterval(tick, 200);
+  }
+
+  orb.addEventListener('click', function () {
+    if (running) stopCycle();
+    else startCycle();
+  });
+
+  // Keyboard: Space/Enter already activate button
+})();
+</script>
 </body>
 </html>
