@@ -649,6 +649,13 @@
       transform: none !important;
     }
   }
+  /* Tiny-human rule: every push visibly answers. */
+  button:active { transform: scale(.94); }
+  .feel-btn.is-active { border-color: var(--mc-amber-deep); background: #fdf3e3; }
+  .story-pick-btn.is-active { border-color: var(--mc-amber-deep); background: #fdf3e3; }
+  .treat.counted { box-shadow: 0 0 0 3px var(--mc-amber-deep); }
+  .tap-photo { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .tap-photo:active { transform: scale(.97); }
 </style>
 </head>
 <body>
@@ -675,7 +682,7 @@
 
   <!-- HERO -->
   <section class="hero" aria-label="Welcome from Muffin">
-    <img class="hero-photo" src="images/muffin-corner/muffin-hero.jpg" width="220" height="220" alt="Muffin the pitbull puppy sitting and looking at you">
+    <img class="hero-photo tap-photo" role="button" tabindex="0" title="Say hi, Muffin" aria-label="Say hi to Muffin. Plays the welcome hello." src="images/muffin-corner/muffin-hero.jpg" width="220" height="220" alt="Muffin the pitbull puppy sitting and looking at you">
     <p class="hero-hello"><strong>Woof! Hi!</strong> I’m Muffin. Come explore my world below. You can play as long as you like. If you need a rest, that is okay too.</p>
     <div class="sound-bar">
       <button type="button" class="sound-btn" id="sound-toggle" aria-pressed="true">
@@ -828,7 +835,7 @@
           <button type="button" class="room-back" data-close-room>← Back to the world</button>
           <h2 class="room-title">Letter Garden</h2>
         </div>
-        <img class="room-art" src="images/muffin-corner/door-letters.webp" alt="" loading="lazy">
+        <img class="room-art tap-photo" role="button" tabindex="0" title="Hear Muffin again" aria-label="Hear Muffin’s welcome again." src="images/muffin-corner/door-letters.webp" alt="" loading="lazy">
         <p class="room-say"><strong>Muffin says:</strong> Welcome to the Letter Garden! Tap a letter, and say it with me.</p>
         <div data-room-play="letters"></div>
       </div>
@@ -839,7 +846,7 @@
           <button type="button" class="room-back" data-close-room>← Back to the world</button>
           <h2 class="room-title">Treat Stand</h2>
         </div>
-        <img class="room-art" src="images/muffin-corner/door-treats.webp" alt="" loading="lazy">
+        <img class="room-art tap-photo" role="button" tabindex="0" title="Hear Muffin again" aria-label="Hear Muffin’s welcome again." src="images/muffin-corner/door-treats.webp" alt="" loading="lazy">
         <p class="room-say"><strong>Muffin says:</strong> Welcome to the Treat Stand! Add a treat, then count with me.</p>
         <div data-room-play="numbers"></div>
       </div>
@@ -850,7 +857,7 @@
           <button type="button" class="room-back" data-close-room>← Back to the world</button>
           <h2 class="room-title">Wiggle Meadow</h2>
         </div>
-        <img class="room-art" src="images/muffin-corner/door-wiggles.webp" alt="" loading="lazy">
+        <img class="room-art tap-photo" role="button" tabindex="0" title="Hear Muffin again" aria-label="Hear Muffin’s welcome again." src="images/muffin-corner/door-wiggles.webp" alt="" loading="lazy">
         <p class="room-say"><strong>Muffin says:</strong> Welcome to the Wiggle Meadow! Pick a move, and wiggle with me.</p>
         <div data-room-play="wiggles"></div>
       </div>
@@ -861,7 +868,7 @@
           <button type="button" class="room-back" data-close-room>← Back to the world</button>
           <h2 class="room-title">Feelings Porch</h2>
         </div>
-        <img class="room-art" src="images/muffin-corner/door-feelings.webp" alt="" loading="lazy">
+        <img class="room-art tap-photo" role="button" tabindex="0" title="Hear Muffin again" aria-label="Hear Muffin’s welcome again." src="images/muffin-corner/door-feelings.webp" alt="" loading="lazy">
         <p class="room-say"><strong>Muffin says:</strong> Welcome to the Feelings Porch! Tap a feeling. All feelings are welcome here.</p>
         <div data-room-play="feelings"></div>
       </div>
@@ -872,7 +879,7 @@
           <button type="button" class="room-back" data-close-room>← Back to the world</button>
           <h2 class="room-title">Vet Clinic</h2>
         </div>
-        <img class="room-art" src="images/muffin-corner/door-vet.webp" alt="" loading="lazy">
+        <img class="room-art tap-photo" role="button" tabindex="0" title="Hear Muffin again" aria-label="Hear Muffin’s welcome again." src="images/muffin-corner/door-vet.webp" alt="" loading="lazy">
         <p class="room-say"><strong>Muffin says:</strong> Welcome to the Vet Clinic! Let us take gentle care of a friend.</p>
         <div data-room-play="pretend"></div>
       </div>
@@ -883,7 +890,7 @@
           <button type="button" class="room-back" data-close-room>← Back to the world</button>
           <h2 class="room-title">Story Nook</h2>
         </div>
-        <img class="room-art" src="images/muffin-corner/door-story.webp" alt="" loading="lazy">
+        <img class="room-art tap-photo" role="button" tabindex="0" title="Hear Muffin again" aria-label="Hear Muffin’s welcome again." src="images/muffin-corner/door-story.webp" alt="" loading="lazy">
         <p class="room-say"><strong>Muffin says:</strong> Welcome to the Story Nook! Snuggle in for a tiny story.</p>
         <div data-room-play="story"></div>
       </div>
@@ -1030,10 +1037,15 @@
     story2: 'images/muffin-corner/audio/story-2.mp3',
     story3: 'images/muffin-corner/audio/story-3.mp3',
     story4: 'images/muffin-corner/audio/story-4.mp3',
-    worldWelcome: 'images/muffin-corner/audio/world-welcome.mp3'
+    worldWelcome: 'images/muffin-corner/audio/world-welcome.mp3',
+    storyTitle0: 'images/muffin-corner/audio/story-title-0.mp3',
+    storyTitle1: 'images/muffin-corner/audio/story-title-1.mp3',
+    storyTitle2: 'images/muffin-corner/audio/story-title-2.mp3',
+    storyTitle3: 'images/muffin-corner/audio/story-title-3.mp3',
+    storyTitle4: 'images/muffin-corner/audio/story-title-4.mp3'
   };
 
-  var AUDIO_VERSION = '20260929d';
+  var AUDIO_VERSION = '20260929e';
   function playAudio(src) {
     if (!soundOn || !src) return;
     try {
@@ -1160,6 +1172,24 @@
     playAudio(AUDIO.worldWelcome);
   });
 
+  // Tiny-human rule: Muffin's photo and every room picture can be tapped; Muffin says hello again.
+  function tapSpeaks(el, getSrc) {
+    function say() { playAudio(getSrc()); }
+    el.addEventListener('click', say);
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); say(); }
+    });
+  }
+  var heroPhoto = document.querySelector('.hero-photo');
+  if (heroPhoto) tapSpeaks(heroPhoto, function () { return AUDIO.worldWelcome; });
+  document.querySelectorAll('.room-art').forEach(function (art) {
+    tapSpeaks(art, function () {
+      var room = art.closest('.room');
+      var place = room ? room.getAttribute('data-place') : null;
+      return (place && PLACE_WELCOME[place]) ? PLACE_WELCOME[place] : null;
+    });
+  });
+
   // --- Letters A-Z ---
   var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   var letterRow = document.getElementById('letter-row');
@@ -1214,7 +1244,7 @@
         t.type = 'button';
         t.className = 'treat';
         t.setAttribute('aria-label', 'Count treat ' + n);
-        t.addEventListener('click', function () { playAudio(AUDIO['number' + n]); });
+        t.addEventListener('click', function () { t.classList.toggle('counted'); playAudio(AUDIO['number' + n]); });
         treatRow.appendChild(t);
       })(i + 1);
     }
@@ -1276,6 +1306,8 @@
   };
   document.querySelectorAll('.feel-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
+      document.querySelectorAll('.feel-btn').forEach(function (x) { x.classList.remove('is-active'); });
+      btn.classList.add('is-active');
       var feel = btn.getAttribute('data-feel') || '';
       feelFb.textContent = feel;
       var key = feelAudio[feel];
@@ -1297,16 +1329,26 @@
     var s = stories[idx];
     storyBox.innerHTML = '<span class="who">' + s.who + ':</span> ' + s.text;
   }
+  function markStoryPick() {
+    document.querySelectorAll('[data-story-pick]').forEach(function (x) {
+      x.classList.toggle('is-active', (parseInt(x.getAttribute('data-story-pick'), 10) || 0) === storyIdx);
+    });
+  }
   document.querySelectorAll('[data-story-pick]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       storyIdx = parseInt(btn.getAttribute('data-story-pick'), 10) || 0;
+      markStoryPick();
       showStory(storyIdx);
+      playAudio(AUDIO['storyTitle' + storyIdx]);
     });
   });
   document.getElementById('story-btn').addEventListener('click', function () {
     storyIdx = (storyIdx + 1) % stories.length;
+    markStoryPick();
     showStory(storyIdx);
+    playAudio(AUDIO['storyTitle' + storyIdx]);
   });
+  markStoryPick();
   document.getElementById('story-speak').addEventListener('click', function () {
     playAudio(AUDIO['story' + storyIdx]);
   });
