@@ -1033,6 +1033,7 @@
     worldWelcome: 'images/muffin-corner/audio/world-welcome.mp3'
   };
 
+  var AUDIO_VERSION = '20260929d';
   function playAudio(src) {
     if (!soundOn || !src) return;
     try {
@@ -1040,7 +1041,8 @@
         currentAudio.pause();
         currentAudio.currentTime = 0;
       }
-      currentAudio = new Audio(src);
+      var url = src + (src.indexOf('?') === -1 ? '?' : '&') + 'v=' + AUDIO_VERSION;
+      currentAudio = new Audio(url);
       currentAudio.play().catch(function () {
         // File not present yet or autoplay blocked; silent fail is intentional
       });
@@ -1166,7 +1168,7 @@
     A: 'A says ah, like apple', B: 'B says buh, like ball', C: 'C says kuh, like cat',
     D: 'D says duh, like dog', E: 'E says eh, like egg', F: 'F says fff, like fun',
     G: 'G says guh, like go', H: 'H says huh, like hug', I: 'I says ih, like in',
-    J: 'J says juh, like jump', K: 'K says kuh, like kite', L: 'L says lll, like Luna',
+    J: 'J says juh, like jump', K: 'K says kuh, like kite', L: 'L says luh, like Luna',
     M: 'M says mmm, like Muffin', N: 'N says nnn, like nest', O: 'O says oh, like octopus',
     P: 'P says puh, like pig', Q: 'Q says kwuh, like queen', R: 'R says rrr, like rabbit',
     S: 'S says sss, like sun', T: 'T says tuh, like tiger', U: 'U says uh, like umbrella',
