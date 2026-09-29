@@ -257,6 +257,12 @@
  <a class="buy-btn ghost" href="muffin-wiggles.html">Book page</a>
  </div>
  </article>
+ <article class="book-card coming">
+ <div class="num">100.2 · Book 2</div>
+ <h2>Muffin Gets Tired a Lot</h2>
+ <p>The next story in the series, in production now. Cover art to follow.</p>
+ <div class="foot">Coming soon</div>
+ </article>
 </div>
 
 <footer class="house-footer">
@@ -306,22 +312,6 @@
   </div>
 </footer>
 
-<script>
-(function () {
- var grid = document.getElementById("series-grid");
- // Placeholder titles keep the shelf honest about scale without inventing final names
- for (var n = 2; n <= 26; n++) {
- var card = document.createElement("div");
- card.className = "book-card coming";
- card.innerHTML =
- '<div class="num">100.' + n + ' · Book ' + n + '</div>' +
- '<h2>Coming soon</h2>' +
- '<p>Volume ' + n + ' of the Muffin the Pitbull&trade; Series.</p>' +
- '<div class="foot">In production</div>';
- grid.appendChild(card);
- }
-})();
-</script>
   <script src="js/house-nav.js"></script>
 </body>
 </html>

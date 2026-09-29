@@ -1,4 +1,7 @@
-/* Sigil & Scribe — house layer */
+/* Sigil & Scribe house layer */
+/* Global box model: padded columns stay inside the viewport on narrow screens. */
+*, *::before, *::after { box-sizing: border-box; }
+
 :root {
   --nav-bg: #faf7f2;
   --nav-ink: #2b2620;
