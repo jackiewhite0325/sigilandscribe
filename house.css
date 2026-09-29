@@ -1182,3 +1182,13 @@
 .countdown-line { font-size: 0.85rem; color: #5a5348; margin: 10px 0 2px; }
 .gift-more { font-size: 0.8rem; margin: 4px 0 0; }
 .gift-more a { color: var(--amber-deep); }
+
+/* Series page sections: cover, description, newsletter */
+.series-cover { max-width: 640px; margin: 4px auto 18px; padding: 0 24px; text-align: center; }
+.series-cover img { width: 100%; max-width: 300px; border-radius: 10px; box-shadow: 0 10px 30px rgba(107,74,52,0.18); }
+.cover-pending { display: none; font-family: 'Courier Prime', monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: #8a8272; border: 1px dashed rgba(126,143,118,0.5); border-radius: 10px; padding: 44px 20px; max-width: 300px; margin: 0 auto; }
+.art-pending .cover-pending { display: block; }
+.series-description { max-width: 580px; margin: 0 auto 26px; padding: 0 24px; text-align: center; }
+.series-description .lead { font-size: 15.5px; line-height: 1.7; color: #4a4a4a; margin: 0; }
+.newsletter-panel { margin-bottom: 30px; }
+.newsletter-panel h2 { text-align: center; }
