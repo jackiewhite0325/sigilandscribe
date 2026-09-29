@@ -172,6 +172,70 @@
  }
  .donation-panel p:last-child { margin-bottom: 0; }
  .donation-note { font-size: 0.82rem !important; color: #8a8272 !important; }
+ .gift-meter {
+ margin: 18px 0 6px;
+ padding: 16px 18px;
+ background: #fdf9f0;
+ border: 1px dashed rgba(126,143,118,0.5);
+ border-radius: 8px;
+ text-align: center;
+ }
+ .gift-meter h3 {
+ font-family: 'Courier Prime', monospace;
+ font-size: 0.72rem;
+ letter-spacing: 0.1em;
+ text-transform: uppercase;
+ color: var(--sage-deep);
+ margin: 0 0 6px;
+ font-weight: 400;
+ }
+ .gift-amount {
+ font-family: 'Playfair Display', Georgia, serif;
+ font-size: 2rem;
+ color: var(--walnut-deep);
+ margin: 2px 0 10px;
+ }
+ .gift-bar {
+ height: 14px;
+ background: #efe7d3;
+ border-radius: 7px;
+ overflow: hidden;
+ }
+ .gift-fill {
+ height: 100%;
+ width: 0%;
+ background: linear-gradient(90deg, #c98f4e, #a86a2c);
+ border-radius: 7px;
+ transition: width 1s ease;
+ }
+ .gift-scale {
+ display: flex;
+ justify-content: space-between;
+ font-family: 'Courier Prime', monospace;
+ font-size: 0.68rem;
+ color: #8a8272;
+ margin-top: 4px;
+ }
+ .gift-detail { font-size: 0.85rem !important; color: #5a5348 !important; margin: 10px 0 2px !important; }
+ .gift-updated { font-size: 0.75rem !important; color: #8a8272 !important; margin: 0 !important; }
+ .gift-countdown { margin: 14px 0 4px; text-align: center; }
+ .gift-countdown h3 {
+ font-family: 'Courier Prime', monospace;
+ font-size: 0.72rem;
+ letter-spacing: 0.1em;
+ text-transform: uppercase;
+ color: var(--sage-deep);
+ margin: 0 0 6px;
+ font-weight: 400;
+ }
+ .countdown-date { font-size: 0.85rem !important; color: #5a5348 !important; margin: 0 0 4px !important; }
+ .countdown-clock {
+ font-family: 'Courier Prime', monospace;
+ font-size: 1.15rem;
+ color: var(--walnut-deep);
+ letter-spacing: 0.04em;
+ margin: 0;
+ }
  .corner-grownups {
  max-width: 640px;
  margin: 0 auto 50px;
@@ -266,7 +330,22 @@
  <h2 id="donation-heading">Donation commitment</h2>
  <p><strong>5% of net series royalties</strong> from the Muffin the Pitbull&trade; Series are donated every quarter to <strong>St. Jude Children's Research Hospital</strong>.</p>
  <p>This is an ongoing house commitment in Muffin's name, not a one-time campaign. Buying a book from this series supports that quarterly gift. Support is optional beyond the book itself; the stories stay available either way.</p>
- <p class="donation-note">Figures are a fixed percent of net series royalties, calculated and sent each calendar quarter. No invented dollar totals on this page.</p>
+ <div class="gift-meter" aria-live="polite">
+ <h3>St. Jude gift meter</h3>
+ <div class="gift-amount" id="gift-amount">$0.00</div>
+ <div class="gift-bar" role="img" id="gift-bar-label" aria-label="St. Jude gift meter">
+ <div class="gift-fill" id="gift-fill"></div>
+ </div>
+ <div class="gift-scale"><span>$0</span><span id="gift-scale-max">$1</span></div>
+ <p class="gift-detail" id="gift-detail">Loading the latest figures...</p>
+ <p class="gift-updated" id="gift-updated"></p>
+ </div>
+ <div class="gift-countdown">
+ <h3>Next St. Jude gift</h3>
+ <p class="countdown-date" id="countdown-date"></p>
+ <p class="countdown-clock" id="countdown-clock"></p>
+ </div>
+ <p class="donation-note">Dollar figures on the meter come from the house's own KDP sales reports and are updated regularly. Nothing here is estimated or invented. The gift is 5% of net series royalties, rounded to the nearest cent.</p>
  <p><a class="ko-inline" href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Optional house support on Ko-fi</a></p>
 </section>
 
@@ -345,5 +424,61 @@
 </footer>
 
   <script src="js/house-nav.js"></script>
+  <script>
+  (function () {
+    function money(n) { return "$" + Number(n).toFixed(2); }
+    // Gift meter: figures come from data/muffin-donations.json, updated from KDP reports.
+    fetch("data/muffin-donations.json")
+      .then(function (r) { if (!r.ok) throw new Error("no data"); return r.json(); })
+      .then(function (d) {
+        var c = d.current || {};
+        var gift = Number(c.gift || 0);
+        var scale = Number(d.scale_max || 1);
+        document.getElementById("gift-amount").textContent = money(gift);
+        document.getElementById("gift-fill").style.width = Math.min(100, (gift / scale) * 100) + "%";
+        document.getElementById("gift-scale-max").textContent = money(scale).replace(".00", "");
+        document.getElementById("gift-bar-label").setAttribute("aria-label",
+          "St. Jude gift meter: " + money(gift) + " on a " + money(scale) + " scale");
+        var bits = [];
+        if (c.sales != null) bits.push(c.sales + (c.sales === 1 ? " sale" : " sales"));
+        if (c.royalties != null) bits.push(money(c.royalties) + " royalties");
+        bits.push("5% to St. Jude");
+        document.getElementById("gift-detail").textContent = bits.join(" · ");
+        if (c.updated) {
+          var dt = new Date(c.updated + "T12:00:00");
+          document.getElementById("gift-updated").textContent = "Updated " +
+            dt.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
+        }
+      })
+      .catch(function () {
+        document.getElementById("gift-detail").textContent = "Figures updating, check back soon.";
+      });
+    // Countdown to the next gift checkpoint: Mar 20, Jun 20, Sep 20, Dec 20.
+    function nextCheckpoint(now) {
+      var marks = [[2, 20], [5, 20], [8, 20], [11, 20]];
+      var y = now.getFullYear();
+      for (var i = 0; i < marks.length; i++) {
+        var t = new Date(y, marks[i][0], marks[i][1], 0, 0, 0);
+        if (t > now) return t;
+      }
+      return new Date(y + 1, 2, 20, 0, 0, 0);
+    }
+    var clockEl = document.getElementById("countdown-clock");
+    var dateEl = document.getElementById("countdown-date");
+    function tick() {
+      var now = new Date();
+      var target = nextCheckpoint(now);
+      dateEl.textContent = "Gift checkpoint: " +
+        target.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
+      var s = Math.floor((target - now) / 1000);
+      var d = Math.floor(s / 86400); s -= d * 86400;
+      var h = Math.floor(s / 3600); s -= h * 3600;
+      var m = Math.floor(s / 60); s -= m * 60;
+      clockEl.textContent = d + "d " + h + "h " + m + "m " + s + "s";
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+  </script>
 </body>
 </html>
