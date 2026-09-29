@@ -612,6 +612,29 @@
   .vet-step-btn.vet-courage { border-color: var(--mc-rose); }
   .vet-step-btn.vet-courage .step { background: var(--mc-rose); }
 
+  /* Countable treats */
+  button.treat { cursor: pointer; padding: 0; }
+  button.treat:focus-visible { outline: 3px solid var(--mc-amber); outline-offset: 2px; }
+  /* Story picker */
+  .story-pick { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+  .story-pick-btn {
+    font-family: system-ui, sans-serif; font-size: 0.9rem; font-weight: 600;
+    min-height: 44px; padding: 8px 14px; border-radius: 999px;
+    border: 2px solid var(--mc-amber-deep); background: #fff; color: var(--mc-ink); cursor: pointer;
+  }
+  .story-pick-btn:focus-visible { outline: 3px solid var(--mc-amber); outline-offset: 2px; }
+  /* Vet patient picker */
+  .patient-pick { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px; }
+  .patient-btn {
+    font-family: system-ui, sans-serif; font-size: 0.95rem; font-weight: 600;
+    min-height: 48px; padding: 8px 16px; border-radius: 999px;
+    border: 2px solid var(--mc-amber-deep); background: #fff; color: var(--mc-ink); cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .patient-btn .emoji { font-size: 1.2rem; }
+  .patient-btn.is-active { background: #fdf6ec; }
+  .patient-btn:focus-visible { outline: 3px solid var(--mc-amber); outline-offset: 2px; }
+
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .place-btn, .room, .letter-btn, .wiggle-btn, .feel-btn, .treat {
@@ -704,18 +727,18 @@
   <!-- LETTERS -->
   <section class="station" id="letters" aria-labelledby="letters-h">
     <h2 id="letters-h">Letter paws</h2>
-    <p class="how">Tap a letter. Hear its name. Say it out loud with Muffin.</p>
-    <div class="letter-row" id="letter-row" role="group" aria-label="Letters A to J"></div>
+    <p class="how">Tap a letter. Hear its sound. Say it out loud with Muffin.</p>
+    <div class="letter-row" id="letter-row" role="group" aria-label="Letters A to Z"></div>
     <p class="play-feedback" id="letter-feedback" aria-live="polite"></p>
   </section>
 
   <!-- NUMBERS -->
   <section class="station" id="numbers" aria-labelledby="numbers-h">
     <h2 id="numbers-h">Count the treats</h2>
-    <p class="how">Add a treat or take one away. Count out loud up to ten.</p>
+    <p class="how">Add a treat or take one away. Tap each treat to count it.</p>
     <div class="count-stage">
       <p class="count-num" id="count-num" aria-live="polite">0</p>
-      <div class="treat-row" id="treat-row" aria-hidden="true"></div>
+      <div class="treat-row" id="treat-row" role="group" aria-label="Treats. Tap each treat to count it."></div>
     </div>
     <div class="count-controls">
       <button type="button" class="mc-btn" id="count-add">+ One treat</button>
@@ -745,14 +768,14 @@
     <h2 id="feelings-h">How does Muffin feel?</h2>
     <p class="how">Tap a feeling. You can feel that way too. All feelings are welcome here.</p>
     <div class="feel-row" role="group" aria-label="Feelings">
-      <button type="button" class="feel-btn" data-feel="Happy: tail wags and warm sun."><span class="emoji" aria-hidden="true">😊</span>Happy</button>
-      <button type="button" class="feel-btn" data-feel="Tired: soft stretch and a cozy nap."><span class="emoji" aria-hidden="true">😴</span>Tired</button>
-      <button type="button" class="feel-btn" data-feel="Brave: a small step is still a step."><span class="emoji" aria-hidden="true">💪</span>Brave</button>
-      <button type="button" class="feel-btn" data-feel="Still: quiet body, quiet heart."><span class="emoji" aria-hidden="true">🌿</span>Still</button>
-      <button type="button" class="feel-btn" data-feel="Silly: giggles and goofy faces allowed."><span class="emoji" aria-hidden="true">🤪</span>Silly</button>
-      <button type="button" class="feel-btn" data-feel="Curious: what happens if we look closer?"><span class="emoji" aria-hidden="true">🔍</span>Curious</button>
-      <button type="button" class="feel-btn" data-feel="Sad: hugs help. You are not alone."><span class="emoji" aria-hidden="true">💙</span>Sad</button>
-      <button type="button" class="feel-btn" data-feel="Proud: you tried, and that matters."><span class="emoji" aria-hidden="true">⭐</span>Proud</button>
+      <button type="button" class="feel-btn" data-feel="Happy: tail wags and warm sun. When you feel happy, share it with someone you love."><span class="emoji" aria-hidden="true">😊</span>Happy</button>
+      <button type="button" class="feel-btn" data-feel="Tired: soft stretch and a cozy nap. When you feel tired, rest. Rest helps bodies grow."><span class="emoji" aria-hidden="true">😴</span>Tired</button>
+      <button type="button" class="feel-btn" data-feel="Brave: a small step is still a step. When you want to feel brave, take one small step."><span class="emoji" aria-hidden="true">💪</span>Brave</button>
+      <button type="button" class="feel-btn" data-feel="Still: quiet body, quiet heart. When you want to feel still, take a big belly breath."><span class="emoji" aria-hidden="true">🌿</span>Still</button>
+      <button type="button" class="feel-btn" data-feel="Silly: giggles and goofy faces allowed. Feeling silly is for giggling. Giggle away."><span class="emoji" aria-hidden="true">🤪</span>Silly</button>
+      <button type="button" class="feel-btn" data-feel="Curious: what happens if we look closer? When you feel curious, look closer and ask why."><span class="emoji" aria-hidden="true">🔍</span>Curious</button>
+      <button type="button" class="feel-btn" data-feel="Sad: hugs help. You are not alone. When you feel sad, ask for a hug."><span class="emoji" aria-hidden="true">💙</span>Sad</button>
+      <button type="button" class="feel-btn" data-feel="Proud: you tried, and that matters. When you feel proud, tell someone what you did."><span class="emoji" aria-hidden="true">⭐</span>Proud</button>
     </div>
     <p class="play-feedback" id="feel-feedback" aria-live="polite"></p>
   </section>
@@ -761,6 +784,13 @@
   <section class="station" id="pretend" aria-labelledby="pretend-h">
     <h2 id="pretend-h">Vet clinic</h2>
     <p class="how">Use a stuffed friend, a doll, or your hands. Push each step to hear what to do.</p>
+    <p class="how">Who is visiting the clinic today?</p>
+    <div class="patient-pick" role="group" aria-label="Choose today's patient">
+      <button type="button" class="patient-btn is-active" data-patient="Bear"><span class="emoji" aria-hidden="true">🧸</span>Bear</button>
+      <button type="button" class="patient-btn" data-patient="Bunny"><span class="emoji" aria-hidden="true">🐰</span>Bunny</button>
+      <button type="button" class="patient-btn" data-patient="Dino"><span class="emoji" aria-hidden="true">🦕</span>Dino</button>
+    </div>
+    <p class="play-feedback" id="patient-feedback" aria-live="polite">Today's patient: Bear</p>
         <div class="vet-steps">
       <button type="button" class="vet-step-btn" data-vet-step="1"><span class="step">1</span><span>Soft voice: “Hello, friend. I am the helper today.”</span></button>
       <button type="button" class="vet-step-btn" data-vet-step="2"><span class="step">2</span><span>Gentle check: ears, paws, tummy, one at a time.</span></button>
@@ -775,9 +805,16 @@
   <!-- STORY -->
   <section class="station" id="story" aria-labelledby="story-h">
     <h2 id="story-h">Story time</h2>
-    <p class="how">A tiny story you can hear out loud. Press for another.</p>
+    <p class="how">A tiny story you can hear out loud. Pick one, or press for another.</p>
     <div class="story-box" id="story-box" aria-live="polite">
       <span class="who">Muffin:</span> Once there was a small gray dog who loved pillows and people. When the wiggles came, her family stayed close. That was enough.
+    </div>
+    <div class="story-pick" role="group" aria-label="Choose a story">
+      <button type="button" class="story-pick-btn" data-story-pick="0">The Pillow Pup</button>
+      <button type="button" class="story-pick-btn" data-story-pick="1">The Soft Sock</button>
+      <button type="button" class="story-pick-btn" data-story-pick="2">Big Feelings</button>
+      <button type="button" class="story-pick-btn" data-story-pick="3">Both Days</button>
+      <button type="button" class="story-pick-btn" data-story-pick="4">Tug-of-War</button>
     </div>
     <button type="button" class="mc-btn" id="story-btn">Another tiny story</button>
     <button type="button" class="mc-btn ghost" id="story-speak" style="margin-left:8px;">Hear this story</button>
@@ -928,6 +965,22 @@
     letterH: 'images/muffin-corner/audio/letter-h.mp3',
     letterI: 'images/muffin-corner/audio/letter-i.mp3',
     letterJ: 'images/muffin-corner/audio/letter-j.mp3',
+    letterK: 'images/muffin-corner/audio/letter-k.mp3',
+    letterL: 'images/muffin-corner/audio/letter-l.mp3',
+    letterM: 'images/muffin-corner/audio/letter-m.mp3',
+    letterN: 'images/muffin-corner/audio/letter-n.mp3',
+    letterO: 'images/muffin-corner/audio/letter-o.mp3',
+    letterP: 'images/muffin-corner/audio/letter-p.mp3',
+    letterQ: 'images/muffin-corner/audio/letter-q.mp3',
+    letterR: 'images/muffin-corner/audio/letter-r.mp3',
+    letterS: 'images/muffin-corner/audio/letter-s.mp3',
+    letterT: 'images/muffin-corner/audio/letter-t.mp3',
+    letterU: 'images/muffin-corner/audio/letter-u.mp3',
+    letterV: 'images/muffin-corner/audio/letter-v.mp3',
+    letterW: 'images/muffin-corner/audio/letter-w.mp3',
+    letterX: 'images/muffin-corner/audio/letter-x.mp3',
+    letterY: 'images/muffin-corner/audio/letter-y.mp3',
+    letterZ: 'images/muffin-corner/audio/letter-z.mp3',
     // Count feedback (optional shared clips)
     count0: 'images/muffin-corner/audio/count-0.mp3',
     count1: 'images/muffin-corner/audio/count-1.mp3',
@@ -940,6 +993,17 @@
     count8: 'images/muffin-corner/audio/count-8.mp3',
     count9: 'images/muffin-corner/audio/count-9.mp3',
     count10: 'images/muffin-corner/audio/count-10.mp3',
+    // Tap-to-count number words
+    number1: 'images/muffin-corner/audio/number-1.mp3',
+    number2: 'images/muffin-corner/audio/number-2.mp3',
+    number3: 'images/muffin-corner/audio/number-3.mp3',
+    number4: 'images/muffin-corner/audio/number-4.mp3',
+    number5: 'images/muffin-corner/audio/number-5.mp3',
+    number6: 'images/muffin-corner/audio/number-6.mp3',
+    number7: 'images/muffin-corner/audio/number-7.mp3',
+    number8: 'images/muffin-corner/audio/number-8.mp3',
+    number9: 'images/muffin-corner/audio/number-9.mp3',
+    number10: 'images/muffin-corner/audio/number-10.mp3',
     // Wiggles
     wiggleStretch: 'images/muffin-corner/audio/wiggle-stretch.mp3',
     wiggleShake: 'images/muffin-corner/audio/wiggle-shake.mp3',
@@ -1008,6 +1072,7 @@
   var roomsBox = document.getElementById('rooms');
   var openRoomEl = null;
   var lastMarker = null;
+  var ROOM_GOODBYE = 'images/muffin-corner/audio/room-goodbye.mp3';
 
   // Move each station section into its room. Without JS the stations
   // stay visible inline on the page, so nothing is lost.
@@ -1040,6 +1105,7 @@
     document.body.classList.remove('is-room-open');
     setTimeout(function () { room.hidden = true; }, 230);
     if (!silent && lastMarker) lastMarker.focus();
+    if (!silent) playAudio(ROOM_GOODBYE);
   }
   document.querySelectorAll('.place-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -1070,24 +1136,44 @@
     });
   });
 
+  // --- Vet clinic: choose today's patient ---
+  var patientFb = document.getElementById('patient-feedback');
+  document.querySelectorAll('[data-patient]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-patient]').forEach(function (b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      if (patientFb) patientFb.textContent = "Today's patient: " + btn.getAttribute('data-patient');
+    });
+  });
+
   // --- World welcome from Muffin ---
   document.getElementById('world-hello').addEventListener('click', function () {
     playAudio(AUDIO.worldWelcome);
   });
 
-  // --- Letters A–J ---
-  var letters = 'ABCDEFGHIJ'.split('');
+  // --- Letters A-Z ---
+  var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   var letterRow = document.getElementById('letter-row');
   var letterFb = document.getElementById('letter-feedback');
   var letterNames = {
-    A: 'A, like apple', B: 'B, like ball', C: 'C, like cat', D: 'D, like dog',
-    E: 'E, like egg', F: 'F, like fun', G: 'G, like go', H: 'H, like hug',
-    I: 'I, like in', J: 'J, like jump'
+    A: 'A says ah, like apple', B: 'B says buh, like ball', C: 'C says kuh, like cat',
+    D: 'D says duh, like dog', E: 'E says eh, like egg', F: 'F says fff, like fun',
+    G: 'G says guh, like go', H: 'H says huh, like hug', I: 'I says ih, like in',
+    J: 'J says juh, like jump', K: 'K says kuh, like kite', L: 'L says lll, like lion',
+    M: 'M says mmm, like moon', N: 'N says nnn, like nest', O: 'O says oh, like octopus',
+    P: 'P says puh, like pig', Q: 'Q says kwuh, like queen', R: 'R says rrr, like rabbit',
+    S: 'S says sss, like sun', T: 'T says tuh, like tiger', U: 'U says uh, like umbrella',
+    V: 'V says vvv, like van', W: 'W says wuh, like whale', X: 'X says ks, like fox',
+    Y: 'Y says yuh, like yo-yo', Z: 'Z says zzz, like zebra'
   };
   var letterAudioKey = {
     A: 'letterA', B: 'letterB', C: 'letterC', D: 'letterD',
     E: 'letterE', F: 'letterF', G: 'letterG', H: 'letterH',
-    I: 'letterI', J: 'letterJ'
+    I: 'letterI', J: 'letterJ', K: 'letterK', L: 'letterL',
+    M: 'letterM', N: 'letterN', O: 'letterO', P: 'letterP',
+    Q: 'letterQ', R: 'letterR', S: 'letterS', T: 'letterT',
+    U: 'letterU', V: 'letterV', W: 'letterW', X: 'letterX',
+    Y: 'letterY', Z: 'letterZ'
   };
   letters.forEach(function (L) {
     var b = document.createElement('button');
@@ -1114,10 +1200,14 @@
     countNum.textContent = String(count);
     treatRow.innerHTML = '';
     for (var i = 0; i < count; i++) {
-      var t = document.createElement('span');
-      t.className = 'treat';
-      t.setAttribute('aria-hidden', 'true');
-      treatRow.appendChild(t);
+      (function (n) {
+        var t = document.createElement('button');
+        t.type = 'button';
+        t.className = 'treat';
+        t.setAttribute('aria-label', 'Count treat ' + n);
+        t.addEventListener('click', function () { playAudio(AUDIO['number' + n]); });
+        treatRow.appendChild(t);
+      })(i + 1);
     }
     var msg;
     if (count === 0) msg = 'No treats yet. Add one!';
@@ -1166,14 +1256,14 @@
   // --- Feelings ---
   var feelFb = document.getElementById('feel-feedback');
   var feelAudio = {
-    'Happy: tail wags and warm sun.': 'feelHappy',
-    'Tired: soft stretch and a cozy nap.': 'feelTired',
-    'Brave: a small step is still a step.': 'feelBrave',
-    'Still: quiet body, quiet heart.': 'feelStill',
-    'Silly: giggles and goofy faces allowed.': 'feelSilly',
-    'Curious: what happens if we look closer?': 'feelCurious',
-    'Sad: hugs help. You are not alone.': 'feelSad',
-    'Proud: you tried, and that matters.': 'feelProud'
+    'Happy: tail wags and warm sun. When you feel happy, share it with someone you love.': 'feelHappy',
+    'Tired: soft stretch and a cozy nap. When you feel tired, rest. Rest helps bodies grow.': 'feelTired',
+    'Brave: a small step is still a step. When you want to feel brave, take one small step.': 'feelBrave',
+    'Still: quiet body, quiet heart. When you want to feel still, take a big belly breath.': 'feelStill',
+    'Silly: giggles and goofy faces allowed. Feeling silly is for giggling. Giggle away.': 'feelSilly',
+    'Curious: what happens if we look closer? When you feel curious, look closer and ask why.': 'feelCurious',
+    'Sad: hugs help. You are not alone. When you feel sad, ask for a hug.': 'feelSad',
+    'Proud: you tried, and that matters. When you feel proud, tell someone what you did.': 'feelProud'
   };
   document.querySelectorAll('.feel-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -1186,11 +1276,11 @@
 
   // --- Stories ---
   var stories = [
-    { who: 'Muffin', text: 'Once there was a small gray dog who loved pillows and people. When the wiggles came, her family stayed close. That was enough.' },
-    { who: 'Muffin', text: 'On a sunny morning Muffin found a soft sock. She did not need the whole world, just one cozy thing and a friend nearby.' },
-    { who: 'Friend', text: '“Muffin,” said the child, “I feel big feelings today.” Muffin sat close. Sitting close is a kind of answer.' },
-    { who: 'Muffin', text: 'Some days the body shakes. Some days it rests. Both days Muffin was still Muffin: brave, small, and loved.' },
-    { who: 'Muffin', text: 'The pillow tug-of-war was serious business. Muffin dug in, then shared a victory nose-boop. Play can be fierce and kind.' }
+    { who: 'Muffin', title: 'The Pillow Pup', text: 'Once there was a small gray dog who loved pillows and people. When the wiggles came, her family stayed close. That was enough.' },
+    { who: 'Muffin', title: 'The Soft Sock', text: 'On a sunny morning Muffin found a soft sock. She did not need the whole world, just one cozy thing and a friend nearby.' },
+    { who: 'Friend', title: 'Big Feelings', text: '“Muffin,” said the child, “I feel big feelings today.” Muffin sat close. Sitting close is a kind of answer.' },
+    { who: 'Muffin', title: 'Both Days', text: 'Some days the body shakes. Some days it rests. Both days Muffin was still Muffin: brave, small, and loved.' },
+    { who: 'Muffin', title: 'Tug-of-War', text: 'The pillow tug-of-war was serious business. Muffin dug in, then shared a victory nose-boop. Play can be fierce and kind.' }
   ];
   var storyIdx = 0;
   var storyBox = document.getElementById('story-box');
@@ -1198,6 +1288,12 @@
     var s = stories[idx];
     storyBox.innerHTML = '<span class="who">' + s.who + ':</span> ' + s.text;
   }
+  document.querySelectorAll('[data-story-pick]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      storyIdx = parseInt(btn.getAttribute('data-story-pick'), 10) || 0;
+      showStory(storyIdx);
+    });
+  });
   document.getElementById('story-btn').addEventListener('click', function () {
     storyIdx = (storyIdx + 1) % stories.length;
     showStory(storyIdx);
