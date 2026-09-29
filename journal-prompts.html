@@ -601,6 +601,20 @@
 
     // first prompt on load
     pickPrompt(categoryEl.value);
+
+    // a seed carried in from the Chaos Room arrives ready to work with
+    try {
+      var seed = new URLSearchParams(window.location.search).get('seed');
+      if (seed) {
+        if (categoryEl.querySelector('option[value="free"]')) {
+          categoryEl.value = 'free';
+          currentCategory = 'free';
+        }
+        currentPrompt = seed;
+        promptEl.textContent = seed;
+        setStatus('Carried in from the Chaos Room. The page is yours.', 'saved');
+      }
+    } catch (e) {}
   </script>
   <script src="js/house-nav.js"></script>
 </body>
