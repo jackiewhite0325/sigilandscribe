@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="house.css?v=8">
+  <link rel="stylesheet" href="house.css?v=9">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -51,6 +51,16 @@
     <p class="mantra">The human mind is not built to fit into a single box, and neither is our creativity. We do not separate science from story, or wellness from creation.</p>
     <p class="pearl-host">Pearl keeps the front door warm. She will not follow you from room to room, she simply helps you choose a door. <a href="pearl.html">Meet Pearl</a>.</p>
     <p class="proof">Books · quiet tools · a workshop · a dog who still shapes the rooms</p>
+
+    <section class="gift-meter gift-meter-home" aria-label="St. Jude gift meter">
+      <h3>The St. Jude gift</h3>
+      <div class="gift-amount" id="gift-amount">$0.00</div>
+      <div class="gift-bar" role="img" id="gift-bar-label" aria-label="St. Jude gift meter">
+        <div class="gift-fill" id="gift-fill"></div>
+      </div>
+      <p class="countdown-line">Next gift in <span class="countdown-clock" id="countdown-clock"></span> &middot; <span id="countdown-date"></span></p>
+      <p class="gift-more"><a href="muffin-series.html#donation-heading">See the full gift meter</a></p>
+    </section>
 
     <p class="prompt">Come explore</p>
 
@@ -143,5 +153,6 @@
     </div>
   </footer>
   <script src="js/house-nav.js"></script>
+  <script src="js/gift-meter.js"></script>
 </body>
 </html>
