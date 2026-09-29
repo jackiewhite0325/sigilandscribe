@@ -82,6 +82,7 @@
     margin: 0 auto 22px;
     display: block;
     width: fit-content;
+    cursor: pointer;
   }
 
   /* Hero */
@@ -680,7 +681,7 @@
   <p class="eyebrow">Play Area · Visit Muffin</p>
   <h1>Muffin’s Corner</h1>
   <p class="lead">A free playroom for little ones. Explore Muffin’s world, tap a place to play, and try letters, treats, wiggles, feelings, pretend, and stories.</p>
-  <span class="age-pill">Ages 3 to 7 · Free</span>
+  <button type="button" class="age-pill" id="age-pill" aria-label="About this playroom">Ages 3 to 7 · Free</button>
 
   <!-- HERO -->
   <section class="hero" aria-label="Welcome from Muffin">
@@ -1041,6 +1042,7 @@
     story4: 'images/muffin-corner/audio/story-4.mp3',
     worldWelcome: 'images/muffin-corner/audio/world-welcome.mp3',
     heroWoohHi: 'images/muffin-corner/audio/hero-wooh-hi.mp3',
+    agePill: 'images/muffin-corner/audio/age-pill.mp3',
     storyTitle0: 'images/muffin-corner/audio/story-title-0.mp3',
     storyTitle1: 'images/muffin-corner/audio/story-title-1.mp3',
     storyTitle2: 'images/muffin-corner/audio/story-title-2.mp3',
@@ -1048,7 +1050,7 @@
     storyTitle4: 'images/muffin-corner/audio/story-title-4.mp3'
   };
 
-  var AUDIO_VERSION = '20260929f';
+  var AUDIO_VERSION = '20260929g';
   function playAudio(src) {
     if (!soundOn || !src) return;
     try {
@@ -1173,6 +1175,9 @@
   // --- World welcome from Muffin ---
   document.getElementById('world-hello').addEventListener('click', function () {
     playAudio(AUDIO.worldWelcome);
+  });
+  document.getElementById('age-pill').addEventListener('click', function () {
+    playAudio(AUDIO.agePill);
   });
 
   // Tiny-human rule: Muffin's photo and every room picture can be tapped; Muffin says hello again.
