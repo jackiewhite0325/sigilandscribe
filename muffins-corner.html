@@ -38,9 +38,9 @@
     color: var(--mc-ink);
   }
   .corner {
-    max-width: 720px;
+    max-width: 820px;
     margin: 0 auto;
-    padding: 28px 16px 64px;
+    padding: 24px 16px 64px;
   }
   .eyebrow {
     font-family: 'Courier Prime', monospace;
@@ -49,24 +49,26 @@
     text-transform: uppercase;
     color: var(--mc-amber-deep);
     margin: 0 0 8px;
+    text-align: center;
   }
   .corner > h1 {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.7rem, 5vw, 2.15rem);
+    font-size: clamp(1.85rem, 5.5vw, 2.4rem);
     font-weight: 600;
-    margin: 0 0 10px;
+    margin: 0 0 8px;
     color: var(--mc-ink);
+    text-align: center;
   }
   .lead {
     font-family: system-ui, -apple-system, sans-serif;
     font-size: 1.05rem;
     line-height: 1.55;
     color: var(--mc-muted);
-    max-width: 36rem;
-    margin: 0 0 10px;
+    max-width: 34rem;
+    margin: 0 auto 14px;
+    text-align: center;
   }
   .age-pill {
-    display: inline-block;
     font-family: system-ui, sans-serif;
     font-size: 0.78rem;
     font-weight: 700;
@@ -77,85 +79,173 @@
     border: 1px solid rgba(184, 135, 79, 0.35);
     border-radius: 999px;
     padding: 8px 14px;
-    margin: 8px 0 20px;
+    margin: 0 auto 22px;
+    display: block;
+    width: fit-content;
   }
-  .muffin-hello {
+
+  /* Hero */
+  .hero {
     background: var(--mc-paper);
-    border: 2px solid rgba(184, 135, 79, 0.35);
-    border-radius: 16px;
-    padding: 18px 18px;
+    border: 2px solid rgba(184, 135, 79, 0.4);
+    border-radius: 20px;
+    padding: 20px 18px 22px;
     margin-bottom: 28px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(107, 74, 52, 0.06);
+  }
+  .hero-photo {
+    width: min(220px, 55vw);
+    height: auto;
+    border-radius: 18px;
+    border: 3px solid var(--mc-amber);
+    box-shadow: 0 10px 28px rgba(107, 74, 52, 0.12);
+    display: block;
+    margin: 0 auto 14px;
+    object-fit: cover;
+  }
+  .hero-hello {
     font-family: system-ui, sans-serif;
-    font-size: 1rem;
+    font-size: 1.08rem;
     line-height: 1.5;
     color: var(--mc-ink);
+    margin: 0 0 14px;
   }
-  .muffin-hello strong { color: var(--mc-amber-deep); }
-
-  /* Station nav */
-  .station-nav {
+  .hero-hello strong { color: var(--mc-amber-deep); }
+  .sound-bar {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 22px;
   }
-  .station-nav a {
+  .sound-btn {
     font-family: system-ui, sans-serif;
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    text-decoration: none;
-    color: var(--mc-ink);
-    background: #fff;
-    border: 2px solid #e4dcc9;
+    min-height: 48px;
+    padding: 10px 18px;
     border-radius: 999px;
-    padding: 10px 14px;
-    min-height: 44px;
+    border: 2px solid var(--mc-amber-deep);
+    background: #fff;
+    color: var(--mc-ink);
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
+    gap: 8px;
   }
-  .station-nav a:hover,
-  .station-nav a:focus-visible {
-    border-color: var(--mc-amber-deep);
+  .sound-btn:hover, .sound-btn:focus-visible {
     background: #fff8ee;
   }
-  .station-nav a:focus-visible {
+  .sound-btn:focus-visible {
     outline: 3px solid var(--mc-amber);
     outline-offset: 2px;
+  }
+  .sound-btn.is-muted {
+    border-color: #c4b8a8;
+    color: var(--mc-muted);
+    background: #f7f3ec;
+  }
+  .sound-hint {
+    font-size: 0.82rem;
+    color: var(--mc-muted);
+  }
+
+  /* Door grid */
+  .doors-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mc-amber-deep);
+    text-align: center;
+    margin: 0 0 12px;
+  }
+  .door-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  @media (min-width: 560px) {
+    .door-grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  }
+  .door-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--mc-paper);
+    border: 2px solid #e4dcc9;
+    border-radius: 18px;
+    padding: 10px 10px 12px;
+    text-align: center;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .door-card:hover, .door-card:focus-visible {
+    border-color: var(--mc-amber-deep);
+    box-shadow: 0 8px 22px rgba(107, 74, 52, 0.1);
+    transform: translateY(-3px);
+  }
+  .door-card:focus-visible {
+    outline: 3px solid var(--mc-amber);
+    outline-offset: 3px;
+  }
+  .door-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .door-card .door-name {
+    font-family: system-ui, sans-serif;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--mc-ink);
+    margin: 0;
   }
 
   /* Stations */
   .station {
     background: var(--mc-paper);
     border: 2px solid #e4dcc9;
-    border-radius: 16px;
+    border-radius: 18px;
     padding: 22px 18px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
+    scroll-margin-top: 88px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .station.is-active {
+    border-color: var(--mc-amber-deep);
+    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.25);
   }
   .station h2 {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     font-weight: 600;
     margin: 0 0 6px;
     color: var(--mc-ink);
   }
   .station .how {
     font-family: system-ui, sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     color: var(--mc-muted);
     margin: 0 0 16px;
     line-height: 1.45;
   }
   .play-feedback {
-    min-height: 1.4em;
+    min-height: 1.5em;
     font-family: system-ui, sans-serif;
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     font-weight: 600;
     color: var(--mc-sage);
-    margin: 12px 0 0;
+    margin: 14px 0 0;
     text-align: center;
   }
 
-  /* Letter station */
+  /* Letters */
   .letter-row {
     display: flex;
     flex-wrap: wrap;
@@ -163,22 +253,23 @@
     justify-content: center;
   }
   .letter-btn {
-    width: 56px;
-    height: 56px;
-    min-width: 56px;
-    min-height: 56px;
-    border-radius: 14px;
+    width: 62px;
+    height: 62px;
+    min-width: 62px;
+    min-height: 62px;
+    border-radius: 16px;
     border: 2px solid var(--mc-amber-deep);
     background: #fff;
     font-family: system-ui, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.65rem;
     font-weight: 700;
     color: var(--mc-ink);
     cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
   }
-  .letter-btn:hover,
-  .letter-btn:focus-visible {
+  .letter-btn:hover, .letter-btn:focus-visible {
     background: #fff3e0;
+    transform: scale(1.06);
   }
   .letter-btn:focus-visible {
     outline: 3px solid var(--mc-amber);
@@ -187,27 +278,31 @@
   .letter-btn.is-on {
     background: var(--mc-amber);
     color: #3A2E24;
+    transform: scale(1.08);
   }
 
-  /* Number station */
-  .count-stage {
-    text-align: center;
-    margin-bottom: 14px;
-  }
+  /* Numbers / treats */
+  .count-stage { text-align: center; margin-bottom: 14px; }
   .treat-row {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     justify-content: center;
-    min-height: 52px;
+    min-height: 56px;
     margin-bottom: 12px;
   }
   .treat {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: radial-gradient(circle at 35% 30%, #f5d0a9, #c47a4a);
     border: 2px solid #8a5230;
+    animation: treatPop 0.35s ease;
+  }
+  @keyframes treatPop {
+    0% { transform: scale(0.3); opacity: 0; }
+    70% { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
   }
   .count-controls {
     display: flex;
@@ -217,11 +312,11 @@
   }
   .mc-btn {
     font-family: system-ui, sans-serif;
-    font-size: 1rem;
+    font-size: 1.02rem;
     font-weight: 600;
-    min-height: 48px;
+    min-height: 50px;
     padding: 12px 18px;
-    border-radius: 12px;
+    border-radius: 14px;
     border: 2px solid var(--mc-amber-deep);
     background: var(--mc-amber);
     color: #3A2E24;
@@ -242,13 +337,13 @@
   }
   .count-num {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     font-weight: 600;
     color: var(--mc-amber-deep);
     margin: 0 0 8px;
   }
 
-  /* Wiggle station */
+  /* Wiggles */
   .wiggle-moves {
     display: grid;
     gap: 10px;
@@ -260,7 +355,7 @@
     font-family: system-ui, sans-serif;
     font-size: 1.05rem;
     font-weight: 600;
-    min-height: 56px;
+    min-height: 58px;
     padding: 14px 16px;
     border-radius: 14px;
     border: 2px solid #e4dcc9;
@@ -268,11 +363,12 @@
     color: var(--mc-ink);
     cursor: pointer;
     text-align: left;
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
   }
-  .wiggle-btn:hover,
-  .wiggle-btn:focus-visible {
+  .wiggle-btn:hover, .wiggle-btn:focus-visible {
     border-color: var(--mc-sky);
     background: #f0f7fc;
+    transform: scale(1.02);
   }
   .wiggle-btn:focus-visible {
     outline: 3px solid var(--mc-sky);
@@ -296,18 +392,19 @@
     font-family: system-ui, sans-serif;
     font-size: 1rem;
     font-weight: 600;
-    min-height: 72px;
+    min-height: 76px;
     padding: 12px;
     border-radius: 14px;
     border: 2px solid #e4dcc9;
     background: #fff;
     color: var(--mc-ink);
     cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
   }
-  .feel-btn:hover,
-  .feel-btn:focus-visible {
+  .feel-btn:hover, .feel-btn:focus-visible {
     border-color: var(--mc-rose);
     background: #fdf0f3;
+    transform: scale(1.03);
   }
   .feel-btn:focus-visible {
     outline: 3px solid var(--mc-rose);
@@ -315,12 +412,12 @@
   }
   .feel-btn .emoji {
     display: block;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     margin-bottom: 4px;
     line-height: 1;
   }
 
-  /* Pretend */
+  /* Pretend / Vet */
   .pretend-list {
     list-style: none;
     margin: 0;
@@ -331,7 +428,7 @@
   }
   .pretend-list li {
     font-family: system-ui, sans-serif;
-    font-size: 1rem;
+    font-size: 1.02rem;
     line-height: 1.45;
     background: #fff;
     border: 2px dashed #e4dcc9;
@@ -349,132 +446,60 @@
   .story-box {
     background: #fff;
     border: 2px solid #e4dcc9;
-    border-radius: 12px;
-    padding: 16px;
+    border-radius: 14px;
+    padding: 18px;
     font-family: system-ui, sans-serif;
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     line-height: 1.55;
     color: var(--mc-ink);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
   .story-box .who {
     font-weight: 700;
     color: var(--mc-amber-deep);
   }
 
-  /* World + grown-up strip */
-  .world-door {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    color: inherit;
-    background: linear-gradient(180deg, #fff 0%, #fff8ee 100%);
-    border: 2px solid var(--mc-amber);
-    border-radius: 16px;
-    padding: 20px 18px;
-    margin: 28px 0 18px;
-  }
-  .world-door:hover,
-  .world-door:focus-visible {
-    border-color: var(--mc-amber-deep);
-    box-shadow: 0 6px 18px rgba(107, 74, 52, 0.08);
-  }
-  .world-door:focus-visible {
-    outline: 3px solid var(--mc-amber);
-    outline-offset: 3px;
-  }
-  .world-door .tag {
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--mc-amber-deep);
-    margin: 0 0 6px;
-  }
-  .world-door h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.25rem;
-    margin: 0 0 6px;
-  }
-  .world-door p {
-    font-family: system-ui, sans-serif;
-    font-size: 0.9rem;
-    color: var(--mc-muted);
-    margin: 0;
-    line-height: 1.45;
-  }
-  .world-links {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin: 14px 0 0;
-    padding: 0;
-  }
-  .world-links a {
-    display: inline-block;
-    padding: 8px 16px;
-    border-radius: 999px;
-    background: var(--mc-amber);
-    color: #fff;
-    text-decoration: none;
-    font-family: system-ui, sans-serif;
-    font-size: 0.9rem;
-  }
-  .world-links a:hover,
-  .world-links a:focus-visible {
-    background: var(--mc-amber-deep);
-  }
-
+  /* Grown-up strip */
   .grownup {
-    margin-top: 28px;
-    padding: 18px;
-    background: #fff;
+    background: #f7f3ec;
     border: 1px solid #e4dcc9;
-    border-radius: 12px;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 20px;
     font-family: system-ui, sans-serif;
-    font-size: 0.88rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
     color: var(--mc-muted);
-    line-height: 1.55;
   }
   .grownup h3 {
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--mc-amber-deep);
-    font-weight: 400;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--mc-ink);
     margin: 0 0 10px;
   }
-  .grownup p { margin: 0 0 10px; }
-  .grownup p:last-child { margin: 0; }
   .grownup a { color: var(--mc-amber-deep); }
-
   .back-row {
-    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
     font-family: system-ui, sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
-  .back-row a {
-    color: var(--mc-amber-deep);
-    text-decoration: none;
-    margin-right: 16px;
-  }
-  .back-row a:hover,
-  .back-row a:focus-visible { text-decoration: underline; }
-  .back-row a:focus-visible {
-    outline: 2px solid var(--mc-amber);
-    outline-offset: 3px;
-  }
+  .back-row a { color: var(--mc-amber-deep); font-weight: 600; }
 
+  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .letter-btn,
-    .mc-btn,
-    .wiggle-btn,
-    .feel-btn,
-    .world-door {
-      transition: none;
+    .door-card, .letter-btn, .wiggle-btn, .feel-btn, .treat {
+      transition: none !important;
+      animation: none !important;
+      transform: none !important;
+    }
+    .door-card:hover, .door-card:focus-visible,
+    .letter-btn:hover, .letter-btn:focus-visible,
+    .wiggle-btn:hover, .wiggle-btn:focus-visible,
+    .feel-btn:hover, .feel-btn:focus-visible {
+      transform: none !important;
     }
   }
 </style>
@@ -498,33 +523,62 @@
 <main class="corner">
   <p class="eyebrow">Play Area · Visit Muffin</p>
   <h1>Muffin’s Corner</h1>
-  <p class="lead">A free playroom for little ones. Tap, count, wiggle, name a feeling, and play pretend with Muffin. No accounts. No locks. Grown-ups can help when needed.</p>
+  <p class="lead">A free playroom for little ones. Tap a door, play with Muffin, and try letters, treats, wiggles, feelings, pretend, and stories.</p>
   <span class="age-pill">Ages 3 to 7 · Free</span>
 
-  <div class="muffin-hello" role="note">
-    <strong>Woof, hi!</strong> I’m Muffin. Pick a station below. You can play as long as you like. If you need a rest, that is okay too.
-  </div>
+  <!-- HERO -->
+  <section class="hero" aria-label="Welcome from Muffin">
+    <img class="hero-photo" src="images/muffin-corner/muffin-hero.jpg" width="220" height="220" alt="Muffin the pitbull puppy sitting and looking at you">
+    <p class="hero-hello"><strong>Woof! Hi!</strong> I’m Muffin. Pick a door below. You can play as long as you like. If you need a rest, that is okay too.</p>
+    <div class="sound-bar">
+      <button type="button" class="sound-btn" id="sound-toggle" aria-pressed="true">
+        <span id="sound-icon" aria-hidden="true">🔊</span>
+        <span id="sound-label">Sound on</span>
+      </button>
+      <span class="sound-hint">Tap me to turn sound on or off</span>
+    </div>
+  </section>
 
-  <nav class="station-nav" aria-label="Play stations">
-    <a href="#letters">Letters</a>
-    <a href="#numbers">Numbers</a>
-    <a href="#wiggles">Wiggles</a>
-    <a href="#feelings">Feelings</a>
-    <a href="#pretend">Pretend</a>
-    <a href="#story">Story</a>
+  <!-- DOOR GRID -->
+  <p class="doors-label">Choose a door</p>
+  <nav class="door-grid" aria-label="Play stations">
+    <a class="door-card" href="#letters" data-station="letters">
+      <img src="images/muffin-corner/door-letters.webp" alt="" width="280" height="360" loading="lazy">
+      <p class="door-name">Letters</p>
+    </a>
+    <a class="door-card" href="#numbers" data-station="numbers">
+      <img src="images/muffin-corner/door-treats.webp" alt="" width="280" height="360" loading="lazy">
+      <p class="door-name">Treats</p>
+    </a>
+    <a class="door-card" href="#wiggles" data-station="wiggles">
+      <img src="images/muffin-corner/door-wiggles.webp" alt="" width="280" height="360" loading="lazy">
+      <p class="door-name">Wiggles</p>
+    </a>
+    <a class="door-card" href="#feelings" data-station="feelings">
+      <img src="images/muffin-corner/door-feelings.webp" alt="" width="280" height="360" loading="lazy">
+      <p class="door-name">Feelings</p>
+    </a>
+    <a class="door-card" href="#pretend" data-station="pretend">
+      <img src="images/muffin-corner/door-vet.webp" alt="" width="280" height="360" loading="lazy">
+      <p class="door-name">Vet clinic</p>
+    </a>
+    <a class="door-card" href="#story" data-station="story">
+      <img src="images/muffin-corner/door-story.webp" alt="" width="280" height="360" loading="lazy">
+      <p class="door-name">Story</p>
+    </a>
   </nav>
 
   <!-- LETTERS -->
   <section class="station" id="letters" aria-labelledby="letters-h">
     <h2 id="letters-h">Letter paws</h2>
-    <p class="how">Tap a letter. Say its name out loud. Muffin is listening.</p>
+    <p class="how">Tap a letter. Hear its name. Say it out loud with Muffin.</p>
     <div class="letter-row" id="letter-row" role="group" aria-label="Letters A to J"></div>
     <p class="play-feedback" id="letter-feedback" aria-live="polite"></p>
   </section>
 
   <!-- NUMBERS -->
   <section class="station" id="numbers" aria-labelledby="numbers-h">
-    <h2 id="numbers-h">Count with Muffin</h2>
+    <h2 id="numbers-h">Count the treats</h2>
     <p class="how">Add a treat or take one away. Count out loud up to ten.</p>
     <div class="count-stage">
       <p class="count-num" id="count-num" aria-live="polite">0</p>
@@ -546,7 +600,7 @@
       <button type="button" class="wiggle-btn" data-move="Stretch tall like a morning stretch.">Stretch tall</button>
       <button type="button" class="wiggle-btn" data-move="Shake the wiggles out of your paws.">Shake the wiggles</button>
       <button type="button" class="wiggle-btn" data-move="Freeze! Hold still like a statue puppy.">Freeze</button>
-      <button type="button" class="wiggle-btn" data-move="March in place, left, right, left, right.">March in place</button>
+      <button type="button" class="wiggle-btn" data-move="March in place: left, right, left, right.">March in place</button>
       <button type="button" class="wiggle-btn" data-move="Soft tip-toes around the room.">Tip-toe walk</button>
       <button type="button" class="wiggle-btn" data-move="Big belly breath in… and slow breath out.">Belly breath</button>
     </div>
@@ -558,19 +612,19 @@
     <h2 id="feelings-h">How does Muffin feel?</h2>
     <p class="how">Tap a feeling. You can feel that way too. All feelings are welcome here.</p>
     <div class="feel-row" role="group" aria-label="Feelings">
-      <button type="button" class="feel-btn" data-feel="Happy, tail wags and warm sun."><span class="emoji" aria-hidden="true">😊</span>Happy</button>
-      <button type="button" class="feel-btn" data-feel="Tired, soft stretch and a cozy nap."><span class="emoji" aria-hidden="true">😴</span>Tired</button>
-      <button type="button" class="feel-btn" data-feel="Brave, a small step is still a step."><span class="emoji" aria-hidden="true">💪</span>Brave</button>
-      <button type="button" class="feel-btn" data-feel="Still, quiet body, quiet heart."><span class="emoji" aria-hidden="true">🌿</span>Still</button>
-      <button type="button" class="feel-btn" data-feel="Silly, giggles and goofy faces allowed."><span class="emoji" aria-hidden="true">🤪</span>Silly</button>
-      <button type="button" class="feel-btn" data-feel="Curious, what happens if we look closer?"><span class="emoji" aria-hidden="true">🔍</span>Curious</button>
-      <button type="button" class="feel-btn" data-feel="Sad, hugs help. You are not alone."><span class="emoji" aria-hidden="true">💙</span>Sad</button>
-      <button type="button" class="feel-btn" data-feel="Proud, you tried, and that matters."><span class="emoji" aria-hidden="true">⭐</span>Proud</button>
+      <button type="button" class="feel-btn" data-feel="Happy: tail wags and warm sun."><span class="emoji" aria-hidden="true">😊</span>Happy</button>
+      <button type="button" class="feel-btn" data-feel="Tired: soft stretch and a cozy nap."><span class="emoji" aria-hidden="true">😴</span>Tired</button>
+      <button type="button" class="feel-btn" data-feel="Brave: a small step is still a step."><span class="emoji" aria-hidden="true">💪</span>Brave</button>
+      <button type="button" class="feel-btn" data-feel="Still: quiet body, quiet heart."><span class="emoji" aria-hidden="true">🌿</span>Still</button>
+      <button type="button" class="feel-btn" data-feel="Silly: giggles and goofy faces allowed."><span class="emoji" aria-hidden="true">🤪</span>Silly</button>
+      <button type="button" class="feel-btn" data-feel="Curious: what happens if we look closer?"><span class="emoji" aria-hidden="true">🔍</span>Curious</button>
+      <button type="button" class="feel-btn" data-feel="Sad: hugs help. You are not alone."><span class="emoji" aria-hidden="true">💙</span>Sad</button>
+      <button type="button" class="feel-btn" data-feel="Proud: you tried, and that matters."><span class="emoji" aria-hidden="true">⭐</span>Proud</button>
     </div>
     <p class="play-feedback" id="feel-feedback" aria-live="polite"></p>
   </section>
 
-  <!-- PRETEND -->
+  <!-- PRETEND / VET -->
   <section class="station" id="pretend" aria-labelledby="pretend-h">
     <h2 id="pretend-h">Vet clinic</h2>
     <p class="how">Use a stuffed friend, a doll, or your hands. Follow the steps. No screen needed after you read them.</p>
@@ -592,30 +646,19 @@
       <span class="who">Muffin:</span> Once there was a small gray dog who loved pillows and people. When the wiggles came, her family stayed close. That was enough.
     </div>
     <button type="button" class="mc-btn" id="story-btn">Another tiny story</button>
-  </section>
-
-  <section class="world-door" aria-labelledby="world-h">
-    <p class="tag">Next door</p>
-    <h2 id="world-h">Muffin’s World</h2>
-    <p>More Muffin paths, out beyond this room.</p>
-    <ul class="world-links">
-      <li><a href="muffin-series.html">Series &amp; books</a></li>
-      <li><a href="muffin-memorial.html">Memorial</a></li>
-      <li><a href="muffin-wiggles.html">Wiggles</a></li>
-    </ul>
+    <button type="button" class="mc-btn ghost" id="story-speak" style="margin-left:8px;">Hear this story</button>
   </section>
 
   <div class="grownup">
     <h3>For grown-ups</h3>
-    <p><strong>This corner is free play only.</strong> It is not a book shop and not a catalogue. Series books and the donation commitment live on the <a href="muffin-series.html">Muffin the Pitbull&trade; Series</a> page in the Library.</p>
-    <p><strong>Donation language:</strong> 5% of net series royalties from the Muffin the Pitbull™ Series are donated every quarter to St. Jude Children’s Research Hospital. Update checkpoints: December 20, March 20, June 20, September 20. No dollar totals are shown here.</p>
+    <p><strong>This corner is free play only.</strong> It is not a book shop and not a catalogue. Series books and the donation commitment live on the Library series page.</p>
+    <p><strong>Donation language:</strong> 5% of net series royalties from the Muffin the Pitbull™ Series are donated every quarter to St. Jude Children's Research Hospital in Muffin's name. Update checkpoints: December 20, March 20, June 20, September 20. No dollar totals are shown here.</p>
     <p><strong>Newsletter</strong> (grown-up email signup, not for children to fill in alone): <a href="https://tally.so/r/GxWg8L" target="_blank" rel="noopener">Muffin Newsletter</a>.</p>
-    <p>Nothing here asks a child for a name, email, photo, or location.</p>
+    <p>Nothing here asks a child for a name, email, photo, or location. Sound uses recorded read-aloud files and only starts when a child taps.</p>
   </div>
 
   <p class="back-row">
     <a href="play.html">← Back to Play Area</a>
-    <a href="muffin-series.html">Series &amp; books →</a>
   </p>
 </main>
 
@@ -666,6 +709,110 @@
 <script src="js/house-nav.js"></script>
 <script>
 (function () {
+  // --- Sound system (recorded read-aloud only; never autoplay) ---
+  // Placeholders: drop MP3/OGG files into images/muffin-corner/audio/ (or audio/)
+  // and update the paths below. Until files exist, playAudio is a quiet no-op.
+  var soundOn = true;
+  var currentAudio = null;
+  var soundToggle = document.getElementById('sound-toggle');
+  var soundIcon = document.getElementById('sound-icon');
+  var soundLabel = document.getElementById('sound-label');
+
+  var AUDIO = {
+    // Letters
+    letterA: 'images/muffin-corner/audio/letter-a.mp3',
+    letterB: 'images/muffin-corner/audio/letter-b.mp3',
+    letterC: 'images/muffin-corner/audio/letter-c.mp3',
+    letterD: 'images/muffin-corner/audio/letter-d.mp3',
+    letterE: 'images/muffin-corner/audio/letter-e.mp3',
+    letterF: 'images/muffin-corner/audio/letter-f.mp3',
+    letterG: 'images/muffin-corner/audio/letter-g.mp3',
+    letterH: 'images/muffin-corner/audio/letter-h.mp3',
+    letterI: 'images/muffin-corner/audio/letter-i.mp3',
+    letterJ: 'images/muffin-corner/audio/letter-j.mp3',
+    // Count feedback (optional shared clips)
+    count0: 'images/muffin-corner/audio/count-0.mp3',
+    count1: 'images/muffin-corner/audio/count-1.mp3',
+    count2: 'images/muffin-corner/audio/count-2.mp3',
+    count3: 'images/muffin-corner/audio/count-3.mp3',
+    count4: 'images/muffin-corner/audio/count-4.mp3',
+    count5: 'images/muffin-corner/audio/count-5.mp3',
+    count6: 'images/muffin-corner/audio/count-6.mp3',
+    count7: 'images/muffin-corner/audio/count-7.mp3',
+    count8: 'images/muffin-corner/audio/count-8.mp3',
+    count9: 'images/muffin-corner/audio/count-9.mp3',
+    count10: 'images/muffin-corner/audio/count-10.mp3',
+    // Wiggles
+    wiggleStretch: 'images/muffin-corner/audio/wiggle-stretch.mp3',
+    wiggleShake: 'images/muffin-corner/audio/wiggle-shake.mp3',
+    wiggleFreeze: 'images/muffin-corner/audio/wiggle-freeze.mp3',
+    wiggleMarch: 'images/muffin-corner/audio/wiggle-march.mp3',
+    wiggleTiptoe: 'images/muffin-corner/audio/wiggle-tiptoe.mp3',
+    wiggleBreath: 'images/muffin-corner/audio/wiggle-breath.mp3',
+    // Feelings
+    feelHappy: 'images/muffin-corner/audio/feel-happy.mp3',
+    feelTired: 'images/muffin-corner/audio/feel-tired.mp3',
+    feelBrave: 'images/muffin-corner/audio/feel-brave.mp3',
+    feelStill: 'images/muffin-corner/audio/feel-still.mp3',
+    feelSilly: 'images/muffin-corner/audio/feel-silly.mp3',
+    feelCurious: 'images/muffin-corner/audio/feel-curious.mp3',
+    feelSad: 'images/muffin-corner/audio/feel-sad.mp3',
+    feelProud: 'images/muffin-corner/audio/feel-proud.mp3',
+    // Stories
+    story0: 'images/muffin-corner/audio/story-0.mp3',
+    story1: 'images/muffin-corner/audio/story-1.mp3',
+    story2: 'images/muffin-corner/audio/story-2.mp3',
+    story3: 'images/muffin-corner/audio/story-3.mp3',
+    story4: 'images/muffin-corner/audio/story-4.mp3'
+  };
+
+  function playAudio(src) {
+    if (!soundOn || !src) return;
+    try {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+      currentAudio = new Audio(src);
+      currentAudio.play().catch(function () {
+        // File not present yet or autoplay blocked; silent fail is intentional
+      });
+    } catch (e) {}
+  }
+
+  function stopAudio() {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      currentAudio = null;
+    }
+  }
+
+  soundToggle.addEventListener('click', function () {
+    soundOn = !soundOn;
+    soundToggle.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
+    soundToggle.classList.toggle('is-muted', !soundOn);
+    soundIcon.textContent = soundOn ? '🔊' : '🔇';
+    soundLabel.textContent = soundOn ? 'Sound on' : 'Sound off';
+    if (!soundOn) stopAudio();
+  });
+
+  // --- Door navigation + highlight ---
+  var stations = document.querySelectorAll('.station');
+  document.querySelectorAll('.door-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      stations.forEach(function (s) { s.classList.remove('is-active'); });
+      var id = card.getAttribute('data-station');
+      var target = document.getElementById(id);
+      if (target) {
+        setTimeout(function () {
+          target.classList.add('is-active');
+          setTimeout(function () { target.classList.remove('is-active'); }, 1600);
+        }, 300);
+      }
+    });
+  });
+
   // --- Letters A–J ---
   var letters = 'ABCDEFGHIJ'.split('');
   var letterRow = document.getElementById('letter-row');
@@ -674,6 +821,11 @@
     A: 'A, like apple', B: 'B, like ball', C: 'C, like cat', D: 'D, like dog',
     E: 'E, like egg', F: 'F, like fun', G: 'G, like go', H: 'H, like hug',
     I: 'I, like in', J: 'J, like jump'
+  };
+  var letterAudioKey = {
+    A: 'letterA', B: 'letterB', C: 'letterC', D: 'letterD',
+    E: 'letterE', F: 'letterF', G: 'letterG', H: 'letterH',
+    I: 'letterI', J: 'letterJ'
   };
   letters.forEach(function (L) {
     var b = document.createElement('button');
@@ -684,7 +836,9 @@
     b.addEventListener('click', function () {
       letterRow.querySelectorAll('.letter-btn').forEach(function (x) { x.classList.remove('is-on'); });
       b.classList.add('is-on');
-      letterFb.textContent = letterNames[L] || ('Letter ' + L);
+      var phrase = letterNames[L] || ('Letter ' + L);
+      letterFb.textContent = phrase;
+      playAudio(AUDIO[letterAudioKey[L]]);
     });
     letterRow.appendChild(b);
   });
@@ -694,7 +848,7 @@
   var treatRow = document.getElementById('treat-row');
   var countNum = document.getElementById('count-num');
   var countFb = document.getElementById('count-feedback');
-  function renderCount() {
+  function renderCount(playSound) {
     countNum.textContent = String(count);
     treatRow.innerHTML = '';
     for (var i = 0; i < count; i++) {
@@ -703,37 +857,68 @@
       t.setAttribute('aria-hidden', 'true');
       treatRow.appendChild(t);
     }
-    if (count === 0) countFb.textContent = 'No treats yet. Add one!';
-    else if (count === 10) countFb.textContent = 'Ten treats! High five!';
-    else countFb.textContent = 'You have ' + count + (count === 1 ? ' treat.' : ' treats.');
+    var msg;
+    if (count === 0) msg = 'No treats yet. Add one!';
+    else if (count === 10) msg = 'Ten treats! High five!';
+    else msg = 'You have ' + count + (count === 1 ? ' treat.' : ' treats.');
+    countFb.textContent = msg;
+    if (playSound) playAudio(AUDIO['count' + count]);
   }
   document.getElementById('count-add').addEventListener('click', function () {
-    if (count < 10) { count++; renderCount(); }
-    else countFb.textContent = 'Ten is the top for now. Start over to play again.';
+    if (count < 10) { count++; renderCount(true); }
+    else {
+      countFb.textContent = 'Ten is the top for now. Start over to play again.';
+    }
   });
   document.getElementById('count-sub').addEventListener('click', function () {
-    if (count > 0) { count--; renderCount(); }
+    if (count > 0) { count--; renderCount(true); }
   });
   document.getElementById('count-reset').addEventListener('click', function () {
-    count = 0; renderCount();
+    count = 0; renderCount(true);
   });
-  renderCount();
+  // initial silent render
+  countNum.textContent = '0';
+  countFb.textContent = 'No treats yet. Add one!';
 
   // --- Wiggles ---
   var wiggleFb = document.getElementById('wiggle-feedback');
+  var wiggleAudio = {
+    'Stretch tall like a morning stretch.': 'wiggleStretch',
+    'Shake the wiggles out of your paws.': 'wiggleShake',
+    'Freeze! Hold still like a statue puppy.': 'wiggleFreeze',
+    'March in place: left, right, left, right.': 'wiggleMarch',
+    'Soft tip-toes around the room.': 'wiggleTiptoe',
+    'Big belly breath in… and slow breath out.': 'wiggleBreath'
+  };
   document.querySelectorAll('.wiggle-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       document.querySelectorAll('.wiggle-btn').forEach(function (x) { x.classList.remove('is-active'); });
       btn.classList.add('is-active');
-      wiggleFb.textContent = btn.getAttribute('data-move') || '';
+      var move = btn.getAttribute('data-move') || '';
+      wiggleFb.textContent = move;
+      var key = wiggleAudio[move];
+      if (key) playAudio(AUDIO[key]);
     });
   });
 
   // --- Feelings ---
   var feelFb = document.getElementById('feel-feedback');
+  var feelAudio = {
+    'Happy: tail wags and warm sun.': 'feelHappy',
+    'Tired: soft stretch and a cozy nap.': 'feelTired',
+    'Brave: a small step is still a step.': 'feelBrave',
+    'Still: quiet body, quiet heart.': 'feelStill',
+    'Silly: giggles and goofy faces allowed.': 'feelSilly',
+    'Curious: what happens if we look closer?': 'feelCurious',
+    'Sad: hugs help. You are not alone.': 'feelSad',
+    'Proud: you tried, and that matters.': 'feelProud'
+  };
   document.querySelectorAll('.feel-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      feelFb.textContent = btn.getAttribute('data-feel') || '';
+      var feel = btn.getAttribute('data-feel') || '';
+      feelFb.textContent = feel;
+      var key = feelAudio[feel];
+      if (key) playAudio(AUDIO[key]);
     });
   });
 
@@ -742,15 +927,21 @@
     { who: 'Muffin', text: 'Once there was a small gray dog who loved pillows and people. When the wiggles came, her family stayed close. That was enough.' },
     { who: 'Muffin', text: 'On a sunny morning Muffin found a soft sock. She did not need the whole world, just one cozy thing and a friend nearby.' },
     { who: 'Friend', text: '“Muffin,” said the child, “I feel big feelings today.” Muffin sat close. Sitting close is a kind of answer.' },
-    { who: 'Muffin', text: 'Some days the body shakes. Some days it rests. Both days Muffin was still Muffin, brave, small, and loved.' },
+    { who: 'Muffin', text: 'Some days the body shakes. Some days it rests. Both days Muffin was still Muffin: brave, small, and loved.' },
     { who: 'Muffin', text: 'The pillow tug-of-war was serious business. Muffin dug in, then shared a victory nose-boop. Play can be fierce and kind.' }
   ];
   var storyIdx = 0;
   var storyBox = document.getElementById('story-box');
+  function showStory(idx) {
+    var s = stories[idx];
+    storyBox.innerHTML = '<span class="who">' + s.who + ':</span> ' + s.text;
+  }
   document.getElementById('story-btn').addEventListener('click', function () {
     storyIdx = (storyIdx + 1) % stories.length;
-    var s = stories[storyIdx];
-    storyBox.innerHTML = '<span class="who">' + s.who + ':</span> ' + s.text;
+    showStory(storyIdx);
+  });
+  document.getElementById('story-speak').addEventListener('click', function () {
+    playAudio(AUDIO['story' + storyIdx]);
   });
 })();
 </script>
