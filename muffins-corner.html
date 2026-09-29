@@ -161,52 +161,80 @@
     text-align: center;
     margin: 0 0 12px;
   }
-  .door-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-bottom: 32px;
-  }
-  @media (min-width: 560px) {
-    .door-grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-  }
-  .door-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    background: var(--mc-paper);
+  .world {
     border: 2px solid #e4dcc9;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--mc-paper);
+    margin-bottom: 28px;
+    box-shadow: 0 8px 24px rgba(107, 74, 52, 0.06);
+  }
+  .world-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .world-scene {
+    position: relative;
+    min-width: 640px;
+  }
+  .world-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .place-btn {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 253, 248, 0.95);
+    border: 3px solid var(--mc-amber-deep);
     border-radius: 18px;
-    padding: 10px 10px 12px;
-    text-align: center;
-    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    padding: 8px 8px 7px;
     cursor: pointer;
-    min-height: 44px;
+    min-width: 78px;
+    min-height: 78px;
+    box-shadow: 0 6px 18px rgba(107, 74, 52, 0.2);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
-  .door-card:hover, .door-card:focus-visible {
-    border-color: var(--mc-amber-deep);
-    box-shadow: 0 8px 22px rgba(107, 74, 52, 0.1);
-    transform: translateY(-3px);
+  .place-btn:hover, .place-btn:focus-visible {
+    transform: translate(-50%, -50%) scale(1.07);
+    box-shadow: 0 10px 26px rgba(107, 74, 52, 0.26);
   }
-  .door-card:focus-visible {
+  .place-btn:focus-visible {
     outline: 3px solid var(--mc-amber);
     outline-offset: 3px;
   }
-  .door-card img {
-    width: 100%;
-    height: auto;
+  .place-btn img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
     border-radius: 12px;
     display: block;
-    margin-bottom: 8px;
   }
-  .door-card .door-name {
+  .place-btn span {
     font-family: system-ui, sans-serif;
-    font-size: 0.98rem;
+    font-size: 0.82rem;
     font-weight: 700;
     color: var(--mc-ink);
+    line-height: 1.1;
+  }
+  .world-foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 14px 14px;
+  }
+  .world-hint {
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: var(--mc-muted);
     margin: 0;
   }
-
   /* Stations */
   .station {
     background: var(--mc-paper);
@@ -490,12 +518,12 @@
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .door-card, .letter-btn, .wiggle-btn, .feel-btn, .treat {
+    .place-btn, .letter-btn, .wiggle-btn, .feel-btn, .treat {
       transition: none !important;
       animation: none !important;
       transform: none !important;
     }
-    .door-card:hover, .door-card:focus-visible,
+    .place-btn:hover, .place-btn:focus-visible,
     .letter-btn:hover, .letter-btn:focus-visible,
     .wiggle-btn:hover, .wiggle-btn:focus-visible,
     .feel-btn:hover, .feel-btn:focus-visible {
@@ -523,13 +551,13 @@
 <main class="corner">
   <p class="eyebrow">Play Area · Visit Muffin</p>
   <h1>Muffin’s Corner</h1>
-  <p class="lead">A free playroom for little ones. Tap a door, play with Muffin, and try letters, treats, wiggles, feelings, pretend, and stories.</p>
+  <p class="lead">A free playroom for little ones. Explore Muffin’s world, tap a place to play, and try letters, treats, wiggles, feelings, pretend, and stories.</p>
   <span class="age-pill">Ages 3 to 7 · Free</span>
 
   <!-- HERO -->
   <section class="hero" aria-label="Welcome from Muffin">
     <img class="hero-photo" src="images/muffin-corner/muffin-hero.jpg" width="220" height="220" alt="Muffin the pitbull puppy sitting and looking at you">
-    <p class="hero-hello"><strong>Woof! Hi!</strong> I’m Muffin. Pick a door below. You can play as long as you like. If you need a rest, that is okay too.</p>
+    <p class="hero-hello"><strong>Woof! Hi!</strong> I’m Muffin. Come explore my world below. You can play as long as you like. If you need a rest, that is okay too.</p>
     <div class="sound-bar">
       <button type="button" class="sound-btn" id="sound-toggle" aria-pressed="true">
         <span id="sound-icon" aria-hidden="true">🔊</span>
@@ -539,34 +567,43 @@
     </div>
   </section>
 
-  <!-- DOOR GRID -->
-  <p class="doors-label">Choose a door</p>
-  <nav class="door-grid" aria-label="Play stations">
-    <a class="door-card" href="#letters" data-station="letters">
-      <img src="images/muffin-corner/door-letters.webp" alt="" width="280" height="360" loading="lazy">
-      <p class="door-name">Letters</p>
-    </a>
-    <a class="door-card" href="#numbers" data-station="numbers">
-      <img src="images/muffin-corner/door-treats.webp" alt="" width="280" height="360" loading="lazy">
-      <p class="door-name">Treats</p>
-    </a>
-    <a class="door-card" href="#wiggles" data-station="wiggles">
-      <img src="images/muffin-corner/door-wiggles.webp" alt="" width="280" height="360" loading="lazy">
-      <p class="door-name">Wiggles</p>
-    </a>
-    <a class="door-card" href="#feelings" data-station="feelings">
-      <img src="images/muffin-corner/door-feelings.webp" alt="" width="280" height="360" loading="lazy">
-      <p class="door-name">Feelings</p>
-    </a>
-    <a class="door-card" href="#pretend" data-station="pretend">
-      <img src="images/muffin-corner/door-vet.webp" alt="" width="280" height="360" loading="lazy">
-      <p class="door-name">Vet clinic</p>
-    </a>
-    <a class="door-card" href="#story" data-station="story">
-      <img src="images/muffin-corner/door-story.webp" alt="" width="280" height="360" loading="lazy">
-      <p class="door-name">Story</p>
-    </a>
-  </nav>
+  <!-- WORLD MAP -->
+  <p class="doors-label">Muffin’s world: tap a place to visit</p>
+  <section class="world" aria-label="Muffin's world map">
+    <div class="world-scroll">
+      <div class="world-scene">
+        <img class="world-img" src="images/muffin-corner/muffin-world.webp" alt="Muffin’s sunny backyard world: a letter garden, a treat stand, a wiggle meadow, a cozy porch, a little vet clinic, and a story nook under a big tree.">
+        <button type="button" class="place-btn" style="left:7%;top:60%" data-station="letters" aria-label="Visit the Letter Garden">
+          <img src="images/muffin-corner/door-letters.webp" alt="" loading="lazy">
+          <span>Letters</span>
+        </button>
+        <button type="button" class="place-btn" style="left:24%;top:58%" data-station="numbers" aria-label="Visit the Treat Stand">
+          <img src="images/muffin-corner/door-treats.webp" alt="" loading="lazy">
+          <span>Treats</span>
+        </button>
+        <button type="button" class="place-btn" style="left:47%;top:62%" data-station="wiggles" aria-label="Visit the Wiggle Meadow">
+          <img src="images/muffin-corner/door-wiggles.webp" alt="" loading="lazy">
+          <span>Wiggles</span>
+        </button>
+        <button type="button" class="place-btn" style="left:67%;top:58%" data-station="feelings" aria-label="Visit the Feelings Porch">
+          <img src="images/muffin-corner/door-feelings.webp" alt="" loading="lazy">
+          <span>Feelings</span>
+        </button>
+        <button type="button" class="place-btn" style="left:80%;top:58%" data-station="pretend" aria-label="Visit the Vet Clinic">
+          <img src="images/muffin-corner/door-vet.webp" alt="" loading="lazy">
+          <span>Vet clinic</span>
+        </button>
+        <button type="button" class="place-btn" style="left:93%;top:60%" data-station="story" aria-label="Visit the Story Nook">
+          <img src="images/muffin-corner/door-story.webp" alt="" loading="lazy">
+          <span>Story</span>
+        </button>
+      </div>
+    </div>
+    <div class="world-foot">
+      <span class="world-hint">Swipe to look around, then tap a place.</span>
+      <button type="button" class="mc-btn ghost" id="world-hello">👋 Say hi, Muffin</button>
+    </div>
+  </section>
 
   <!-- LETTERS -->
   <section class="station" id="letters" aria-labelledby="letters-h">
@@ -763,7 +800,8 @@
     story1: 'images/muffin-corner/audio/story-1.mp3',
     story2: 'images/muffin-corner/audio/story-2.mp3',
     story3: 'images/muffin-corner/audio/story-3.mp3',
-    story4: 'images/muffin-corner/audio/story-4.mp3'
+    story4: 'images/muffin-corner/audio/story-4.mp3',
+    worldWelcome: 'images/muffin-corner/audio/world-welcome.mp3'
   };
 
   function playAudio(src) {
@@ -797,9 +835,9 @@
     if (!soundOn) stopAudio();
   });
 
-  // --- Door navigation + highlight ---
+  // --- World place navigation + highlight ---
   var stations = document.querySelectorAll('.station');
-  document.querySelectorAll('.door-card').forEach(function (card) {
+  document.querySelectorAll('.place-btn').forEach(function (card) {
     card.addEventListener('click', function () {
       stations.forEach(function (s) { s.classList.remove('is-active'); });
       var id = card.getAttribute('data-station');
@@ -811,6 +849,11 @@
         }, 300);
       }
     });
+  });
+
+  // --- World welcome from Muffin ---
+  document.getElementById('world-hello').addEventListener('click', function () {
+    playAudio(AUDIO.worldWelcome);
   });
 
   // --- Letters A–J ---
