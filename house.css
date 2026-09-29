@@ -1105,3 +1105,80 @@
     transform: none;
   }
 }
+
+/* St. Jude gift meter (shared by index.html and muffin-series.html).
+   Public display shows the gift amount only: no sales counts, no earnings. */
+.gift-meter {
+  margin: 18px 0 6px;
+  padding: 16px 18px;
+  background: #fdf9f0;
+  border: 1px dashed rgba(126,143,118,0.5);
+  border-radius: 8px;
+  text-align: center;
+}
+.gift-meter h3 {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin: 0 0 6px;
+  font-weight: 400;
+}
+.gift-amount {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2rem;
+  color: var(--walnut-deep);
+  margin: 2px 0 10px;
+}
+.gift-bar {
+  height: 14px;
+  background: #efe7d3;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.gift-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #c98f4e, #a86a2c);
+  border-radius: 7px;
+  transition: width 1s ease;
+}
+.gift-scale {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.68rem;
+  color: #8a8272;
+  margin-top: 4px;
+}
+.gift-updated {
+  font-size: 0.75rem !important;
+  color: #8a8272 !important;
+  margin: 6px 0 0 !important;
+}
+.gift-countdown { margin: 14px 0 4px; text-align: center; }
+.gift-countdown h3 {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin: 0 0 6px;
+  font-weight: 400;
+}
+.countdown-date { font-size: 0.85rem !important; color: #5a5348 !important; margin: 0 0 4px !important; }
+.countdown-clock {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.15rem;
+  color: var(--walnut-deep);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+/* Compact homepage variant */
+.gift-meter-home { max-width: 520px; margin: 20px auto 8px; }
+.gift-meter-home .gift-amount { font-size: 1.6rem; }
+.gift-meter-home .countdown-clock { font-size: 0.95rem; }
+.countdown-line { font-size: 0.85rem; color: #5a5348; margin: 10px 0 2px; }
+.gift-more { font-size: 0.8rem; margin: 4px 0 0; }
+.gift-more a { color: var(--amber-deep); }
