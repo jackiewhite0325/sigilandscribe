@@ -656,6 +656,8 @@
   .treat.counted { box-shadow: 0 0 0 3px var(--mc-amber-deep); }
   .tap-photo { cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .tap-photo:active { transform: scale(.97); }
+  /* The playroom keeps its own doors; the house footer stays outside. */
+  .house-footer { display: none; }
 </style>
 </head>
 <body>
@@ -682,7 +684,7 @@
 
   <!-- HERO -->
   <section class="hero" aria-label="Welcome from Muffin">
-    <img class="hero-photo tap-photo" role="button" tabindex="0" title="Say hi, Muffin" aria-label="Say hi to Muffin. Plays the welcome hello." src="images/muffin-corner/muffin-hero.jpg" width="220" height="220" alt="Muffin the pitbull puppy sitting and looking at you">
+    <img class="hero-photo tap-photo" role="button" tabindex="0" title="Say hi, Muffin" aria-label="Say hi to Muffin. Muffin says wooh hi." src="images/muffin-corner/muffin-hero.jpg" width="220" height="220" alt="Muffin the pitbull puppy sitting and looking at you">
     <p class="hero-hello"><strong>Woof! Hi!</strong> I’m Muffin. Come explore my world below. You can play as long as you like. If you need a rest, that is okay too.</p>
     <div class="sound-bar">
       <button type="button" class="sound-btn" id="sound-toggle" aria-pressed="true">
@@ -1038,6 +1040,7 @@
     story3: 'images/muffin-corner/audio/story-3.mp3',
     story4: 'images/muffin-corner/audio/story-4.mp3',
     worldWelcome: 'images/muffin-corner/audio/world-welcome.mp3',
+    heroWoohHi: 'images/muffin-corner/audio/hero-wooh-hi.mp3',
     storyTitle0: 'images/muffin-corner/audio/story-title-0.mp3',
     storyTitle1: 'images/muffin-corner/audio/story-title-1.mp3',
     storyTitle2: 'images/muffin-corner/audio/story-title-2.mp3',
@@ -1045,7 +1048,7 @@
     storyTitle4: 'images/muffin-corner/audio/story-title-4.mp3'
   };
 
-  var AUDIO_VERSION = '20260929e';
+  var AUDIO_VERSION = '20260929f';
   function playAudio(src) {
     if (!soundOn || !src) return;
     try {
@@ -1181,7 +1184,7 @@
     });
   }
   var heroPhoto = document.querySelector('.hero-photo');
-  if (heroPhoto) tapSpeaks(heroPhoto, function () { return AUDIO.worldWelcome; });
+  if (heroPhoto) tapSpeaks(heroPhoto, function () { return AUDIO.heroWoohHi; });
   document.querySelectorAll('.room-art').forEach(function (art) {
     tapSpeaks(art, function () {
       var room = art.closest('.room');
