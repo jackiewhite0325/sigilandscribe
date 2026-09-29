@@ -1020,6 +1020,10 @@
     feelCurious: 'images/muffin-corner/audio/feel-curious.mp3',
     feelSad: 'images/muffin-corner/audio/feel-sad.mp3',
     feelProud: 'images/muffin-corner/audio/feel-proud.mp3',
+    // Vet patients
+    patientBear: 'images/muffin-corner/audio/patient-bear.mp3',
+    patientBunny: 'images/muffin-corner/audio/patient-bunny.mp3',
+    patientDino: 'images/muffin-corner/audio/patient-dino.mp3',
     // Stories
     story0: 'images/muffin-corner/audio/story-0.mp3',
     story1: 'images/muffin-corner/audio/story-1.mp3',
@@ -1138,11 +1142,14 @@
 
   // --- Vet clinic: choose today's patient ---
   var patientFb = document.getElementById('patient-feedback');
+  var patientAudio = { Bear: 'patientBear', Bunny: 'patientBunny', Dino: 'patientDino' };
   document.querySelectorAll('[data-patient]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       document.querySelectorAll('[data-patient]').forEach(function (b) { b.classList.remove('is-active'); });
       btn.classList.add('is-active');
-      if (patientFb) patientFb.textContent = "Today's patient: " + btn.getAttribute('data-patient');
+      var p = btn.getAttribute('data-patient');
+      if (patientFb) patientFb.textContent = "Today's patient: " + p;
+      playAudio(AUDIO[patientAudio[p]]);
     });
   });
 
@@ -1159,8 +1166,8 @@
     A: 'A says ah, like apple', B: 'B says buh, like ball', C: 'C says kuh, like cat',
     D: 'D says duh, like dog', E: 'E says eh, like egg', F: 'F says fff, like fun',
     G: 'G says guh, like go', H: 'H says huh, like hug', I: 'I says ih, like in',
-    J: 'J says juh, like jump', K: 'K says kuh, like kite', L: 'L says lll, like lion',
-    M: 'M says mmm, like moon', N: 'N says nnn, like nest', O: 'O says oh, like octopus',
+    J: 'J says juh, like jump', K: 'K says kuh, like kite', L: 'L says lll, like Luna',
+    M: 'M says mmm, like Muffin', N: 'N says nnn, like nest', O: 'O says oh, like octopus',
     P: 'P says puh, like pig', Q: 'Q says kwuh, like queen', R: 'R says rrr, like rabbit',
     S: 'S says sss, like sun', T: 'T says tuh, like tiger', U: 'U says uh, like umbrella',
     V: 'V says vvv, like van', W: 'W says wuh, like whale', X: 'X says ks, like fox',
