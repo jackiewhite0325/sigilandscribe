@@ -628,6 +628,8 @@
     outline-offset: 2px;
   }
   .vet-step-btn.is-playing { background: #fdf6ec; }
+  .vet-step-btn.vet-courage { border-color: var(--mc-rose); }
+  .vet-step-btn.vet-courage .step { background: var(--mc-rose); }
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
@@ -784,8 +786,9 @@
       <button type="button" class="vet-step-btn" data-vet-step="3"><span class="step">3</span><span>A pretend bandage or a soft blanket.</span></button>
       <button type="button" class="vet-step-btn" data-vet-step="4"><span class="step">4</span><span>Water and rest. “You are safe.”</span></button>
       <button type="button" class="vet-step-btn" data-vet-step="5"><span class="step">5</span><span>A thank-you hug or high-five.</span></button>
+      <button type="button" class="vet-step-btn vet-courage" data-vet-step="courage"><span class="step">♥</span><span>Care is a kind of courage.</span></button>
     </div>
-    <p class="play-feedback" id="pretend-feedback">Care is a kind of courage.</p>
+
   </section>
 
   <!-- STORY -->
@@ -1081,7 +1084,8 @@
     2: 'images/muffin-corner/audio/vet-step2.mp3',
     3: 'images/muffin-corner/audio/vet-step3.mp3',
     4: 'images/muffin-corner/audio/vet-step4.mp3',
-    5: 'images/muffin-corner/audio/vet-step5.mp3'
+    5: 'images/muffin-corner/audio/vet-step5.mp3',
+    courage: 'images/muffin-corner/audio/vet-courage.mp3'
   };
   document.querySelectorAll('[data-vet-step]').forEach(function (btn) {
     btn.addEventListener('click', function () {
