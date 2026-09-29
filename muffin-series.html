@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="book.css">
-  <link rel="stylesheet" href="house.css?v=9">
+  <link rel="stylesheet" href="house.css?v=10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -37,13 +37,6 @@
  color: var(--walnut-deep);
  margin: 8px 0 10px;
  line-height: 1.15;
- }
- .series-hero .lead {
- font-size: 15.5px;
- line-height: 1.7;
- color: #4a4a4a;
- max-width: 560px;
- margin: 0 auto 18px;
  }
  .series-stats {
  display: flex;
@@ -252,7 +245,6 @@
 <section class="series-hero">
  <span class="bp-call">Library · Children's series</span>
  <h1>Muffin the Pitbull&trade; Series</h1>
- <p class="lead">Twenty-six picture books helping kids understand and cope with chronic illness - inspired by Muffin, a real pitbull who had seizures and taught her family what courage looks like.</p>
  <div class="series-stats">
  <span>26 books planned</span>
  <span>Book 1 available now</span>
@@ -262,27 +254,25 @@
  <a class="memorial-link" href="library.html" style="margin-top:8px;display:inline-block;">← Card catalogue</a>
 </section>
 
-<section class="donation-panel" aria-labelledby="donation-heading">
- <h2 id="donation-heading">Donation commitment</h2>
- <p><strong>5% of net series royalties</strong> from the Muffin the Pitbull&trade; Series are donated every quarter to <strong>St. Jude Children's Research Hospital</strong>.</p>
- <p>This is an ongoing house commitment in Muffin's name, not a one-time campaign. Buying a book from this series supports that quarterly gift. Support is optional beyond the book itself; the stories stay available either way.</p>
- <div class="gift-meter" aria-live="polite">
- <h3>St. Jude gift meter</h3>
- <div class="gift-amount" id="gift-amount">$0.00</div>
- <div class="gift-bar" role="img" id="gift-bar-label" aria-label="St. Jude gift meter">
- <div class="gift-fill" id="gift-fill"></div>
+<section class="series-cover" aria-label="Series cover art">
+ <div class="cover-frame" id="cover-frame">
+ <img src="images/children/muffin-series-art.png" alt="Muffin the Pitbull series cover art: two puppies in a sunny meadow" onerror="document.getElementById('cover-frame').classList.add('art-pending');this.remove();">
+ <p class="cover-pending">Series cover art is on its way.</p>
  </div>
- <div class="gift-scale"><span>$0</span><span id="gift-scale-max">$1</span></div>
- <p class="gift-updated" id="gift-updated"></p>
- </div>
- <div class="gift-countdown">
- <h3>Next St. Jude gift</h3>
- <p class="countdown-date" id="countdown-date"></p>
- <p class="countdown-clock" id="countdown-clock"></p>
- </div>
- <p class="donation-note">Dollar figures on the meter come from the house's own KDP sales reports and are updated regularly. Nothing here is estimated or invented. The gift is 5% of net series royalties, rounded to the nearest cent.</p>
- <p><a class="ko-inline" href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Optional house support on Ko-fi</a></p>
 </section>
+
+<section class="series-description" aria-label="About the series">
+ <p class="lead">Twenty-six picture books helping kids understand and cope with chronic illness - inspired by Muffin, a real pitbull who had seizures and taught her family what courage looks like.</p>
+</section>
+
+<section class="donation-panel newsletter-panel" aria-labelledby="newsletter-heading">
+ <h2 id="newsletter-heading">The Muffin Newsletter</h2>
+ <p>News about the books and the Corner, by email.</p>
+ <p><a class="ko-inline" href="https://tally.so/r/GxWg8L" target="_blank" rel="noopener">Join the Muffin Newsletter</a></p>
+ <p class="donation-note">Grown-up email signup. Not for children to fill in alone.</p>
+</section>
+
+
 
 <div class="book-grid" id="series-grid">
  <article class="book-card live-book">
@@ -307,8 +297,29 @@
  <h2 id="corner-grownups-h">For grown-ups: about Muffin's Corner</h2>
  <p><strong>Muffin's Corner is free play only.</strong> It is not a book shop and not a catalogue. Series books and the donation commitment live here on the series page.</p>
  <p><strong>Donation language:</strong> 5% of net series royalties from the Muffin the Pitbull&trade; Series are donated every quarter to St. Jude Children's Research Hospital in Muffin's name. Update checkpoints: December 20, March 20, June 20, September 20. No dollar totals are shown in the Corner.</p>
- <p><strong>Newsletter</strong> (grown-up email signup, not for children to fill in alone): <a href="https://tally.so/r/GxWg8L" target="_blank" rel="noopener">Muffin Newsletter</a>.</p>
  <p>Nothing in the Corner asks a child for a name, email, photo, or location. Sound uses recorded read-aloud files and only starts when a child taps.</p>
+</section>
+
+<section class="donation-panel" aria-labelledby="donation-heading">
+ <h2 id="donation-heading">Donation commitment</h2>
+ <p><strong>5% of net series royalties</strong> from the Muffin the Pitbull&trade; Series are donated every quarter to <strong>St. Jude Children's Research Hospital</strong>.</p>
+ <p>This is an ongoing house commitment in Muffin's name, not a one-time campaign. Buying a book from this series supports that quarterly gift. Support is optional beyond the book itself; the stories stay available either way.</p>
+ <div class="gift-meter" aria-live="polite">
+ <h3>St. Jude gift meter</h3>
+ <div class="gift-amount" id="gift-amount">$0.00</div>
+ <div class="gift-bar" role="img" id="gift-bar-label" aria-label="St. Jude gift meter">
+ <div class="gift-fill" id="gift-fill"></div>
+ </div>
+ <div class="gift-scale"><span>$0</span><span id="gift-scale-max">$1</span></div>
+ <p class="gift-updated" id="gift-updated"></p>
+ </div>
+ <div class="gift-countdown">
+ <h3>Next St. Jude gift</h3>
+ <p class="countdown-date" id="countdown-date"></p>
+ <p class="countdown-clock" id="countdown-clock"></p>
+ </div>
+ <p class="donation-note">Dollar figures on the meter come from the house's own KDP sales reports and are updated regularly. Nothing here is estimated or invented. The gift is 5% of net series royalties, rounded to the nearest cent.</p>
+ <p><a class="ko-inline" href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Optional house support on Ko-fi</a></p>
 </section>
 
 <footer class="house-footer">
