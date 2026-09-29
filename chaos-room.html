@@ -85,6 +85,21 @@
     @media (prefers-reduced-motion: reduce) {
       .chaos-handoff .handoff-choices a { transition: none; }
     }
+    .chaos-handoff[hidden] { display: none; }
+    .toy-panel { margin-top: 1rem; padding-top: 1rem; }
+    button.handoff-stay {
+      width: 100%;
+      text-align: left;
+      font: inherit;
+      cursor: pointer;
+    }
+    .coin-close {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      color: #8a8272;
+      margin: 10px 0 0;
+    }
+    .coin-close[hidden] { display: none; }
   </style>
 </head>
 <body class="room-chaos">
@@ -116,6 +131,29 @@
       <p class="toy-desc">A random creative nudge. Press again for another. No score.</p>
       <div class="chaos-out" id="prompt-out" role="status" aria-live="polite">Press the button.</div>
       <button type="button" id="prompt-btn">Scramble a prompt</button>
+      <div class="chaos-handoff toy-panel" id="prompt-panel" hidden>
+        <p class="handoff-label">What now?</p>
+        <ul class="handoff-choices">
+          <li>
+            <a id="prompt-make" href="journal-prompts.html">
+              <span class="choice-kicker">Make it myself</span>
+              <span class="choice-body">Carry this prompt into the journal prompts as your writing seed. Free, no account.</span>
+            </a>
+          </li>
+          <li>
+            <a href="pearl.html">
+              <span class="choice-kicker">Get help</span>
+              <span class="choice-body">Ask Pearl. She will point you to the right Guild door.</span>
+            </a>
+          </li>
+          <li>
+            <button type="button" class="handoff-stay" data-dismiss="prompt-panel">
+              <span class="choice-kicker">Keep playing</span>
+              <span class="choice-body">Stay. Scramble again. Nothing here is waiting on an answer.</span>
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="chaos-toy">
@@ -123,6 +161,29 @@
       <p class="toy-desc">Two ordinary words, one unexpected pair.</p>
       <div class="chaos-out" id="mash-out" role="status" aria-live="polite">Press the button.</div>
       <button type="button" id="mash-btn">Mash words</button>
+      <div class="chaos-handoff toy-panel" id="mash-panel" hidden>
+        <p class="handoff-label">What now?</p>
+        <ul class="handoff-choices">
+          <li>
+            <a id="mash-make" href="journal-prompts.html">
+              <span class="choice-kicker">Make it myself</span>
+              <span class="choice-body">Carry this word pair into the journal prompts as your writing seed. Free, no account.</span>
+            </a>
+          </li>
+          <li>
+            <a href="pearl.html">
+              <span class="choice-kicker">Get help</span>
+              <span class="choice-body">Ask Pearl. She will point you to the right Guild door.</span>
+            </a>
+          </li>
+          <li>
+            <button type="button" class="handoff-stay" data-dismiss="mash-panel">
+              <span class="choice-kicker">Keep playing</span>
+              <span class="choice-body">Stay. Mash again. Nothing here is waiting on an answer.</span>
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="chaos-toy">
@@ -130,6 +191,29 @@
       <p class="toy-desc">A book title that does not need to exist. Useful for sparring with writer’s block.</p>
       <div class="chaos-out" id="title-out" role="status" aria-live="polite">Press the button.</div>
       <button type="button" id="title-btn">Invent a title</button>
+      <div class="chaos-handoff toy-panel" id="title-panel" hidden>
+        <p class="handoff-label">What now?</p>
+        <ul class="handoff-choices">
+          <li>
+            <a id="title-make" href="title-to-story.html">
+              <span class="choice-kicker">Make it myself</span>
+              <span class="choice-body">Spin this title into a premise with the title-to-story starter, then start writing. Free, no account.</span>
+            </a>
+          </li>
+          <li>
+            <a href="pearl.html">
+              <span class="choice-kicker">Get help</span>
+              <span class="choice-body">Ask Pearl. She will point you to the right Guild door.</span>
+            </a>
+          </li>
+          <li>
+            <button type="button" class="handoff-stay" data-dismiss="title-panel">
+              <span class="choice-kicker">Keep playing</span>
+              <span class="choice-body">Stay. Invent another. Nothing here is waiting on an answer.</span>
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="chaos-toy">
@@ -137,32 +221,8 @@
       <p class="toy-desc">Three faces. For decisions that should not be serious.</p>
       <div class="chaos-out" id="coin-out" role="status" aria-live="polite">Press the button.</div>
       <button type="button" id="coin-btn">Flip the coin</button>
+      <p class="coin-close" id="coin-close" hidden>The coin has spoken.</p>
     </div>
-
-    <section class="chaos-handoff" aria-labelledby="chaos-handoff-label">
-      <p class="handoff-label" id="chaos-handoff-label">After the scramble</p>
-      <p class="handoff-lead">You made something odd. What do you want to do with it?</p>
-      <ul class="handoff-choices">
-        <li>
-          <a href="toolbox.html">
-            <span class="choice-kicker">Make it myself</span>
-            <span class="choice-body">Take it to the Toolbox. Manuscript Map and journal prompts are free, no account required.</span>
-          </a>
-        </li>
-        <li>
-          <a href="guild/">
-            <span class="choice-kicker">Get help</span>
-            <span class="choice-body">Bring it to Guild Hall. Ask for a pathway or send a work order when you are ready.</span>
-          </a>
-        </li>
-        <li>
-          <div class="handoff-stay">
-            <span class="choice-kicker">I’m not sure yet</span>
-            <span class="choice-body">Stay. Scramble again. Leave when you feel like it. Nothing here is waiting on an answer.</span>
-          </div>
-        </li>
-      </ul>
-    </section>
 
     <div class="empty-state" style="margin-top:20px;">
       <p>Four toys for now. More experiments when they earn a place here.</p>
@@ -288,14 +348,44 @@
       });
     }
 
-    wire('prompt-btn', 'prompt-out', function () { return pick(prompts); });
+    function showPanel(panelId, makeId, url) {
+      var panel = document.getElementById(panelId);
+      if (!panel) return;
+      if (makeId && url) {
+        var a = document.getElementById(makeId);
+        if (a) a.href = url;
+      }
+      panel.hidden = false;
+    }
+
+    wire('prompt-btn', 'prompt-out', function () {
+      var p = pick(prompts);
+      showPanel('prompt-panel', 'prompt-make', 'journal-prompts.html?seed=' + encodeURIComponent(p));
+      return p;
+    });
     wire('mash-btn', 'mash-out', function () {
-      return pick(wordsA) + ' · ' + pick(wordsB);
+      var m = pick(wordsA) + ' · ' + pick(wordsB);
+      showPanel('mash-panel', 'mash-make', 'journal-prompts.html?seed=' + encodeURIComponent(m));
+      return m;
     });
     wire('title-btn', 'title-out', function () {
-      return pick(titlesA) + ' ' + pick(titlesB);
+      var t = pick(titlesA) + ' ' + pick(titlesB);
+      showPanel('title-panel', 'title-make', 'title-to-story.html?title=' + encodeURIComponent(t));
+      return t;
     });
-    wire('coin-btn', 'coin-out', function () { return pick(coinFaces); });
+    wire('coin-btn', 'coin-out', function () {
+      var close = document.getElementById('coin-close');
+      if (close) close.hidden = false;
+      return pick(coinFaces);
+    });
+
+    var dismissers = document.querySelectorAll('[data-dismiss]');
+    for (var i = 0; i < dismissers.length; i++) {
+      dismissers[i].addEventListener('click', function () {
+        var panel = document.getElementById(this.getAttribute('data-dismiss'));
+        if (panel) panel.hidden = true;
+      });
+    }
   })();
   </script>
 </body>
