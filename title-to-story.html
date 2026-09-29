@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Title to Story Starter | Sigil and Scribe</title>
+  <meta name="description" content="Turn an odd title into a premise and a first page. Guided prompts, local save, download, and print. Free, no account." />
+  <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
+  <meta property="og:title" content="Title to Story Starter | Sigil and Scribe">
+  <meta property="og:description" content="Spin an odd title into a premise, then start writing. Local save, download, and print.">
+  <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/title-to-story.html">
+  <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Title to Story Starter | Sigil and Scribe">
+  <meta name="twitter:description" content="Spin an odd title into a premise, then start writing. Local save, download, and print.">
+  <meta name="twitter:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="book.css">
+  <link rel="stylesheet" href="house.css?v=8">
+
+  <style>
+    :root {
+      --paper: #FDFBF7;
+      --mist: #F2F5F3;
+      --ink: #2B2B2B;
+      --amber: #D4A373;
+      --amber-deep: #B8874F;
+      --sage: #A3B19B;
+      --sage-deep: #7E8F76;
+      --walnut: #6B4A34;
+      --walnut-dark: #4A3324;
+      --walnut-deep: #38251A;
+      --card: #F7EFDD;
+    }
+
+    body {
+      background: radial-gradient(ellipse at 20% 0%, rgba(212, 163, 115, 0.07), transparent 55%), var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+    }
+
+    .tool-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .tool-intro {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .tool-intro .bp-call {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      color: var(--amber-deep);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .tool-intro h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      color: var(--walnut-deep);
+      margin: 8px 0 10px;
+      font-weight: 600;
+    }
+
+    .tool-intro .lead {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #5a5a5a;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .panel {
+      background: #fff;
+      border: 1px solid rgba(107, 74, 52, 0.14);
+      border-radius: 10px;
+      padding: 28px 26px;
+      box-shadow: 0 4px 18px rgba(56, 37, 26, 0.04);
+      margin-bottom: 22px;
+    }
+
+    .step-label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber-deep);
+      margin: 0 0 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .field:last-child { margin-bottom: 0; }
+
+    .field label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage-deep);
+    }
+
+    .field input[type="text"] {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.95rem;
+      padding: 10px 12px;
+      border: 1px solid rgba(107, 74, 52, 0.22);
+      border-radius: 6px;
+      background: var(--paper);
+      color: var(--ink);
+      width: 100%;
+    }
+
+    .field input[type="text"]:focus {
+      outline: none;
+      border-color: var(--amber-deep);
+      box-shadow: 0 0 0 3px rgba(184, 135, 79, 0.18);
+    }
+
+    .field .hint {
+      font-size: 0.82rem;
+      color: #8a8a8a;
+      line-height: 1.5;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    button {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .btn-primary {
+      background: var(--walnut-deep);
+      color: var(--paper);
+      border-color: var(--walnut-deep);
+    }
+    .btn-primary:hover {
+      background: var(--walnut-dark);
+    }
+
+    .btn-secondary {
+      background: var(--paper);
+      color: var(--walnut-deep);
+      border-color: rgba(107, 74, 52, 0.25);
+    }
+    .btn-secondary:hover {
+      border-color: var(--amber-deep);
+      background: #fffdf9;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #6b6b6b;
+      border-color: transparent;
+      font-size: 0.82rem;
+    }
+    .btn-ghost:hover {
+      color: var(--walnut-deep);
+      background: var(--mist);
+    }
+
+    .prompt-box {
+      background: var(--mist);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 18px;
+      margin-top: 18px;
+      min-height: 72px;
+    }
+
+    .prompt-label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber-deep);
+      margin-bottom: 8px;
+    }
+
+    .prompt-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.5;
+      color: var(--walnut-deep);
+      margin: 0;
+    }
+
+    .entry-label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage-deep);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 260px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.98rem;
+      line-height: 1.65;
+      padding: 14px 16px;
+      border: 1px solid rgba(107, 74, 52, 0.18);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      resize: vertical;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--amber-deep);
+      box-shadow: 0 0 0 3px rgba(184, 135, 79, 0.15);
+    }
+
+    .status {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      color: var(--sage-deep);
+      margin-top: 12px;
+      min-height: 1.2em;
+    }
+
+    .status.saved { color: var(--sage-deep); }
+    .status.warn { color: #8a5a3a; }
+
+    .note {
+      margin-top: 28px;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: #7a7a7a;
+      text-align: center;
+    }
+
+    .back-links {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 0.9rem;
+    }
+
+    .back-links a {
+      color: var(--amber-deep);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .house-nav, .btn-row, .status, .note, .back-links,
+      .house-footer, .no-print { display: none !important; }
+      .tool-wrap { padding: 0; max-width: 100%; }
+      .panel { border: none; box-shadow: none; padding: 0; margin-bottom: 12px; }
+      textarea {
+        border: none;
+        min-height: auto;
+        height: auto !important;
+        overflow: visible;
+        resize: none;
+        white-space: pre-wrap;
+      }
+      .print-meta {
+        display: block !important;
+        font-family: 'Courier Prime', monospace;
+        font-size: 11px;
+        color: #666;
+        margin-bottom: 16px;
+      }
+    }
+
+    .print-meta { display: none; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FBP908LERR');
+  </script>
+</head>
+<body>
+
+  <nav class="house-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="play.html" aria-current="page">Play</a></li>
+        <li><a href="guild/">Guild Hall</a></li>
+        <li><a href="hypnotherapy.html">Zen Den</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="tool-wrap">
+    <header class="tool-intro">
+      <span class="bp-call">Toolbox · Make a page</span>
+      <h1>Title to Story Starter</h1>
+      <p class="lead">Bring an odd title. Answer four small questions. Leave with a premise and a first page. Nothing leaves this browser unless you download or print it.</p>
+      <p class="lead" style="margin-top:10px;font-size:0.85rem;"><a href="toolbox.html" style="color:#B8874F;text-decoration:underline;text-underline-offset:3px;">← Toolbox</a>
+        · <a href="chaos-room.html" style="color:#B8874F;text-decoration:underline;text-underline-offset:3px;">Chaos Room</a></p>
+    </header>
+
+    <div class="panel no-print">
+      <p class="step-label">Step 1 · The title</p>
+      <div class="field">
+        <label for="storyTitle">Your odd title</label>
+        <input type="text" id="storyTitle" placeholder="The Last Borrowed Umbrella" autocomplete="off">
+        <span class="hint">No title? The <a href="chaos-room.html">Chaos Room</a> invents them.</span>
+      </div>
+    </div>
+
+    <div class="panel no-print">
+      <p class="step-label">Step 2 · Four small questions</p>
+      <div class="field">
+        <label for="q-who">Who is at the center of this story?</label>
+        <input type="text" id="q-who" placeholder="a retired lighthouse keeper" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="q-want">What do they want more than anything?</label>
+        <input type="text" id="q-want" placeholder="to hear the foghorn one last time" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="q-obstacle">What stands in their way?</label>
+        <input type="text" id="q-obstacle" placeholder="the new automated light, and a granddaughter who worries" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="q-where">Where does it begin? One line, a place.</label>
+        <input type="text" id="q-where" placeholder="on the cliff stairs at dawn" autocomplete="off">
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn-primary" id="spinPremise">Spin the premise</button>
+      </div>
+      <div class="prompt-box" aria-live="polite">
+        <p class="prompt-label">Your premise</p>
+        <p class="prompt-text" id="premiseOut">Answer the questions, then spin.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="print-meta" id="printMeta"></div>
+      <p class="step-label no-print">Step 3 · The first page</p>
+      <span class="entry-label no-print" id="entryLabel">Write here. The premise is yours to argue with.</span>
+      <textarea id="storyEntry" class="no-print" placeholder="Begin anywhere. The title already did the hardest part." spellcheck="true" aria-labelledby="entryLabel"></textarea>
+      <div class="btn-row no-print">
+        <button type="button" class="btn-secondary" id="saveEntry">Save</button>
+        <button type="button" class="btn-secondary" id="loadEntry">Load last</button>
+        <button type="button" class="btn-secondary" id="downloadEntry">Download</button>
+        <button type="button" class="btn-ghost" id="printEntry">Print</button>
+        <button type="button" class="btn-ghost" id="clearEntry">Clear</button>
+      </div>
+      <p class="status no-print" id="status" aria-live="polite"></p>
+    </div>
+
+    <p class="note">Entries are stored only in this browser (localStorage). Clearing site data or switching devices will remove them. Download keeps a copy as a text file.</p>
+
+    <p class="back-links no-print"><a href="toolbox.html">← Back to Toolbox</a> · <a href="chaos-room.html">← Back to Chaos Room</a></p>
+  </main>
+
+  <footer class="house-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="play.html">Play Area</a></li>
+            <li><a href="muffins-corner.html">Muffin’s Corner</a></li>
+            <li><a href="free-things.html">Free Things</a></li>
+            <li><a href="toolbox.html">Toolbox</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Guild &amp; House</h3>
+          <ul>
+            <li><a href="guild/">Guild Hall</a></li>
+            <li><a href="hypnotherapy.html">The Zen Den</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+            <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="return-policy.html">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Newsletters</h3>
+          <ul>
+            <li><a href="https://tally.so/r/GxWg8L" target="_blank" rel="noopener">Muffin Newsletter</a></li>
+            <li><a href="https://tally.so/r/b5PVeZ" target="_blank" rel="noopener">Sigil &amp; Scribe Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Sigil and Scribe, LLC</span>
+        <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const STORAGE_KEY = 'sigil-title-story-v1';
+
+    const titleEl = document.getElementById('storyTitle');
+    const premiseEl = document.getElementById('premiseOut');
+    const entryEl = document.getElementById('storyEntry');
+    const statusEl = document.getElementById('status');
+    const printMetaEl = document.getElementById('printMeta');
+
+    function val(id) {
+      var el = document.getElementById(id);
+      return el ? el.value.trim() : '';
+    }
+
+    function setStatus(msg, type) {
+      statusEl.textContent = msg || '';
+      statusEl.className = 'status' + (type ? ' ' + type : '');
+    }
+
+    function spin() {
+      var title = titleEl.value.trim();
+      var who = val('q-who');
+      var want = val('q-want');
+      var obstacle = val('q-obstacle');
+      var where = val('q-where');
+      var sentences = [];
+      if (who && want) {
+        sentences.push('This is the story of ' + who + ', who wants ' + want + '.');
+      } else if (who) {
+        sentences.push('This is the story of ' + who + '.');
+      } else if (want) {
+        sentences.push('Someone wants ' + want + '.');
+      }
+      if (obstacle) sentences.push('Standing in the way: ' + obstacle + '.');
+      if (where) sentences.push('It begins ' + where + '.');
+      var premise = (title ? '\u201C' + title + '\u201D. ' : '') + sentences.join(' ');
+      if (!premise.trim()) {
+        premiseEl.textContent = 'Give the questions a few words, then spin again.';
+      } else {
+        premiseEl.textContent = premise;
+      }
+    }
+
+    function save() {
+      var data = {
+        title: titleEl.value,
+        who: val('q-who'),
+        want: val('q-want'),
+        obstacle: val('q-obstacle'),
+        where: val('q-where'),
+        premise: premiseEl.textContent,
+        entry: entryEl.value,
+        savedAt: new Date().toISOString()
+      };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        var when = new Date(data.savedAt).toLocaleString();
+        setStatus('Saved locally · ' + when, 'saved');
+      } catch (e) {
+        setStatus('Could not save (storage full or blocked).', 'warn');
+      }
+    }
+
+    function load() {
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          setStatus('No saved entry found on this browser.', 'warn');
+          return;
+        }
+        var data = JSON.parse(raw);
+        titleEl.value = data.title || '';
+        document.getElementById('q-who').value = data.who || '';
+        document.getElementById('q-want').value = data.want || '';
+        document.getElementById('q-obstacle').value = data.obstacle || '';
+        document.getElementById('q-where').value = data.where || '';
+        if (data.premise) premiseEl.textContent = data.premise;
+        entryEl.value = data.entry || '';
+        var when = data.savedAt ? new Date(data.savedAt).toLocaleString() : 'unknown time';
+        setStatus('Loaded last save · ' + when, 'saved');
+      } catch (e) {
+        setStatus('Could not read saved entry.', 'warn');
+      }
+    }
+
+    function download() {
+      var parts = [];
+      var title = titleEl.value.trim();
+      if (title) parts.push(title);
+      var premise = premiseEl.textContent.trim();
+      if (premise && premise !== 'Answer the questions, then spin.' && premise !== 'Give the questions a few words, then spin again.') {
+        parts.push(premise);
+      }
+      if (entryEl.value.trim()) parts.push(entryEl.value.trim());
+      var blob = new Blob([parts.join('\n\n')], { type: 'text/plain' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      var name = (title || 'story').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'story';
+      a.download = name + '.txt';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 100);
+      setStatus('Downloaded as ' + a.download + '.', 'saved');
+    }
+
+    function clearAll() {
+      if (entryEl.value && !confirm('Clear the writing area? (Saved entry in storage is not deleted until you save over it.)')) {
+        return;
+      }
+      entryEl.value = '';
+      setStatus('Cleared.');
+    }
+
+    function doPrint() {
+      var title = titleEl.value.trim();
+      printMetaEl.textContent = (title ? title + ' · ' : '') + new Date().toLocaleString();
+      window.print();
+    }
+
+    document.getElementById('spinPremise').addEventListener('click', spin);
+    document.getElementById('saveEntry').addEventListener('click', save);
+    document.getElementById('loadEntry').addEventListener('click', load);
+    document.getElementById('downloadEntry').addEventListener('click', download);
+    document.getElementById('clearEntry').addEventListener('click', clearAll);
+    document.getElementById('printEntry').addEventListener('click', doPrint);
+
+    // a title carried in from the Chaos Room arrives ready to work with
+    try {
+      var carried = new URLSearchParams(window.location.search).get('title');
+      if (carried) titleEl.value = carried;
+    } catch (e) {}
+  </script>
+  <script src="js/house-nav.js"></script>
+</body>
+</html>
