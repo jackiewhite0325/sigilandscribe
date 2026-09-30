@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your note is in | Sigil and Scribe</title>
+<meta name="description" content="Your note is in. A human reads every word, and will point you to the right door.">
+<link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f2e9;
+    --ink: #2b2620;
+    --walnut: #6b4f2e;
+    --walnut-deep: #4a3520;
+    --amber-deep: #b0763a;
+    --sage-deep: #5c6e52;
+    --card: #fffdf7;
+  }
+  body {
+    background:
+      radial-gradient(ellipse at 18% 0%, rgba(224,174,121,0.16), transparent 52%),
+      var(--paper);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    margin: 0;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 40px 24px 64px; }
+  .brand {
+    display: inline-block; font-family: 'Courier Prime', monospace; font-size: 12px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--walnut);
+    text-decoration: none; margin-bottom: 28px;
+  }
+  .brand span { color: var(--amber-deep); }
+  .kicker {
+    font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--amber-deep);
+  }
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif; font-weight: 600;
+    font-size: clamp(28px, 5vw, 42px); color: var(--walnut-deep);
+    line-height: 1.12; margin: 10px 0 14px;
+  }
+  .lead { font-size: 16.5px; line-height: 1.7; color: #4a4a4a; margin: 0 0 26px; }
+  .steps {
+    background: var(--card); border: 1px solid rgba(184,135,79,0.35);
+    border-radius: 14px; padding: 26px 24px; margin: 0 0 30px;
+  }
+  .steps h2 {
+    font-family: 'Playfair Display', Georgia, serif; font-weight: 600;
+    font-size: 22px; color: var(--walnut-deep); margin: 0 0 14px;
+  }
+  .steps ol { margin: 0; padding-left: 22px; }
+  .steps li { font-size: 15px; line-height: 1.7; color: #4a4a4a; margin-bottom: 10px; }
+  .doors { border-top: 1px solid rgba(126,143,118,0.35); padding-top: 24px; }
+  .doors h3 {
+    font-family: 'Courier Prime', monospace; font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--sage-deep); margin: 0 0 14px;
+  }
+  .doors a { color: var(--amber-deep); text-decoration: underline; text-underline-offset: 3px; }
+  .doors p { font-size: 15px; line-height: 1.7; margin: 0 0 12px; }
+  footer {
+    margin-top: 44px; font-family: 'Courier Prime', monospace; font-size: 11px;
+    letter-spacing: 0.04em; color: #8a8272; line-height: 1.9;
+  }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+  <div class="kicker">Start a Project</div>
+  <h1>Your note is in.</h1>
+  <p class="lead">Thank you for writing. A human reads every note, every word, and will point you to the right door: a quiet letter with Pearl, a keepsake or a book with Izzy, or just a straight answer.</p>
+
+  <div class="steps">
+    <h2>What happens next</h2>
+    <ol>
+      <li>Your note is read by a person, not a machine.</li>
+      <li>If it belongs with Pearl or Izzy, it gets walked over to them.</li>
+      <li>You get a reply at the email you left in the form. Nothing is owed, and there is no rush on our side.</li>
+    </ol>
+  </div>
+
+  <div class="doors">
+    <h3>Meanwhile, if you'd like to look around</h3>
+    <p><a href="pearl.html#letters">Pearl's Door</a> - quiet letters for whatever you're carrying.</p>
+    <p><a href="izzy.html">Izzy's Studio</a> - keepsakes and books, made from your own photos and words.</p>
+    <p><a href="guild/request.html">Back to Start a Project</a> - the three paths, if you'd like to pick one after all.</p>
+  </div>
+
+  <footer>
+    &copy; 2026 Sigil and Scribe, LLC &middot; J. White<br>
+    Pearl and Izzy are AI agents. A human owns this house and answers for it.
+  </footer>
+</div>
+</body>
+</html>
