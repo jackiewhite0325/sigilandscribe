@@ -140,10 +140,31 @@ h2.bp-title { font-family:'Playfair Display',Georgia,serif; font-size:clamp(26px
 .mem-hero h1 { font-family:'Playfair Display',Georgia,serif; font-weight:700; font-size:clamp(34px,6vw,56px);
   color:var(--walnut-deep); margin:8px 0 6px; }
 .mem-hero p.sub { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:17px; color:#5b5b5b; }
-.mem-photos { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:34px auto 0; max-width:860px; }
-.mem-photos img { width:100%; height:220px; object-fit:cover; border-radius:6px;
-  box-shadow:0 18px 34px -18px rgba(56,37,26,0.5); }
-@media (max-width:700px){ .mem-photos { grid-template-columns:1fr; } .mem-photos img { height:auto; } }
+.mem-slideshow { margin:34px auto 0; max-width:860px; }
+.mem-board-label { font-family:'Courier Prime',monospace; font-size:11px; letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--sage-deep); text-align:center; margin:0 0 14px; }
+.mem-frame { position:relative; border-radius:6px; overflow:hidden;
+  box-shadow:0 18px 34px -18px rgba(56,37,26,0.5); background:#efe8dd; }
+.mem-slides { position:relative; aspect-ratio:4/3; }
+.mem-slide { position:absolute; inset:0; opacity:0; transition:opacity 0.8s ease; margin:0; }
+.mem-slide.active { opacity:1; z-index:1; }
+.mem-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+.mem-arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+  width:44px; height:44px; border-radius:50%; border:none; cursor:pointer;
+  background:rgba(255,253,247,0.85); color:var(--walnut-deep); font-size:22px; line-height:1;
+  box-shadow:0 4px 12px rgba(56,37,26,0.3); }
+.mem-arrow:hover { background:#fffdf7; }
+.mem-prev { left:12px; } .mem-next { right:12px; }
+.mem-bar { display:flex; align-items:center; justify-content:center; gap:14px; margin-top:14px;
+  font-family:'Courier Prime',monospace; font-size:12px; letter-spacing:0.08em; color:var(--sage-deep); }
+.mem-pause { font-family:'Courier Prime',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+  background:none; border:1px solid var(--sage-deep); border-radius:20px; color:var(--sage-deep);
+  padding:6px 16px; cursor:pointer; }
+.mem-pause:hover { background:var(--mist); }
+.mem-dots { display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin-top:10px; }
+.mem-dot { width:10px; height:10px; border-radius:50%; border:1px solid var(--sage-deep);
+  background:transparent; cursor:pointer; padding:0; }
+.mem-dot.active { background:var(--sage-deep); }
 .mem-traits { font-family:'Courier Prime',monospace; font-size:11px; letter-spacing:0.22em; text-transform:uppercase;
   color:var(--sage-deep); margin-top:26px; text-align:center; }
 .mem-body { max-width:720px; margin:0 auto; padding:8px 0 0; }
@@ -190,23 +211,79 @@ h2.bp-title { font-family:'Playfair Display',Georgia,serif; font-size:clamp(26px
     <h1>Muffin</h1>
     <p class="sub">The dog who inspired it all &middot; the heart of the Muffin Series</p>
   </div>
-  <div class="mem-photos">
-    <img src="images/muffin/muffin01.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin02.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin03.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin04.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin05.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin06.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin07.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin08.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin09.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin10.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin11.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin12.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin13.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin14.jpg" alt="Muffin" loading="lazy">
-    <img src="images/muffin/muffin15.jpg" alt="Muffin" loading="lazy">
+  <div class="mem-slideshow" id="mem-slideshow" role="region" aria-label="Muffin's growing-up photo board">
+    <p class="mem-board-label">Growing up, in pictures</p>
+    <div class="mem-frame">
+      <div class="mem-slides">
+        <figure class="mem-slide active"><img src="images/muffin/muffin01.jpg" alt="Muffin, photo 1 of 15"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin02.jpg" alt="Muffin, photo 2 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin03.jpg" alt="Muffin, photo 3 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin04.jpg" alt="Muffin, photo 4 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin05.jpg" alt="Muffin, photo 5 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin06.jpg" alt="Muffin, photo 6 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin07.jpg" alt="Muffin, photo 7 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin08.jpg" alt="Muffin, photo 8 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin09.jpg" alt="Muffin, photo 9 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin10.jpg" alt="Muffin, photo 10 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin11.jpg" alt="Muffin, photo 11 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin12.jpg" alt="Muffin, photo 12 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin13.jpg" alt="Muffin, photo 13 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin14.jpg" alt="Muffin, photo 14 of 15" loading="lazy"></figure>
+        <figure class="mem-slide"><img src="images/muffin/muffin15.jpg" alt="Muffin, photo 15 of 15" loading="lazy"></figure>
+      </div>
+      <button class="mem-arrow mem-prev" type="button" aria-label="Previous photo">&#8249;</button>
+      <button class="mem-arrow mem-next" type="button" aria-label="Next photo">&#8250;</button>
+    </div>
+    <div class="mem-bar">
+      <button class="mem-pause" id="mem-pause" type="button" aria-pressed="false">Pause</button>
+      <span id="mem-counter" aria-live="polite">Photo 1 of 15</span>
+    </div>
+    <div class="mem-dots" id="mem-dots" role="tablist" aria-label="Choose a photo"></div>
   </div>
+  <script>
+  (function(){
+    var slides = document.querySelectorAll('#mem-slideshow .mem-slide');
+    var dotsWrap = document.getElementById('mem-dots');
+    var counter = document.getElementById('mem-counter');
+    var pauseBtn = document.getElementById('mem-pause');
+    var n = slides.length, i = 0, timer = null;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var dots = [];
+    function renderDots(){
+      for (var k = 0; k < n; k++){
+        var d = document.createElement('button');
+        d.className = 'mem-dot' + (k === 0 ? ' active' : '');
+        d.type = 'button';
+        d.setAttribute('role', 'tab');
+        d.setAttribute('aria-label', 'Show photo ' + (k + 1) + ' of ' + n);
+        (function(idx){ d.addEventListener('click', function(){ show(idx); restart(); }); })(k);
+        dotsWrap.appendChild(d);
+        dots.push(d);
+      }
+    }
+    function show(idx){
+      slides[i].classList.remove('active');
+      dots[i].classList.remove('active');
+      i = (idx + n) % n;
+      slides[i].classList.add('active');
+      dots[i].classList.add('active');
+      counter.textContent = 'Photo ' + (i + 1) + ' of ' + n;
+    }
+    function start(){ if (!reduceMotion && !timer){ timer = setInterval(function(){ show(i + 1); }, 5000); } }
+    function stop(){ if (timer){ clearInterval(timer); timer = null; } }
+    function restart(){ if (pauseBtn.getAttribute('aria-pressed') !== 'true'){ stop(); start(); } }
+    document.querySelector('#mem-slideshow .mem-prev').addEventListener('click', function(){ show(i - 1); restart(); });
+    document.querySelector('#mem-slideshow .mem-next').addEventListener('click', function(){ show(i + 1); restart(); });
+    pauseBtn.addEventListener('click', function(){
+      var paused = pauseBtn.getAttribute('aria-pressed') === 'true';
+      pauseBtn.setAttribute('aria-pressed', String(!paused));
+      pauseBtn.textContent = paused ? 'Pause' : 'Play';
+      if (paused){ start(); } else { stop(); }
+    });
+    renderDots();
+    start();
+  })();
+  </script>
   <p class="mem-traits">Playful &middot; Tenacious &middot; Stubborn &middot; Zeroed-in</p>
   <div class="mem-body">
     <h2>Who She Was</h2>
