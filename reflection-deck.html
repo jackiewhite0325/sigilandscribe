@@ -79,11 +79,16 @@
     .card-face img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .card-face.face {
       transform: rotateY(180deg);
-      background: radial-gradient(ellipse at 50% 30%, #232b52 0%, var(--indigo-deep) 75%);
+      background: radial-gradient(ellipse at 50% 30%, rgba(35,43,82,0.88) 0%, rgba(18,22,46,0.94) 75%);
       border: 1px solid #2c3560;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       padding: 26px 22px; text-align: center; color: #f2e9d4;
     }
+    .face-art {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.35; pointer-events: none;
+    }
+    .face-inner { position: relative; z-index: 1; }
     .face-inner {
       border: 1px solid rgba(217,179,106,0.55); border-radius: 9px; outline: 1px solid rgba(217,179,106,0.25);
       outline-offset: 5px; width: 100%; height: 100%;
@@ -171,6 +176,7 @@
               <img src="images/reflection-deck/card-back.webp" alt="Card back: a gold star reflected in still water on midnight indigo" />
             </div>
             <div class="card-face face">
+              <img class="face-art" src="images/reflection-deck/card-back.webp" alt="" aria-hidden="true" />
               <div class="face-inner">
                 <div class="face-suit" id="faceSuit">Major Arcana</div>
                 <p class="face-prompt" id="facePrompt">Draw a card to begin.</p>
