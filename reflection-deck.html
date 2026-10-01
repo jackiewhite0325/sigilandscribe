@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>78 Reflections Deck | Sigil and Scribe</title>
+  <meta name="description" content="A 78-card reflection deck: draw a card, sit with its prompt, write. Major Arcana and four suits. Free, local only, no signup." />
+  <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
+  <meta property="og:title" content="78 Reflections Deck | Sigil and Scribe">
+  <meta property="og:description" content="Draw a card, sit with its prompt, write. Free reflection deck, local only.">
+  <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/reflection-deck.html">
+  <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/reflection-deck/card-back.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="78 Reflections Deck | Sigil and Scribe">
+  <meta name="twitter:description" content="Draw a card, sit with its prompt, write. Free reflection deck, local only.">
+  <meta name="twitter:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/reflection-deck/card-back.webp">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="book.css">
+  <link rel="stylesheet" href="house.css?v=8">
+
+  <style>
+    :root {
+      --paper: #FDFBF7;
+      --ink: #2B2B2B;
+      --amber: #D4A373;
+      --amber-deep: #B8874F;
+      --indigo: #1B2140;
+      --indigo-deep: #12162E;
+      --gold: #D9B36A;
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    body {
+      background: radial-gradient(ellipse at 20% 0%, rgba(212, 163, 115, 0.07), transparent 55%), var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+    }
+    .tool-wrap { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
+    .tool-intro { text-align: center; margin-bottom: 32px; }
+    .tool-intro .bp-call {
+      display: inline-block; font-size: 0.72rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--amber-deep); margin-bottom: 10px;
+    }
+    .tool-intro h1 { font-family: 'Playfair Display', serif; font-size: 2rem; margin: 0 0 10px; }
+    .lead { color: #5a5248; max-width: 34em; margin: 0 auto 8px; line-height: 1.6; }
+    .panel {
+      background: #fffdf9; border: 1px solid #ece2cf; border-radius: 14px;
+      padding: 28px 24px; box-shadow: 0 6px 24px rgba(74,53,32,0.07);
+    }
+    .controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; justify-content: center; margin-bottom: 24px; }
+    .field label { display: block; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: #8a7a63; margin-bottom: 6px; }
+    .field select {
+      font: inherit; padding: 10px 12px; border-radius: 9px;
+      border: 1px solid #ddd0b8; background: #fff; color: var(--ink); min-width: 200px;
+    }
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-primary, .btn-secondary, .btn-ghost {
+      font: inherit; font-weight: 600; border-radius: 999px; padding: 10px 20px; cursor: pointer;
+      transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+    }
+    .btn-primary { background: var(--indigo); color: #f5edd8; border: 1px solid var(--indigo-deep); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(27,33,64,0.3); }
+    .btn-secondary { background: #fff; color: var(--indigo); border: 1px solid #c9bfa9; }
+    .btn-ghost { background: transparent; color: #8a7a63; border: 1px solid transparent; }
+    .card-stage { display: flex; justify-content: center; margin: 8px 0 24px; }
+    .card-scene { width: min(300px, 72vw); aspect-ratio: 2.75 / 4.75; perspective: 1200px; }
+    .card { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.7s var(--ease); }
+    .card.flipped { transform: rotateY(180deg); }
+    .card-face {
+      position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 14px 34px rgba(27,33,64,0.28);
+    }
+    .card-face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card-face.face {
+      transform: rotateY(180deg);
+      background: radial-gradient(ellipse at 50% 30%, #232b52 0%, var(--indigo-deep) 75%);
+      border: 1px solid #2c3560;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 26px 22px; text-align: center; color: #f2e9d4;
+    }
+    .face-inner {
+      border: 1px solid rgba(217,179,106,0.55); border-radius: 9px; outline: 1px solid rgba(217,179,106,0.25);
+      outline-offset: 5px; width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 20px 16px; gap: 14px;
+    }
+    .face-suit {
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+    }
+    .face-prompt { font-family: 'Playfair Display', serif; font-size: 1.12rem; line-height: 1.55; }
+    .face-count { font-size: 0.72rem; color: rgba(242,233,212,0.6); letter-spacing: 0.1em; }
+    .entry-label { display: block; font-weight: 600; margin: 4px 0 8px; }
+    #entry {
+      width: 100%; min-height: 170px; font: inherit; line-height: 1.65; resize: vertical;
+      border: 1px solid #ddd0b8; border-radius: 10px; padding: 14px; background: #fff;
+    }
+    .status { min-height: 1.4em; font-size: 0.85rem; color: #8a7a63; margin: 10px 0 0; }
+    .status.saved { color: #6f7f5e; }
+    .note { font-size: 0.82rem; color: #8a7a63; text-align: center; margin-top: 18px; line-height: 1.6; }
+    .deck-count { text-align: center; font-size: 0.8rem; color: #8a7a63; margin-top: 6px; }
+    @media print {
+      .no-print, .house-nav, .pearl-helper, .house-footer, .controls { display: none !important; }
+      body { background: #fff; }
+      .tool-wrap { max-width: 100%; padding: 0; }
+      .card-scene { width: 220px; }
+      .card { transform: none !important; }
+      .card-face.back { display: none; }
+      .card-face.face { position: static; transform: none; box-shadow: none; border: 2px solid var(--indigo); }
+      #entry { border: none; min-height: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="house-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="play.html">Play</a></li>
+        <li><a href="guild/request.html">Start a Project</a></li>
+        <li><a href="hypnotherapy.html">Zen Den</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="notes/index.html">Notes</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="tool-wrap">
+    <header class="tool-intro">
+      <span class="bp-call">Toolbox &middot; Reflection Deck</span>
+      <h1>78 Reflections</h1>
+      <p class="lead">A seventy-eight card deck for self-discovery: twenty-two Major Arcana and four suits of fourteen. Shuffle, draw a card, sit with its prompt, and write. Nothing leaves this browser unless you print or copy it.</p>
+      <p class="lead" style="margin-top:-4px;font-size:0.85rem;"><a href="toolbox.html" style="color:#B8874F;text-decoration:underline;text-underline-offset:3px;">&larr; Toolbox</a>
+        &middot; <a href="journal-prompts.html" style="color:#B8874F;text-decoration:underline;text-underline-offset:3px;">Journal prompts</a></p>
+    </header>
+
+    <div class="panel">
+      <div class="print-meta" id="printMeta"></div>
+
+      <div class="controls no-print">
+        <div class="field">
+          <label for="suit">Draw from</label>
+          <select id="suit" aria-label="Card group">
+            <option value="all">Full deck (78 cards)</option>
+            <option value="major">Major Arcana (22)</option>
+            <option value="wands">Wands: creativity &amp; passion (14)</option>
+            <option value="cups">Cups: emotions &amp; connections (14)</option>
+            <option value="swords">Swords: thoughts &amp; challenges (14)</option>
+            <option value="pentacles">Pentacles: body &amp; abundance (14)</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn-primary" id="drawCard">Draw a card</button>
+          <button type="button" class="btn-secondary" id="shuffleDeck">Reshuffle</button>
+        </div>
+      </div>
+
+      <div class="card-stage">
+        <div class="card-scene">
+          <div class="card" id="card">
+            <div class="card-face back">
+              <img src="images/reflection-deck/card-back.webp" alt="Card back: a gold star reflected in still water on midnight indigo" />
+            </div>
+            <div class="card-face face">
+              <div class="face-inner">
+                <div class="face-suit" id="faceSuit">Major Arcana</div>
+                <p class="face-prompt" id="facePrompt">Draw a card to begin.</p>
+                <div class="face-count" id="faceCount"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="deck-count no-print" id="deckCount"></p>
+
+      <div class="no-print">
+        <label class="entry-label" for="entry">Your entry</label>
+        <textarea id="entry" placeholder="Write here&hellip;" spellcheck="true"></textarea>
+        <div class="btn-row" style="margin-top:12px;">
+          <button type="button" class="btn-secondary" id="saveEntry">Save</button>
+          <button type="button" class="btn-secondary" id="loadEntry">Load last</button>
+          <button type="button" class="btn-ghost" id="clearEntry">Clear</button>
+          <button type="button" class="btn-ghost" id="printEntry">Print</button>
+        </div>
+        <p class="status" id="status" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <p class="note no-print">
+      Entries are stored only in this browser (localStorage). Clearing site data or switching devices will remove them.
+      This is a reflection tool, not therapy or medical advice.
+    </p>
+  </main>
+
+  <footer class="house-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="library.html">Library</a></li>
+          <li><a href="play.html">Play Area</a></li>
+          <li><a href="muffins-corner.html">Muffin's Corner</a></li>
+          <li><a href="free-things.html">Free Things</a></li>
+          <li><a href="toolbox.html">Toolbox</a></li>
+          <li><a href="notes/index.html">House Notes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>The House</h3>
+        <ul>
+          <li><a href="guild/request.html">Start a Project</a></li>
+          <li><a href="hypnotherapy.html">The Zen Den</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+          <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="return-policy.html">Returns</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Newsletters</h3>
+        <ul>
+          <li><a href="https://sigil-and-scribe.kit.com/0ae0deb218" target="_blank" rel="noopener">Muffin's Mailbox</a></li>
+          <li><a href="https://sigil-and-scribe.kit.com/d0dcda3bf2" target="_blank" rel="noopener">Sigil and Scribe Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Sigil and Scribe, LLC</span>
+      <span>Muffin the Pitbull&trade; is a trademark of Sigil and Scribe, LLC.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+    const DECK = [{"s": "major", "n": 1, "t": "What is the core wound from my childhood that still whispers in my decisions today? How can I reframe it as a strength?"}, {"s": "major", "n": 2, "t": "If I could rewrite one pivotal moment in my life story, what would it be, and what new ending would I choose?"}, {"s": "major", "n": 3, "t": "What legacy do I want to leave behind—not for others, but for my future self?"}, {"s": "major", "n": 4, "t": "In what ways have I outgrown the person I was a year ago? What rituals can honor that transformation?"}, {"s": "major", "n": 5, "t": "What unspoken fear holds me back from fully embracing joy? How might I befriend it?"}, {"s": "major", "n": 6, "t": "If my life were a novel, what would the central theme be right now, and how does the plot need to shift?"}, {"s": "major", "n": 7, "t": "What ancient wisdom from my ancestors (or a cultural hero) would guide me through my current crossroads?"}, {"s": "major", "n": 8, "t": "How has failure been my greatest teacher? List three \"failures\" and the hidden gifts they revealed."}, {"s": "major", "n": 9, "t": "What does true freedom look like for me—emotionally, spiritually, practically—and what's one step toward it?"}, {"s": "major", "n": 10, "t": "If I stripped away all external expectations, what one pursuit would light up my soul?"}, {"s": "major", "n": 11, "t": "What patterns in my relationships mirror the ones I have with myself? How can I heal the root?"}, {"s": "major", "n": 12, "t": "Imagine your deathbed: What regrets would you whisper, and what bold action today dissolves them?"}, {"s": "major", "n": 13, "t": "What divine spark within me has been dimmed by doubt? How can I fan it into a flame?"}, {"s": "major", "n": 14, "t": "If the universe sent me a message through a dream, what would it say about my purpose?"}, {"s": "major", "n": 15, "t": "How do I sabotage my own peace, and what gentle boundaries can I set to protect it?"}, {"s": "major", "n": 16, "t": "What illusion about success am I ready to shatter? Define success on my own wild terms."}, {"s": "major", "n": 17, "t": "In the tower of my life, what needs to crumble for something stronger to rise?"}, {"s": "major", "n": 18, "t": "What star am I chasing that isn't truly mine? How do I align with my authentic north?"}, {"s": "major", "n": 19, "t": "What sacred pause do I need right now to reconnect with my intuition?"}, {"s": "major", "n": 20, "t": "How has my judgment of others been a projection of my inner critic? Forgive one today."}, {"s": "major", "n": 21, "t": "What world would I build if I had unlimited power—not to control, but to create?"}, {"s": "major", "n": 22, "t": "At the end of this lifetime chapter, what wisdom would I pass to a younger version of myself?"}, {"s": "wands", "n": 1, "t": "What small act of creation today would make my inner artist dance?"}, {"s": "wands", "n": 2, "t": "Recall a time passion ignited you: What fueled it, and how can I reignite that fire?"}, {"s": "wands", "n": 3, "t": "If I had one hour to invent something absurd and joyful, what would it be?"}, {"s": "wands", "n": 4, "t": "What \"shoulds\" are blocking my wild ideas? Burn one in your mind and brainstorm freely."}, {"s": "wands", "n": 5, "t": "Describe a perfect day fueled by curiosity: Where am I, what am I making?"}, {"s": "wands", "n": 6, "t": "What skill I've always wanted to learn? Why now, and what's my first messy step?"}, {"s": "wands", "n": 7, "t": "How does my body feel when I'm in flow? Chase that sensation this week."}, {"s": "wands", "n": 8, "t": "Write a love letter to a project that's been abandoned—do I revive it or release it?"}, {"s": "wands", "n": 9, "t": "What bold question have I been avoiding about my dreams? Answer it unfiltered."}, {"s": "wands", "n": 10, "t": "Imagine collaborating with your future self: What advice do they give on sparking joy?"}, {"s": "wands", "n": 11, "t": "What ritual can turn mundane chores into creative adventures?"}, {"s": "wands", "n": 12, "t": "List three \"impossible\" goals: Break one into playful, achievable sparks."}, {"s": "wands", "n": 13, "t": "How has competition dimmed my unique flame? Reframe rivalry as inspiration."}, {"s": "wands", "n": 14, "t": "End with gratitude: What one creative win, big or small, deserves celebration?"}, {"s": "cups", "n": 1, "t": "What emotion am I suppressing today? Dive into it like a warm bath—what does it teach?"}, {"s": "cups", "n": 2, "t": "Who in my life fills my cup without depleting it? How do I reciprocate?"}, {"s": "cups", "n": 3, "t": "Recall a heartbreak: What tender lesson bloomed from the ache?"}, {"s": "cups", "n": 4, "t": "If my heart could speak one unmet need, what would it whisper?"}, {"s": "cups", "n": 5, "t": "Describe a memory of pure, unfiltered connection—how can I invite more?"}, {"s": "cups", "n": 6, "t": "What boundaries in relationships feel like self-love in disguise?"}, {"s": "cups", "n": 7, "t": "Journal from the perspective of your vulnerability: What does it crave?"}, {"s": "cups", "n": 8, "t": "What forgiveness am I ready to offer— to myself, to another?"}, {"s": "cups", "n": 9, "t": "How do my daily habits nurture (or neglect) my emotional garden?"}, {"s": "cups", "n": 10, "t": "Imagine a dream friendship: What qualities do I embody to attract it?"}, {"s": "cups", "n": 11, "t": "What joy have I postponed? Claim a tiny piece of it right now."}, {"s": "cups", "n": 12, "t": "Explore envy: Whose life sparks it, and what desire in me is calling out?"}, {"s": "cups", "n": 13, "t": "What does \"enough\" feel like in love, in belonging? Affirm it."}, {"s": "cups", "n": 14, "t": "Close with a wish: Send compassionate energy to a loved one (or stranger) in need."}, {"s": "swords", "n": 1, "t": "What limiting belief is sharpening my doubts? Dull it with three counter-truths."}, {"s": "swords", "n": 2, "t": "Face a current conflict: What truth am I avoiding to keep the peace?"}, {"s": "swords", "n": 3, "t": "If my mind were a courtroom, what accusation needs a fair defense?"}, {"s": "swords", "n": 4, "t": "What overthinking loop am I stuck in? Trace it back to its origin."}, {"s": "swords", "n": 5, "t": "Write a manifesto against perfectionism: What freedom does it unlock?"}, {"s": "swords", "n": 6, "t": "How has a past defeat sharpened my resilience? Honor that blade."}, {"s": "swords", "n": 7, "t": "Question an assumption about myself: Is it fact or fear in disguise?"}, {"s": "swords", "n": 8, "t": "What mental clutter can I declutter today for clearer vision?"}, {"s": "swords", "n": 9, "t": "From the view of your inner critic: What scared child is it protecting?"}, {"s": "swords", "n": 10, "t": "Tackle a decision: List pros/cons, then intuit the gut choice."}, {"s": "swords", "n": 11, "t": "What \"what if\" worst-case scenario am I fearing? Flip it to best-case."}, {"s": "swords", "n": 12, "t": "How do I use words as weapons—on myself or others? Choose kinder ones."}, {"s": "swords", "n": 13, "t": "Reflect on a breakthrough moment: What mental shift cracked it open?"}, {"s": "swords", "n": 14, "t": "Breathe out: What one thought no longer serves? Let it dissolve."}, {"s": "pentacles", "n": 1, "t": "What does my body crave nutritionally or sensorily today? Honor it."}, {"s": "pentacles", "n": 2, "t": "Track abundance: List five \"riches\" (tangible or not) I often overlook."}, {"s": "pentacles", "n": 3, "t": "What practical habit builds security for my future self?"}, {"s": "pentacles", "n": 4, "t": "Describe a grounding routine: How does it root me in the present?"}, {"s": "pentacles", "n": 5, "t": "What possession (or lack) symbolizes my worth? Redefine it."}, {"s": "pentacles", "n": 6, "t": "Plan a self-care investment: Time, money, or energy—why this one?"}, {"s": "pentacles", "n": 7, "t": "Reflect on work/life balance: Where's the scale tipping, and how to steady it?"}, {"s": "pentacles", "n": 8, "t": "What legacy of generosity can I plant today, small as a seed?"}, {"s": "pentacles", "n": 9, "t": "How does nature mirror my inner seasons of growth and rest?"}, {"s": "pentacles", "n": 10, "t": "Audit finances (or resources): What gratitude shifts scarcity to plenty?"}, {"s": "pentacles", "n": 11, "t": "What physical strength am I proud of? Build on it mindfully."}, {"s": "pentacles", "n": 12, "t": "Envision retirement (or rest phase): What sustains my soul then?"}, {"s": "pentacles", "n": 13, "t": "What ethical choice in daily life aligns me with deeper values?"}, {"s": "pentacles", "n": 14, "t": "Harvest the day: What one \"crop\" of progress do I reap and savor?"}];
+    const SUIT_LABEL = { major: 'Major Arcana', wands: 'Wands', cups: 'Cups', swords: 'Swords', pentacles: 'Pentacles' };
+    const STORAGE_KEY = 'sigil-reflection-deck-v1';
+
+    const suitEl = document.getElementById('suit');
+    const cardEl = document.getElementById('card');
+    const faceSuitEl = document.getElementById('faceSuit');
+    const facePromptEl = document.getElementById('facePrompt');
+    const faceCountEl = document.getElementById('faceCount');
+    const deckCountEl = document.getElementById('deckCount');
+    const entryEl = document.getElementById('entry');
+    const statusEl = document.getElementById('status');
+    const printMetaEl = document.getElementById('printMeta');
+
+    let currentCard = null;
+    let shown = [];
+
+    function setStatus(msg, type) {
+      statusEl.textContent = msg || '';
+      statusEl.className = 'status' + (type ? ' ' + type : '');
+    }
+
+    function pool() {
+      const v = suitEl.value;
+      return v === 'all' ? DECK : DECK.filter(c => c.s === v);
+    }
+
+    function updateCount() {
+      const p = pool();
+      const remaining = p.length - shown.filter(s => suitEl.value === 'all' || s === suitEl.value).length;
+      deckCountEl.textContent = suitEl.value === 'all'
+        ? p.length + ' cards in the deck'
+        : p.length + ' cards in ' + SUIT_LABEL[suitEl.value];
+    }
+
+    function draw() {
+      const p = pool();
+      let choices = p.filter(c => !shown.includes(c.n + c.s));
+      if (!choices.length) { choices = p; shown = []; }
+      const card = choices[Math.floor(Math.random() * choices.length)];
+      shown.push(card.n + card.s);
+      currentCard = card;
+      cardEl.classList.remove('flipped');
+      setStatus('');
+      setTimeout(() => {
+        faceSuitEl.textContent = SUIT_LABEL[card.s] + ' \u00b7 ' + card.n;
+        facePromptEl.textContent = card.t;
+        const idx = p.indexOf(card) + 1;
+        faceCountEl.textContent = 'Card ' + idx + ' of ' + p.length;
+        cardEl.classList.add('flipped');
+        updateCount();
+      }, 320);
+    }
+
+    function reshuffle() {
+      shown = [];
+      currentCard = null;
+      cardEl.classList.remove('flipped');
+      facePromptEl.textContent = 'Draw a card to begin.';
+      faceSuitEl.textContent = SUIT_LABEL[suitEl.value] || 'Full deck';
+      faceCountEl.textContent = '';
+      setStatus('Shuffled. The deck is ready.', 'saved');
+      updateCount();
+    }
+
+    function save() {
+      const data = {
+        suit: currentCard ? SUIT_LABEL[currentCard.s] : null,
+        card: currentCard ? currentCard.n : null,
+        prompt: currentCard ? currentCard.t : null,
+        entry: entryEl.value,
+        savedAt: new Date().toISOString()
+      };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        const when = new Date(data.savedAt).toLocaleString();
+        setStatus('Saved locally \u00b7 ' + when, 'saved');
+      } catch (e) {
+        setStatus('Could not save (storage full or blocked).', 'warn');
+      }
+    }
+
+    function load() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) { setStatus('No saved entry found on this browser.', 'warn'); return; }
+        const data = JSON.parse(raw);
+        if (data.prompt) {
+          faceSuitEl.textContent = (data.suit || 'Card') + (data.card ? ' \u00b7 ' + data.card : '');
+          facePromptEl.textContent = data.prompt;
+          faceCountEl.textContent = '';
+          cardEl.classList.add('flipped');
+        }
+        entryEl.value = data.entry || '';
+        setStatus('Loaded your last entry.', 'saved');
+      } catch (e) {
+        setStatus('Could not load the saved entry.', 'warn');
+      }
+    }
+
+    function clearAll() {
+      entryEl.value = '';
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+      setStatus('Cleared.', '');
+    }
+
+    function doPrint() {
+      printMetaEl.textContent = '';
+      if (currentCard) {
+        printMetaEl.textContent = SUIT_LABEL[currentCard.s] + ' \u00b7 ' + currentCard.n + ' \u2014 ' + new Date().toLocaleDateString();
+      }
+      window.print();
+    }
+
+    document.getElementById('drawCard').addEventListener('click', draw);
+    document.getElementById('shuffleDeck').addEventListener('click', reshuffle);
+    document.getElementById('saveEntry').addEventListener('click', save);
+    document.getElementById('loadEntry').addEventListener('click', load);
+    document.getElementById('clearEntry').addEventListener('click', clearAll);
+    document.getElementById('printEntry').addEventListener('click', doPrint);
+    suitEl.addEventListener('change', reshuffle);
+    updateCount();
+  </script>
+  <script src="js/house-nav.js"></script>
+<a class="pearl-helper" href="pearl.html" aria-label="Get help from Pearl"><img src="images/site/pearl-helper.jpg" alt="Pearl, the site's help figure" width="56" height="56"></a>
+<style>.pearl-helper{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:56px;height:56px;border-radius:50%;overflow:hidden;display:block;box-shadow:0 3px 12px rgba(74,53,32,.28);border:2px solid #fffdf7;background:#fffdf7}.pearl-helper img{width:100%;height:100%;object-fit:cover;display:block}</style>
+</body>
+</html>
