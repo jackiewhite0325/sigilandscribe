@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pick-Me-Up | Sigil and Scribe</title>
+  <meta name="description" content="A little lift for heavy days. Twelve bright quotes from Jackie's own quote jar, one at a time. Free tool from Sigil & Scribe." />
+  <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
+  <meta property="og:title" content="Pick-Me-Up | Sigil and Scribe">
+  <meta property="og:description" content="A little lift for heavy days: twelve bright quotes from Jackie's quote jar.">
+  <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/pick-me-up.html">
+  <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pick-Me-Up | Sigil and Scribe">
+  <meta name="twitter:description" content="A little lift for heavy days: twelve bright quotes from Jackie's quote jar.">
+  <meta name="twitter:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="book.css">
+  <link rel="stylesheet" href="house.css?v=8">
+
+  <style>
+    :root {
+      --paper: #FDFBF7;
+      --ink: #2B2B2B;
+      --amber: #D4A373;
+      --amber-deep: #B8874F;
+      --sage-deep: #7E8F76;
+      --walnut: #6B4A34;
+      --walnut-deep: #38251A;
+      --card: #F7EFDD;
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    body {
+      background: radial-gradient(ellipse at 20% 0%, rgba(212, 163, 115, 0.10), transparent 55%), var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+    }
+
+    .tool-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .tool-intro {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .tool-intro .bp-call {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      color: var(--amber-deep);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .tool-intro h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+      color: var(--walnut-deep);
+      margin: 8px 0 10px;
+      font-weight: 600;
+    }
+
+    .tool-intro .lead {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #5a5a5a;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .quote-card {
+      background: #fff;
+      border: 1px solid rgba(107, 74, 52, 0.14);
+      border-radius: 14px;
+      padding: 52px 40px 44px;
+      box-shadow: 0 6px 24px rgba(56, 37, 26, 0.06);
+      text-align: center;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--amber), var(--sage-deep), var(--amber));
+    }
+
+    .quote-mark {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 3.2rem;
+      line-height: 1;
+      color: var(--amber);
+      opacity: 0.65;
+    }
+
+    #quoteText {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.25rem, 3.4vw, 1.6rem);
+      line-height: 1.55;
+      color: var(--walnut-deep);
+      transition: opacity 0.25s var(--ease);
+    }
+
+    #quoteText.fading {
+      opacity: 0;
+    }
+
+    .quote-source {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage-deep);
+    }
+
+    .quote-by {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--amber-deep);
+    }
+
+    .quote-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .big-btn {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fffdf7;
+      background: linear-gradient(135deg, var(--amber-deep), #a5763f);
+      border: none;
+      border-radius: 999px;
+      padding: 16px 44px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(184, 135, 79, 0.35);
+      transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+    }
+
+    .big-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(184, 135, 79, 0.45);
+    }
+
+    .big-btn:active {
+      transform: translateY(0);
+    }
+
+    .quote-count {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: #999;
+    }
+
+    .back-links {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    .back-links a {
+      color: var(--amber-deep);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FBP908LERR');
+  </script>
+</head>
+<body>
+
+  <nav class="house-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="play.html">Play</a></li>
+        <li><a href="guild/request.html">Start a Project</a></li>
+        <li><a href="hypnotherapy.html">Zen Den</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="notes/index.html">Notes</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="tool-wrap">
+    <header class="tool-intro">
+      <span class="bp-call">Toolbox · A Little Lift</span>
+      <h1>Need a Pick-Me-Up?</h1>
+      <p class="lead">Twelve bright notes from Jackie's own quote jar, one at a time. Press the button whenever the day needs a little lift.</p>
+    </header>
+
+    <section class="quote-card" aria-live="polite">
+      <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+      <p id="quoteText"></p>
+      <div class="quote-by" id="quoteBy"></div>
+      <div class="quote-source">from Jackie's quote jar</div>
+    </section>
+
+    <div class="quote-controls">
+      <button type="button" class="big-btn" id="anotherBtn">Give me another</button>
+      <div class="quote-count" id="quoteCount"></div>
+    </div>
+
+    <p class="back-links"><a href="toolbox.html">&larr; Toolbox</a></p>
+</main>
+
+  <footer class="house-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="library.html">Library</a></li>
+          <li><a href="play.html">Play Area</a></li>
+          <li><a href="muffins-corner.html">Muffin's Corner</a></li>
+          <li><a href="free-things.html">Free Things</a></li>
+          <li><a href="toolbox.html">Toolbox</a></li>
+          <li><a href="notes/index.html">House Notes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>The House</h3>
+        <ul>
+          <li><a href="guild/request.html">Start a Project</a></li>
+          <li><a href="hypnotherapy.html">The Zen Den</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+          <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="return-policy.html">Returns</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Newsletters</h3>
+        <ul>
+          <li><a href="https://sigil-and-scribe.kit.com/0ae0deb218" target="_blank" rel="noopener">Muffin's Mailbox</a></li>
+          <li><a href="https://sigil-and-scribe.kit.com/d0dcda3bf2" target="_blank" rel="noopener">Sigil and Scribe Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Sigil and Scribe, LLC</span>
+      <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+    const QUOTES = [
+      { text: "We lift people up, not throw dirt on them.", by: "Anonymous" },
+      { text: "The grass is green where you water it.", by: "Anonymous" },
+      { text: "There are two wolves inside each one of us, and the one that grows is the one you feed.", by: "Anonymous" },
+      { text: "Be the change you want to see in the world.", by: "attributed to Mahatma Gandhi" },
+      { text: "Don't sweat the small stuff, and by the way, it's all small stuff.", by: "Richard Carlson" },
+      { text: "Integrity is doing the right thing, even when nobody is watching.", by: "Anonymous" },
+      { text: "You can either be part of the problem, or part of the solution.", by: "Eldridge Cleaver" },
+      { text: "If tomorrow never comes, will they know how much you love them?", by: "Garth Brooks" },
+      { text: "You don't know what they've been through.", by: "Anonymous" },
+      { text: "That is not for you or I to judge.", by: "Anonymous" },
+      { text: "Look at it from your perspective, then look at it from their perspective, then look at it from an outsider's point of view. The truth is somewhere in the middle.", by: "Anonymous" },
+      { text: "Balance, always. You can't know happiness without sadness, nor light without dark.", by: "Anonymous" }
+    ];
+
+    const quoteText = document.getElementById('quoteText');
+    const quoteBy = document.getElementById('quoteBy');
+    const quoteCount = document.getElementById('quoteCount');
+    const anotherBtn = document.getElementById('anotherBtn');
+    let lastIndex = -1;
+
+    function drawQuote() {
+      let i;
+      do {
+        i = Math.floor(Math.random() * QUOTES.length);
+      } while (i === lastIndex && QUOTES.length > 1);
+      lastIndex = i;
+      quoteText.classList.add('fading');
+      setTimeout(function () {
+        quoteText.textContent = QUOTES[i].text;
+        quoteBy.textContent = "\u2014 " + QUOTES[i].by;
+        quoteCount.textContent = (i + 1) + ' of ' + QUOTES.length;
+        quoteText.classList.remove('fading');
+      }, 180);
+    }
+
+    anotherBtn.addEventListener('click', drawQuote);
+
+    // first quote on load
+    drawQuote();
+  </script>
+  <script src="js/house-nav.js"></script>
+<a class="pearl-helper" href="pearl.html" aria-label="Get help from Pearl"><img src="images/site/pearl-helper.jpg" alt="Pearl, the site's help figure" width="56" height="56"></a>
+<style>
+.pearl-helper{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:56px;height:56px;border-radius:50%;overflow:hidden;display:block;box-shadow:0 3px 12px rgba(74,53,32,.28);border:2px solid #fffdf7;background:#fffdf7}
+.pearl-helper img{width:100%;height:100%;object-fit:cover;display:block}
+</style>
+</body>
+</html>
