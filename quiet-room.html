@@ -231,6 +231,7 @@
       .house-footer,
       .pearl-helper,
       .quiet-orb-wrap,
+      .quiet-write,
       .back-play,
       .soft-exits { display: none !important; }
       body.room-quiet { background: #fff; }
@@ -239,6 +240,48 @@
       .quiet-shelf { break-inside: avoid; }
       a { color: #000; text-decoration: none; }
     }
+    /* ---- Optional on-screen writing ---- */
+    .quiet-orb-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a8272;
+      margin: 0;
+    }
+    .quiet-write { margin-top: 10px; }
+    .quiet-write textarea {
+      width: 100%;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: #2b2620;
+      background: #fffdf9;
+      border: 1px solid #e4dcc9;
+      border-radius: 8px;
+      padding: 10px 12px;
+      resize: vertical;
+    }
+    .quiet-write textarea:focus {
+      outline: 2px solid rgba(176,141,87,0.4);
+      outline-offset: 1px;
+      border-color: #b08d57;
+    }
+    .quiet-write-note {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.8rem;
+      color: #8a8272;
+      margin: 6px 0 0;
+    }
+    body.lights-dim .quiet-orb-title { color: #a89a80; }
+    body.lights-dim .quiet-write textarea {
+      background: #2d261e;
+      border-color: #4a4136;
+      color: #ece1cb;
+    }
+    body.lights-dim .quiet-write-note { color: #a89a80; }
   </style>
 </head>
 <body class="room-quiet">
@@ -264,6 +307,7 @@
     <p class="still-note">Nothing here asks you to finish a task, buy a book, or improve. Use a pen, a note app, or only your attention. Stay as long as you like.</p>
 
     <div class="quiet-orb-wrap">
+      <h2 class="quiet-orb-title">Breathing light</h2>
       <button
         type="button"
         class="quiet-orb"
@@ -273,18 +317,43 @@
         title="Tap to start or pause the breathing light">
       </button>
       <p class="quiet-orb-phase" id="quiet-orb-phase" aria-live="polite">Tap the light to begin</p>
-      <p class="quiet-orb-hint">A slow visual cue you can return to anytime. Follow the glow if it helps; look away if it does not.</p>
+      <p class="quiet-orb-hint">If you arrived frazzled, start here. Tap the light and follow its slow expand, hold, and ease. Look away whenever you like.</p>
       <button type="button" class="lights-toggle" id="lights-toggle" aria-pressed="false">Dim the lights</button>
     </div>
 
     <div class="quiet-prompts">
       <h2>Gentle prompts</h2>
       <ol>
-        <li>Name one thing in the room with you right now. Write three ordinary details about it.</li>
-        <li>Finish the sentence once, without fixing it: “Today I noticed…”</li>
-        <li>Describe a sound you can hear, or the quiet itself, in a single short line.</li>
-        <li>Write six words about something unfinished. Leave them unfinished if that fits.</li>
-        <li>If a page could hold one small kindness for a later you, what would it say?</li>
+        <li>Name one thing in the room with you right now. Write three ordinary details about it.
+          <div class="quiet-write">
+            <textarea data-save="prompt-1" rows="3" aria-label="Your response to prompt 1" placeholder="Write here if you like"></textarea>
+            <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+          </div>
+        </li>
+        <li>Finish the sentence once, without fixing it: “Today I noticed…”
+          <div class="quiet-write">
+            <textarea data-save="prompt-2" rows="3" aria-label="Your response to prompt 2" placeholder="Write here if you like"></textarea>
+            <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+          </div>
+        </li>
+        <li>Describe a sound you can hear, or the quiet itself, in a single short line.
+          <div class="quiet-write">
+            <textarea data-save="prompt-3" rows="3" aria-label="Your response to prompt 3" placeholder="Write here if you like"></textarea>
+            <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+          </div>
+        </li>
+        <li>Write six words about something unfinished. Leave them unfinished if that fits.
+          <div class="quiet-write">
+            <textarea data-save="prompt-4" rows="3" aria-label="Your response to prompt 4" placeholder="Write here if you like"></textarea>
+            <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+          </div>
+        </li>
+        <li>If a page could hold one small kindness for a later you, what would it say?
+          <div class="quiet-write">
+            <textarea data-save="prompt-5" rows="3" aria-label="Your response to prompt 5" placeholder="Write here if you like"></textarea>
+            <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+          </div>
+        </li>
       </ol>
     </div>
 
@@ -296,6 +365,10 @@
         <li>What texture does it have?</li>
         <li>What changed when you actually looked?</li>
       </ul>
+      <div class="quiet-write">
+        <textarea data-save="noticing" rows="4" aria-label="Your noticing notes" placeholder="What did you notice?"></textarea>
+        <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+      </div>
     </div>
 
     <div class="quiet-invite">
@@ -308,11 +381,19 @@
     <div class="quiet-invite">
       <h2>The Six-Word Room</h2>
       <p class="quiet-lead">Describe this moment in six words. No more. No less. No explaining.</p>
+      <div class="quiet-write">
+        <textarea data-save="six-words" rows="2" aria-label="Your six words" placeholder="Six words"></textarea>
+        <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+      </div>
     </div>
 
     <div class="quiet-invite">
       <h2>The Unfinished Thing</h2>
       <p class="quiet-lead">Start a sentence. Stop wherever you want. You don’t have to finish it.</p>
+      <div class="quiet-write">
+        <textarea data-save="unfinished" rows="2" aria-label="Your unfinished sentence" placeholder="Start a sentence"></textarea>
+        <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+      </div>
     </div>
 
     <div class="quiet-shelf">
@@ -329,7 +410,7 @@
       </ul>
     </div>
 
-    <p class="quiet-aside">These stay on the page. Nothing is saved here. If you want a fuller prompt set with local save and print, the journal prompts tool lives in the Toolbox.</p>
+    <p class="quiet-aside">Your words save on this device only, as you type. Nothing leaves your browser. For a fuller prompt set with print, the journal prompts tool lives in the Toolbox.</p>
 
     <p class="soft-exits">
       If you want to leave gently:<br>
@@ -444,6 +525,21 @@
       toggle.textContent = dimmed ? 'Brighten the room' : 'Dim the lights';
     });
   }
+
+  /* Optional on-screen writing: autosave to this device only */
+  try {
+    var fields = document.querySelectorAll('textarea[data-save]');
+    for (var i = 0; i < fields.length; i++) {
+      (function (el) {
+        var key = 'quiet-room:' + el.getAttribute('data-save');
+        var saved = localStorage.getItem(key);
+        if (saved) el.value = saved;
+        el.addEventListener('input', function () {
+          try { localStorage.setItem(key, el.value); } catch (e) {}
+        });
+      })(fields[i]);
+    }
+  } catch (e) {}
 })();
 </script>
 <a class="pearl-helper" href="pearl.html" aria-label="Get help from Pearl"><img src="images/site/pearl-helper.jpg" alt="Pearl, the site's help figure" width="56" height="56"></a>
