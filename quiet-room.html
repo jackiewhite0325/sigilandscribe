@@ -234,7 +234,8 @@
       .quiet-write,
       .back-play,
       .soft-exits { display: none !important; }
-      body.room-quiet { background: #fff; }
+      body.room-quiet,
+      body.lights-dim.room-quiet { background: #fff; }
       .quiet-prompts,
       .quiet-invite,
       .quiet-shelf { break-inside: avoid; }
@@ -304,7 +305,7 @@
     <p class="eyebrow">Play Area · Calm</p>
     <h1>Quiet Room</h1>
     <p class="still-line">Quiet creative time.</p>
-    <p class="still-note">Nothing here asks you to finish a task, buy a book, or improve. Use a pen, a note app, or only your attention. Stay as long as you like.</p>
+    <p class="still-note">Nothing here asks you to finish a task, buy a book, or improve. Use a pen, a note app, the spaces below, or only your attention. Stay as long as you like.</p>
 
     <div class="quiet-orb-wrap">
       <h2 class="quiet-orb-title">Breathing light</h2>
@@ -333,25 +334,25 @@
         <li>Finish the sentence once, without fixing it: “Today I noticed…”
           <div class="quiet-write">
             <textarea data-save="prompt-2" rows="3" aria-label="Your response to prompt 2" placeholder="Write here if you like"></textarea>
-            <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+            <p class="quiet-write-note">Saved on this device only.</p>
           </div>
         </li>
         <li>Describe a sound you can hear, or the quiet itself, in a single short line.
           <div class="quiet-write">
             <textarea data-save="prompt-3" rows="3" aria-label="Your response to prompt 3" placeholder="Write here if you like"></textarea>
-            <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+            <p class="quiet-write-note">Saved on this device only.</p>
           </div>
         </li>
         <li>Write six words about something unfinished. Leave them unfinished if that fits.
           <div class="quiet-write">
             <textarea data-save="prompt-4" rows="3" aria-label="Your response to prompt 4" placeholder="Write here if you like"></textarea>
-            <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+            <p class="quiet-write-note">Saved on this device only.</p>
           </div>
         </li>
         <li>If a page could hold one small kindness for a later you, what would it say?
           <div class="quiet-write">
             <textarea data-save="prompt-5" rows="3" aria-label="Your response to prompt 5" placeholder="Write here if you like"></textarea>
-            <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+            <p class="quiet-write-note">Saved on this device only.</p>
           </div>
         </li>
       </ol>
@@ -367,7 +368,7 @@
       </ul>
       <div class="quiet-write">
         <textarea data-save="noticing" rows="4" aria-label="Your noticing notes" placeholder="What did you notice?"></textarea>
-        <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+        <p class="quiet-write-note">Saved on this device only.</p>
       </div>
     </div>
 
@@ -383,7 +384,7 @@
       <p class="quiet-lead">Describe this moment in six words. No more. No less. No explaining.</p>
       <div class="quiet-write">
         <textarea data-save="six-words" rows="2" aria-label="Your six words" placeholder="Six words"></textarea>
-        <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+        <p class="quiet-write-note">Saved on this device only.</p>
       </div>
     </div>
 
@@ -392,7 +393,7 @@
       <p class="quiet-lead">Start a sentence. Stop wherever you want. You don’t have to finish it.</p>
       <div class="quiet-write">
         <textarea data-save="unfinished" rows="2" aria-label="Your unfinished sentence" placeholder="Start a sentence"></textarea>
-        <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
+        <p class="quiet-write-note">Saved on this device only.</p>
       </div>
     </div>
 
