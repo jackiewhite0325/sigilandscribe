@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>78 Reflections Deck | Sigil and Scribe</title>
-  <meta name="description" content="A 78-card reflection deck: draw a card, sit with its prompt, write. Major Arcana and four suits. Free, local only, no signup." />
+  <meta name="description" content="A 78-card reflection deck: draw a card, sit with its prompt, write. Every card has its own artwork. Free, local only, no signup." />
   <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
@@ -79,27 +79,40 @@
     .card-face img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .card-face.face {
       transform: rotateY(180deg);
-      background: radial-gradient(ellipse at 50% 30%, rgba(35,43,82,0.88) 0%, rgba(18,22,46,0.94) 75%);
+      background: radial-gradient(ellipse at 50% 30%, #232b52 0%, var(--indigo-deep) 75%);
       border: 1px solid #2c3560;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 26px 22px; text-align: center; color: #f2e9d4;
+      color: #f7f1de;
     }
-    .face-art {
+    .face-img {
       position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; opacity: 0.35; pointer-events: none;
+      object-fit: cover; pointer-events: none;
     }
-    .face-inner { position: relative; z-index: 1; }
-    .face-inner {
-      border: 1px solid rgba(217,179,106,0.55); border-radius: 9px; outline: 1px solid rgba(217,179,106,0.25);
-      outline-offset: 5px; width: 100%; height: 100%;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 20px 16px; gap: 14px;
+    .face-shade {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        linear-gradient(to bottom, rgba(10,13,30,0.72) 0%, rgba(10,13,30,0) 26%),
+        linear-gradient(to top, rgba(10,13,30,0.82) 0%, rgba(10,13,30,0.25) 42%, rgba(10,13,30,0) 62%);
     }
-    .face-suit {
-      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+    .face-top {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 1;
+      text-align: center; padding: 14px 12px 0;
     }
-    .face-prompt { font-family: 'Playfair Display', serif; font-size: 1.12rem; line-height: 1.55; }
-    .face-count { font-size: 0.72rem; color: rgba(242,233,212,0.6); letter-spacing: 0.1em; }
+    .face-top span {
+      font-size: 0.66rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+    }
+    .face-bottom {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+      padding: 12px 16px 14px; text-align: center;
+    }
+    .face-prompt {
+      font-family: 'Playfair Display', serif; font-size: 1.02rem; line-height: 1.5;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.8); margin: 0 0 8px;
+    }
+    .face-brand {
+      font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: rgba(247,241,222,0.75); text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+    }
     .entry-label { display: block; font-weight: 600; margin: 4px 0 8px; }
     #entry {
       width: 100%; min-height: 170px; font: inherit; line-height: 1.65; resize: vertical;
@@ -116,7 +129,7 @@
       .card-scene { width: 220px; }
       .card { transform: none !important; }
       .card-face.back { display: none; }
-      .card-face.face { position: static; transform: none; box-shadow: none; border: 2px solid var(--indigo); }
+      .card-face.face { position: relative; transform: none; box-shadow: none; border: 2px solid var(--indigo); min-height: 340px; }
       #entry { border: none; min-height: 0; }
     }
   </style>
@@ -143,7 +156,7 @@
     <header class="tool-intro">
       <span class="bp-call">Toolbox &middot; Reflection Deck</span>
       <h1>78 Reflections</h1>
-      <p class="lead">A seventy-eight card deck for self-discovery: twenty-two Major Arcana and four suits of fourteen. Shuffle, draw a card, sit with its prompt, and write. Nothing leaves this browser unless you print or copy it.</p>
+      <p class="lead">Seventy-eight reflection cards for self-discovery, each with its own artwork. Shuffle, draw a card, sit with its prompt, and write. Nothing leaves this browser unless you print or copy it.</p>
       <p class="lead" style="margin-top:-4px;font-size:0.85rem;"><a href="toolbox.html" style="color:#B8874F;text-decoration:underline;text-underline-offset:3px;">&larr; Toolbox</a>
         &middot; <a href="journal-prompts.html" style="color:#B8874F;text-decoration:underline;text-underline-offset:3px;">Journal prompts</a></p>
     </header>
@@ -152,17 +165,6 @@
       <div class="print-meta" id="printMeta"></div>
 
       <div class="controls no-print">
-        <div class="field">
-          <label for="suit">Draw from</label>
-          <select id="suit" aria-label="Card group">
-            <option value="all">Full deck (78 cards)</option>
-            <option value="major">Major Arcana (22)</option>
-            <option value="wands">Wands: creativity &amp; passion (14)</option>
-            <option value="cups">Cups: emotions &amp; connections (14)</option>
-            <option value="swords">Swords: thoughts &amp; challenges (14)</option>
-            <option value="pentacles">Pentacles: body &amp; abundance (14)</option>
-          </select>
-        </div>
         <div class="btn-row">
           <button type="button" class="btn-primary" id="drawCard">Draw a card</button>
           <button type="button" class="btn-secondary" id="shuffleDeck">Reshuffle</button>
@@ -176,11 +178,12 @@
               <img src="images/reflection-deck/card-back.webp" alt="Card back: a gold star reflected in still water on midnight indigo" />
             </div>
             <div class="card-face face">
-              <img class="face-art" src="images/reflection-deck/card-back.webp" alt="" aria-hidden="true" />
-              <div class="face-inner">
-                <div class="face-suit" id="faceSuit">Major Arcana</div>
+              <img class="face-img" id="faceImg" alt="" style="display:none;" />
+              <div class="face-shade"></div>
+              <div class="face-top"><span id="faceKicker">Reflection deck</span></div>
+              <div class="face-bottom">
                 <p class="face-prompt" id="facePrompt">Draw a card to begin.</p>
-                <div class="face-count" id="faceCount"></div>
+                <div class="face-brand">Sigil and Scribe</div>
               </div>
             </div>
           </div>
@@ -256,15 +259,13 @@
 </footer>
 
 <script>
-    const DECK = [{"s": "major", "n": 1, "t": "What is the core wound from my childhood that still whispers in my decisions today? How can I reframe it as a strength?"}, {"s": "major", "n": 2, "t": "If I could rewrite one pivotal moment in my life story, what would it be, and what new ending would I choose?"}, {"s": "major", "n": 3, "t": "What legacy do I want to leave behind—not for others, but for my future self?"}, {"s": "major", "n": 4, "t": "In what ways have I outgrown the person I was a year ago? What rituals can honor that transformation?"}, {"s": "major", "n": 5, "t": "What unspoken fear holds me back from fully embracing joy? How might I befriend it?"}, {"s": "major", "n": 6, "t": "If my life were a novel, what would the central theme be right now, and how does the plot need to shift?"}, {"s": "major", "n": 7, "t": "What ancient wisdom from my ancestors (or a cultural hero) would guide me through my current crossroads?"}, {"s": "major", "n": 8, "t": "How has failure been my greatest teacher? List three \"failures\" and the hidden gifts they revealed."}, {"s": "major", "n": 9, "t": "What does true freedom look like for me—emotionally, spiritually, practically—and what's one step toward it?"}, {"s": "major", "n": 10, "t": "If I stripped away all external expectations, what one pursuit would light up my soul?"}, {"s": "major", "n": 11, "t": "What patterns in my relationships mirror the ones I have with myself? How can I heal the root?"}, {"s": "major", "n": 12, "t": "Imagine your deathbed: What regrets would you whisper, and what bold action today dissolves them?"}, {"s": "major", "n": 13, "t": "What divine spark within me has been dimmed by doubt? How can I fan it into a flame?"}, {"s": "major", "n": 14, "t": "If the universe sent me a message through a dream, what would it say about my purpose?"}, {"s": "major", "n": 15, "t": "How do I sabotage my own peace, and what gentle boundaries can I set to protect it?"}, {"s": "major", "n": 16, "t": "What illusion about success am I ready to shatter? Define success on my own wild terms."}, {"s": "major", "n": 17, "t": "In the tower of my life, what needs to crumble for something stronger to rise?"}, {"s": "major", "n": 18, "t": "What star am I chasing that isn't truly mine? How do I align with my authentic north?"}, {"s": "major", "n": 19, "t": "What sacred pause do I need right now to reconnect with my intuition?"}, {"s": "major", "n": 20, "t": "How has my judgment of others been a projection of my inner critic? Forgive one today."}, {"s": "major", "n": 21, "t": "What world would I build if I had unlimited power—not to control, but to create?"}, {"s": "major", "n": 22, "t": "At the end of this lifetime chapter, what wisdom would I pass to a younger version of myself?"}, {"s": "wands", "n": 1, "t": "What small act of creation today would make my inner artist dance?"}, {"s": "wands", "n": 2, "t": "Recall a time passion ignited you: What fueled it, and how can I reignite that fire?"}, {"s": "wands", "n": 3, "t": "If I had one hour to invent something absurd and joyful, what would it be?"}, {"s": "wands", "n": 4, "t": "What \"shoulds\" are blocking my wild ideas? Burn one in your mind and brainstorm freely."}, {"s": "wands", "n": 5, "t": "Describe a perfect day fueled by curiosity: Where am I, what am I making?"}, {"s": "wands", "n": 6, "t": "What skill I've always wanted to learn? Why now, and what's my first messy step?"}, {"s": "wands", "n": 7, "t": "How does my body feel when I'm in flow? Chase that sensation this week."}, {"s": "wands", "n": 8, "t": "Write a love letter to a project that's been abandoned—do I revive it or release it?"}, {"s": "wands", "n": 9, "t": "What bold question have I been avoiding about my dreams? Answer it unfiltered."}, {"s": "wands", "n": 10, "t": "Imagine collaborating with your future self: What advice do they give on sparking joy?"}, {"s": "wands", "n": 11, "t": "What ritual can turn mundane chores into creative adventures?"}, {"s": "wands", "n": 12, "t": "List three \"impossible\" goals: Break one into playful, achievable sparks."}, {"s": "wands", "n": 13, "t": "How has competition dimmed my unique flame? Reframe rivalry as inspiration."}, {"s": "wands", "n": 14, "t": "End with gratitude: What one creative win, big or small, deserves celebration?"}, {"s": "cups", "n": 1, "t": "What emotion am I suppressing today? Dive into it like a warm bath—what does it teach?"}, {"s": "cups", "n": 2, "t": "Who in my life fills my cup without depleting it? How do I reciprocate?"}, {"s": "cups", "n": 3, "t": "Recall a heartbreak: What tender lesson bloomed from the ache?"}, {"s": "cups", "n": 4, "t": "If my heart could speak one unmet need, what would it whisper?"}, {"s": "cups", "n": 5, "t": "Describe a memory of pure, unfiltered connection—how can I invite more?"}, {"s": "cups", "n": 6, "t": "What boundaries in relationships feel like self-love in disguise?"}, {"s": "cups", "n": 7, "t": "Journal from the perspective of your vulnerability: What does it crave?"}, {"s": "cups", "n": 8, "t": "What forgiveness am I ready to offer— to myself, to another?"}, {"s": "cups", "n": 9, "t": "How do my daily habits nurture (or neglect) my emotional garden?"}, {"s": "cups", "n": 10, "t": "Imagine a dream friendship: What qualities do I embody to attract it?"}, {"s": "cups", "n": 11, "t": "What joy have I postponed? Claim a tiny piece of it right now."}, {"s": "cups", "n": 12, "t": "Explore envy: Whose life sparks it, and what desire in me is calling out?"}, {"s": "cups", "n": 13, "t": "What does \"enough\" feel like in love, in belonging? Affirm it."}, {"s": "cups", "n": 14, "t": "Close with a wish: Send compassionate energy to a loved one (or stranger) in need."}, {"s": "swords", "n": 1, "t": "What limiting belief is sharpening my doubts? Dull it with three counter-truths."}, {"s": "swords", "n": 2, "t": "Face a current conflict: What truth am I avoiding to keep the peace?"}, {"s": "swords", "n": 3, "t": "If my mind were a courtroom, what accusation needs a fair defense?"}, {"s": "swords", "n": 4, "t": "What overthinking loop am I stuck in? Trace it back to its origin."}, {"s": "swords", "n": 5, "t": "Write a manifesto against perfectionism: What freedom does it unlock?"}, {"s": "swords", "n": 6, "t": "How has a past defeat sharpened my resilience? Honor that blade."}, {"s": "swords", "n": 7, "t": "Question an assumption about myself: Is it fact or fear in disguise?"}, {"s": "swords", "n": 8, "t": "What mental clutter can I declutter today for clearer vision?"}, {"s": "swords", "n": 9, "t": "From the view of your inner critic: What scared child is it protecting?"}, {"s": "swords", "n": 10, "t": "Tackle a decision: List pros/cons, then intuit the gut choice."}, {"s": "swords", "n": 11, "t": "What \"what if\" worst-case scenario am I fearing? Flip it to best-case."}, {"s": "swords", "n": 12, "t": "How do I use words as weapons—on myself or others? Choose kinder ones."}, {"s": "swords", "n": 13, "t": "Reflect on a breakthrough moment: What mental shift cracked it open?"}, {"s": "swords", "n": 14, "t": "Breathe out: What one thought no longer serves? Let it dissolve."}, {"s": "pentacles", "n": 1, "t": "What does my body crave nutritionally or sensorily today? Honor it."}, {"s": "pentacles", "n": 2, "t": "Track abundance: List five \"riches\" (tangible or not) I often overlook."}, {"s": "pentacles", "n": 3, "t": "What practical habit builds security for my future self?"}, {"s": "pentacles", "n": 4, "t": "Describe a grounding routine: How does it root me in the present?"}, {"s": "pentacles", "n": 5, "t": "What possession (or lack) symbolizes my worth? Redefine it."}, {"s": "pentacles", "n": 6, "t": "Plan a self-care investment: Time, money, or energy—why this one?"}, {"s": "pentacles", "n": 7, "t": "Reflect on work/life balance: Where's the scale tipping, and how to steady it?"}, {"s": "pentacles", "n": 8, "t": "What legacy of generosity can I plant today, small as a seed?"}, {"s": "pentacles", "n": 9, "t": "How does nature mirror my inner seasons of growth and rest?"}, {"s": "pentacles", "n": 10, "t": "Audit finances (or resources): What gratitude shifts scarcity to plenty?"}, {"s": "pentacles", "n": 11, "t": "What physical strength am I proud of? Build on it mindfully."}, {"s": "pentacles", "n": 12, "t": "Envision retirement (or rest phase): What sustains my soul then?"}, {"s": "pentacles", "n": 13, "t": "What ethical choice in daily life aligns me with deeper values?"}, {"s": "pentacles", "n": 14, "t": "Harvest the day: What one \"crop\" of progress do I reap and savor?"}];
-    const SUIT_LABEL = { major: 'Major Arcana', wands: 'Wands', cups: 'Cups', swords: 'Swords', pentacles: 'Pentacles' };
-    const STORAGE_KEY = 'sigil-reflection-deck-v1';
+    const DECK = [{"n": 1, "t": "What is the core wound from my childhood that still whispers in my decisions today? How can I reframe it as a strength?"}, {"n": 2, "t": "If I could rewrite one pivotal moment in my life story, what would it be, and what new ending would I choose?"}, {"n": 3, "t": "What legacy do I want to leave behind—not for others, but for my future self?"}, {"n": 4, "t": "In what ways have I outgrown the person I was a year ago? What rituals can honor that transformation?"}, {"n": 5, "t": "What unspoken fear holds me back from fully embracing joy? How might I befriend it?"}, {"n": 6, "t": "If my life were a novel, what would the central theme be right now, and how does the plot need to shift?"}, {"n": 7, "t": "What ancient wisdom from my ancestors (or a cultural hero) would guide me through my current crossroads?"}, {"n": 8, "t": "How has failure been my greatest teacher? List three \"failures\" and the hidden gifts they revealed."}, {"n": 9, "t": "What does true freedom look like for me—emotionally, spiritually, practically—and what's one step toward it?"}, {"n": 10, "t": "If I stripped away all external expectations, what one pursuit would light up my soul?"}, {"n": 11, "t": "What patterns in my relationships mirror the ones I have with myself? How can I heal the root?"}, {"n": 12, "t": "Imagine your deathbed: What regrets would you whisper, and what bold action today dissolves them?"}, {"n": 13, "t": "What divine spark within me has been dimmed by doubt? How can I fan it into a flame?"}, {"n": 14, "t": "If the universe sent me a message through a dream, what would it say about my purpose?"}, {"n": 15, "t": "How do I sabotage my own peace, and what gentle boundaries can I set to protect it?"}, {"n": 16, "t": "What illusion about success am I ready to shatter? Define success on my own wild terms."}, {"n": 17, "t": "In the tower of my life, what needs to crumble for something stronger to rise?"}, {"n": 18, "t": "What star am I chasing that isn't truly mine? How do I align with my authentic north?"}, {"n": 19, "t": "What sacred pause do I need right now to reconnect with my intuition?"}, {"n": 20, "t": "How has my judgment of others been a projection of my inner critic? Forgive one today."}, {"n": 21, "t": "What world would I build if I had unlimited power—not to control, but to create?"}, {"n": 22, "t": "At the end of this lifetime chapter, what wisdom would I pass to a younger version of myself?"}, {"n": 23, "t": "What small act of creation today would make my inner artist dance?"}, {"n": 24, "t": "Recall a time passion ignited you: What fueled it, and how can I reignite that fire?"}, {"n": 25, "t": "If I had one hour to invent something absurd and joyful, what would it be?"}, {"n": 26, "t": "What \"shoulds\" are blocking my wild ideas? Burn one in your mind and brainstorm freely."}, {"n": 27, "t": "Describe a perfect day fueled by curiosity: Where am I, what am I making?"}, {"n": 28, "t": "What skill I've always wanted to learn? Why now, and what's my first messy step?"}, {"n": 29, "t": "How does my body feel when I'm in flow? Chase that sensation this week."}, {"n": 30, "t": "Write a love letter to a project that's been abandoned—do I revive it or release it?"}, {"n": 31, "t": "What bold question have I been avoiding about my dreams? Answer it unfiltered."}, {"n": 32, "t": "Imagine collaborating with your future self: What advice do they give on sparking joy?"}, {"n": 33, "t": "What ritual can turn mundane chores into creative adventures?"}, {"n": 34, "t": "List three \"impossible\" goals: Break one into playful, achievable sparks."}, {"n": 35, "t": "How has competition dimmed my unique flame? Reframe rivalry as inspiration."}, {"n": 36, "t": "End with gratitude: What one creative win, big or small, deserves celebration?"}, {"n": 37, "t": "What emotion am I suppressing today? Dive into it like a warm bath—what does it teach?"}, {"n": 38, "t": "Who in my life fills my cup without depleting it? How do I reciprocate?"}, {"n": 39, "t": "Recall a heartbreak: What tender lesson bloomed from the ache?"}, {"n": 40, "t": "If my heart could speak one unmet need, what would it whisper?"}, {"n": 41, "t": "Describe a memory of pure, unfiltered connection—how can I invite more?"}, {"n": 42, "t": "What boundaries in relationships feel like self-love in disguise?"}, {"n": 43, "t": "Journal from the perspective of your vulnerability: What does it crave?"}, {"n": 44, "t": "What forgiveness am I ready to offer— to myself, to another?"}, {"n": 45, "t": "How do my daily habits nurture (or neglect) my emotional garden?"}, {"n": 46, "t": "Imagine a dream friendship: What qualities do I embody to attract it?"}, {"n": 47, "t": "What joy have I postponed? Claim a tiny piece of it right now."}, {"n": 48, "t": "Explore envy: Whose life sparks it, and what desire in me is calling out?"}, {"n": 49, "t": "What does \"enough\" feel like in love, in belonging? Affirm it."}, {"n": 50, "t": "Close with a wish: Send compassionate energy to a loved one (or stranger) in need."}, {"n": 51, "t": "What limiting belief is sharpening my doubts? Dull it with three counter-truths."}, {"n": 52, "t": "Face a current conflict: What truth am I avoiding to keep the peace?"}, {"n": 53, "t": "If my mind were a courtroom, what accusation needs a fair defense?"}, {"n": 54, "t": "What overthinking loop am I stuck in? Trace it back to its origin."}, {"n": 55, "t": "Write a manifesto against perfectionism: What freedom does it unlock?"}, {"n": 56, "t": "How has a past defeat sharpened my resilience? Honor that blade."}, {"n": 57, "t": "Question an assumption about myself: Is it fact or fear in disguise?"}, {"n": 58, "t": "What mental clutter can I declutter today for clearer vision?"}, {"n": 59, "t": "From the view of your inner critic: What scared child is it protecting?"}, {"n": 60, "t": "Tackle a decision: List pros/cons, then intuit the gut choice."}, {"n": 61, "t": "What \"what if\" worst-case scenario am I fearing? Flip it to best-case."}, {"n": 62, "t": "How do I use words as weapons—on myself or others? Choose kinder ones."}, {"n": 63, "t": "Reflect on a breakthrough moment: What mental shift cracked it open?"}, {"n": 64, "t": "Breathe out: What one thought no longer serves? Let it dissolve."}, {"n": 65, "t": "What does my body crave nutritionally or sensorily today? Honor it."}, {"n": 66, "t": "Track abundance: List five \"riches\" (tangible or not) I often overlook."}, {"n": 67, "t": "What practical habit builds security for my future self?"}, {"n": 68, "t": "Describe a grounding routine: How does it root me in the present?"}, {"n": 69, "t": "What possession (or lack) symbolizes my worth? Redefine it."}, {"n": 70, "t": "Plan a self-care investment: Time, money, or energy—why this one?"}, {"n": 71, "t": "Reflect on work/life balance: Where's the scale tipping, and how to steady it?"}, {"n": 72, "t": "What legacy of generosity can I plant today, small as a seed?"}, {"n": 73, "t": "How does nature mirror my inner seasons of growth and rest?"}, {"n": 74, "t": "Audit finances (or resources): What gratitude shifts scarcity to plenty?"}, {"n": 75, "t": "What physical strength am I proud of? Build on it mindfully."}, {"n": 76, "t": "Envision retirement (or rest phase): What sustains my soul then?"}, {"n": 77, "t": "What ethical choice in daily life aligns me with deeper values?"}, {"n": 78, "t": "Harvest the day: What one \"crop\" of progress do I reap and savor?"}];
+        const STORAGE_KEY = 'sigil-reflection-deck-v1';
 
-    const suitEl = document.getElementById('suit');
     const cardEl = document.getElementById('card');
-    const faceSuitEl = document.getElementById('faceSuit');
+    const faceImgEl = document.getElementById('faceImg');
+    const faceKickerEl = document.getElementById('faceKicker');
     const facePromptEl = document.getElementById('facePrompt');
-    const faceCountEl = document.getElementById('faceCount');
     const deckCountEl = document.getElementById('deckCount');
     const entryEl = document.getElementById('entry');
     const statusEl = document.getElementById('status');
@@ -278,33 +279,29 @@
       statusEl.className = 'status' + (type ? ' ' + type : '');
     }
 
-    function pool() {
-      const v = suitEl.value;
-      return v === 'all' ? DECK : DECK.filter(c => c.s === v);
+    function updateCount() {
+      const remaining = DECK.length - shown.length;
+      deckCountEl.textContent = '78 cards in the deck' + (remaining < DECK.length ? ' \u00b7 ' + remaining + ' unseen' : '');
     }
 
-    function updateCount() {
-      const p = pool();
-      const remaining = p.length - shown.filter(s => suitEl.value === 'all' || s === suitEl.value).length;
-      deckCountEl.textContent = suitEl.value === 'all'
-        ? p.length + ' cards in the deck'
-        : p.length + ' cards in ' + SUIT_LABEL[suitEl.value];
+    function artFor(n) {
+      return 'images/reflection-deck/fronts/card-' + String(n).padStart(2, '0') + '.webp';
     }
 
     function draw() {
-      const p = pool();
-      let choices = p.filter(c => !shown.includes(c.n + c.s));
-      if (!choices.length) { choices = p; shown = []; }
+      let choices = DECK.filter(c => !shown.includes(c.n));
+      if (!choices.length) { choices = DECK; shown = []; }
       const card = choices[Math.floor(Math.random() * choices.length)];
-      shown.push(card.n + card.s);
+      shown.push(card.n);
       currentCard = card;
       cardEl.classList.remove('flipped');
       setStatus('');
       setTimeout(() => {
-        faceSuitEl.textContent = SUIT_LABEL[card.s] + ' \u00b7 ' + card.n;
+        faceImgEl.src = artFor(card.n);
+        faceImgEl.alt = 'Artwork for reflection card ' + card.n;
+        faceImgEl.style.display = 'block';
+        faceKickerEl.textContent = 'Reflection ' + card.n;
         facePromptEl.textContent = card.t;
-        const idx = p.indexOf(card) + 1;
-        faceCountEl.textContent = 'Card ' + idx + ' of ' + p.length;
         cardEl.classList.add('flipped');
         updateCount();
       }, 320);
@@ -315,15 +312,16 @@
       currentCard = null;
       cardEl.classList.remove('flipped');
       facePromptEl.textContent = 'Draw a card to begin.';
-      faceSuitEl.textContent = SUIT_LABEL[suitEl.value] || 'Full deck';
-      faceCountEl.textContent = '';
+      faceKickerEl.textContent = 'Reflection deck';
+      faceImgEl.removeAttribute('src');
+      faceImgEl.style.display = 'none';
       setStatus('Shuffled. The deck is ready.', 'saved');
       updateCount();
     }
 
     function save() {
       const data = {
-        suit: currentCard ? SUIT_LABEL[currentCard.s] : null,
+        suit: currentCard ? 'Reflection ' + currentCard.n : null,
         card: currentCard ? currentCard.n : null,
         prompt: currentCard ? currentCard.t : null,
         entry: entryEl.value,
@@ -365,7 +363,7 @@
     function doPrint() {
       printMetaEl.textContent = '';
       if (currentCard) {
-        printMetaEl.textContent = SUIT_LABEL[currentCard.s] + ' \u00b7 ' + currentCard.n + ' \u2014 ' + new Date().toLocaleDateString();
+        printMetaEl.textContent = 'Reflection ' + currentCard.n + ' \u2014 ' + new Date().toLocaleDateString();
       }
       window.print();
     }
@@ -376,7 +374,6 @@
     document.getElementById('loadEntry').addEventListener('click', load);
     document.getElementById('clearEntry').addEventListener('click', clearAll);
     document.getElementById('printEntry').addEventListener('click', doPrint);
-    suitEl.addEventListener('change', reshuffle);
     updateCount();
   </script>
   <script src="js/house-nav.js"></script>
