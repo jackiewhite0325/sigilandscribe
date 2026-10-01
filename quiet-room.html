@@ -125,6 +125,120 @@
       color: #8a8272;
       margin-top: 1.5rem;
     }
+    /* ---- Breathing light (copied from the Zen Den, adapted to this room) ---- */
+    .quiet-orb-wrap {
+      max-width: 28rem;
+      margin: 1.75rem auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+    }
+    .quiet-orb {
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      background: radial-gradient(circle at 38% 32%, #EFD9B4, #D4A373 55%, #B8874F);
+      box-shadow: 0 0 40px rgba(212,163,115,0.35);
+      transition: box-shadow 0.3s ease;
+    }
+    .quiet-orb:hover { box-shadow: 0 0 56px rgba(212,163,115,0.5); }
+    .quiet-orb.is-breathing { animation: quiet-breathe 12s ease-in-out infinite; }
+    @keyframes quiet-breathe {
+      0%, 100% { transform: scale(0.72); opacity: 0.55; }
+      33% { transform: scale(1); opacity: 1; }
+      66% { transform: scale(1); opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .quiet-orb.is-breathing {
+        animation: none;
+        box-shadow: 0 0 48px rgba(212,163,115,0.55);
+        opacity: 1;
+      }
+    }
+    .quiet-orb-phase {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a8272;
+      margin: 0;
+      min-height: 1.2em;
+    }
+    .quiet-orb-hint {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #8a8272;
+      margin: 0;
+      max-width: 22rem;
+    }
+    .lights-toggle {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a8272;
+      background: transparent;
+      border: 1px solid #e4dcc9;
+      border-radius: 999px;
+      padding: 8px 18px;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    .lights-toggle:hover { color: #5a5348; border-color: #b08d57; }
+    /* ---- Dimmed room ---- */
+    body.lights-dim.room-quiet {
+      background: radial-gradient(ellipse at 50% 0%, rgba(212,163,115,0.07), transparent 55%), #221c15;
+    }
+    body.lights-dim .house-nav {
+      --hn-ink: #ece1cb;
+      --hn-muted: #b3a68c;
+      --hn-amber: #d4a373;
+      --hn-line: #4a4136;
+    }
+    body.lights-dim .room-shell h1 { color: #f0e7d3; }
+    body.lights-dim .eyebrow { color: #a89a80; }
+    body.lights-dim .still-line,
+    body.lights-dim .still-note { color: #cfc2a8; }
+    body.lights-dim .quiet-prompts h2,
+    body.lights-dim .quiet-invite h2,
+    body.lights-dim .quiet-shelf h2,
+    body.lights-dim .quiet-orb-phase { color: #a89a80; }
+    body.lights-dim .quiet-prompts li { color: #d9cdb4; }
+    body.lights-dim .quiet-invite,
+    body.lights-dim .quiet-shelf { border-top-color: #4a4136; }
+    body.lights-dim .quiet-lead { color: #f0e7d3; }
+    body.lights-dim .quiet-invite p,
+    body.lights-dim .quiet-invite li,
+    body.lights-dim .quiet-shelf li { color: #cfc2a8; }
+    body.lights-dim .quiet-orb-hint,
+    body.lights-dim .quiet-hint,
+    body.lights-dim .quiet-aside { color: #a89a80; }
+    body.lights-dim .soft-exits,
+    body.lights-dim .soft-exits a,
+    body.lights-dim .back-play { color: #d4a373; }
+    body.lights-dim .lights-toggle { color: #b3a68c; border-color: #4a4136; }
+    body.lights-dim .lights-toggle:hover { color: #ece1cb; border-color: #d4a373; }
+    body.lights-dim .quiet-orb { box-shadow: 0 0 56px rgba(212,163,115,0.45); }
+    /* ---- Print: take the room with you ---- */
+    @media print {
+      .house-nav,
+      .house-footer,
+      .pearl-helper,
+      .quiet-orb-wrap,
+      .back-play,
+      .soft-exits { display: none !important; }
+      body.room-quiet { background: #fff; }
+      .quiet-prompts,
+      .quiet-invite,
+      .quiet-shelf { break-inside: avoid; }
+      a { color: #000; text-decoration: none; }
+    }
   </style>
 </head>
 <body class="room-quiet">
@@ -149,6 +263,20 @@
     <p class="still-line">Quiet creative time.</p>
     <p class="still-note">Nothing here asks you to finish a task, buy a book, or improve. Use a pen, a note app, or only your attention. Stay as long as you like.</p>
 
+    <div class="quiet-orb-wrap">
+      <button
+        type="button"
+        class="quiet-orb"
+        id="quiet-orb"
+        aria-pressed="false"
+        aria-label="Start the breathing light. Slow cycle: expand, hold, ease."
+        title="Tap to start or pause the breathing light">
+      </button>
+      <p class="quiet-orb-phase" id="quiet-orb-phase" aria-live="polite">Tap the light to begin</p>
+      <p class="quiet-orb-hint">A slow visual cue you can return to anytime. Follow the glow if it helps; look away if it does not.</p>
+      <button type="button" class="lights-toggle" id="lights-toggle" aria-pressed="false">Dim the lights</button>
+    </div>
+
     <div class="quiet-prompts">
       <h2>Gentle prompts</h2>
       <ol>
@@ -164,7 +292,7 @@
       <h2>The Noticing Window</h2>
       <p class="quiet-lead">Look around you. Find something you normally don’t notice. Spend a minute looking at it.</p>
       <ul>
-        <li>What colour is it?</li>
+        <li>What color is it?</li>
         <li>What texture does it have?</li>
         <li>What changed when you actually looked?</li>
       </ul>
@@ -262,6 +390,62 @@
     </div>
   </footer>
   <script src="js/house-nav.js"></script>
+<script>
+(function () {
+  var orb = document.getElementById('quiet-orb');
+  var phase = document.getElementById('quiet-orb-phase');
+  var toggle = document.getElementById('lights-toggle');
+
+  if (orb && phase) {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var timer = null;
+    var running = false;
+    var cycleMs = 12000;
+    var segmentMs = 4000;
+
+    function setPhase(text) { phase.textContent = text; }
+
+    function stopCycle() {
+      running = false;
+      orb.classList.remove('is-breathing');
+      orb.setAttribute('aria-pressed', 'false');
+      orb.setAttribute('aria-label', 'Start the breathing light. Slow cycle: expand, hold, ease.');
+      if (timer) { clearInterval(timer); timer = null; }
+      setPhase(reduce ? 'Light is still · tap again if you need the cue' : 'Paused · tap the light to resume');
+    }
+
+    function startCycle() {
+      running = true;
+      orb.classList.add('is-breathing');
+      orb.setAttribute('aria-pressed', 'true');
+      orb.setAttribute('aria-label', 'Pause the breathing light');
+      if (reduce) { setPhase('Steady light · motion reduced'); return; }
+      var t0 = Date.now();
+      function tick() {
+        if (!running) return;
+        var elapsed = (Date.now() - t0) % cycleMs;
+        if (elapsed < segmentMs) setPhase('Expand');
+        else if (elapsed < segmentMs * 2) setPhase('Hold');
+        else setPhase('Ease');
+      }
+      tick();
+      timer = setInterval(tick, 200);
+    }
+
+    orb.addEventListener('click', function () {
+      if (running) stopCycle(); else startCycle();
+    });
+  }
+
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      var dimmed = document.body.classList.toggle('lights-dim');
+      toggle.setAttribute('aria-pressed', dimmed ? 'true' : 'false');
+      toggle.textContent = dimmed ? 'Brighten the room' : 'Dim the lights';
+    });
+  }
+})();
+</script>
 <a class="pearl-helper" href="pearl.html" aria-label="Get help from Pearl"><img src="images/site/pearl-helper.jpg" alt="Pearl, the site's help figure" width="56" height="56"></a>
 <style>
 .pearl-helper{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:56px;height:56px;border-radius:50%;overflow:hidden;display:block;box-shadow:0 3px 12px rgba(74,53,32,.28);border:2px solid #fffdf7;background:#fffdf7}
