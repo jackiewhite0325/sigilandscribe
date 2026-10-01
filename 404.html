@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>That door is not here | Sigil and Scribe</title>
+<meta name="description" content="This page of the house does not exist. Here are the doors that do." />
+<meta name="robots" content="noindex, nofollow" />
+<style>
+  :root {
+    --paper: #f7f2e9;
+    --card: #fffdf8;
+    --walnut: #3e2f23;
+    --walnut-deep: #2a1f16;
+    --amber: #d4a373;
+    --amber-deep: #a06a2c;
+    --sage-deep: #5c6e58;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--walnut);
+    font-family: Georgia, 'Times New Roman', serif; line-height: 1.6;
+    min-height: 100vh; display: flex; flex-direction: column;
+  }
+  .house-nav { background: var(--walnut-deep); color: var(--paper); }
+  .nav-inner { max-width: 960px; margin: 0 auto; padding: 12px 20px; }
+  .brand { color: var(--paper); text-decoration: none; font-size: 1.2rem; }
+  .brand span { color: var(--amber); }
+  main { flex: 1; max-width: 640px; margin: 0 auto; padding: 64px 20px; text-align: center; }
+  .rule { width: 56px; height: 2px; background: var(--amber); margin: 20px auto; border: 0; }
+  h1 { font-size: 2rem; margin: 0 0 8px; }
+  p.lead { font-size: 1.1rem; }
+  .doors { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 32px 0; }
+  .doors a {
+    display: inline-block; padding: 12px 22px; border-radius: 4px; text-decoration: none;
+    border: 1px solid var(--amber-deep); background: var(--amber); color: var(--walnut-deep);
+    font-family: inherit;
+  }
+  .doors a.ghost { background: transparent; color: var(--walnut); border-color: var(--sage-deep); }
+  .doors a:hover { background: var(--amber-deep); color: var(--paper); }
+  .doors a.ghost:hover { background: var(--sage-deep); color: var(--paper); }
+  footer { text-align: center; padding: 24px; color: var(--walnut); opacity: 0.8; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+  <nav class="house-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+    </div>
+  </nav>
+  <main>
+    <h1>That door is not here</h1>
+    <hr class="rule" />
+    <p class="lead">You followed a path to a room that does not exist, or one that has moved since the house was rearranged. Nothing is broken on your end.</p>
+    <p>Pearl keeps the front door warm. Pick a door below and she will pretend this never happened.</p>
+    <div class="doors">
+      <a href="index.html">Front door</a>
+      <a class="ghost" href="library.html">Library</a>
+      <a class="ghost" href="toolbox.html">Toolbox</a>
+      <a class="ghost" href="play.html">Play Area</a>
+    </div>
+  </main>
+  <footer>Sigil and Scribe, LLC</footer>
+</body>
+</html>
