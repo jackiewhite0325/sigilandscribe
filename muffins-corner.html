@@ -810,8 +810,9 @@
       <button type="button" class="story-pick-btn" data-story-pick="0">The Pillow Pup</button>
       <button type="button" class="story-pick-btn" data-story-pick="1">The Soft Sock</button>
       <button type="button" class="story-pick-btn" data-story-pick="2">Big Feelings</button>
-      <button type="button" class="story-pick-btn" data-story-pick="3">Both Days</button>
+      <button type="button" class="story-pick-btn" data-story-pick="3">The Bubble Chase</button>
       <button type="button" class="story-pick-btn" data-story-pick="4">Tug-of-War</button>
+      <button type="button" class="story-pick-btn" data-story-pick="5">The Sunny Spot</button>
     </div>
     <button type="button" class="mc-btn" id="story-btn">Another tiny story</button>
     <button type="button" class="mc-btn ghost" id="story-speak" style="margin-left:8px;">Hear this story</button>
@@ -1019,6 +1020,7 @@
     story2: 'images/muffin-corner/audio/story-2.mp3',
     story3: 'images/muffin-corner/audio/story-3.mp3',
     story4: 'images/muffin-corner/audio/story-4.mp3',
+    story5: 'images/muffin-corner/audio/story-5.mp3',
     worldWelcome: 'images/muffin-corner/audio/world-welcome.mp3',
     heroWoohHi: 'images/muffin-corner/audio/hero-wooh-hi.mp3',
     agePill: 'images/muffin-corner/audio/age-pill.mp3',
@@ -1028,10 +1030,11 @@
     storyTitle1: 'images/muffin-corner/audio/story-title-1.mp3',
     storyTitle2: 'images/muffin-corner/audio/story-title-2.mp3',
     storyTitle3: 'images/muffin-corner/audio/story-title-3.mp3',
-    storyTitle4: 'images/muffin-corner/audio/story-title-4.mp3'
+    storyTitle4: 'images/muffin-corner/audio/story-title-4.mp3',
+    storyTitle5: 'images/muffin-corner/audio/story-title-5.mp3'
   };
 
-  var AUDIO_VERSION = '20260929h';
+  var AUDIO_VERSION = '20261002a';
   function playAudio(src) {
     if (!soundOn || !src) return;
     try {
@@ -1324,8 +1327,9 @@
     { who: 'Muffin', title: 'The Pillow Pup', text: 'Once there was a small gray dog who loved pillows and people. When the wiggles came, her family stayed close. That was enough.' },
     { who: 'Muffin', title: 'The Soft Sock', text: 'On a sunny morning Muffin found a soft sock. She did not need the whole world, just one cozy thing and a friend nearby.' },
     { who: 'Friend', title: 'Big Feelings', text: '“Muffin,” said the child, “I feel big feelings today.” Muffin sat close. Sitting close is a kind of answer.' },
-    { who: 'Muffin', title: 'Both Days', text: 'Some days the body shakes. Some days it rests. Both days Muffin was still Muffin: brave, small, and loved.' },
-    { who: 'Muffin', title: 'Tug-of-War', text: 'The pillow tug-of-war was serious business. Muffin dug in, then shared a victory nose-boop. Play can be fierce and kind.' }
+    { who: 'Muffin', title: 'The Bubble Chase', text: 'Muffin saw a bubble floating by. She followed it, nose up, tail wagging, all the way to Luna. Pop! They laughed together and watched for the next one.' },
+    { who: 'Muffin', title: 'Tug-of-War', text: 'The pillow tug-of-war was serious business. Muffin dug in, then shared a victory nose-boop. Play can be fierce and kind.' },
+    { who: 'Muffin', title: 'The Sunny Spot', text: 'Muffin found a warm patch of sun on the porch. She flopped down, rolled over, and sighed the happiest sigh. Sometimes the best place is a sunny one.' }
   ];
   var storyIdx = 0;
   var storyBox = document.getElementById('story-box');
@@ -1343,14 +1347,14 @@
       storyIdx = parseInt(btn.getAttribute('data-story-pick'), 10) || 0;
       markStoryPick();
       showStory(storyIdx);
-      playAudio(AUDIO['storyTitle' + storyIdx]);
+      playAudio(AUDIO['story' + storyIdx]);
     });
   });
   document.getElementById('story-btn').addEventListener('click', function () {
     storyIdx = (storyIdx + 1) % stories.length;
     markStoryPick();
     showStory(storyIdx);
-    playAudio(AUDIO['storyTitle' + storyIdx]);
+    playAudio(AUDIO['story' + storyIdx]);
   });
   markStoryPick();
   document.getElementById('story-speak').addEventListener('click', function () {
