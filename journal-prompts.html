@@ -242,6 +242,7 @@
     }
 
     .status.saved { color: var(--sage-deep); }
+    .whats-next { margin-top: 10px; color: var(--walnut); font-style: italic; }
     .status.warn { color: #8a5a3a; }
 
     .note {
@@ -376,6 +377,7 @@
       <textarea id="entry" placeholder="Write here…" spellcheck="true"></textarea>
 
       <p class="status" id="status" aria-live="polite"></p>
+      <p class="whats-next" id="whatsNext" hidden>Saved on this device. What's next: print this entry, try a new prompt, or close the book for today. Your words are yours.</p>
     </div>
 
     <p class="note no-print">
@@ -644,6 +646,7 @@
       currentCategory = cat;
       promptEl.textContent = next;
       setStatus('');
+      document.getElementById('whatsNext').hidden = true;
     }
 
     function save() {
@@ -657,6 +660,7 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         const when = new Date(data.savedAt).toLocaleString();
         setStatus('Saved locally · ' + when, 'saved');
+        document.getElementById('whatsNext').hidden = false;
       } catch (e) {
         setStatus('Could not save (storage full or blocked).', 'warn');
       }
