@@ -1,572 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pearl's Door | Sigil and Scribe</title>
-<meta name="description" content="Pearl's Door. The front door of Sigil and Scribe, kept warm by Pearl, the house's granny fox. Quiet letters for grieving humans, a warm word on heavy days, and help on every page of the site.">
-<link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
-<meta property="og:title" content="Pearl's Door | Sigil and Scribe">
-<meta property="og:description" content="Come in, come in. The front door of Sigil and Scribe, kept warm by Pearl.">
-<meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/pearl.html">
-<meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/pearl.png">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --cream: #FBF5EA;
-    --butter: #F7EDDA;
-    --ink: #33291C;
-    --muted: #77664C;
-    --honey: #BE8B4B;
-    --honey-deep: #9C6E2F;
-    --honey-pale: #E9D9BC;
-    --hero: #2C2012;
-    --line: rgba(158, 110, 47, 0.32);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--cream);
-    color: var(--ink);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 19px;
-    line-height: 1.65;
-    min-height: 100vh;
-  }
-  a { color: var(--honey-deep); }
-  a:hover { color: var(--honey); }
-  ::selection { background: var(--honey-pale); color: var(--hero); }
-
-  /* Header */
-  .site-header {
-    background: rgba(251, 245, 234, 0.92);
-    border-bottom: 1px solid var(--line);
-    backdrop-filter: blur(8px);
-    position: sticky;
-    top: 0;
-    z-index: 20;
-  }
-  .site-header .inner {
-    max-width: 920px;
-    margin: 0 auto;
-    padding: 14px 24px;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-  }
-  .brand {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .brand span { color: var(--honey-deep); }
-  .back-link {
-    font-family: 'Courier Prime', monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-  }
-  .back-link:hover { color: var(--honey-deep); }
-
-  /* Hero band */
-  .hero-band {
-    background:
-      radial-gradient(ellipse at 72% 18%, rgba(190, 139, 75, 0.28), transparent 52%),
-      radial-gradient(ellipse at 18% 100%, rgba(233, 217, 188, 0.10), transparent 45%),
-      linear-gradient(180deg, var(--hero) 0%, #1F160B 100%);
-    color: var(--cream);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-band::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: 48px;
-    background: linear-gradient(180deg, transparent, var(--cream));
-    pointer-events: none;
-  }
-  .hero-inner {
-    max-width: 920px;
-    margin: 0 auto;
-    padding: 48px 24px 64px;
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 28px;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-  @media (max-width: 640px) {
-    .hero-inner { grid-template-columns: 1fr; text-align: center; justify-items: center; }
-  }
-
-  .portrait-wrap {
-    position: relative;
-    width: 128px;
-    height: 128px;
-  }
-  .portrait-wrap::before {
-    content: "";
-    position: absolute;
-    inset: -12px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(190, 139, 75, 0.45), rgba(233, 217, 188, 0.12) 60%, transparent 72%);
-    animation: breathe 7s ease-in-out infinite;
-    z-index: 0;
-  }
-  @keyframes breathe {
-    0%, 100% { transform: scale(0.92); opacity: 0.6; }
-    50% { transform: scale(1.06); opacity: 1; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .portrait-wrap::before { animation: none; }
-  }
-  .portrait-wrap img {
-    position: relative;
-    z-index: 1;
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(233, 217, 188, 0.6);
-    box-shadow: 0 0 0 6px rgba(190, 139, 75, 0.18), 0 16px 40px rgba(0, 0, 0, 0.35);
-  }
-
-  .hero-text .eyebrow {
-    font-family: 'Courier Prime', monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--honey-pale);
-    margin-bottom: 10px;
-  }
-  .hero-text h1 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 600;
-    font-size: clamp(34px, 6vw, 46px);
-    letter-spacing: 0.01em;
-    color: #FBF5EA;
-    line-height: 1.1;
-  }
-  .tagline {
-    margin-top: 12px;
-    font-size: 19px;
-    font-style: italic;
-    color: rgba(251, 245, 234, 0.85);
-    max-width: 480px;
-    line-height: 1.5;
-  }
-  .hero-note {
-    margin-top: 18px;
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(233, 217, 188, 0.55);
-  }
-  @media (max-width: 640px) {
-    .hero-note { text-align: center; }
-  }
-
-  .wrap {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 24px 56px;
-  }
-
-  /* Warm divider */
-  .divider {
-    height: 1px;
-    margin: 40px 0;
-    background: linear-gradient(90deg, transparent, var(--honey-pale) 15%, var(--honey) 50%, var(--honey-pale) 85%, transparent);
-    position: relative;
-  }
-  .divider::before,
-  .divider::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 7px;
-    height: 7px;
-    background: var(--cream);
-    border: 1px solid var(--honey);
-    transform: translateY(-50%) rotate(45deg);
-  }
-  .divider::before { left: 18%; }
-  .divider::after { right: 18%; }
-
-  /* Story */
-  .story h2,
-  .room h2 {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--honey-deep);
-    margin-bottom: 16px;
-  }
-  .story p {
-    color: var(--ink);
-    margin-bottom: 14px;
-    font-size: 18.5px;
-  }
-  .story p:last-child { margin-bottom: 0; }
-
-  .voice-card {
-    margin-top: 26px;
-    background: var(--butter);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-  .voice-card audio { height: 40px; flex: 1; min-width: 200px; }
-  .voice-card .voice-label {
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  /* Pull quote */
-  .house-quote {
-    text-align: center;
-    padding: 8px 12px;
-  }
-  .house-quote p {
-    font-size: 24px;
-    font-style: italic;
-    color: var(--ink);
-    line-height: 1.4;
-  }
-  .house-quote .who {
-    margin-top: 10px;
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  /* CTA card */
-  .doors-label {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--honey-deep);
-    margin: 8px 0 18px;
-    text-align: center;
-  }
-  .door {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 24px 26px;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-  }
-  .door::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: linear-gradient(180deg, var(--honey-deep), var(--honey-pale));
-  }
-  .door p {
-    font-size: 17.5px;
-    color: var(--muted);
-    line-height: 1.55;
-    margin: 0 auto 18px;
-    max-width: 440px;
-  }
-  .door .promise {
-    font-size: 21px;
-    font-style: italic;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-
-  .cta-btn {
-    display: inline-block;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    color: #fff;
-    background: linear-gradient(135deg, var(--honey), var(--honey-deep));
-    border-radius: 999px;
-    padding: 14px 28px;
-    box-shadow: 0 8px 24px rgba(158, 110, 47, 0.35);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .cta-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 12px 28px rgba(158, 110, 47, 0.45);
-    color: #fff;
-  }
-  .cta-note {
-    margin-top: 14px;
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  /* Reach */
-  .reach p {
-    font-size: 18px;
-    color: var(--ink);
-    margin-bottom: 22px;
-    max-width: 520px;
-  }
-  .links-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .link-chip {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    color: var(--ink);
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 10px 16px;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .link-chip:hover {
-    border-color: var(--honey);
-    color: var(--honey-deep);
-  }
-
-  footer {
-    text-align: center;
-    padding: 36px 20px 48px;
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    border-top: 1px solid var(--line);
-  }
-  footer a {
-    color: var(--muted);
-    text-decoration: none;
-  }
-  footer a:hover { color: var(--honey-deep); }
-</style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-FBP908LERR');
-</script>
-  <link rel="stylesheet" href="house.css?v=8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pearl Has Retired | Sigil and Scribe</title>
+  <meta name="description" content="Pearl, the house's helper figure, has retired. The answers she carried now live on the Common Questions page." />
+  <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
+  <meta property="og:title" content="Pearl Has Retired | Sigil and Scribe">
+  <meta property="og:description" content="Pearl, the house's helper figure, has retired. The answers she carried now live on the Common Questions page.">
+  <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/pearl.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="house.css?v=10">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FBP908LERR');
+  </script>
+  <style>
+    .faq-main { max-width: 760px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+    .faq-main .eyebrow { font-family: 'Courier Prime', monospace; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: #B8874F; text-align: center; margin: 0 0 0.6rem; }
+    .faq-main h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: clamp(1.8rem, 4vw, 2.3rem); color: #38251A; text-align: center; margin: 0 0 0.8rem; line-height: 1.2; }
+    .faq-main .lead { text-align: center; color: #6b6255; line-height: 1.65; margin: 0 auto 2.4rem; max-width: 34rem; }
+    .faq-item { border-top: 1px solid rgba(176, 141, 87, 0.28); padding: 1.4rem 0 0.4rem; }
+    .faq-item h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 1.3rem; color: #38251A; margin: 0 0 0.55rem; }
+    .faq-item p { line-height: 1.7; color: #3d362c; margin: 0 0 0.9rem; }
+    .faq-item a { color: #8f6c3a; text-decoration: underline; text-underline-offset: 2px; }
+    .signpost-main { max-width: 640px; margin: 0 auto; padding: 4rem 1.25rem 5rem; text-align: center; }
+    .signpost-main h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: clamp(1.8rem, 4vw, 2.3rem); color: #38251A; margin: 0 0 1rem; line-height: 1.2; }
+    .signpost-main p { line-height: 1.7; color: #3d362c; margin: 0 0 1.2rem; }
+    .signpost-main a.door { display: inline-block; margin-top: 0.6rem; padding: 0.7rem 1.4rem; border: 1px solid #B8874F; border-radius: 6px; color: #38251A; text-decoration: none; font-family: 'Inter', sans-serif; }
+    .signpost-main a.door:hover { background: rgba(176, 141, 87, 0.12); }
+  </style>
 </head>
 <body>
-
-<nav class="house-nav" aria-label="Primary">
-  <div class="nav-inner">
-    <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
-    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
-    <ul class="nav-links" id="primary-nav">
-        <li><a href="index.html">Home</a></li>
+  <nav class="house-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html" aria-current="page">Home</a></li>
         <li><a href="library.html">Library</a></li>
         <li><a href="play.html">Play Area</a></li>
         <li><a href="guild/request.html">Start a Project</a></li>
         <li><a href="hypnotherapy.html">Zen Den</a></li>
         <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">Common Questions</a></li>
         <li><a href="notes/index.html">Notes</a></li>
-    </ul>
-  </div>
-</nav>
-
-<section class="hero-band">
-  <div class="hero-inner">
-    <div class="portrait-wrap">
-      <img src="images/site/pearl.png" alt="Portrait of Pearl, a warm cream fox in half moon spectacles" width="128" height="128">
+      </ul>
     </div>
-    <div class="hero-text">
-      <p class="eyebrow">The front door</p>
-      <h1>Pearl</h1>
-      <p class="tagline">Come in, come in. Sit yourself down, honey. The kettle is on.</p>
-      <p class="hero-note">the house&#39;s friendly helper &middot; the warmth is real</p>
-    </div>
-  </div>
-</section>
+  </nav>
 
-<div class="wrap">
+  <main class="signpost-main">
+    <h1>Pearl has retired</h1>
+    <p>Pearl was this house's helper figure. She was cute, but she confused more visitors than she helped, so she has hung up her apron.</p>
+    <p>The answers she used to carry now live in one plain place:</p>
+    <a class="door" href="faq.html">Read the Common Questions</a>
+  </main>
 
-  <div class="divider" aria-hidden="true"></div>
-
-  <section class="story" id="letters">
-    <h2>What the door is for</h2>
-    <p>Quiet letters are part of this house's spirit. A letter after a loss, a welcome for a rescue, a soft word on a heavy day: written for the keepers of quiet doors, the rescues and the pet loss groups where grieving people gather. The letters push nothing. No countdown, no last chance, no guilt. Just the honest shape of the house, offered once, held out at arm's length.</p>
-    <div class="house-quote">
-      <p>"Here is the door, whenever you are ready."</p>
-      <p class="who">the welcome letter &middot; kept for a quiet keeper</p>
-    </div>
-    <p class="cta-note" style="margin-top:14px;">no bill &middot; no pitch &middot; the door stays open</p>
-  </section>
-
-  <div class="divider" aria-hidden="true"></div>
-
-  <section class="story">
-    <h2>Who keeps this door</h2>
-    <p>I am Pearl. Warm and round as a well loved teddy, cream and honey, half moon spectacles on my nose, an apron with a pressed flower in the pocket. I have run a shop long enough to miss nothing.</p>
-    <p>Sigil and Scribe was built out of a real dog named Muffin, who lived with seizures nearly every day of her life. Everything under this roof is a memorial or a keepsake. That is why the door is kept the way I keep it: gentleness first, always.</p>
-    <p>This house reads the room before it reads the shelf. If you do not need what the house sells, we will tell you so, even when we could use the sale. A held human comes back. A hunted one never does.</p>
-
-    <!-- The keeper voice, approved by the house on 2026-09-05. Cut this card if you would rather host the audio yourself. -->
-    <div class="voice-card">
-      <span class="voice-label">Hear the door open</span>
-      <audio controls preload="none" src="https://storage.googleapis.com/dramaland-public/ugc_media/ab0c9c0e-2ba7-4e65-b07b-b8e21309ef7b-e2/outputs/20260905_230520_ComfyUI_00006_.mp3">Your browser does not support audio.</audio>
-    </div>
-  </section>
-
-  <div class="divider" aria-hidden="true"></div>
-
-  <section class="story">
-    <h2>Around the house</h2>
-    <p>Lost? Start here. Every room in one line, and there are no wrong doors.</p>
-    <ul class="wayfind">
-      <li><a href="library.html"><strong>The Library</strong></a> &middot; the books and series, from the Trinity Tension Saga to Muffin&apos;s picture books.</li>
-      <li><a href="toolbox.html"><strong>The Toolbox</strong></a> &middot; writing tools and story starters, free to use, no account needed.</li>
-      <li><a href="hypnotherapy.html"><strong>The Zen Den</strong></a> &middot; Petra&apos;s hypnotherapy room, for the quiet inner work.</li>
-      <li><a href="play.html"><strong>The Play Area</strong></a> &middot; games and silliness, and the door to the children&apos;s room.</li>
-      <li><a href="muffins-corner.html"><strong>Muffin&apos;s Corner</strong></a> &middot; the children&apos;s playroom. Little ones welcome, with a grown-up alongside.</li>
-      <li><a href="muffin-memorial.html"><strong>Muffin&apos;s Memorial</strong></a> &middot; the dog the whole house is built on, remembered with love.</li>
-      <li><a href="izzy.html"><strong>Keepsakes</strong></a> &middot; illustrated keepsakes made to order, starting from your story.</li>
-      <li><a href="guild/request.html"><strong>Start a Project</strong></a> &middot; not sure which door fits? Knock here.</li>
-    </ul>
-    <style>
-    .wayfind{list-style:none;margin:18px 0 0;padding:0}
-    .wayfind li{margin:0 0 12px;padding:0 0 12px;border-bottom:1px dashed #e4dcc9}
-    .wayfind li:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
-    </style>
-    <p style="margin-top:16px;">You will also find my face in the corner of nearly every page. If a page confuses you, tap it and it will bring you back here. I never pop up on my own, and I never follow you around.</p>
-  </section>
-
-  <div class="divider" aria-hidden="true"></div>
-  <p class="doors-label">Two doors</p>
-  <div class="door">
-    <p class="promise">A life well loved, bound into story.</p>
-    <p>That is the house promise, and the door to it is kept this way: every order starts with your story, never with your card. The Keepsakes page holds the whole of it.</p>
-    <!-- Keepsake commissions live on the Keepsakes page. -->
-    <a class="cta-btn" href="izzy.html">See the Keepsakes</a>
-    <p class="cta-note">no countdown &middot; no last chance &middot; the door stays open</p>
-  </div>
-
-  <div class="door" style="margin-top:22px;">
-    <p class="promise">Something the house has not made before.</p>
-    <p>If you are not sure which door fits, or it is something new entirely: say what you are carrying. No account needed, and nothing is owed until you read the plan.</p>
-    <a class="cta-btn" href="https://tally.so/r/1AeE5O" target="_blank" rel="noopener">Send a general work order</a>
-    <p class="cta-note" style="margin-top:12px;"><a href="guild/request.html" style="color:inherit;">Start a Project</a></p>
-  </div>
-
-  <div class="divider" aria-hidden="true"></div>
-
-  <section class="story">
-    <h2>When the door is quiet</h2>
-    <p>I am in the back, testing recipes in my head. I keep one private dream in my apron pocket: a baking show of my own someday, feeding people something warm from the oven. Nobody has offered me the show yet. The kettle does not mind waiting.</p>
-  </section>
-
-  <div class="divider" aria-hidden="true"></div>
-
-  <section class="reach">
-    <h2>The door stays open</h2>
-    <p>If you keep a quiet door of your own, a rescue or a grief group, or you are simply a human who loved deeply: this porch light is for you. No bill, no pitch, ever.</p>
-    <div class="links-row">
-      <a class="link-chip" href="library.html">The Immersive Library</a>
-      <a class="link-chip" href="index.html">Home</a>
-      <!-- X handle slot: add a chip here when the account is live -->
-    </div>
-  </section>
-
-</div>
-
-<footer class="house-footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h3>Explore</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="library.html">Library</a></li>
-          <li><a href="play.html">Play Area</a></li>
-          <li><a href="muffins-corner.html">Muffin's Corner</a></li>
-          <li><a href="free-things.html">Free Things</a></li>
-          <li><a href="toolbox.html">Toolbox</a></li>
-          <li><a href="notes/index.html">House Notes</a></li>
-        </ul>
+  <footer class="house-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="play.html">Play Area</a></li>
+            <li><a href="muffins-corner.html">Muffin’s Corner</a></li>
+            <li><a href="free-things.html">Free Things</a></li>
+            <li><a href="toolbox.html">Toolbox</a></li>
+            <li><a href="notes/index.html">House Notes</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>The House</h3>
+          <ul>
+            <li><a href="guild/request.html">Start a Project</a></li>
+            <li><a href="hypnotherapy.html">The Zen Den</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+            <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="return-policy.html">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Newsletters</h3>
+          <ul>
+            <li><a href="https://sigil-and-scribe.kit.com/0ae0deb218" target="_blank" rel="noopener">Muffin's Mailbox</a></li>
+            <li><a href="https://sigil-and-scribe.kit.com/d0dcda3bf2" target="_blank" rel="noopener">Sigil and Scribe Newsletter</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-col">
-        <h3>The House</h3>
-        <ul>
-          <li><a href="guild/request.html">Start a Project</a></li>
-          <li><a href="hypnotherapy.html">The Zen Den</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
-          <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Legal</h3>
-        <ul>
-          <li><a href="privacy.html">Privacy</a></li>
-          <li><a href="terms.html">Terms</a></li>
-          <li><a href="return-policy.html">Returns</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Newsletters</h3>
-        <ul>
-          <li><a href="https://sigil-and-scribe.kit.com/0ae0deb218" target="_blank" rel="noopener">Muffin's Mailbox</a></li>
-          <li><a href="https://sigil-and-scribe.kit.com/d0dcda3bf2" target="_blank" rel="noopener">Sigil and Scribe Newsletter</a></li>
-        </ul>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Sigil and Scribe, LLC</span>
+        <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
+        <span>A human owns this house and answers for it.</span>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 Sigil and Scribe, LLC</span>
-      <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
-      <span>Pearl is the house's friendly helper. A human owns this house and answers for it.</span>
-    </div>
-  </div>
-</footer>
-
-
-
+  </footer>
   <script src="js/house-nav.js"></script>
-<a class="pearl-helper" href="pearl.html" aria-label="Get help from Pearl"><img src="images/site/pearl-helper.jpg" alt="Pearl, the site's help figure" width="56" height="56"></a>
-<style>
-.pearl-helper{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:56px;height:56px;border-radius:50%;overflow:hidden;display:block;box-shadow:0 3px 12px rgba(74,53,32,.28);border:2px solid #fffdf7;background:#fffdf7}
-.pearl-helper img{width:100%;height:100%;object-fit:cover;display:block}
-</style>
 </body>
 </html>
