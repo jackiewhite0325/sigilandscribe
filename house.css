@@ -1192,3 +1192,10 @@
 .series-description .lead { font-size: 15.5px; line-height: 1.7; color: #4a4a4a; margin: 0; }
 .newsletter-panel { margin-bottom: 30px; }
 .newsletter-panel h2 { text-align: center; }
+
+/* ---- Desktop reading size (2026-10-04, JW feedback: text too small on computers) ----
+   Root bump at desktop widths only: every rem-sized text on the site scales up
+   about 19% (body copy ~15-16px becomes ~18-19px). Phones and tablets unchanged. */
+@media (min-width: 900px) {
+  html { font-size: 118.75%; }
+}
