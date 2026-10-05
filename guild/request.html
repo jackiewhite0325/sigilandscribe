@@ -1,305 +1,180 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Start a Project | Sigil and Scribe</title>
-<meta name="description" content="Start a project with Sigil and Scribe. An illustrated keepsake or book from the house, or a general note. One plan and one price, in writing, before anything is owed.">
-<link rel="icon" href="../images/site/favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
-<meta property="og:title" content="Start a Project | Sigil and Scribe">
-<meta property="og:description" content="A keepsake or book, or a general note. Pick the path that sounds like you.">
-<meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/guild/request.html">
-<meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/social-share.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #e8e2d6;
-    --muted: #9a9284;
-    --dim: #6e675c;
-    --gold: #c4a46a;
-    --gold-soft: rgba(196, 164, 106, 0.14);
-    --line: rgba(196, 164, 106, 0.22);
-    --bg: #141210;
-    --panel: #1c1915;
-    --panel-2: #221e19;
-    --keepsake: #5BB8E8;
-    --pearl: #BE8B4B;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background:
-      radial-gradient(ellipse at 20% 0%, rgba(196,164,106,0.08), transparent 50%),
-      radial-gradient(ellipse at 80% 100%, rgba(91,184,232,0.05), transparent 45%),
-      var(--bg);
-    color: var(--ink);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 19px;
-    line-height: 1.65;
-    min-height: 100vh;
-  }
-  a { color: var(--gold); }
-  a:hover { color: #d4b87a; }
-  ::selection { background: var(--gold-soft); color: var(--ink); }
-
-  .site-header {
-    background: rgba(20, 18, 16, 0.92);
-    border-bottom: 1px solid var(--line);
-    backdrop-filter: blur(8px);
-    position: sticky;
-    top: 0;
-    z-index: 20;
-  }
-  .site-header .inner {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 14px 24px;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-  }
-  .brand {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .brand span { color: var(--gold); }
-  .back-link {
-    font-family: 'Courier Prime', monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-  }
-  .back-link:hover { color: var(--gold); }
-
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px 64px; }
-
-  .hero { padding: 48px 0 28px; text-align: center; }
-  .eyebrow {
-    font-family: 'Courier Prime', monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
-  }
-  .hero h1 {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-weight: 700;
-    font-size: clamp(28px, 5vw, 40px);
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    margin-bottom: 14px;
-  }
-  .hero .lead { max-width: 600px; margin: 0 auto; color: var(--muted); font-size: 18.5px; }
-  .ai-note {
-    margin-top: 16px;
-    font-family: 'Courier Prime', monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--dim);
-  }
-
-  .shard {
-    height: 1px;
-    margin: 36px 0;
-    background: linear-gradient(90deg, transparent, var(--line) 15%, var(--gold) 50%, var(--line) 85%, transparent);
-    opacity: 0.7;
-  }
-
-  .section-label {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 14px;
-  }
-
-  .routes { display: grid; gap: 16px; }
-  @media (min-width: 720px) { .routes { grid-template-columns: 1fr 1fr 1fr; } }
-  .route {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 22px 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  .route.keepsake { border-top: 3px solid var(--keepsake); }
-  .route.pearl { border-top: 3px solid var(--pearl); }
-  .route .lane {
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .route.keepsake .lane { color: var(--keepsake); }
-  .route.pearl .lane { color: var(--pearl); }
-  .route h3 {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  .route p { color: var(--muted); font-size: 16.5px; flex: 1; margin-bottom: 14px; }
-  .pathway {
-    display: inline-block;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    color: var(--ink);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 10px 14px;
-    transition: border-color 0.2s, background 0.2s;
-    align-self: flex-start;
-  }
-  .pathway:hover { border-color: var(--gold); background: var(--gold-soft); color: var(--ink); }
-
-  .beats { display: grid; gap: 14px; }
-  @media (min-width: 720px) { .beats { grid-template-columns: 1fr 1fr 1fr; } }
-  .beat {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 20px 18px;
-  }
-  .beat .n {
-    font-family: 'Courier Prime', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-  .beat p { color: var(--muted); font-size: 16.5px; }
-  .beat h3 {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-
-
-  .note-block {
-    background: var(--panel-2);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 22px 20px;
-    text-align: center;
-  }
-  .note-block p { color: var(--muted); max-width: 560px; margin: 0 auto 14px; }
-  .note-block p:last-child { margin-bottom: 0; }
-
-  footer {
-    text-align: center;
-    padding: 36px 20px 48px;
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--dim);
-    border-top: 1px solid var(--line);
-  }
-  footer a { color: var(--dim); text-decoration: none; }
-  footer a:hover { color: var(--gold); }
-</style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-FBP908LERR');
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Start a Project | Sigil and Scribe</title>
+  <meta name="description" content="Want something made just for you? One short form starts every custom piece at Sigil and Scribe: a keepsake, a children's book from your photos, a story only your family knows. One plan and one price, in writing, before anything is owed.">
+  <link rel="icon" href="../images/site/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
+  <meta property="og:title" content="Start a Project | Sigil and Scribe">
+  <meta property="og:description" content="One short form starts every custom piece. One plan and one price, in writing, before anything is owed.">
+  <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/guild/request.html">
+  <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil-scribe-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../house.css?v=10">
+  <style>
+    .back-link {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9a9384;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+    .back-link:hover { color: #B08D57; }
+    .steps3 { display: grid; gap: 12px; margin-top: 16px; }
+    @media (min-width: 768px) { .steps3 { grid-template-columns: 1fr 1fr 1fr; } }
+    .step-card {
+      background: #F7EFDD;
+      border: 1px solid rgba(176, 141, 87, 0.25);
+      border-radius: 14px;
+      padding: 18px;
+    }
+    .step-num {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      color: #B08D57;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .step-card h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #38251A;
+      margin-bottom: 6px;
+    }
+    .step-card p { font-size: 0.9rem; line-height: 1.65; color: #4a4238; margin: 0; }
+    .intake-card {
+      background: #F7EFDD;
+      border: 1px solid rgba(176, 141, 87, 0.25);
+      border-radius: 16px;
+      padding: 26px 22px;
+      text-align: center;
+      max-width: 560px;
+      margin: 16px auto 0;
+    }
+    .intake-card h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #38251A;
+      margin-bottom: 8px;
+    }
+    .intake-card p { font-size: 0.92rem; line-height: 1.65; color: #4a4238; max-width: 26rem; margin: 0 auto 16px; }
+    .intake-btn {
+      display: inline-block;
+      background: #B08D57;
+      color: #fff;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      padding: 13px 26px;
+      border-radius: 999px;
+    }
+    .intake-btn:hover { background: #96754a; color: #fff; }
+    .intake-note {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: #8a8272;
+      margin-top: 14px;
+    }
+    .house-pearl-fab {
+      position: fixed;
+      right: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #38251A;
+      color: #F7EFDD;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      line-height: 1;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(56, 37, 26, 0.3);
+      z-index: 50;
+    }
+    .house-pearl-fab:hover { background: #B08D57; }
+  </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="inner">
-    <a class="brand" href="../index.html">Sigil <span>&amp;</span> Scribe</a>
-    <a class="back-link" href="../index.html">&larr; Home</a>
+
+<nav class="house-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="brand" href="../index.html"><img src="../images/site/sigil-scribe-logo.png" alt="" width="24" height="24">Sigil <span>&amp; Scribe</span></a>
+    <ul class="nav-links">
+      <li><a href="../library.html">Library</a></li>
+      <li><a href="../toolbox.html">Toolbox</a></li>
+      <li><a href="../zen-den.html">Zen Den</a></li>
+      <li><a href="../play-area.html">Play Area</a></li>
+      <li><a href="../pearl.html">Pearl</a></li>
+    </ul>
   </div>
-</header>
+</nav>
 
-<div class="wrap">
-  <section class="hero">
-    <p class="eyebrow">Start a project</p>
-    <h1>What do you need?</h1>
-    <p class="lead">Two paths. Pick the one that sounds like you. Nothing is owed until you have read the plan.</p>
-      </section>
+<main class="room-main">
 
-  <div class="shard" aria-hidden="true"></div>
+  <a class="back-link" href="../index.html">← Back to the foyer</a>
+  <p class="room-kicker">Start a Project</p>
 
-  <section>
-    <h2 class="section-label">How it works</h2>
-    <div class="beats">
-      <article class="beat">
-        <p class="n">01</p>
-        <h3>You send the story</h3>
-        <p>The photos, the pages, the names, the moments that matter. However much or little you have. A form or a plain email both reach the same desk.</p>
+  <section class="room-hero">
+    <h1>Want something made just for you?</h1>
+    <p class="lede">Some things don't fit a shelf. A keepsake for the one you love. A children's book from your photos and your words. A story only your family knows how to tell. If it wants making, start here.</p>
+  </section>
+
+  <section class="room-section">
+    <h2>How it works</h2>
+    <div class="steps3">
+      <article class="step-card">
+        <div class="step-num">1</div>
+        <h3>You tell us</h3>
+        <p>However much or little you have: photos, pages, names, one moment that matters. The form below is the whole front door.</p>
       </article>
-      <article class="beat">
-        <p class="n">02</p>
+      <article class="step-card">
+        <div class="step-num">2</div>
         <h3>We answer with one plan</h3>
-        <p>One plan and one price, in writing, before any work starts. If it is not something we make, we will tell you so.</p>
+        <p>One plan and one price, in writing, before any work starts. If it is not something we make, we will tell you so plainly.</p>
       </article>
-      <article class="beat">
-        <p class="n">03</p>
+      <article class="step-card">
+        <div class="step-num">3</div>
         <h3>Nothing is owed until it reads true</h3>
-        <p>Read the plan first. If it is wrong, say so and we part clean. If it is right, we begin, and we will arrange payment with you directly.</p>
+        <p>Read the plan first. If it is wrong, say so and we part clean. If it is right, we begin, and we arrange payment with you directly.</p>
       </article>
     </div>
   </section>
 
-  <div class="shard" aria-hidden="true"></div>
-
-  <section>
-    <h2 class="section-label">Pick the path that sounds like you</h2>
-    <div class="routes">
-      <article class="route keepsake">
-        <p class="lane">Keepsakes · quoted</p>
-        <h3>What do you need made?</h3>
-        <p>An illustrated keepsake or a children's book from your photos and your words. One plan and one price, in writing, before anything is owed.</p>
-        <p><a href="../izzy.html#sample">See a finished keepsake first</a></p>
-        <a class="pathway" href="https://tally.so/r/EkRX6r" target="_blank" rel="noopener">Start with your story</a>
-      </article>
-      <article class="route">
-        <p class="lane">General</p>
-        <h3>Not sure yet?</h3>
-        <p>Say what you are carrying and we will tell you plainly if it is ours to make.</p>
-        <a class="pathway" href="https://tally.so/r/1AeE5O" target="_blank" rel="noopener">Send a general note</a>
-      </article>
-</div>
-  </section>
-
-  <div class="shard" aria-hidden="true"></div>
-
-  <section>
-    <div class="note-block">
-      <p>Two paths, one desk. A form or a plain email both reach the same people.</p>
-      <p class="ai-note">No payment is taken on this page.</p>
+  <section class="room-section">
+    <h2>Start here</h2>
+    <div class="intake-card">
+      <h3>One form for every custom piece</h3>
+      <p>Keepsakes, children's books, and everything else all start at this same door now. Six short questions, and we read every word ourselves.</p>
+      <a class="intake-btn" href="https://tally.so/r/1AeE5O" target="_blank" rel="noopener">Tell us what you're making</a>
+      <p class="intake-note">No payment is taken on this page.</p>
     </div>
   </section>
-</div>
 
-<footer>
-  &copy; 2026 Sigil and Scribe, LLC<br>
-  A human owns this house and answers for it.<br>
-  <a href="../privacy.html">Privacy</a> &middot; <a href="../terms.html">Terms</a> &middot; <a href="../return-policy.html">Returns</a> &middot; <a href="./index.html">The Makers</a> &middot; <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a>
+</main>
+
+<footer class="house-footer">
+  <p>© 2026 · Sigil and Scribe, LLC · A House Built of Words</p>
+  <p><a href="../privacy.html">Privacy</a> · <a href="../about.html">About</a></p>
 </footer>
+
+<a class="house-pearl-fab" href="../pearl.html" aria-label="Ask Pearl">✦</a>
+
+<script src="/sigilandscribe/analytics.js" defer></script>
 </body>
 </html>
