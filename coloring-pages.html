@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FBP908LERR');</script>
   <style>
@@ -26,6 +27,26 @@
     .monthly-note{margin-top:32px;padding:18px 20px;background:#f6f1e3;border-radius:10px;font-size:0.95rem;color:#6b6355}
     .release-line{margin:20px 0 0;font-size:0.95rem;color:#6b6355}
   </style>
+<style>
+/* whimsy kit */
+.room-shell h1, .room-shell h2, .room-shell h3, .room-shell .gallery-title {
+  font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+}
+.room-shell p, .room-shell .room-lead, .room-shell .gallery-sub, .room-shell .monthly-note, .room-shell .release-line {
+  font-family: 'Nunito', system-ui, sans-serif;
+}
+.room-shell .gallery-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.room-shell .gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(56,37,26,0.14);
+}
+@media (prefers-reduced-motion: reduce) {
+  .room-shell .gallery-card { transition: none; }
+  .room-shell .gallery-card:hover { transform: none; }
+}
+</style>
 </head>
 <body class="room-free">
   <nav class="house-nav" aria-label="Primary">
