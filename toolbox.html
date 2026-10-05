@@ -11,8 +11,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FBP908LERR');</script>
+  <style>
+    /* whimsy kit */
+    .room-shell h1, .room-shell h2, .room-shell h3 { font-family: 'Fraunces', 'Playfair Display', Georgia, serif; }
+    .room-shell p { font-family: 'Nunito', system-ui, sans-serif; }
+    .room-art { width: 100%; height: auto; display: block; border-radius: 10px; margin: 0 auto 1.2rem; }
+    .room-shell .tool-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .room-shell .tool-card:hover { transform: translateY(-3px) rotate(-0.3deg); }
+    .room-shell .tool-bench li:nth-child(even) .tool-card:hover { transform: translateY(-3px) rotate(0.3deg); }
+    @media (prefers-reduced-motion: reduce) {
+      .room-shell .tool-card { transition: none; }
+      .room-shell .tool-card:hover, .room-shell .tool-bench li:nth-child(even) .tool-card:hover { transform: none; }
+    }
+  </style>
 </head>
 <body class="room-toolbox">
   <nav class="house-nav" aria-label="Primary">
@@ -36,6 +50,7 @@
   <main class="room-shell">
     <header class="toolbox-hero">
       <h1>Toolbox</h1>
+      <img class="room-art" src="images/site/toolbox-room.jpg" alt="A storybook writers workbench with a typewriter, manuscripts, bookshelves, and Muffin sitting beside the desk">
       <p class="room-lead">This is where you make things. Publishing checklists, journal prompts, and room to grow.</p>
       <p class="pearl-tip">House tip: start with the Manuscript Map if you are mid-book or mid-publish. Use journal prompts when you need a small, honest page. Nothing here asks you to create an account. <a href="faq.html">Common Questions</a></p>
     </header>
