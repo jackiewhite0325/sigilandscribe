@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
  body {
  background:
@@ -225,6 +226,18 @@
  gtag('js', new Date());
  gtag('config', 'G-FBP908LERR');
 </script>
+  <style>
+    /* whimsy kit */
+    .series-hero h1, .book-card h2, .corner-grownups h2, .donation-panel h2, .gift-meter h3 { font-family: 'Fraunces', 'Playfair Display', Georgia, serif; }
+    .series-description p, .book-card p, .corner-grownups p, .donation-panel p { font-family: 'Nunito', system-ui, sans-serif; }
+    .book-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .book-card:hover { transform: translateY(-3px) rotate(-0.3deg); }
+    .book-grid .book-card:nth-child(even):hover { transform: translateY(-3px) rotate(0.3deg); }
+    @media (prefers-reduced-motion: reduce) {
+      .book-card { transition: none; }
+      .book-card:hover, .book-grid .book-card:nth-child(even):hover { transform: none; }
+    }
+  </style>
 </head>
 <body>
 <nav class="house-nav" aria-label="Primary">
