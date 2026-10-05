@@ -15,35 +15,35 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --frost: #F4F8FA;
-    --charcoal: #232A31;
-    --ice: #9FD8F0;
-    --silver: #C7D3DA;
-    --cyan: #5BB8E8;
-    --hero: #1C232B;
-    --muted: #5A6670;
-    --line: rgba(199, 211, 218, 0.65);
+    --frost: #FDFBF7;
+    --charcoal: #2B2620;
+    --ice: #D4A373;
+    --silver: #E4DCC9;
+    --cyan: #B8874F;
+    --hero: #38251A;
+    --muted: #6B6255;
+    --line: rgba(176, 141, 87, 0.35);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
     background: var(--frost);
     color: var(--charcoal);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 19px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 1.06rem;
     line-height: 1.65;
     min-height: 100vh;
   }
   a { color: var(--cyan); }
-  a:hover { color: #3a9fd0; }
+  a:hover { color: #8F6C3A; }
   ::selection { background: var(--ice); color: var(--hero); }
 
   /* Header */
   .site-header {
-    background: rgba(244, 248, 250, 0.92);
+    background: rgba(247, 239, 221, 0.92);
     border-bottom: 1px solid var(--line);
     backdrop-filter: blur(8px);
     position: sticky;
@@ -81,9 +81,9 @@
   /* Hero band */
   .hero-band {
     background:
-      radial-gradient(ellipse at 70% 20%, rgba(91, 184, 232, 0.18), transparent 50%),
-      radial-gradient(ellipse at 20% 100%, rgba(159, 216, 240, 0.08), transparent 45%),
-      linear-gradient(180deg, var(--hero) 0%, #151a20 100%);
+      radial-gradient(ellipse at 70% 20%, rgba(212, 163, 115, 0.18), transparent 50%),
+      radial-gradient(ellipse at 20% 100%, rgba(212, 163, 115, 0.08), transparent 45%),
+      linear-gradient(180deg, var(--hero) 0%, #2B2118 100%);
     color: var(--frost);
     position: relative;
     overflow: hidden;
@@ -138,8 +138,8 @@
     height: 128px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(159, 216, 240, 0.55);
-    box-shadow: 0 0 0 6px rgba(91, 184, 232, 0.12), 0 16px 40px rgba(0,0,0,0.35);
+    border: 2px solid rgba(212, 163, 115, 0.55);
+    box-shadow: 0 0 0 6px rgba(212, 163, 115, 0.12), 0 16px 40px rgba(0,0,0,0.35);
   }
 
   .hero-text .eyebrow {
@@ -160,11 +160,11 @@
     .name-row { justify-content: center; }
   }
   .name-row h1 {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-weight: 700;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
     font-size: clamp(28px, 5vw, 38px);
-    letter-spacing: -0.02em;
-    color: #F4F8FA;
+    letter-spacing: 0;
+    color: #F7EFDD;
     line-height: 1.1;
   }
   .emblem {
@@ -172,12 +172,12 @@
     height: 36px;
     border-radius: 6px;
     object-fit: cover;
-    border: 1px solid rgba(159, 216, 240, 0.4);
+    border: 1px solid rgba(212, 163, 115, 0.4);
   }
   .tagline {
     margin-top: 12px;
-    font-size: 18px;
-    color: rgba(244, 248, 250, 0.78);
+    font-size: 1.05rem;
+    color: rgba(247, 239, 221, 0.78);
     max-width: 480px;
     line-height: 1.5;
   }
@@ -210,9 +210,9 @@
   .shard::after { right: 18%; }
 
   .story h2 {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--cyan);
@@ -221,15 +221,15 @@
   .story p {
     color: var(--charcoal);
     margin-bottom: 14px;
-    font-size: 18.5px;
+    font-size: 1.08rem;
   }
   .story p:last-child { margin-bottom: 0; }
 
   /* Tier cards */
   .doors-label {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--cyan);
@@ -256,15 +256,15 @@
     background: linear-gradient(180deg, var(--cyan), var(--ice));
   }
   .door h3 {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 16px;
-    font-weight: 600;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 500;
     color: var(--charcoal);
     margin-bottom: 8px;
     letter-spacing: -0.01em;
   }
   .door p {
-    font-size: 16.5px;
+    font-size: 0.98rem;
     color: var(--muted);
     line-height: 1.55;
     margin: 0;
@@ -280,9 +280,9 @@
 
   /* How it works */
   .how h2 {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--cyan);
@@ -297,7 +297,7 @@
     position: relative;
     padding-left: 44px;
     margin-bottom: 16px;
-    font-size: 17.5px;
+    font-size: 1.02rem;
     color: var(--charcoal);
   }
   .steps li::before {
@@ -311,31 +311,31 @@
     border: 1px solid var(--ice);
     background: #fff;
     color: var(--cyan);
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .why {
-    background: linear-gradient(165deg, #eef5f9, #f7fbfd);
+    background: linear-gradient(165deg, #F7EFDD, #FDFBF7);
     border: 1px solid var(--line);
     border-radius: 10px;
     padding: 22px 24px;
   }
   .why h2 {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--cyan);
     margin-bottom: 10px;
   }
   .why p {
-    font-size: 17px;
+    font-size: 1rem;
     color: var(--muted);
     margin: 0;
   }
@@ -348,9 +348,9 @@
     margin-top: 8px;
   }
   .link-chip {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
     letter-spacing: 0.04em;
     text-decoration: none;
     color: var(--hero);
@@ -370,7 +370,7 @@
     margin-top: 8px;
   }
   .cta p {
-    font-size: 17px;
+    font-size: 1rem;
     color: var(--muted);
     margin-bottom: 16px;
   }
@@ -382,15 +382,15 @@
     letter-spacing: 0.04em;
     text-decoration: none;
     color: #fff;
-    background: linear-gradient(135deg, var(--cyan), #3a9fd0);
+    background: linear-gradient(135deg, var(--cyan), #8F6C3A);
     border-radius: 999px;
     padding: 14px 28px;
-    box-shadow: 0 8px 24px rgba(91, 184, 232, 0.35);
+    box-shadow: 0 8px 24px rgba(212, 163, 115, 0.35);
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .cta-btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 12px 28px rgba(91, 184, 232, 0.45);
+    box-shadow: 0 12px 28px rgba(212, 163, 115, 0.45);
     color: #fff;
   }
   .cta-note {
@@ -425,7 +425,7 @@
   gtag('js', new Date());
   gtag('config', 'G-FBP908LERR');
 </script>
-  <link rel="stylesheet" href="house.css?v=8">
+  <link rel="stylesheet" href="house.css?v=10">
 </head>
 <body>
 
