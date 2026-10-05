@@ -20,6 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="book.css">
   <link rel="stylesheet" href="house.css?v=8">
 
@@ -131,6 +132,17 @@
       .card-face.back { display: none; }
       .card-face.face { position: relative; transform: none; box-shadow: none; border: 2px solid var(--indigo); min-height: 340px; }
       #entry { border: none; min-height: 0; }
+    }
+  </style>
+  <style>
+    /* whimsy kit */
+    .tool-wrap h1, .tool-wrap h2, .tool-wrap h3 { font-family: 'Fraunces', 'Playfair Display', Georgia, serif; }
+    .tool-wrap p { font-family: 'Nunito', system-ui, sans-serif; }
+    .tool-wrap .panel { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .tool-wrap .panel:hover { transform: translateY(-3px) rotate(-0.3deg); }
+    @media (prefers-reduced-motion: reduce) {
+      .tool-wrap .panel { transition: none; }
+      .tool-wrap .panel:hover { transform: none; }
     }
   </style>
 </head>
