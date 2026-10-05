@@ -1192,6 +1192,11 @@
   .doors .secondary { order: 1; }
   .doors .primary-slot { order: 2; }
 }
+@media (max-width: 899px) {
+  .doors .secondary { order: 1; }
+  .doors .primary-slot { order: 2; }
+  .doors .secondary a[href="play.html"] { order: -1; }
+}
 .gift-meter-home { background: transparent; border: none; border-top: 1px solid rgba(176, 141, 87, 0.25); border-radius: 0; }
 .gift-meter-home .gift-explain { max-width: 34rem; margin: 12px auto 8px; line-height: 1.65; color: #3d362c; font-size: 0.95rem; text-align: center; }
 .gift-meter-home .gift-explain a { color: #8f6c3a; text-decoration: underline; text-underline-offset: 2px; }
