@@ -20,6 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="book.css">
   <link rel="stylesheet" href="house.css?v=8">
 
@@ -195,6 +196,26 @@
     gtag('js', new Date());
     gtag('config', 'G-FBP908LERR');
   </script>
+<style>
+/* whimsy kit */
+.tool-wrap h1, .tool-wrap h2, .tool-wrap h3, .tool-wrap .tool-intro h1, .tool-wrap #quoteText, .tool-wrap .quote-mark {
+  font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+}
+.tool-wrap p, .tool-wrap .lead, .tool-wrap .tool-intro .lead, .tool-wrap .quote-by, .tool-wrap .back-links {
+  font-family: 'Nunito', system-ui, sans-serif;
+}
+.tool-wrap .quote-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.tool-wrap .quote-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(56,37,26,0.14);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tool-wrap .quote-card { transition: none; }
+  .tool-wrap .quote-card:hover { transform: none; }
+}
+</style>
 </head>
 <body>
 
