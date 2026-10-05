@@ -1,290 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiet Room | Play Area | Sigil and Scribe</title>
-  <meta name="description" content="A sparse room for quiet creative activity: reflection, noticing, journaling, and gentle prompts. Low pressure. Not a clinical or medical service.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Quiet Room Has Moved | Sigil and Scribe</title>
+  <meta name="description" content="The Quiet Room and the Chaos Room have become one room: The Scriptorium. The breathing light and quiet writing nooks live on its calm half.">
   <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="book.css">
-  <link rel="stylesheet" href="house.css?v=8">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
+  <meta property="og:title" content="The Quiet Room Has Moved | Sigil and Scribe">
+  <meta property="og:description" content="The Quiet Room and the Chaos Room have become one room: The Scriptorium. The breathing light and quiet writing nooks live on its calm half.">
+  <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/quiet-room.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="house.css?v=10">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FBP908LERR');</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FBP908LERR');
+  </script>
   <style>
-    .quiet-prompts,
-    .quiet-invite,
-    .quiet-shelf,
-    .quiet-aside {
-      max-width: 28rem;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
-    }
-    .quiet-prompts {
-      margin-top: 1.5rem;
-    }
-    .quiet-prompts h2,
-    .quiet-invite h2,
-    .quiet-shelf h2 {
-      font-family: 'Courier Prime', monospace;
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #8a8272;
-      margin: 0 0 12px;
-    }
-    .quiet-prompts ol {
-      margin: 0;
-      padding: 0 0 0 1.15rem;
-      list-style: decimal;
-    }
-    .quiet-prompts li {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: #5a5348;
-      margin: 0 0 14px;
-    }
-    .quiet-prompts li:last-child { margin-bottom: 0; }
-    .quiet-invite {
-      margin-top: 1.75rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid #e4dcc9;
-    }
-    .quiet-invite p {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: #5a5348;
-      margin: 0 0 10px;
-    }
-    .quiet-invite .quiet-lead {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.05rem;
-      line-height: 1.45;
-      color: #2b2620;
-      margin: 0 0 12px;
-    }
-    .quiet-invite ul {
-      margin: 0 0 10px;
-      padding: 0 0 0 1.15rem;
-      list-style: disc;
-    }
-    .quiet-invite li {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.9rem;
-      line-height: 1.5;
-      color: #6b6255;
-      margin: 0 0 6px;
-    }
-    .quiet-invite .quiet-hint {
-      font-size: 0.85rem;
-      color: #8a8272;
-      margin: 0;
-    }
-    .quiet-shelf {
-      margin-top: 1.75rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid #e4dcc9;
-    }
-    .quiet-shelf ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .quiet-shelf li {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.9rem;
-      line-height: 1.55;
-      color: #6b6255;
-      margin: 0 0 8px;
-      padding-left: 0.85rem;
-      position: relative;
-    }
-    .quiet-shelf li::before {
-      content: "·";
-      position: absolute;
-      left: 0;
-      color: #b08d57;
-    }
-    .quiet-shelf .quiet-hint {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.85rem;
-      line-height: 1.5;
-      color: #8a8272;
-      margin: 10px 0 0;
-    }
-    .quiet-aside {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.85rem;
-      line-height: 1.5;
-      color: #8a8272;
-      margin-top: 1.5rem;
-    }
-    /* ---- Breathing light (copied from the Zen Den, adapted to this room) ---- */
-    .quiet-orb-wrap {
-      max-width: 28rem;
-      margin: 1.75rem auto 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      text-align: center;
-    }
-    .quiet-orb {
-      width: 104px;
-      height: 104px;
-      border-radius: 50%;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      background: radial-gradient(circle at 38% 32%, #EFD9B4, #D4A373 55%, #B8874F);
-      box-shadow: 0 0 40px rgba(212,163,115,0.35);
-      transition: box-shadow 0.3s ease;
-    }
-    .quiet-orb:hover { box-shadow: 0 0 56px rgba(212,163,115,0.5); }
-    .quiet-orb.is-breathing { animation: quiet-breathe 12s ease-in-out infinite; }
-    @keyframes quiet-breathe {
-      0%, 100% { transform: scale(0.72); opacity: 0.55; }
-      33% { transform: scale(1); opacity: 1; }
-      66% { transform: scale(1); opacity: 1; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .quiet-orb.is-breathing {
-        animation: none;
-        box-shadow: 0 0 48px rgba(212,163,115,0.55);
-        opacity: 1;
-      }
-    }
-    .quiet-orb-phase {
-      font-family: 'Courier Prime', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #8a8272;
-      margin: 0;
-      min-height: 1.2em;
-    }
-    .quiet-orb-hint {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.85rem;
-      line-height: 1.5;
-      color: #8a8272;
-      margin: 0;
-      max-width: 22rem;
-    }
-    .lights-toggle {
-      font-family: 'Courier Prime', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #8a8272;
-      background: transparent;
-      border: 1px solid #e4dcc9;
-      border-radius: 999px;
-      padding: 8px 18px;
-      cursor: pointer;
-      margin-top: 4px;
-    }
-    .lights-toggle:hover { color: #5a5348; border-color: #b08d57; }
-    /* ---- Dimmed room ---- */
-    body.lights-dim.room-quiet {
-      background: radial-gradient(ellipse at 50% 0%, rgba(212,163,115,0.07), transparent 55%), #221c15;
-    }
-    body.lights-dim .house-nav {
-      --hn-ink: #ece1cb;
-      --hn-muted: #b3a68c;
-      --hn-amber: #d4a373;
-      --hn-line: #4a4136;
-    }
-    body.lights-dim .room-shell h1 { color: #f0e7d3; }
-    body.lights-dim .eyebrow { color: #a89a80; }
-    body.lights-dim .still-line,
-    body.lights-dim .still-note { color: #cfc2a8; }
-    body.lights-dim .quiet-prompts h2,
-    body.lights-dim .quiet-invite h2,
-    body.lights-dim .quiet-shelf h2,
-    body.lights-dim .quiet-orb-phase { color: #a89a80; }
-    body.lights-dim .quiet-prompts li { color: #d9cdb4; }
-    body.lights-dim .quiet-invite,
-    body.lights-dim .quiet-shelf { border-top-color: #4a4136; }
-    body.lights-dim .quiet-lead { color: #f0e7d3; }
-    body.lights-dim .quiet-invite p,
-    body.lights-dim .quiet-invite li,
-    body.lights-dim .quiet-shelf li { color: #cfc2a8; }
-    body.lights-dim .quiet-orb-hint,
-    body.lights-dim .quiet-hint,
-    body.lights-dim .quiet-aside { color: #a89a80; }
-    body.lights-dim .soft-exits,
-    body.lights-dim .soft-exits a,
-    body.lights-dim .back-play { color: #d4a373; }
-    body.lights-dim .lights-toggle { color: #b3a68c; border-color: #4a4136; }
-    body.lights-dim .lights-toggle:hover { color: #ece1cb; border-color: #d4a373; }
-    body.lights-dim .quiet-orb { box-shadow: 0 0 56px rgba(212,163,115,0.45); }
-    /* ---- Print: take the room with you ---- */
-    @media print {
-      .house-nav,
-      .house-footer,
-      .quiet-orb-wrap,
-      .quiet-write,
-      .back-play,
-      .soft-exits { display: none !important; }
-      body.room-quiet,
-      body.lights-dim.room-quiet { background: #fff; }
-      .quiet-prompts,
-      .quiet-invite,
-      .quiet-shelf { break-inside: avoid; }
-      a { color: #000; text-decoration: none; }
-    }
-    /* ---- Optional on-screen writing ---- */
-    .quiet-orb-title {
-      font-family: 'Courier Prime', monospace;
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #8a8272;
-      margin: 0;
-    }
-    .quiet-write { margin-top: 10px; }
-    .quiet-write textarea {
-      width: 100%;
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: #2b2620;
-      background: #fffdf9;
-      border: 1px solid #e4dcc9;
-      border-radius: 8px;
-      padding: 10px 12px;
-      resize: vertical;
-    }
-    .quiet-write textarea:focus {
-      outline: 2px solid rgba(176,141,87,0.4);
-      outline-offset: 1px;
-      border-color: #b08d57;
-    }
-    .quiet-write-note {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.8rem;
-      color: #8a8272;
-      margin: 6px 0 0;
-    }
-    body.lights-dim .quiet-orb-title { color: #a89a80; }
-    body.lights-dim .quiet-write textarea {
-      background: #2d261e;
-      border-color: #4a4136;
-      color: #ece1cb;
-    }
-    body.lights-dim .quiet-write-note { color: #a89a80; }
+    .signpost-main { max-width: 640px; margin: 0 auto; padding: 4rem 1.25rem 5rem; text-align: center; }
+    .signpost-main h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: clamp(1.8rem, 4vw, 2.3rem); color: #38251A; margin: 0 0 1rem; line-height: 1.2; }
+    .signpost-main p { line-height: 1.7; color: #3d362c; margin: 0 0 1.2rem; }
+    .signpost-main a.door { display: inline-block; margin-top: 0.6rem; padding: 0.7rem 1.4rem; border: 1px solid #B8874F; border-radius: 6px; color: #38251A; text-decoration: none; font-family: 'Inter', sans-serif; }
+    .signpost-main a.door:hover { background: rgba(176, 141, 87, 0.12); }
   </style>
 </head>
-<body class="room-quiet lights-dim">
+<body>
   <nav class="house-nav" aria-label="Primary">
     <div class="nav-inner">
       <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
@@ -302,128 +48,10 @@
     </div>
   </nav>
 
-  <main class="room-shell quiet-still">
-    <p class="eyebrow">Play Area · Calm</p>
-    <h1>Quiet Room</h1>
-    <p class="still-line">Quiet creative time.</p>
-    <p class="still-note">Nothing here asks you to finish a task, buy a book, or improve. Use a pen, a note app, the spaces below, or only your attention. Stay as long as you like.</p>
-
-    <div class="quiet-orb-wrap">
-      <h2 class="quiet-orb-title">Breathing light</h2>
-      <button
-        type="button"
-        class="quiet-orb"
-        id="quiet-orb"
-        aria-pressed="false"
-        aria-label="Start the breathing light. Slow cycle: expand, hold, ease."
-        title="Tap to start or pause the breathing light">
-      </button>
-      <p class="quiet-orb-phase" id="quiet-orb-phase" aria-live="polite">Tap the light to begin</p>
-      <p class="quiet-orb-hint">If you arrived frazzled, start here. Tap the light and follow its slow expand, hold, and ease. Look away whenever you like.</p>
-      <button type="button" class="lights-toggle" id="lights-toggle" aria-pressed="true">Brighten the room</button>
-    </div>
-
-    <div class="quiet-prompts">
-      <h2>Gentle prompts</h2>
-      <ol>
-        <li>Name one thing in the room with you right now. Write three ordinary details about it.
-          <div class="quiet-write">
-            <textarea data-save="prompt-1" rows="3" aria-label="Your response to prompt 1" placeholder="Write here if you like"></textarea>
-            <p class="quiet-write-note">Saved on this device only. Keep going, there is no wrong way to use this.</p>
-          </div>
-        </li>
-        <li>Finish the sentence once, without fixing it: “Today I noticed…”
-          <div class="quiet-write">
-            <textarea data-save="prompt-2" rows="3" aria-label="Your response to prompt 2" placeholder="Write here if you like"></textarea>
-            <p class="quiet-write-note">Saved on this device only.</p>
-          </div>
-        </li>
-        <li>Describe a sound you can hear, or the quiet itself, in a single short line.
-          <div class="quiet-write">
-            <textarea data-save="prompt-3" rows="3" aria-label="Your response to prompt 3" placeholder="Write here if you like"></textarea>
-            <p class="quiet-write-note">Saved on this device only.</p>
-          </div>
-        </li>
-        <li>Write six words about something unfinished. Leave them unfinished if that fits.
-          <div class="quiet-write">
-            <textarea data-save="prompt-4" rows="3" aria-label="Your response to prompt 4" placeholder="Write here if you like"></textarea>
-            <p class="quiet-write-note">Saved on this device only.</p>
-          </div>
-        </li>
-        <li>If a page could hold one small kindness for a later you, what would it say?
-          <div class="quiet-write">
-            <textarea data-save="prompt-5" rows="3" aria-label="Your response to prompt 5" placeholder="Write here if you like"></textarea>
-            <p class="quiet-write-note">Saved on this device only.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-
-    <div class="quiet-invite">
-      <h2>The Noticing Window</h2>
-      <p class="quiet-lead">Look around you. Find something you normally don’t notice. Spend a minute looking at it.</p>
-      <ul>
-        <li>What color is it?</li>
-        <li>What texture does it have?</li>
-        <li>What changed when you actually looked?</li>
-      </ul>
-      <div class="quiet-write">
-        <textarea data-save="noticing" rows="4" aria-label="Your noticing notes" placeholder="What did you notice?"></textarea>
-        <p class="quiet-write-note">Saved on this device only.</p>
-      </div>
-    </div>
-
-    <div class="quiet-invite">
-      <h2>The Tiny Drawing</h2>
-      <p class="quiet-lead">Draw the shape of your mood without drawing a person, object, or symbol.</p>
-      <p>Or draw something using only five lines.</p>
-      <p class="quiet-hint">Paper is perfectly fine. There is no canvas here.</p>
-    </div>
-
-    <div class="quiet-invite">
-      <h2>The Six-Word Room</h2>
-      <p class="quiet-lead">Describe this moment in six words. No more. No less. No explaining.</p>
-      <div class="quiet-write">
-        <textarea data-save="six-words" rows="2" aria-label="Your six words" placeholder="Six words"></textarea>
-        <p class="quiet-write-note">Saved on this device only.</p>
-      </div>
-    </div>
-
-    <div class="quiet-invite">
-      <h2>The Unfinished Thing</h2>
-      <p class="quiet-lead">Start a sentence. Stop wherever you want. You don’t have to finish it.</p>
-      <div class="quiet-write">
-        <textarea data-save="unfinished" rows="2" aria-label="Your unfinished sentence" placeholder="Start a sentence"></textarea>
-        <p class="quiet-write-note">Saved on this device only.</p>
-      </div>
-    </div>
-
-    <div class="quiet-shelf">
-      <h2>Quiet Shelf</h2>
-      <p class="quiet-hint" style="margin-top:0;margin-bottom:12px;">Things you might notice. Not a checklist. Pick one, or none.</p>
-      <ul>
-        <li>something blue</li>
-        <li>something older than you</li>
-        <li>something that makes a sound</li>
-        <li>something you have never really looked at</li>
-        <li>something that has survived</li>
-        <li>something soft</li>
-        <li>something that doesn’t need fixing</li>
-      </ul>
-    </div>
-
-    <p class="quiet-aside">Your words save on this device only, as you type. Nothing leaves your browser. For a fuller prompt set with print, the journal prompts tool lives in the Toolbox.</p>
-
-    <p class="soft-exits">
-      If you want to leave gently:<br>
-      <a href="muffin-memorial.html">Muffin’s Memorial</a>
-      &nbsp;·&nbsp;
-      <a href="journal-prompts.html">Journal prompts</a>
-      &nbsp;·&nbsp;
-      <a href="hypnotherapy.html">Zen Den</a>
-    </p>
-
-    <a class="back-play" href="play.html">← Back to Play Area</a>
+  <main class="signpost-main">
+    <h1>The Quiet Room moved</h1>
+    <p>The Quiet Room and the Chaos Room have become one room: The Scriptorium, a room for writers in two weathers. The breathing light and the quiet writing nooks live on its calm half. Words you wrote here stay saved on your device and travel with the room.</p>
+    <a class="door" href="scriptorium.html#calm">Enter The Scriptorium, calm side</a>
   </main>
 
   <footer class="house-footer">
@@ -470,81 +98,10 @@
       <div class="footer-bottom">
         <span>&copy; 2026 Sigil and Scribe, LLC</span>
         <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
-      <span>A human owns this house and answers for it.</span>
+        <span>A human owns this house and answers for it.</span>
       </div>
     </div>
   </footer>
   <script src="js/house-nav.js"></script>
-<script>
-(function () {
-  var orb = document.getElementById('quiet-orb');
-  var phase = document.getElementById('quiet-orb-phase');
-  var toggle = document.getElementById('lights-toggle');
-
-  if (orb && phase) {
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var timer = null;
-    var running = false;
-    var cycleMs = 12000;
-    var segmentMs = 4000;
-
-    function setPhase(text) { phase.textContent = text; }
-
-    function stopCycle() {
-      running = false;
-      orb.classList.remove('is-breathing');
-      orb.setAttribute('aria-pressed', 'false');
-      orb.setAttribute('aria-label', 'Start the breathing light. Slow cycle: expand, hold, ease.');
-      if (timer) { clearInterval(timer); timer = null; }
-      setPhase(reduce ? 'Light is still · tap again if you need the cue' : 'Paused · tap the light to resume');
-    }
-
-    function startCycle() {
-      running = true;
-      orb.classList.add('is-breathing');
-      orb.setAttribute('aria-pressed', 'true');
-      orb.setAttribute('aria-label', 'Pause the breathing light');
-      if (reduce) { setPhase('Steady light · motion reduced'); return; }
-      var t0 = Date.now();
-      function tick() {
-        if (!running) return;
-        var elapsed = (Date.now() - t0) % cycleMs;
-        if (elapsed < segmentMs) setPhase('Expand');
-        else if (elapsed < segmentMs * 2) setPhase('Hold');
-        else setPhase('Ease');
-      }
-      tick();
-      timer = setInterval(tick, 200);
-    }
-
-    orb.addEventListener('click', function () {
-      if (running) stopCycle(); else startCycle();
-    });
-  }
-
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      var dimmed = document.body.classList.toggle('lights-dim');
-      toggle.setAttribute('aria-pressed', dimmed ? 'true' : 'false');
-      toggle.textContent = dimmed ? 'Brighten the room' : 'Dim the lights';
-    });
-  }
-
-  /* Optional on-screen writing: autosave to this device only */
-  try {
-    var fields = document.querySelectorAll('textarea[data-save]');
-    for (var i = 0; i < fields.length; i++) {
-      (function (el) {
-        var key = 'quiet-room:' + el.getAttribute('data-save');
-        var saved = localStorage.getItem(key);
-        if (saved) el.value = saved;
-        el.addEventListener('input', function () {
-          try { localStorage.setItem(key, el.value); } catch (e) {}
-        });
-      })(fields[i]);
-    }
-  } catch (e) {}
-})();
-</script>
 </body>
 </html>
