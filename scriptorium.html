@@ -378,6 +378,12 @@
     }
     .coin-close[hidden] { display: none; }
   
+    .madlib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 30rem; margin: 0 auto 4px; text-align: left; }
+    .madlib-grid label { font-family: 'Courier Prime', monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: #8a8272; display: block; }
+    .madlib-grid input { width: 100%; box-sizing: border-box; margin-top: 4px; padding: 9px 10px; border: 1px solid #e4dcc9; border-radius: 6px; background: #fffcf5; color: #2b2620; font-family: system-ui, -apple-system, sans-serif; font-size: 0.95rem; text-transform: none; letter-spacing: normal; }
+    .madlib-grid input:focus-visible { outline: 2px solid #b08d57; outline-offset: 1px; }
+    @media (max-width: 520px) { .madlib-grid { grid-template-columns: 1fr; } }
+
   </style>
   <style>
     .mode-switch { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 18px 0 8px; }
@@ -699,8 +705,38 @@
       <p class="coin-close" id="coin-close" hidden>The coin has spoken.</p>
     </div>
 
+    <div class="chaos-toy">
+      <h2>Mad libs</h2>
+      <p class="toy-desc">A tiny story with bad decisions. Fill what you like; leave a blank and the room fills it in anyway.</p>
+      <div class="madlib-grid">
+        <label>Adjective<input type="text" id="madlib-adj" placeholder="velvet" autocomplete="off"></label>
+        <label>Noun<input type="text" id="madlib-noun" placeholder="ladder" autocomplete="off"></label>
+        <label>Verb ending in -ing<input type="text" id="madlib-verb" placeholder="whispering" autocomplete="off"></label>
+        <label>Place<input type="text" id="madlib-place" placeholder="the night market" autocomplete="off"></label>
+        <label>Animal<input type="text" id="madlib-animal" placeholder="goat" autocomplete="off"></label>
+        <label>Exclamation<input type="text" id="madlib-excl" placeholder="Well, naturally" autocomplete="off"></label>
+      </div>
+      <div class="chaos-out" id="madlib-out" role="status" aria-live="polite">Your tiny story will appear here.</div>
+      <button type="button" id="madlib-btn">Make it ridiculous</button>
+      <div class="chaos-handoff toy-panel" id="madlib-panel" hidden>
+        <p class="handoff-label">What now?</p>
+        <ul class="handoff-choices">
+          <li>
+            <a id="madlib-make" href="journal-prompts.html">
+              <span class="choice-body">Carry this tiny story into the journal prompts and keep going. No account.</span>
+            </a>
+          </li>
+          <li>
+            <button type="button" class="handoff-stay" data-dismiss="madlib-panel">
+              <span class="choice-body">Stay. Make it worse. Nothing here is waiting on an answer.</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <div class="empty-state" style="margin-top:20px;">
-      <p>Four toys for now. More experiments when they earn a place here.</p>
+      <p>Five toys for now. More experiments when they earn a place here.</p>
       <p class="hint">No points. No leaderboard. Just the scramble.</p>
     </div>
     </section>
@@ -917,6 +953,41 @@
       var close = document.getElementById('coin-close');
       if (close) close.hidden = false;
       return pick(coinFaces);
+    });
+
+    var madlibBanks = {
+      adj: ['velvet', 'unreasonably sparkly', 'lukewarm', 'haunted', 'buttery'],
+      noun: ['ladder', 'teapot', 'umbrella', 'map', 'accordion'],
+      verb: ['whispering', 'tap-dancing', 'juggling', 'hovering', 'eavesdropping'],
+      place: ['the night market', 'a very small lighthouse', 'the back of a bookshop', 'a rooftop garden', 'the lost-and-found'],
+      animal: ['goat', 'raccoon', 'octopus', 'pigeon', 'elderly cat'],
+      excl: ['Well, naturally', 'Oh no, not again', 'Excellent choice', 'Too late now']
+    };
+    var madlibTemplates = [
+      'The {adj} {noun} began {verb} at {place}, which alarmed the {animal}. "{excl}," said the {animal}, and everyone pretended this was normal.',
+      'By midnight, the {noun} was {verb} again. At {place}, a {adj} {animal} watched in silence. "{excl}," murmured the keeper of the {noun}.',
+      'Nobody at {place} expected the {animal} to arrive {verb} with a {adj} {noun}. "{excl}," said the crowd, taking notes.'
+    ];
+    var madlibIdx = 0;
+    function madVal(id, key) {
+      var el = document.getElementById(id);
+      var v = el ? el.value.trim() : '';
+      return v || pick(madlibBanks[key]);
+    }
+    wire('madlib-btn', 'madlib-out', function () {
+      var t = madlibTemplates[madlibIdx % madlibTemplates.length];
+      madlibIdx++;
+      var values = {
+        adj: madVal('madlib-adj', 'adj'),
+        noun: madVal('madlib-noun', 'noun'),
+        verb: madVal('madlib-verb', 'verb'),
+        place: madVal('madlib-place', 'place'),
+        animal: madVal('madlib-animal', 'animal'),
+        excl: madVal('madlib-excl', 'excl')
+      };
+      var out = t.replace(/\{(\w+)\}/g, function (m, k) { return values[k] || m; });
+      showPanel('madlib-panel', 'madlib-make', 'journal-prompts.html?seed=' + encodeURIComponent(out));
+      return out;
     });
 
     var dismissers = document.querySelectorAll('[data-dismiss]');
