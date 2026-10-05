@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foyer Sample | Sigil and Scribe</title>
+  <meta name="description" content="A sanctuary for the whole self. Books in the Immersive Library, quiet audio in the Zen Den, free tools for authors, custom projects, and plain answers to common questions." />
+  <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
+  <meta property="og:title" content="Sigil and Scribe, LLC">
+  <meta property="og:description" content="A sanctuary for the whole self. Books, quiet audio, free author tools, custom projects, and plain answers to common questions.">
+  <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/">
+  <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sigil and Scribe, LLC">
+  <meta name="twitter:description" content="A sanctuary for the whole self. Books, quiet audio, free author tools, and custom projects.">
+  <meta name="twitter:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil_scribe_cover_1200x400.jpg?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="house.css?v=10">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FBP908LERR');
+  </script>
+  <style>
+    .whimsy-sample .foyer { font-family: 'Nunito', system-ui, sans-serif; }
+    .whimsy-sample .foyer h1,
+    .whimsy-sample .card-title,
+    .whimsy-sample .gift-amount { font-family: 'Fraunces', 'Playfair Display', Georgia, serif; }
+    .whimsy-sample .foyer h1 { letter-spacing: 0.01em; }
+    .whimsy-sample .card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .whimsy-sample .card:hover { transform: translateY(-4px) rotate(-0.4deg); }
+    .whimsy-sample .card.primary:hover { transform: translateY(-4px) rotate(0.4deg); }
+    .whimsy-sample .house-logo { animation: logo-bob 5s ease-in-out infinite alternate; }
+    @keyframes logo-bob { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-4px) rotate(1.5deg); } }
+    .welcome-art { width: 100%; max-width: 640px; height: auto; display: block; margin: 4px auto 18px; border-radius: 14px; border: 1px solid rgba(176, 141, 87, 0.35); box-shadow: 0 14px 34px rgba(56, 37, 26, 0.18); }
+    .sparkle { position: absolute; color: #D4A373; font-size: 15px; pointer-events: none; animation: twinkle 3.4s ease-in-out infinite; }
+    .sparkle.s1 { top: 118px; left: calc(50% - 330px); }
+    .sparkle.s2 { top: 88px; right: calc(50% - 320px); font-size: 11px; animation-delay: 1.1s; }
+    .sparkle.s3 { top: 210px; right: calc(50% - 300px); font-size: 13px; animation-delay: 2s; }
+    @keyframes twinkle { 0%, 100% { opacity: 0.15; transform: scale(0.8) rotate(0deg); } 50% { opacity: 0.85; transform: scale(1.15) rotate(20deg); } }
+    @media (max-width: 760px) { .sparkle { display: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .whimsy-sample .house-logo, .sparkle { animation: none; }
+      .whimsy-sample .card { transition: none; }
+      .whimsy-sample .card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body class="whimsy-sample">
+  <nav class="house-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="play.html">Play Area</a></li>
+        <li><a href="guild/request.html">Start a Project</a></li>
+        <li><a href="hypnotherapy.html">Zen Den</a></li>
+        <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">Common Questions</a></li>
+        <li><a href="notes/index.html">Notes</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="foyer" style="position:relative;">
+    <span class="sparkle s1" aria-hidden="true">✦</span>
+    <span class="sparkle s2" aria-hidden="true">✦</span>
+    <span class="sparkle s3" aria-hidden="true">✦</span>
+    <img class="house-logo" src="images/site/logo.png" alt="Sigil and Scribe" width="72" height="72">
+    <h1>Sigil and Scribe</h1>
+    <p class="tagline">Come in, you found the house.</p>
+    <p class="welcome">I'm Jackie. I make books and quiet corners: picture books about a pitbull named Muffin, tools for writers, one room for settling and one for mischief. Petra keeps the Zen Den. Wander wherever you like. Mind the dog hair. Muffin still shapes these rooms.</p>
+    <img class="welcome-art" src="images/site/welcome-house.jpg" alt="A storybook house with many colored doors, and Muffin the pitbull sitting on the step to welcome you" width="1600" height="900">
+    <p class="pearl-host">New here, or not sure which door? The <a href="faq.html">Common Questions</a> page answers the things people ask most.</p>
+
+
+    <p class="prompt">Come explore</p>
+
+    <div class="doors">
+    <div class="primary-slot">
+      <a class="card primary" href="library.html">
+        <div class="card-wing">Read and discover</div>
+        <div class="card-title">Library</div>
+        <div class="card-desc">The catalogue. Picture books, health companions, humor, and fiction, all in one list.</div>
+      </a>
+    </div>
+
+    <div class="secondary">
+      <a class="card" href="toolbox.html">
+        <div class="card-wing">Play and make</div>
+        <div class="card-title">Toolbox</div>
+        <div class="card-desc">Manuscript Map and journal prompts. Tools that live in your browser.</div>
+      </a>
+      <a class="card" href="hypnotherapy.html">
+        <div class="card-wing">Be still</div>
+        <div class="card-title">Zen Den</div>
+        <div class="card-desc">Guided audio and quiet anchors with Petra C.Ht. Education and rest, not treatment.</div>
+      </a>
+      <a class="card" href="play.html">
+        <div class="card-wing">Wander</div>
+        <div class="card-title">Play Area</div>
+        <div class="card-desc">The Scriptorium, Downloads and Printables, and Muffin’s Corner under one roof.</div>
+      </a>
+      <a class="card" href="guild/request.html">
+        <div class="card-wing">Custom work</div>
+        <div class="card-title">Start a Project</div>
+        <div class="card-desc">A keepsake or a book. Tell us what you're carrying.</div>
+      </a>
+    </div>
+    </div>
+
+    <section class="gift-meter gift-meter-home" aria-label="St. Jude gift meter">
+      <h3>The St. Jude gift</h3>
+      <div class="gift-amount" id="gift-amount">$0.09</div>
+      <div class="gift-bar" role="img" id="gift-bar-label" aria-label="St. Jude gift meter">
+        <div class="gift-fill" id="gift-fill"></div>
+      </div>
+      <p class="countdown-line">Next gift in <span class="countdown-clock" id="countdown-clock"></span> &middot; <span id="countdown-date">December 20, 2026</span></p>
+      <p class="gift-explain"><strong>5% of net royalties</strong> from the <a href="muffin-series.html">Muffin the Pitbull series</a> goes to <strong>St. Jude Children's Research Hospital</strong>, in Muffin's name. It is an ongoing house commitment, tallied four times a year. Each Muffin book sold adds to the gift.</p>
+      <p class="gift-note">Figures come from the house's own KDP sales reports. Nothing here is estimated or invented.</p>
+    </section>
+
+    <p class="mantra" style="margin-top:28px;">The human mind is not built to fit into a single box, and neither is our creativity. We do not separate science from story, or wellness from creation.</p>
+
+    <p class="quiet-links">
+      <a href="muffins-corner.html">Muffin’s Corner</a>
+      &nbsp;·&nbsp;
+      <a href="muffin-memorial.html">Muffin’s Memorial</a>
+      &nbsp;·&nbsp;
+      <a href="about.html">About the house</a>
+      &nbsp;·&nbsp;
+      <a href="notes/index.html">House Notes</a>
+      &nbsp;·&nbsp;
+      <a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Support on Ko-fi</a>
+    </p>
+  </main>
+
+  <footer class="house-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="play.html">Play Area</a></li>
+            <li><a href="muffins-corner.html">Muffin’s Corner</a></li>
+            <li><a href="free-things.html">Downloads and Printables</a></li>
+            <li><a href="toolbox.html">Toolbox</a></li>
+            <li><a href="notes/index.html">House Notes</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>The House</h3>
+          <ul>
+            <li><a href="guild/request.html">Start a Project</a></li>
+            <li><a href="hypnotherapy.html">The Zen Den</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+            <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="return-policy.html">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Newsletters</h3>
+          <ul>
+            <li><a href="https://sigil-and-scribe.kit.com/0ae0deb218" target="_blank" rel="noopener">Muffin's Mailbox</a></li>
+            <li><a href="https://sigil-and-scribe.kit.com/d0dcda3bf2" target="_blank" rel="noopener">Sigil and Scribe Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Sigil and Scribe, LLC</span>
+        <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
+        <span>A human owns this house and answers for it.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="js/house-nav.js"></script>
+  <script src="js/gift-meter.js"></script>
+</body>
+</html>
