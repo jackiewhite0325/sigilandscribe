@@ -177,6 +177,25 @@
       margin: 0;
       max-width: 22rem;
     }
+    .quiet-orb-steps {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #5a5348;
+      margin: 0;
+      padding-left: 1.25rem;
+      max-width: 22rem;
+      text-align: left;
+    }
+    .quiet-orb-steps li { margin: 0.18rem 0; }
+    .quiet-orb-note {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #8a8272;
+      margin: 0;
+      max-width: 22rem;
+    }
     .lights-toggle {
       font-family: 'Courier Prime', monospace;
       font-size: 0.7rem;
@@ -217,6 +236,8 @@
     body.lights-dim .quiet-invite li,
     body.lights-dim .quiet-shelf li { color: #cfc2a8; }
     body.lights-dim .quiet-orb-hint,
+    body.lights-dim .quiet-orb-steps,
+    body.lights-dim .quiet-orb-note,
     body.lights-dim .quiet-hint,
     body.lights-dim .quiet-aside { color: #a89a80; }
     body.lights-dim .soft-exits,
@@ -425,6 +446,14 @@
 
     <div class="quiet-orb-wrap">
       <h2 class="quiet-orb-title">Breathing light</h2>
+      <p class="quiet-orb-hint">If you arrived frazzled, start here. This light breathes slowly with you: it grows, rests, then eases back.</p>
+      <ol class="quiet-orb-steps" aria-label="How to breathe with the light">
+        <li>Tap the light to begin.</li>
+        <li>Breathe in as the light grows.</li>
+        <li>Hold while the light rests.</li>
+        <li>Breathe out as it eases back.</li>
+      </ol>
+      <p class="quiet-orb-note">Repeat for a few rounds, or just watch for a moment. Look away whenever you like, and tap the light again to pause.</p>
       <button
         type="button"
         class="quiet-orb"
@@ -434,7 +463,6 @@
         title="Tap to start or pause the breathing light">
       </button>
       <p class="quiet-orb-phase" id="quiet-orb-phase" aria-live="polite">Tap the light to begin</p>
-      <p class="quiet-orb-hint">If you arrived frazzled, start here. Tap the light and follow its slow expand, hold, and ease. Look away whenever you like.</p>
       <button type="button" class="lights-toggle" id="lights-toggle" aria-pressed="true">Brighten the room</button>
     </div>
 
