@@ -14,8 +14,41 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FBP908LERR');</script>
+  <style>
+    /* whimsy kit */
+    .play-hero h1,
+    .play-grid h2,
+    .play-card h2 {
+      font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+    }
+    .play-hero p.lead,
+    .play-grid p,
+    .play-card p,
+    .play-note {
+      font-family: 'Nunito', system-ui, sans-serif;
+    }
+    .play-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .play-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 22px rgba(56,37,26,0.14);
+    }
+    .room-art {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      margin: 0 auto 1.2rem;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .play-card { transition: none; }
+      .play-card:hover { transform: none; }
+    }
+  </style>
 </head>
 <body>
   <nav class="house-nav" aria-label="Primary">
@@ -38,6 +71,7 @@
 
   <header class="play-hero">
     <h1>Play Area</h1>
+    <img class="room-art" src="images/site/play-room.jpg" alt="A storybook playroom with a writing desk, a round rug, picture books, and Muffin sitting in the middle">
     <p class="lead">Play for grown-ups and little ones: writing prompts, writer tools, and printables for you, and Muffin-led learning for ages 3 to 7.</p>
   </header>
 
