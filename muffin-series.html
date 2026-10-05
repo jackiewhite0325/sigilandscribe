@@ -166,7 +166,25 @@
  }
  .donation-panel p:last-child { margin-bottom: 0; }
  .donation-note { font-size: 0.82rem !important; color: #8a8272 !important; }
- .corner-grownups {
+ .corner-cta { text-align: center; margin: 0 auto 26px; }
+.corner-btn {
+ display: inline-block;
+ font-family: 'Nunito', system-ui, sans-serif;
+ font-weight: 800;
+ font-size: 1.2rem;
+ letter-spacing: 0.01em;
+ color: #4a3b28;
+ background: linear-gradient(180deg, #ffeaa9, #ffd66e);
+ border: 2px solid #b08d57;
+ padding: 16px 36px;
+ border-radius: 999px;
+ text-decoration: none;
+ box-shadow: 0 4px 0 #b08d57;
+ transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.corner-btn:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 0 6px 0 #b08d57; }
+.corner-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #b08d57; }
+.corner-grownups {
  max-width: 640px;
  margin: 0 auto 50px;
  padding: 20px 22px;
@@ -298,6 +316,8 @@
  <div class="foot">Coming soon</div>
  </article>
 </div>
+
+<div class="corner-cta"><a class="corner-btn" href="muffins-corner.html">Come play in Muffin&#8217;s Corner &#128062;</a></div>
 
 <section class="corner-grownups" aria-labelledby="corner-grownups-h">
  <h2 id="corner-grownups-h">For grown-ups: about Muffin's Corner</h2>
