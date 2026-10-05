@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --frost: #FDFBF7;
@@ -426,6 +427,18 @@
   gtag('config', 'G-FBP908LERR');
 </script>
   <link rel="stylesheet" href="house.css?v=10">
+  <style>
+    /* whimsy kit */
+    .wrap h1, .wrap h2, .wrap h3 { font-family: 'Fraunces', 'Playfair Display', Georgia, serif; }
+    .wrap p, .wrap li { font-family: 'Nunito', system-ui, sans-serif; }
+    .doors .door { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .doors .door:hover { transform: translateY(-3px) rotate(-0.3deg); }
+    .doors .door:nth-child(even):hover { transform: translateY(-3px) rotate(0.3deg); }
+    @media (prefers-reduced-motion: reduce) {
+      .doors .door { transition: none; }
+      .doors .door:hover, .doors .door:nth-child(even):hover { transform: none; }
+    }
+  </style>
 </head>
 <body>
 
