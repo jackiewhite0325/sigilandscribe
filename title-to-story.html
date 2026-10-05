@@ -20,6 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="book.css">
   <link rel="stylesheet" href="house.css?v=8">
 
@@ -305,6 +306,17 @@
     gtag('js', new Date());
     gtag('config', 'G-FBP908LERR');
   </script>
+  <style>
+    /* whimsy kit */
+    .tool-wrap h1, .tool-wrap h2, .tool-wrap h3 { font-family: 'Fraunces', 'Playfair Display', Georgia, serif; }
+    .tool-wrap p { font-family: 'Nunito', system-ui, sans-serif; }
+    .tool-wrap .panel, .tool-wrap .prompt-box { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .tool-wrap .panel:hover, .tool-wrap .prompt-box:hover { transform: translateY(-3px) rotate(-0.3deg); }
+    @media (prefers-reduced-motion: reduce) {
+      .tool-wrap .panel, .tool-wrap .prompt-box { transition: none; }
+      .tool-wrap .panel:hover, .tool-wrap .prompt-box:hover { transform: none; }
+    }
+  </style>
 </head>
 <body>
 
