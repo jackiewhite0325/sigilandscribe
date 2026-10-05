@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="book.css">
   <link rel="stylesheet" href="house.css?v=8">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
@@ -24,6 +25,17 @@
   gtag('js', new Date());
   gtag('config', 'G-FBP908LERR');
 </script>
+  <style>
+    /* whimsy kit */
+    main.page h1, main.page h2 { font-family: 'Fraunces', 'Playfair Display', Georgia, serif; }
+    main.page p { font-family: 'Nunito', system-ui, sans-serif; }
+    .bp-cover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .bp-cover:hover { transform: translateY(-3px) rotate(-0.3deg); }
+    @media (prefers-reduced-motion: reduce) {
+      .bp-cover { transition: none; }
+      .bp-cover:hover { transform: none; }
+    }
+  </style>
 </head>
 <body>
 <nav class="house-nav" aria-label="Primary">
