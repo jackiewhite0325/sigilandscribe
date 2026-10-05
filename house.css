@@ -175,6 +175,23 @@
   max-width: 280px;
 }
 
+.house-footer .footer-crisis {
+  border-top: 1px solid var(--footer-line);
+  padding-top: 14px;
+  margin-bottom: 12px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--footer-ink);
+}
+.house-footer .footer-crisis a {
+  color: #E3B76F;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.house-footer .footer-crisis a:hover,
+.house-footer .footer-crisis a:focus-visible { color: var(--footer-ink); }
+
 .house-footer .footer-bottom {
   border-top: 1px solid var(--footer-line);
   padding-top: 18px;
