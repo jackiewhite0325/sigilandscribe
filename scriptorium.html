@@ -196,20 +196,6 @@
       margin: 0;
       max-width: 22rem;
     }
-    .lights-toggle {
-      font-family: 'Courier Prime', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #8a8272;
-      background: transparent;
-      border: 1px solid #e4dcc9;
-      border-radius: 999px;
-      padding: 8px 18px;
-      cursor: pointer;
-      margin-top: 4px;
-    }
-    .lights-toggle:hover { color: #5a5348; border-color: #b08d57; }
     /* ---- Dimmed room ---- */
     body.lights-dim.mode-settle {
       background: radial-gradient(ellipse at 50% 0%, rgba(212,163,115,0.07), transparent 55%), #221c15;
@@ -243,8 +229,6 @@
     body.lights-dim .soft-exits,
     body.lights-dim .soft-exits a,
     body.lights-dim .back-play { color: #d4a373; }
-    body.lights-dim .lights-toggle { color: #b3a68c; border-color: #4a4136; }
-    body.lights-dim .lights-toggle:hover { color: #ece1cb; border-color: #d4a373; }
     body.lights-dim .quiet-orb { box-shadow: 0 0 56px rgba(212,163,115,0.45); }
     /* ---- Print: take the room with you ---- */
     @media print {
@@ -463,7 +447,6 @@
         title="Tap to start or pause the breathing light">
       </button>
       <p class="quiet-orb-phase" id="quiet-orb-phase" aria-live="polite">Tap the light to begin</p>
-      <button type="button" class="lights-toggle" id="lights-toggle" aria-pressed="true">Brighten the room</button>
     </div>
 
     <div class="quiet-prompts">
@@ -731,7 +714,6 @@
 (function () {
   var orb = document.getElementById('quiet-orb');
   var phase = document.getElementById('quiet-orb-phase');
-  var toggle = document.getElementById('lights-toggle');
 
   if (orb && phase) {
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -771,14 +753,6 @@
 
     orb.addEventListener('click', function () {
       if (running) stopCycle(); else startCycle();
-    });
-  }
-
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      var dimmed = document.body.classList.toggle('lights-dim');
-      toggle.setAttribute('aria-pressed', dimmed ? 'true' : 'false');
-      toggle.textContent = dimmed ? 'Brighten the room' : 'Dim the lights';
     });
   }
 
@@ -920,8 +894,6 @@
         document.body.classList.remove('lights-dim');
       } else {
         document.body.classList.add('lights-dim');
-        var t = document.getElementById('lights-toggle');
-        if (t) { t.setAttribute('aria-pressed', 'true'); t.textContent = 'Brighten the room'; }
       }
       hS.hidden = stir;
       hT.hidden = !stir;
