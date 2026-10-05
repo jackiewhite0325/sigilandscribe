@@ -958,6 +958,14 @@
   font-style: italic;
   font-family: Georgia, 'Times New Roman', serif;
 }
+.foyer .welcome {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #3d362c;
+  max-width: 34rem;
+  margin: 0 auto 14px;
+}
 .foyer .mantra {
   font-family: system-ui, -apple-system, sans-serif;
   font-size: 0.88rem;
