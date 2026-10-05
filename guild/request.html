@@ -11,7 +11,7 @@
   <meta property="og:title" content="Start a Project | Sigil and Scribe">
   <meta property="og:description" content="One short form starts every custom piece. One plan and one price, in writing, before anything is owed.">
   <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/guild/request.html">
-  <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/sigil-scribe-logo.png">
+  <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/logo.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,42 +88,26 @@
       color: #8a8272;
       margin-top: 14px;
     }
-    .house-pearl-fab {
-      position: fixed;
-      right: 16px;
-      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #38251A;
-      color: #F7EFDD;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 17px;
-      line-height: 1;
-      text-decoration: none;
-      box-shadow: 0 4px 14px rgba(56, 37, 26, 0.3);
-      z-index: 50;
-    }
-    .house-pearl-fab:hover { background: #B08D57; }
   </style>
 </head>
 <body>
 
-<nav class="house-nav" aria-label="Primary">
-  <div class="nav-inner">
-    <a class="brand" href="../index.html"><img src="../images/site/sigil-scribe-logo.png" alt="" width="24" height="24">Sigil <span>&amp; Scribe</span></a>
-    <ul class="nav-links">
-      <li><a href="../library.html">Library</a></li>
-      <li><a href="../toolbox.html">Toolbox</a></li>
-      <li><a href="../zen-den.html">Zen Den</a></li>
-      <li><a href="../play-area.html">Play Area</a></li>
-      <li><a href="../pearl.html">Pearl</a></li>
-    </ul>
-  </div>
-</nav>
+  <nav class="house-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="../index.html">Sigil <span>&amp;</span> Scribe</a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../library.html">Library</a></li>
+        <li><a href="../play.html">Play Area</a></li>
+        <li><a href="request.html" aria-current="page">Start a Project</a></li>
+        <li><a href="../hypnotherapy.html">Zen Den</a></li>
+        <li><a href="../about.html">About</a></li>
+            <li><a href="../faq.html">Common Questions</a></li>
+        <li><a href="../notes/index.html">Notes</a></li>
+      </ul>
+    </div>
+  </nav>
 
 <main class="room-main">
 
@@ -169,12 +153,54 @@
 </main>
 
 <footer class="house-footer">
-  <p>© 2026 · Sigil and Scribe, LLC · A House Built of Words</p>
-  <p><a href="../privacy.html">Privacy</a> · <a href="../about.html">About</a></p>
-</footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../library.html">Library</a></li>
+            <li><a href="../play.html">Play Area</a></li>
+            <li><a href="../muffins-corner.html">Muffin’s Corner</a></li>
+            <li><a href="../free-things.html">Downloads and Printables</a></li>
+            <li><a href="../toolbox.html">Toolbox</a></li>
+            <li><a href="../notes/index.html">House Notes</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>The House</h3>
+          <ul>
+            <li><a href="request.html">Start a Project</a></li>
+            <li><a href="../hypnotherapy.html">The Zen Den</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+            <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="../privacy.html">Privacy</a></li>
+            <li><a href="../terms.html">Terms</a></li>
+            <li><a href="../return-policy.html">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Newsletters</h3>
+          <ul>
+            <li><a href="https://sigil-and-scribe.kit.com/0ae0deb218" target="_blank" rel="noopener">Muffin's Mailbox</a></li>
+            <li><a href="https://sigil-and-scribe.kit.com/d0dcda3bf2" target="_blank" rel="noopener">Sigil and Scribe Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Sigil and Scribe, LLC</span>
+        <span>Muffin the Pitbull™ is a trademark of Sigil and Scribe, LLC.</span>
+        <span>A human owns this house and answers for it.</span>
+      </div>
+    </div>
+  </footer>
 
-<a class="house-pearl-fab" href="../pearl.html" aria-label="Ask Pearl">✦</a>
-
-<script src="/sigilandscribe/analytics.js" defer></script>
+  <script src="../js/house-nav.js"></script>
 </body>
 </html>
