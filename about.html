@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --paper:#FDFBF7; --mist:#F2F5F3; --ink:#2B2B2B; --amber:#D4A373; --amber-deep:#B8874F;
@@ -133,6 +134,18 @@ h1 { font-family:'Playfair Display',Georgia,serif; font-size:26px; text-align:ce
   gtag('config', 'G-FBP908LERR');
 </script>
   <link rel="stylesheet" href="house.css?v=8">
+  <style>
+    /* whimsy kit */
+    .about-card h1, .rooms h2 { font-family: 'Fraunces', 'Playfair Display', Georgia, serif; }
+    .about-card p, .rooms p, .room .desc { font-family: 'Nunito', system-ui, sans-serif; }
+    .about-card, .room { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .about-card:hover, .room:hover { transform: translateY(-3px) rotate(-0.3deg); }
+    .room-grid .room:nth-child(even):hover { transform: translateY(-3px) rotate(0.3deg); }
+    @media (prefers-reduced-motion: reduce) {
+      .about-card, .room { transition: none; }
+      .about-card:hover, .room:hover, .room-grid .room:nth-child(even):hover { transform: none; }
+    }
+  </style>
 </head>
 <body>
 <nav class="house-nav" aria-label="Primary">
