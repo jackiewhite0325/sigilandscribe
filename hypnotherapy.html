@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --gold: #D4A373;
@@ -345,6 +346,19 @@
   gtag('js', new Date());
   gtag('config', 'G-FBP908LERR');
 </script>
+  <style>
+    /* whimsy kit */
+    .wrap h1, .wrap h2, .wrap h3 { font-family: 'Fraunces', 'Playfair Display', Georgia, serif; }
+    .wrap p, .wrap .lede { font-family: 'Nunito', system-ui, sans-serif; }
+    .room-art { width: 100%; height: auto; display: block; border-radius: 10px; margin: 0 auto 1.2rem; }
+    .wrap .audio-card, .wrap .offering { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .wrap .audio-card:hover, .wrap .offering:hover { transform: translateY(-3px) rotate(-0.3deg); }
+    .wrap .audio-card:nth-child(even):hover { transform: translateY(-3px) rotate(0.3deg); }
+    @media (prefers-reduced-motion: reduce) {
+      .wrap .audio-card, .wrap .offering { transition: none; }
+      .wrap .audio-card:hover, .wrap .offering:hover, .wrap .audio-card:nth-child(even):hover { transform: none; }
+    }
+  </style>
 </head>
 <body>
 
@@ -390,6 +404,8 @@
       <p class="orb-phase" id="orb-phase" aria-live="polite">Tap the light to begin</p>
     </div>
   </section>
+
+  <img class="room-art" src="images/site/zen-den.jpg" alt="A storybook quiet room with cushions, a glowing breathing light, and Muffin asleep">
 
   <!-- Audio near the top -->
   <section class="room" id="audio" aria-labelledby="audio-heading">
