@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Courier+Prime:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FBP908LERR');</script>
   <style>
@@ -392,6 +393,55 @@
     body.lights-dim .half-title { color: #f0e7d3; }
     body.lights-dim .mode-btn { background: #2d261e; color: #b3a68c; border-color: #4a4136; }
     body.lights-dim .mode-btn[aria-pressed="true"] { background: #B8874F; color: #fffdf9; }
+  </style>
+  <style>
+    /* whimsy kit */
+    .room-shell h1,
+    .room-shell h2,
+    .room-shell .half-title,
+    .room-shell .quiet-lead,
+    .chaos-handoff .handoff-lead,
+    .chaos-handoff .coin-close {
+      font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+    }
+    .room-shell p,
+    .room-shell .room-lead,
+    .room-shell .still-line,
+    .room-shell .still-note,
+    .room-shell .quiet-prompts li,
+    .room-shell .quiet-invite p,
+    .room-shell .quiet-invite li,
+    .room-shell .quiet-shelf li,
+    .room-shell .quiet-shelf .quiet-hint,
+    .room-shell .quiet-aside,
+    .room-shell .quiet-orb-hint,
+    .room-shell .quiet-orb-steps,
+    .room-shell .quiet-orb-note,
+    .room-shell .toy-desc,
+    .room-shell .chaos-out,
+    .chaos-handoff .choice-body,
+    .room-shell .pearl-aside {
+      font-family: 'Nunito', system-ui, sans-serif;
+    }
+    .room-shell .chaos-toy,
+    .chaos-handoff .handoff-choices a,
+    .chaos-handoff .handoff-stay {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.15s;
+    }
+    .room-shell .chaos-toy:hover,
+    .chaos-handoff .handoff-choices a:hover,
+    .chaos-handoff .handoff-stay:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 22px rgba(56,37,26,0.14);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .room-shell .chaos-toy,
+      .chaos-handoff .handoff-choices a,
+      .chaos-handoff .handoff-stay { transition: none; }
+      .room-shell .chaos-toy:hover,
+      .chaos-handoff .handoff-choices a:hover,
+      .chaos-handoff .handoff-stay:hover { transform: none; }
+    }
   </style>
 </head>
 <body class="room-scriptorium mode-settle lights-dim">
