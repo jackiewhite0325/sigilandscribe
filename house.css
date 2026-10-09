@@ -1141,7 +1141,7 @@
   border-radius: 8px;
   text-align: center;
 }
-.gift-meter h3 {
+.gift-meter h2, .gift-meter h3 {
   font-family: 'Courier Prime', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.1em;
