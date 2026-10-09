@@ -48,7 +48,7 @@ main { max-width:720px; margin:0 auto; padding:44px 20px 60px; }
   border:3px solid var(--paper); box-shadow:0 10px 24px -12px rgba(56,37,26,0.5); }
 .eyebrow { font-family:'Courier Prime',monospace; font-size:10px; letter-spacing:0.18em;
   text-transform:uppercase; color:var(--sage-deep); text-align:center; margin-bottom:8px; }
-h1 { font-family:'Playfair Display',Georgia,serif; font-size:26px; text-align:center;
+h1, .about-name { font-family:'Playfair Display',Georgia,serif; font-size:26px; text-align:center;
   color:var(--walnut-deep); margin-bottom:6px; }
 .rule { width:56px; height:2px; background:var(--amber); margin:16px auto; border:0; }
 .about-portrait { width:120px; height:120px; border-radius:50%; object-fit:cover; display:block; margin:0 auto 16px;
@@ -137,7 +137,8 @@ h1 { font-family:'Playfair Display',Georgia,serif; font-size:26px; text-align:ce
   <link rel="stylesheet" href="house.css?v=8">
   <style>
     /* whimsy kit */
-    .about-card h1, .rooms h2 { font-family: 'Fraunces', 'Playfair Display', Georgia, serif; }
+    .about-card h1, .about-card .about-name, .rooms h2 { font-family: 'Fraunces', 'Playfair Display', Georgia, serif; }
+    .page-title { font-family: 'Fraunces', 'Playfair Display', Georgia, serif; font-size: clamp(1.9rem, 5vw, 2.4rem); font-weight: 600; text-align: center; color: var(--walnut-deep); margin: 0 0 24px; line-height: 1.2; }
     .about-card p, .rooms p, .room .desc { font-family: 'Nunito', system-ui, sans-serif; }
     .about-card, .room { transition: transform 0.25s ease, box-shadow 0.25s ease; }
     .about-card:hover, .room:hover { transform: translateY(-3px) rotate(-0.3deg); }
@@ -168,9 +169,10 @@ h1 { font-family:'Playfair Display',Georgia,serif; font-size:26px; text-align:ce
 </nav>
 
 <main>
+  <h1 class="page-title">About the House</h1>
   <article class="about-card">
     <img class="about-portrait" src="images/site/author-portrait.jpg" alt="Portrait of J. White, CNA" width="120" height="120">
-    <h1>J. White, CNA</h1>
+    <h2 class="about-name">J. White, CNA</h2>
     <hr class="rule">
     <p>J. White, CNA, is a certified nursing assistant and writer and maker who has spent her life mastering the art of crisis management and compassionate care. Drawing from a diverse background spanning Navy damage control, corrections, and emergency 911 dispatch, she brings a steadfast presence and protective spirit to everything she creates.</p>
     <p>Now settled into a lifelong calling of caregiving, Jackie weaves her deep understanding of human vulnerability and resilience into her writing. When she isn't caring for others or drafting her next piece, she can be found refining her craft from a place of quiet strength.</p>
@@ -190,7 +192,7 @@ h1 { font-family:'Playfair Display',Georgia,serif; font-size:26px; text-align:ce
   </article>
 
   <article class="about-card" style="margin-top: 28px;">
-    <h1>Petra C.Ht.</h1>
+    <h2 class="about-name">Petra C.Ht.</h2>
     <hr class="rule">
     <p>Petra C.Ht. is a Certified Hypnotherapist and an Honors Graduate of the Hypnosis Motivation Institute in Tarzana, California, the only nationally accredited college of hypnotherapy in the United States. She trained in Clinical, Ericksonian, and Kappasinian Hypnotherapy, and holds a Bachelor of Science in Business Management, earned Summa Cum Laude.</p>
     <p>Her practice areas include tinnitus habituation, insomnia and anxiety support, academic acceleration, and chronic illness support. At Sigil and Scribe she holds The Zen Den: guided neuroregulation audio, acoustic tracks, and the gaze anchors that keep the room quiet. Everything on the shelf is educational and relaxation focused, never a substitute for professional care.</p>
