@@ -683,6 +683,12 @@
   .wiggle-pic.show { display: inline-block; }
   .wiggle-pic.pop { animation: patientPop 0.55s ease; }
   .wiggle-btn.doing { background: #fdf6ec; box-shadow: 0 0 0 3px var(--mc-amber-deep); }
+
+  /* Feeling faces */
+  .feel-stage { text-align: center; min-height: 190px; margin: 8px 0 4px; }
+  .feel-pic { width: 180px; height: 180px; object-fit: cover; border-radius: 16px; border: 3px solid var(--mc-amber-deep); display: none; }
+  .feel-pic.show { display: inline-block; }
+  .feel-pic.pop { animation: patientPop 0.55s ease; }
 </style>
 </head>
 <body>
@@ -794,6 +800,7 @@
   <section class="station" id="feelings" aria-labelledby="feelings-h">
     <h2 id="feelings-h">How does Muffin feel?</h2>
     <p class="how">Tap a feeling. You can feel that way too. All feelings are welcome here.</p>
+    <div class="feel-stage"><img class="feel-pic" id="feel-pic" alt="Muffin showing the feeling" aria-hidden="true"></div>
     <div class="feel-row" role="group" aria-label="Feelings">
       <button type="button" class="feel-btn" data-feel="Happy: tail wags and warm sun. When you feel happy, share it with someone you love."><span class="emoji" aria-hidden="true">😊</span>Happy</button>
       <button type="button" class="feel-btn" data-feel="Tired: soft stretch and a cozy nap. When you feel tired, rest. Rest helps bodies grow."><span class="emoji" aria-hidden="true">😴</span>Tired</button>
@@ -1480,6 +1487,21 @@
       btn.classList.add('is-active');
       var feel = btn.getAttribute('data-feel') || '';
       feelFb.textContent = feel;
+      var feelName = feel.split(':')[0];
+      var feelPic = document.getElementById('feel-pic');
+      var feelSrc = {
+        Happy: 'images/muffin-corner/feel-happy.webp', Tired: 'images/muffin-corner/feel-tired.webp',
+        Brave: 'images/muffin-corner/feel-brave.webp', Still: 'images/muffin-corner/feel-still.webp',
+        Silly: 'images/muffin-corner/feel-silly.webp', Curious: 'images/muffin-corner/feel-curious.webp',
+        Sad: 'images/muffin-corner/feel-sad.webp', Proud: 'images/muffin-corner/feel-proud.webp'
+      }[feelName];
+      if (feelPic && feelSrc) {
+        feelPic.src = feelSrc;
+        feelPic.classList.add('show');
+        feelPic.classList.remove('pop');
+        void feelPic.offsetWidth;
+        feelPic.classList.add('pop');
+      }
       var key = feelAudio[feel];
       if (key) playAudio(AUDIO[key]);
     });
