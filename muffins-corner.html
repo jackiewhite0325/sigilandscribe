@@ -750,6 +750,12 @@
   .drop { width: 52px; height: 52px; border-radius: 50%; border: 2px dashed var(--mc-sky); background: #fff; font-size: 1.5rem; cursor: pointer; }
   .drop.filled { border-style: solid; }
   .grownup-note { text-align: center; color: var(--mc-sage-ink); font-size: 0.95rem; margin: 18px 0 4px; }
+
+  .energy-game { margin-top: 26px; border-top: 2px dashed var(--mc-amber); padding-top: 18px; text-align: center; }
+  .energy-muffin { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; border: 3px solid var(--mc-amber-deep); }
+  .bones-row { font-size: 2rem; letter-spacing: 4px; margin: 8px 0; min-height: 48px; }
+  .bone.spent { opacity: 0.22; filter: grayscale(1); }
+  .energy-acts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 8px; }
 </style>
 <script type="application/ld+json">
 {
@@ -920,6 +926,20 @@
       <div class="breath-circle" aria-hidden="true"></div>
       <p class="cozy-words"><strong>Muffin says:</strong> Cozy day. We rest, we breathe, we stay soft.</p>
       <button type="button" class="mc-btn" id="cozy-breath" aria-label="Breathe with Muffin">🌙 Breathe with me</button>
+    </div>
+    <div class="energy-game" aria-labelledby="energy-h">
+      <h3 id="energy-h">Energy Bones</h3>
+      <p class="how">Muffin has 5 energy bones. Spend them on fun things. When they run out, rest!</p>
+      <button type="button" class="mc-btn ghost" id="energy-hear" aria-label="Hear how to play Energy Bones">🔊 How to play</button>
+      <div><img class="energy-muffin" id="energy-muffin" src="images/muffin-corner/feel-happy.webp" alt="Muffin" aria-hidden="true"></div>
+      <div class="bones-row" id="bones-row" role="img" aria-label="5 of 5 energy bones"></div>
+      <div class="energy-acts" role="group" aria-label="Things to do with energy bones">
+        <button type="button" class="mc-btn ghost energy-act" data-cost="2" data-act="wiggle" aria-label="Wiggle, costs 2 bones">🤸 Wiggle (2)</button>
+        <button type="button" class="mc-btn ghost energy-act" data-cost="1" data-act="story" aria-label="Story, costs 1 bone">📖 Story (1)</button>
+        <button type="button" class="mc-btn ghost energy-act" data-cost="1" data-act="movie" aria-label="Movie, costs 1 bone">🎬 Movie (1)</button>
+        <button type="button" class="mc-btn" id="energy-rest" aria-label="Rest to get bones back">🌙 Rest</button>
+      </div>
+      <p class="play-feedback" id="energy-feedback" aria-live="polite"></p>
     </div>
     <p class="play-feedback" id="wiggle-feedback" aria-live="polite"></p>
   </section>
@@ -1281,6 +1301,12 @@
     ['vet-step5.mp3', 'A thank-you hug or high-five.'],
     ['vet-courage.mp3', 'Care is a kind of courage.'],
     ['feed-yum.mp3', 'Yum!'],
+    ['energy-intro.mp3', 'Muffin has five energy bones! Spend them on fun things. When they run out, we rest.'],
+    ['energy-wiggle.mp3', 'Wiggle time! That took two bones!'],
+    ['energy-story.mp3', 'Story time! That took one bone!'],
+    ['energy-movie.mp3', 'Movie time! That took one bone!'],
+    ['energy-empty.mp3', 'All out of bones! Time to rest. Resting is a kind of playing!'],
+    ['energy-rested.mp3', 'Mmm, all rested! The bones are back!'],
     ['water-intro.mp3', 'Some flowers are thirsty! Tap the water drops to give them a drink. Count with me!'],
     ['water-bloom.mp3', 'Beautiful! The flower bloomed! Drinking water helps you grow, just like flowers!'],
     ['place-cozy.mp3', 'Welcome to the Cozy Corner. Today we rest and breathe.'],
@@ -1622,6 +1648,71 @@
   }
   if (waterAgain) waterAgain.addEventListener('click', buildFlowers);
   buildFlowers();
+
+  // --- Energy Bones: spend energy, rest to refill ---
+  var BONE_MAX = 5;
+  var bones = BONE_MAX;
+  var bonesRow = document.getElementById('bones-row');
+  var energyFeedback = document.getElementById('energy-feedback');
+  var energyMuffin = document.getElementById('energy-muffin');
+  var energyHear = document.getElementById('energy-hear');
+  var energyRest = document.getElementById('energy-rest');
+  var ENERGY_MSGS = {
+    wiggle: 'Wiggle time! That is 2 bones.',
+    story: 'Story time! That is 1 bone.',
+    movie: 'Movie time! That is 1 bone.'
+  };
+  function renderBones() {
+    if (!bonesRow) return;
+    bonesRow.innerHTML = '';
+    for (var i = 0; i < BONE_MAX; i++) {
+      var s = document.createElement('span');
+      s.className = 'bone' + (i < bones ? '' : ' spent');
+      s.textContent = '🦴';
+      s.setAttribute('aria-hidden', 'true');
+      bonesRow.appendChild(s);
+    }
+    bonesRow.setAttribute('aria-label', bones + ' of ' + BONE_MAX + ' energy bones');
+    if (energyMuffin) energyMuffin.src = 'images/muffin-corner/' + (bones >= 3 ? 'feel-happy.webp' : 'feel-tired.webp');
+  }
+  if (energyHear) energyHear.addEventListener('click', function () {
+    playAudio('images/muffin-corner/audio/energy-intro.mp3');
+  });
+  document.querySelectorAll('.energy-act').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var cost = parseInt(btn.getAttribute('data-cost'), 10);
+      var act = btn.getAttribute('data-act');
+      if (bones < cost) {
+        if (energyFeedback) energyFeedback.textContent = 'Not enough bones. Let Muffin rest first!';
+        playAudio('images/muffin-corner/audio/energy-empty.mp3');
+        return;
+      }
+      bones -= cost;
+      renderBones();
+      playAudio('images/muffin-corner/audio/energy-' + act + '.mp3');
+      if (energyFeedback) energyFeedback.textContent = ENERGY_MSGS[act] + ' ' + bones + ' left.';
+      if (bones === 0 && energyFeedback) {
+        setTimeout(function () { energyFeedback.textContent = 'All out of bones! Time to rest.'; }, 2200);
+      }
+    });
+  });
+  if (energyRest) energyRest.addEventListener('click', function () {
+    if (bones >= BONE_MAX) {
+      if (energyFeedback) energyFeedback.textContent = 'Muffin is full of bones already!';
+      return;
+    }
+    if (energyFeedback) energyFeedback.textContent = 'Resting...';
+    var iv = setInterval(function () {
+      bones++;
+      renderBones();
+      if (bones >= BONE_MAX) {
+        clearInterval(iv);
+        playAudio('images/muffin-corner/audio/energy-rested.mp3');
+        if (energyFeedback) energyFeedback.textContent = 'All rested! Bones are back!';
+      }
+    }, 700);
+  });
+  renderBones();
 
   // --- World rooms: tap a place to step inside; Muffin welcomes you ---
   var PLACE_WELCOME = {
