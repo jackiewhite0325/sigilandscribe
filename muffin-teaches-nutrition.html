@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muffin Teaches Nutrition</title>
+<meta name="description" content="Muffin the pitbull teaches little ones about the tiny helpers hiding in food. 26 gentle audio lessons for ages 3 to 7.">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { background: #faf6ec; color: #4a3a2a; font-family: 'Nunito', sans-serif; margin: 0; padding: 0; }
+  .back { max-width: 640px; margin: 0 auto; padding: 1rem 1.25rem 0; }
+  .back a { color: #8a6f4d; font-weight: 700; text-decoration: none; font-size: 1.05rem; }
+  .hero { text-align: center; padding: 1.5rem 1.25rem 1rem; max-width: 640px; margin: 0 auto; }
+  .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 6vw, 3rem); margin: 0 0 1rem; }
+  .cover-img { width: 100%; border-radius: 16px; border: 3px solid #b08d4f; box-shadow: 0 4px 18px rgba(74,58,42,0.12); }
+  .intro-listen { margin: 1.25rem 0 0.25rem; }
+  .intro-listen p { font-weight: 800; color: #8a6f4d; margin-bottom: 0.5rem; font-size: 1.05rem; }
+  audio { width: 100%; max-width: 420px; }
+  .hero .hello { font-size: 1.2rem; color: #8a6f4d; line-height: 1.6; margin: 1rem 0 0; }
+  .picker-label { text-align: center; font-weight: 800; color: #8a6f4d; font-size: 1.1rem; margin: 1.5rem 0 0.75rem; }
+  .picker { max-width: 640px; margin: 0 auto; padding: 0 1.25rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.6rem; }
+  .pick { background: #fffdf7; border: 2px solid #b08d4f; border-radius: 12px; padding: 0.6rem 0.5rem; text-align: center; color: #4a3a2a; display: flex; flex-direction: column; cursor: pointer; font-family: 'Nunito', sans-serif; }
+  .pick:active { background: #f5edd9; }
+  .pick.active { background: #f5edd9; border-color: #8a6f4d; }
+  .pick-food { font-weight: 800; font-size: 0.95rem; }
+  .pick-name { font-size: 0.8rem; color: #8a6f4d; }
+  .stage { max-width: 620px; margin: 1.5rem auto 0; padding: 0 1.25rem; }
+  .lesson { text-align: center; }
+  .lesson[hidden] { display: none; }
+  .lesson h2 { font-family: 'Fraunces', serif; font-size: 2rem; margin: 0 0 0.25rem; }
+  .food-line { color: #8a6f4d; font-size: 1.05rem; margin: 0 0 1rem; }
+  .lesson-img { width: 100%; border-radius: 16px; border: 3px solid #b08d4f; box-shadow: 0 4px 18px rgba(74,58,42,0.12); }
+  .listen { margin: 1.25rem 0 0.5rem; }
+  .listen p { font-weight: 800; color: #8a6f4d; margin-bottom: 0.5rem; font-size: 1.05rem; }
+  .words { text-align: left; background: #fffdf7; border: 2px solid #b08d4f; border-radius: 14px; padding: 1.4rem; margin-top: 1.25rem; font-size: 1.2rem; line-height: 1.75; }
+  .words p { margin: 0 0 1rem; } .words p:last-child { margin-bottom: 0; }
+  .spin-nav { display: flex; justify-content: space-between; max-width: 620px; margin: 1rem auto 0; padding: 0 1.25rem; }
+  .spin-nav button { background: #fffdf7; border: 2px solid #b08d4f; border-radius: 12px; padding: 0.7rem 1.2rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem; color: #4a3a2a; cursor: pointer; }
+  .spin-nav button:active { background: #f5edd9; }
+  .grownup { max-width: 620px; margin: 3rem auto 0; padding: 0 1.25rem 3rem; }
+  .grownup .note { border-left: 4px solid #b08d4f; padding: 0.75rem 1rem; background: #f5edd9; border-radius: 0 10px 10px 0; font-size: 0.95rem; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="back"><a href="play.html">&larr; Back to Play Area</a></div>
+<div class="hero">
+  <h1>Muffin Teaches Nutrition</h1>
+  <img class="cover-img" src="images/muffin-nutrition/muffin-nutrition-cover.webp" alt="Muffin the pitbull sitting at a table full of colorful foods">
+  <div class="intro-listen">
+    <p>Tap to hear Muffin say hello:</p>
+    <audio controls preload="none" src="images/muffin-nutrition/audio/muffin-nutrition-intro.mp3"></audio>
+  </div>
+  <p class="hello">Welcome to my nutrition school! Every food has a tiny helper hiding inside it. Pick a food below and I'll teach you its secret.</p>
+</div>
+
+<p class="picker-label">Pick a food, and the table will spin its card to you:</p>
+<div class="picker" id="picker">
+    <button type="button" class="pick" data-goto="0"><span class="pick-food">carrots</span><span class="pick-name">Vitamin A</span></button>
+    <button type="button" class="pick" data-goto="1"><span class="pick-food">whole grain bread</span><span class="pick-name">Vitamin B1</span></button>
+    <button type="button" class="pick" data-goto="2"><span class="pick-food">milk</span><span class="pick-name">Vitamin B2</span></button>
+    <button type="button" class="pick" data-goto="3"><span class="pick-food">peanuts</span><span class="pick-name">Vitamin B3</span></button>
+    <button type="button" class="pick" data-goto="4"><span class="pick-food">eggs</span><span class="pick-name">Vitamin B5</span></button>
+    <button type="button" class="pick" data-goto="5"><span class="pick-food">bananas</span><span class="pick-name">Vitamin B6</span></button>
+    <button type="button" class="pick" data-goto="6"><span class="pick-food">leafy greens</span><span class="pick-name">Vitamin B9</span></button>
+    <button type="button" class="pick" data-goto="7"><span class="pick-food">eggs and milk</span><span class="pick-name">Vitamin B12</span></button>
+    <button type="button" class="pick" data-goto="8"><span class="pick-food">oranges</span><span class="pick-name">Vitamin C</span></button>
+    <button type="button" class="pick" data-goto="9"><span class="pick-food">sunshine and milk</span><span class="pick-name">Vitamin D</span></button>
+    <button type="button" class="pick" data-goto="10"><span class="pick-food">almonds</span><span class="pick-name">Vitamin E</span></button>
+    <button type="button" class="pick" data-goto="11"><span class="pick-food">broccoli</span><span class="pick-name">Vitamin K</span></button>
+    <button type="button" class="pick" data-goto="12"><span class="pick-food">milk</span><span class="pick-name">Calcium</span></button>
+    <button type="button" class="pick" data-goto="13"><span class="pick-food">celery</span><span class="pick-name">Chloride</span></button>
+    <button type="button" class="pick" data-goto="14"><span class="pick-food">green beans</span><span class="pick-name">Chromium</span></button>
+    <button type="button" class="pick" data-goto="15"><span class="pick-food">sunflower seeds</span><span class="pick-name">Copper</span></button>
+    <button type="button" class="pick" data-goto="16"><span class="pick-food">fish</span><span class="pick-name">Iodine</span></button>
+    <button type="button" class="pick" data-goto="17"><span class="pick-food">beans</span><span class="pick-name">Iron</span></button>
+    <button type="button" class="pick" data-goto="18"><span class="pick-food">pumpkin seeds</span><span class="pick-name">Magnesium</span></button>
+    <button type="button" class="pick" data-goto="19"><span class="pick-food">oatmeal</span><span class="pick-name">Manganese</span></button>
+    <button type="button" class="pick" data-goto="20"><span class="pick-food">lentils</span><span class="pick-name">Molybdenum</span></button>
+    <button type="button" class="pick" data-goto="21"><span class="pick-food">yogurt</span><span class="pick-name">Phosphorus</span></button>
+    <button type="button" class="pick" data-goto="22"><span class="pick-food">bananas</span><span class="pick-name">Potassium</span></button>
+    <button type="button" class="pick" data-goto="23"><span class="pick-food">eggs</span><span class="pick-name">Selenium</span></button>
+    <button type="button" class="pick" data-goto="24"><span class="pick-food">a tiny pinch of salt</span><span class="pick-name">Sodium</span></button>
+    <button type="button" class="pick" data-goto="25"><span class="pick-food">chickpeas</span><span class="pick-name">Zinc</span></button>
+</div>
+
+<div class="stage" id="stage">
+    <section class="lesson" id="lesson-vitamin-a" data-index="0">
+      <h2>Vitamin A</h2>
+      <p class="food-line">Muffin's food for this one: <strong>carrots</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-a.webp" alt="Muffin with carrots" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-a.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today let&#x27;s learn about vitamin A. Can you say it with me.</p>
+<p>Vitamin A. Good job. Vitamin A helps your eyes see in the dark, like a superhero night light.</p>
+<p>You can find it in carrots, sweet potatoes, and leafy greens. Vitamin A has a buddy called healthy fat, like a little olive oil, and they hold hands to help your body. So crunch a carrot and say hi to vitamin A.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b1" data-index="1" hidden>
+      <h2>Vitamin B1</h2>
+      <p class="food-line">Muffin's food for this one: <strong>whole grain bread</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b1.webp" alt="Muffin with whole grain bread" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b1.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s vitamin B1. Can you say it with me.</p>
+<p>Vitamin B1. Great. Vitamin B1 helps turn your food into zoomy energy for playing.</p>
+<p>You can find it in whole grain bread, brown rice, and beans. Vitamin B1 has a buddy called magnesium, and they hold hands to help your body. So enjoy your toast and think of vitamin B1.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b2" data-index="2" hidden>
+      <h2>Vitamin B2</h2>
+      <p class="food-line">Muffin's food for this one: <strong>milk</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b2.webp" alt="Muffin with milk" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b2.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s Vitamin B2. Can you say it with me.</p>
+<p>Vitamin B2. Great. Vitamin B2 helps your body make energy from food, so you can run and giggle.</p>
+<p>You can find it in milk, yogurt, and eggs. Vitamin B2 has a buddy called vitamin B6, and they hold hands to help your body. So drink your milk and smile.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b3" data-index="3" hidden>
+      <h2>Vitamin B3</h2>
+      <p class="food-line">Muffin's food for this one: <strong>peanuts</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b3.webp" alt="Muffin with peanuts" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b3.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today we are learning about vitamin B3. Can you say it with me.</p>
+<p>Vitamin B3. Great. It helps your body use food for energy and keeps your skin happy.</p>
+<p>You can find it in peanuts, chicken, and brown rice. Protein foods are its best buddies, and they hold hands to help your body. So munch a peanut and wave hello.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b5" data-index="4" hidden>
+      <h2>Vitamin B5</h2>
+      <p class="food-line">Muffin's food for this one: <strong>eggs</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b5.webp" alt="Muffin with eggs" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b5.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s Vitamin B5. Can you say it with me.</p>
+<p>Vitamin B5. Great. Vitamin B5 helps your body make energy every single day.</p>
+<p>You can find it in eggs, chicken, and broccoli. Vitamin B5 has buddies called the B vitamin family, and they all hold hands to help your body. So eat your eggs and feel great.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b6" data-index="5" hidden>
+      <h2>Vitamin B6</h2>
+      <p class="food-line">Muffin's food for this one: <strong>bananas</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b6.webp" alt="Muffin with bananas" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b6.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Let&#x27;s learn about vitamin B6 together. Can you say its name with me.</p>
+<p>Vitamin B6. Great. Vitamin B6 helps your brain send happy messages all around your body.</p>
+<p>You can find it in bananas, chickpeas, and potatoes. Vitamin B6 has a buddy called magnesium, and they hold hands to help your body. So peel a banana and grin.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b9" data-index="6" hidden>
+      <h2>Vitamin B9</h2>
+      <p class="food-line">Muffin's food for this one: <strong>leafy greens</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b9.webp" alt="Muffin with leafy greens" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b9.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today we are learning about vitamin B9. Can you say it with me.</p>
+<p>Vitamin B9. Great. This tiny helper makes new cells so you grow big and strong.</p>
+<p>You can find it in leafy greens, beans, and lentils. It has a buddy called vitamin B12, and they hold hands to help your body. So eat your greens like a champ.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b12" data-index="7" hidden>
+      <h2>Vitamin B12</h2>
+      <p class="food-line">Muffin's food for this one: <strong>eggs and milk</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b12.webp" alt="Muffin with eggs and milk" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b12.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today we are learning about vitamin B12. Can you say it with me.</p>
+<p>Vitamin B12. Great. Vitamin B12 helps your body make healthy blood and keeps your energy up.</p>
+<p>You can find it in eggs, milk, and fish. It has a buddy called vitamin B9, and they hold hands to help your body. So enjoy your breakfast and shine.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-c" data-index="8" hidden>
+      <h2>Vitamin C</h2>
+      <p class="food-line">Muffin's food for this one: <strong>oranges</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-c.webp" alt="Muffin with oranges" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-c.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today I want to tell you about something tiny hiding in your food. It&#x27;s called vitamin C.</p>
+<p>Can you say that with me. Vitamin C. Good job.</p>
+<p>Vitamin C helps your body feel strong, and helps little scrapes get all better. You can find it in oranges, strawberries, and yummy red peppers. My favorite is oranges.</p>
+<p>They are round and sunny, just like playtime. Vitamin C has a buddy called iron. They hold hands and help your body together.</p>
+<p>So when you eat an orange, remember, vitamin C is in there, cheering for you. Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-d" data-index="9" hidden>
+      <h2>Vitamin D</h2>
+      <p class="food-line">Muffin's food for this one: <strong>sunshine and milk</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-d.webp" alt="Muffin with sunshine and milk" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-d.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s Vitamin D. Can you say it with me.</p>
+<p>Vitamin D. Great. Vitamin D helps your bones grow strong and sturdy.</p>
+<p>You can find it in warm sunshine on your skin, and in milk and fish too. Vitamin D has a buddy called calcium, and they hold hands to help your body. So play in the sunshine and smile.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-e" data-index="10" hidden>
+      <h2>Vitamin E</h2>
+      <p class="food-line">Muffin's food for this one: <strong>almonds</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-e.webp" alt="Muffin with almonds" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-e.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s Vitamin E. Can you say it with me.</p>
+<p>Vitamin E. Great. Vitamin E is like a tiny shield that keeps your cells safe.</p>
+<p>You can find it in almonds, sunflower seeds, and spinach. Vitamin E has a buddy called vitamin C, and they hold hands to help your body. So crunch some almonds and feel safe.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-k" data-index="11" hidden>
+      <h2>Vitamin K</h2>
+      <p class="food-line">Muffin's food for this one: <strong>broccoli</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-k.webp" alt="Muffin with broccoli" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-k.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today we are learning about vitamin K. Can you say it with me.</p>
+<p>Vitamin K. Great. Vitamin K helps your body fix little boo-boos and keeps bones strong.</p>
+<p>You can find it in broccoli and spinach. It has a buddy called calcium, and they hold hands to help your body. So eat your broccoli trees.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-calcium" data-index="12" hidden>
+      <h2>Calcium</h2>
+      <p class="food-line">Muffin's food for this one: <strong>milk</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-calcium.webp" alt="Muffin with milk" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-calcium.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s calcium. Can you say it with me.</p>
+<p>Calcium. Great. Calcium builds strong bones and teeth, and helps your muscles move.</p>
+<p>You can find it in milk, yogurt, and cheese. Calcium has a buddy called vitamin D, and they hold hands to help your body. So drink your milk and stand tall.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-chloride" data-index="13" hidden>
+      <h2>Chloride</h2>
+      <p class="food-line">Muffin's food for this one: <strong>celery</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-chloride.webp" alt="Muffin with celery" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-chloride.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s chloride. Can you say it with me.</p>
+<p>Chloride. Great. Chloride helps your body balance its water, just like its buddy.</p>
+<p>You can find it in celery, tomatoes, and a tiny pinch of salt. Chloride has a buddy called sodium, and they hold hands to help your body. So crunch your celery and cheer.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-chromium" data-index="14" hidden>
+      <h2>Chromium</h2>
+      <p class="food-line">Muffin's food for this one: <strong>green beans</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-chromium.webp" alt="Muffin with green beans" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-chromium.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s chromium. Can you say it with me.</p>
+<p>Chromium. Great. Chromium is a quiet helper that works with the food you eat.</p>
+<p>You can find it in green beans, broccoli, and whole grains. Chromium works quietly with all the other foods on your plate. So eat your green beans and feel clever.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-copper" data-index="15" hidden>
+      <h2>Copper</h2>
+      <p class="food-line">Muffin's food for this one: <strong>sunflower seeds</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-copper.webp" alt="Muffin with sunflower seeds" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-copper.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s copper. Can you say it with me.</p>
+<p>Copper. Great. Copper helps your body in lots of quiet little ways.</p>
+<p>You can find it in sunflower seeds, nuts, and whole grains. Copper has a buddy called zinc, and they hold hands to help your body. So sprinkle some seeds and shine.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-iodine" data-index="16" hidden>
+      <h2>Iodine</h2>
+      <p class="food-line">Muffin's food for this one: <strong>fish</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-iodine.webp" alt="Muffin with fish" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-iodine.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s iodine. Can you say it with me.</p>
+<p>Iodine. Great. Iodine helps a tiny gland in your neck keep your body&#x27;s energy just right.</p>
+<p>You can find it in fish, eggs, and dairy. Iodine has a buddy called selenium, and they hold hands to help your body. So enjoy your fish and feel fine.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-iron" data-index="17" hidden>
+      <h2>Iron</h2>
+      <p class="food-line">Muffin's food for this one: <strong>beans</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-iron.webp" alt="Muffin with beans" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-iron.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s iron. Can you say it with me.</p>
+<p>Iron. Great. Iron helps your blood carry happy air all around your body.</p>
+<p>You can find it in beans, lentils, and spinach. Iron has a buddy called vitamin C, and they hold hands to help your body. So eat your beans and feel mighty.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-magnesium" data-index="18" hidden>
+      <h2>Magnesium</h2>
+      <p class="food-line">Muffin's food for this one: <strong>pumpkin seeds</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-magnesium.webp" alt="Muffin with pumpkin seeds" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-magnesium.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s magnesium. Can you say it with me.</p>
+<p>Magnesium. Great. Magnesium helps your muscles relax and keeps you feeling calm.</p>
+<p>You can find it in pumpkin seeds, almonds, and leafy greens. Magnesium has a buddy called vitamin D, and they hold hands to help your body. So snack on seeds and relax.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-manganese" data-index="19" hidden>
+      <h2>Manganese</h2>
+      <p class="food-line">Muffin's food for this one: <strong>oatmeal</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-manganese.webp" alt="Muffin with oatmeal" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-manganese.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s manganese. Can you say it with me.</p>
+<p>Manganese. Great. Manganese is a quiet helper that works inside your body every day.</p>
+<p>You can find it in oatmeal, brown rice, and nuts. Manganese works quietly with all the other foods on your plate. So enjoy your oatmeal and start the day.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-molybdenum" data-index="20" hidden>
+      <h2>Molybdenum</h2>
+      <p class="food-line">Muffin's food for this one: <strong>lentils</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-molybdenum.webp" alt="Muffin with lentils" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-molybdenum.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s molybdenum. Can you say it with me.</p>
+<p>Molybdenum. Great. Molybdenum is a quiet helper that works inside your body.</p>
+<p>You can find it in lentils, beans, and peas. Molybdenum works quietly with all the other foods on your plate. So scoop your lentils and smile.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-phosphorus" data-index="21" hidden>
+      <h2>Phosphorus</h2>
+      <p class="food-line">Muffin's food for this one: <strong>yogurt</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-phosphorus.webp" alt="Muffin with yogurt" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-phosphorus.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today we are learning about a helper called phosphorus. It sounds like FOSS-fur-us.</p>
+<p>Can you say it with me. Phosphorus. Great.</p>
+<p>It teams up to build strong bones and teeth. You can find it in yogurt, milk, and beans. It has a buddy called calcium, and they hold hands to help your body.</p>
+<p>So spoon your yogurt and smile. Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-potassium" data-index="22" hidden>
+      <h2>Potassium</h2>
+      <p class="food-line">Muffin's food for this one: <strong>bananas</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-potassium.webp" alt="Muffin with bananas" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-potassium.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s potassium. Can you say it with me.</p>
+<p>Potassium. Great. Potassium helps your muscles move smoothly and keeps your body balanced.</p>
+<p>You can find it in bananas, potatoes, and oranges. Potassium has a buddy called sodium, and they hold hands to help your body. So eat a banana and bounce.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-selenium" data-index="23" hidden>
+      <h2>Selenium</h2>
+      <p class="food-line">Muffin's food for this one: <strong>eggs</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-selenium.webp" alt="Muffin with eggs" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-selenium.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s selenium. Can you say it with me.</p>
+<p>Selenium. Great. Selenium is a tiny helper that looks after your body every day.</p>
+<p>You can find it in eggs, fish, and meat. Selenium has a buddy called iodine, and they hold hands to help your body. A little bit goes a long way.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-sodium" data-index="24" hidden>
+      <h2>Sodium</h2>
+      <p class="food-line">Muffin's food for this one: <strong>a tiny pinch of salt</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-sodium.webp" alt="Muffin with a tiny pinch of salt" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-sodium.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s sodium. Can you say it with me.</p>
+<p>Sodium. Great. Sodium helps your body balance its water and keeps muscles working.</p>
+<p>You can find a tiny bit in salt and in foods like celery. Sodium has a buddy called potassium, and they hold hands to help your body. Just a tiny pinch is plenty.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-zinc" data-index="25" hidden>
+      <h2>Zinc</h2>
+      <p class="food-line">Muffin's food for this one: <strong>chickpeas</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-zinc.webp" alt="Muffin with chickpeas" loading="lazy">
+      <div class="listen">
+        <p>Tap to hear Muffin teach it:</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-zinc.mp3"></audio>
+      </div>
+      <div class="words">
+<p>Hi, I&#x27;m Muffin. Today it&#x27;s zinc. Can you say it with me.</p>
+<p>Zinc. Great. Zinc helps your body stay healthy and helps owies heal.</p>
+<p>You can find it in chickpeas, meat, and nuts. Zinc has a buddy called copper, and they hold hands to help your body. So munch chickpeas and stay zingy.</p>
+<p>Bye for now!</p>
+      </div>
+    </section>
+</div>
+<div class="spin-nav">
+  <button type="button" id="prevBtn">&larr; Back</button>
+  <button type="button" id="nextBtn">Next &rarr;</button>
+</div>
+
+<div class="grownup">
+  <div class="note">For grown-ups: these lessons teach, they do not diagnose. Friendly learning for ages 3 to 7, not medical advice. If something about your child's health worries you, your pediatrician is the right person to ask.</div>
+</div>
+
+<script>
+(function() {
+  var lessons = Array.prototype.slice.call(document.querySelectorAll('.lesson'));
+  var picks = Array.prototype.slice.call(document.querySelectorAll('.pick'));
+  var current = 0;
+  function show(i) {
+    current = (i + lessons.length) % lessons.length;
+    lessons.forEach(function(el, k) {
+      if (k === current) { el.removeAttribute('hidden'); }
+      else { el.setAttribute('hidden', ''); var a = el.querySelector('audio'); if (a) { a.pause(); } }
+    });
+    picks.forEach(function(p, k) {
+      if (k === current) { p.classList.add('active'); }
+      else { p.classList.remove('active'); }
+    });
+    document.getElementById('stage').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  picks.forEach(function(p) {
+    p.addEventListener('click', function() { show(parseInt(p.getAttribute('data-goto'), 10)); });
+  });
+  document.getElementById('prevBtn').addEventListener('click', function() { show(current - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function() { show(current + 1); });
+  show(0);
+})();
+</script>
+</body>
+</html>
