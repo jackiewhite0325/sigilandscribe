@@ -667,6 +667,9 @@
   .patient-pop { font-size: 4.5rem; display: inline-block; line-height: 1; }
   .patient-pop.pop { animation: patientPop 0.55s ease; }
   @keyframes patientPop { 0% { transform: scale(0) rotate(-12deg); } 60% { transform: scale(1.25) rotate(4deg); } 100% { transform: scale(1) rotate(0); } }
+
+  .treat.gobbled { transform: scale(0); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; }
+  .treat.lit { box-shadow: 0 0 0 4px var(--mc-amber-deep); transform: scale(1.2); }
 </style>
 </head>
 <body>
@@ -750,6 +753,8 @@
       <button type="button" class="mc-btn" id="count-add">+ One treat</button>
       <button type="button" class="mc-btn ghost" id="count-sub">− One treat</button>
       <button type="button" class="mc-btn ghost" id="count-reset">Start over</button>
+      <button type="button" class="mc-btn" id="count-with-me">Count with me</button>
+      <button type="button" class="mc-btn ghost" id="count-feed">Feed Muffin</button>
     </div>
     <p class="play-feedback" id="count-feedback" aria-live="polite"></p>
   </section>
@@ -1005,6 +1010,7 @@
     number8: 'images/muffin-corner/audio/number-8.mp3',
     number9: 'images/muffin-corner/audio/number-9.mp3',
     number10: 'images/muffin-corner/audio/number-10.mp3',
+    feedYum: 'images/muffin-corner/audio/feed-yum.mp3',
     // Wiggles
     wiggleStretch: 'images/muffin-corner/audio/wiggle-stretch.mp3',
     wiggleShake: 'images/muffin-corner/audio/wiggle-shake.mp3',
@@ -1292,6 +1298,51 @@
   });
   document.getElementById('count-reset').addEventListener('click', function () {
     count = 0; renderCount(true);
+  });
+  var countBusy = false;
+  // --- Count with me: Muffin leads, lighting each treat as she counts ---
+  document.getElementById('count-with-me').addEventListener('click', function () {
+    if (countBusy) return;
+    if (count === 0) { countFb.textContent = 'Add some treats first, then we will count together!'; return; }
+    countBusy = true;
+    var treats = Array.prototype.slice.call(treatRow.querySelectorAll('.treat'));
+    treats.forEach(function (t) { t.classList.remove('counted'); t.classList.remove('lit'); });
+    countFb.textContent = 'Count with me!';
+    var i = 0;
+    function step() {
+      if (i > 0) treats[i - 1].classList.remove('lit');
+      if (i >= treats.length) {
+        countBusy = false;
+        countFb.textContent = 'We counted to ' + count + '! High five!';
+        playAudio(AUDIO['count' + count]);
+        return;
+      }
+      treats[i].classList.add('lit');
+      playAudio(AUDIO['number' + (i + 1)]);
+      i++;
+      setTimeout(step, 1100);
+    }
+    step();
+  });
+  // --- Feed Muffin: she gobbles the treats one by one ---
+  document.getElementById('count-feed').addEventListener('click', function () {
+    if (countBusy) return;
+    if (count === 0) { countFb.textContent = 'No treats to share yet. Add some first!'; return; }
+    countBusy = true;
+    var total = count;
+    countFb.textContent = 'Nom nom nom...';
+    function gobble() {
+      var treats = treatRow.querySelectorAll('.treat:not(.gobbled)');
+      if (treats.length === 0) {
+        count = 0; countBusy = false; renderCount(false);
+        countFb.textContent = 'Yum! Muffin ate ' + total + (total === 1 ? ' treat!' : ' treats!');
+        playAudio(AUDIO.feedYum);
+        return;
+      }
+      treats[treats.length - 1].classList.add('gobbled');
+      setTimeout(gobble, 550);
+    }
+    gobble();
   });
   // initial silent render
   countNum.textContent = '0';
