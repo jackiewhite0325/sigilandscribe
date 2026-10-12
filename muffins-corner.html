@@ -739,6 +739,17 @@
   .sign-pic.show { display: inline-block; }
   .sign-pic.pop { animation: patientPop 0.55s ease; }
   .sign-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 10px 0 4px; }
+
+  .water-break { margin-top: 26px; border-top: 2px dashed var(--mc-amber); padding-top: 18px; text-align: center; }
+  .flower-row { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 10px; }
+  .flower { margin: 0; }
+  .flower-pic { width: 130px; height: 130px; object-fit: cover; border-radius: 16px; border: 3px solid var(--mc-amber-deep); }
+  .flower-pic.pop { animation: patientPop 0.55s ease; }
+  .flower figcaption { font-weight: 700; color: var(--mc-ink); margin-top: 4px; }
+  .drop-row { display: flex; gap: 6px; justify-content: center; margin-top: 6px; }
+  .drop { width: 52px; height: 52px; border-radius: 50%; border: 2px dashed var(--mc-sky); background: #fff; font-size: 1.5rem; cursor: pointer; }
+  .drop.filled { border-style: solid; }
+  .grownup-note { text-align: center; color: var(--mc-sage-ink); font-size: 0.95rem; margin: 18px 0 4px; }
 </style>
 </head>
 <body>
@@ -836,6 +847,14 @@
     <div class="letter-stage"><span class="letter-pop" id="letter-pop" aria-hidden="true">🐾</span></div>
     <div class="letter-row" id="letter-row" role="group" aria-label="Letters A to Z"></div>
     <p class="play-feedback" id="letter-feedback" aria-live="polite"></p>
+    <div class="water-break" aria-labelledby="water-h">
+      <h3 id="water-h">Water Break</h3>
+      <p class="how">Some flowers are thirsty. Tap the drops to give them water.</p>
+      <button type="button" class="mc-btn ghost" id="water-hear" aria-label="Hear how to play Water Break">🔊 How to play</button>
+      <div class="flower-row" id="flower-row"></div>
+      <p class="play-feedback" id="water-feedback" aria-live="polite"></p>
+      <button type="button" class="mc-btn" id="water-again" hidden>🌸 New flowers</button>
+    </div>
   </section>
 
   <!-- NUMBERS -->
@@ -1057,6 +1076,7 @@
 
 
 
+  <p class="grownup-note">Grown-ups: free. Out of love. Built by a caregiver. Not medical advice.</p>
   <p class="back-row">
     <a href="play.html">← Back to Play Area</a>
   </p>
@@ -1234,6 +1254,8 @@
     ['vet-step5.mp3', 'A thank-you hug or high-five.'],
     ['vet-courage.mp3', 'Care is a kind of courage.'],
     ['feed-yum.mp3', 'Yum!'],
+    ['water-intro.mp3', 'Some flowers are thirsty! Tap the water drops to give them a drink. Count with me!'],
+    ['water-bloom.mp3', 'Beautiful! The flower bloomed! Drinking water helps you grow, just like flowers!'],
     ['place-cozy.mp3', 'Welcome to the Cozy Corner. Today we rest and breathe.'],
     ['cozy-breath.mp3', 'Breathe in... and breathe out. Good.'],
     ['sign-more.mp3', "This is 'more' in Luna's paw signs! Paw up high means more!"],
@@ -1507,6 +1529,72 @@
       if (SIGN_AUDIO[s]) playAudio(SIGN_AUDIO[s]);
     });
   });
+
+  // --- Water Break: thirsty flowers, counting drops ---
+  var THIRSTY_IMG = 'images/muffin-corner/flower-thirsty.webp';
+  var BLOOM_IMG = 'images/muffin-corner/flower-bloom.webp';
+  var flowerRow = document.getElementById('flower-row');
+  var waterFeedback = document.getElementById('water-feedback');
+  var waterAgain = document.getElementById('water-again');
+  var waterHear = document.getElementById('water-hear');
+  if (waterHear) waterHear.addEventListener('click', function () {
+    playAudio('images/muffin-corner/audio/water-intro.mp3');
+  });
+  function buildFlowers() {
+    if (!flowerRow) return;
+    flowerRow.innerHTML = '';
+    var counts = [1, 2, 3, 4, 5].sort(function () { return Math.random() - 0.5; }).slice(0, 3).sort();
+    counts.forEach(function (need, fi) {
+      var fig = document.createElement('figure');
+      fig.className = 'flower';
+      var img = document.createElement('img');
+      img.src = THIRSTY_IMG; img.alt = 'A thirsty flower'; img.className = 'flower-pic'; img.setAttribute('aria-hidden', 'true');
+      var cap = document.createElement('figcaption');
+      cap.textContent = 'Flower ' + (fi + 1) + ' needs ' + need + (need > 1 ? ' drops' : ' drop');
+      var dropRow = document.createElement('div');
+      dropRow.className = 'drop-row';
+      dropRow.setAttribute('role', 'group');
+      dropRow.setAttribute('aria-label', 'Water drops for flower ' + (fi + 1));
+      var filled = 0;
+      var bloomed = false;
+      for (var d = 1; d <= need; d++) {
+        (function (n) {
+          var b = document.createElement('button');
+          b.type = 'button'; b.className = 'drop';
+          b.setAttribute('aria-label', 'Give flower ' + (fi + 1) + ' drop ' + n + ' of ' + need);
+          b.addEventListener('click', function () {
+            if (b.classList.contains('filled') || bloomed) return;
+            b.classList.add('filled'); b.textContent = '💧';
+            filled++;
+            playAudio(AUDIO['number' + filled]);
+            if (filled >= need && !bloomed) {
+              bloomed = true;
+              img.src = BLOOM_IMG;
+              img.classList.remove('pop'); void img.offsetWidth; img.classList.add('pop');
+              playAudio('images/muffin-corner/audio/water-bloom.mp3');
+              if (waterFeedback) waterFeedback.textContent = 'Flower ' + (fi + 1) + ' bloomed!';
+              checkAllBloomed();
+            }
+          });
+          dropRow.appendChild(b);
+        })(d);
+      }
+      fig.appendChild(img); fig.appendChild(cap); fig.appendChild(dropRow);
+      flowerRow.appendChild(fig);
+    });
+    if (waterAgain) waterAgain.hidden = true;
+    if (waterFeedback) waterFeedback.textContent = 'Tap the drops to water the flowers.';
+  }
+  function checkAllBloomed() {
+    if (!flowerRow) return;
+    var bloomed = flowerRow.querySelectorAll('.flower-pic.pop').length;
+    if (bloomed >= 3) {
+      if (waterFeedback) waterFeedback.textContent = 'All flowers watered! Beautiful!';
+      if (waterAgain) waterAgain.hidden = false;
+    }
+  }
+  if (waterAgain) waterAgain.addEventListener('click', buildFlowers);
+  buildFlowers();
 
   // --- World rooms: tap a place to step inside; Muffin welcomes you ---
   var PLACE_WELCOME = {
