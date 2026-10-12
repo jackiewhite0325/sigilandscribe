@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food for Thought | Sigil and Scribe</title>
+<meta name="description" content="Food for Thought: a gentle place to learn what food does for you. Vitamins, minerals, and the buddy nutrients that help them work.">
+<link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sigil and Scribe | The Immersive Library">
+<meta property="og:title" content="Food for Thought | Sigil and Scribe">
+<meta property="og:description" content="A gentle place to learn what food does for you.">
+<meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/food-for-thought.html">
+<meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/social-share-new.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="book.css">
+<link rel="stylesheet" href="house.css?v=8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+ .fft-hero {
+ max-width: 720px;
+ margin: 0 auto;
+ padding: 40px 24px 12px;
+ text-align: center;
+ }
+ .fft-hero .bp-call { color: var(--amber-deep, #b08d57); font-family: 'Nunito', sans-serif; }
+ .fft-hero h1 {
+ font-family: 'Fraunces', Georgia, serif;
+ font-size: clamp(30px, 5vw, 42px);
+ color: #4a3a2a;
+ margin: 8px 0 10px;
+ line-height: 1.15;
+ }
+ .fft-hero .lead {
+ font-family: 'Nunito', sans-serif;
+ font-size: 16px;
+ line-height: 1.7;
+ color: #4a4a4a;
+ max-width: 560px;
+ margin: 0 auto 18px;
+ }
+ .fft-toc {
+ max-width: 640px;
+ margin: 12px auto 8px;
+ padding: 1rem 1.25rem;
+ background: #fffdf7;
+ border: 1px solid #b08d4f;
+ border-radius: 12px;
+ font-family: 'Nunito', sans-serif;
+ font-size: 0.95rem;
+ line-height: 2;
+ }
+ .fft-toc a { color: #8a6f4d; text-decoration: none; }
+ .fft-toc a:hover { text-decoration: underline; }
+ h2.fft-section {
+ font-family: 'Fraunces', Georgia, serif;
+ font-size: 2rem;
+ color: #4a3a2a;
+ max-width: 640px;
+ margin: 2.5rem auto 1rem;
+ padding: 0 24px 0.35rem;
+ border-bottom: 2px solid #b08d4f;
+ }
+ .fft-cards { max-width: 688px; margin: 0 auto; padding: 0 24px; }
+ .fft-cards .card {
+ background: #fffdf7;
+ border: 2px solid #b08d4f;
+ border-radius: 14px;
+ padding: 1.75rem;
+ margin-bottom: 1.5rem;
+ box-shadow: 0 2px 10px rgba(74,58,42,0.08);
+ }
+ .fft-cards .card h2 {
+ font-family: 'Fraunces', Georgia, serif;
+ font-size: 1.8rem;
+ color: #4a3a2a;
+ margin: 0 0 1rem;
+ line-height: 1.25;
+ }
+ .fft-cards .field { margin-bottom: 1.1rem; }
+ .fft-cards .field:last-child { margin-bottom: 0; }
+ .fft-cards .field-name {
+ font-family: 'Nunito', sans-serif;
+ font-weight: 700;
+ color: #b08d4f;
+ text-transform: uppercase;
+ letter-spacing: 0.06em;
+ font-size: 0.8rem;
+ margin-bottom: 0.25rem;
+ }
+ .fft-cards .field p {
+ font-family: 'Nunito', sans-serif;
+ margin: 0;
+ font-size: 1.05rem;
+ line-height: 1.55;
+ color: #4a3a2a;
+ }
+ .fft-note {
+ max-width: 640px;
+ margin: 2rem auto 0;
+ padding: 0 24px;
+ }
+ .fft-note .note {
+ border-left: 4px solid #b08d4f;
+ padding: 0.75rem 1rem;
+ background: #f5edd9;
+ border-radius: 0 10px 10px 0;
+ font-family: 'Nunito', sans-serif;
+ font-size: 0.95rem;
+ line-height: 1.5;
+ color: #4a3a2a;
+ }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBP908LERR"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'G-FBP908LERR');
+</script>
+</head>
+<body>
+<nav class="house-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html" aria-current="page">Library</a></li>
+        <li><a href="play.html">Play Area</a></li>
+        <li><a href="guild/request.html">Start a Project</a></li>
+        <li><a href="hypnotherapy.html">Zen Den</a></li>
+        <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">Common Questions</a></li>
+        <li><a href="notes/index.html">House Notes</a></li>
+            <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+      </ul>
+  </div>
+</nav>
+
+<section class="fft-hero">
+ <span class="bp-call">Living</span>
+ <h1>Food for Thought</h1>
+ <p class="lead">A gentle place to learn what food does for you. Each nutrient below comes with its buddy, the partner nutrient that helps it do its work.</p>
+ <p style="font-size:0.9rem;color:#6B6255;line-height:1.6;font-family:'Nunito',sans-serif;">Friendly learning, not medical advice. Your care stays with your own team.</p>
+</section>
+
+<div class="fft-toc"><strong>Vitamins:</strong><br><a href="#vitamin-a">Vitamin A</a> &middot; <a href="#vitamin-b1-thiamine">Vitamin B1 (Thiamine)</a> &middot; <a href="#vitamin-b2-riboflavin">Vitamin B2 (Riboflavin)</a> &middot; <a href="#vitamin-b3-niacin">Vitamin B3 (Niacin)</a> &middot; <a href="#vitamin-b5-pantothenic-acid">Vitamin B5 (Pantothenic Acid)</a> &middot; <a href="#vitamin-b6">Vitamin B6</a> &middot; <a href="#vitamin-b9-folate">Vitamin B9 (Folate)</a> &middot; <a href="#vitamin-b12">Vitamin B12</a> &middot; <a href="#vitamin-c">Vitamin C</a> &middot; <a href="#vitamin-d">Vitamin D</a> &middot; <a href="#vitamin-e">Vitamin E</a> &middot; <a href="#vitamin-k">Vitamin K</a><br><strong>Minerals:</strong><br><a href="#calcium">Calcium</a> &middot; <a href="#chloride">Chloride</a> &middot; <a href="#chromium">Chromium</a> &middot; <a href="#copper">Copper</a> &middot; <a href="#iodine">Iodine</a> &middot; <a href="#iron">Iron</a> &middot; <a href="#magnesium">Magnesium</a> &middot; <a href="#manganese">Manganese</a> &middot; <a href="#molybdenum">Molybdenum</a> &middot; <a href="#phosphorus">Phosphorus</a> &middot; <a href="#potassium">Potassium</a> &middot; <a href="#selenium">Selenium</a> &middot; <a href="#sodium">Sodium</a> &middot; <a href="#zinc">Zinc</a></div>
+
+<h2 class="fft-section">Vitamins</h2>
+<div class="fft-cards">
+  <div class="card" id="vitamin-a">
+    <h2>Vitamin A</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Vitamin A helps your eyes adjust to dim light, supports your immune system, and keeps skin healthy.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Carrots, sweet potatoes, and leafy greens carry beta-carotene, which your body turns into vitamin A. Eggs and dairy have some too.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>A little healthy fat. Vitamin A dissolves in fat, so a drizzle of olive oil or a handful of nuts helps your body take it in.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Orange and dark green vegetables are the friendly signposts. Eat the rainbow and you are most of the way there.</p></div>
+  </div>
+  <div class="card" id="vitamin-b1-thiamine">
+    <h2>Vitamin B1 (Thiamine)</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Vitamin B1 helps your body turn food into usable energy. It also supports healthy nerves.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Whole grains, brown rice, pork, beans, lentils, and sunflower seeds all carry it.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Magnesium. Magnesium helps the enzymes that put B1 to work in your energy pathways.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Choosing whole grains over refined ones keeps more of this one on your plate.</p></div>
+  </div>
+  <div class="card" id="vitamin-b2-riboflavin">
+    <h2>Vitamin B2 (Riboflavin)</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Vitamin B2 helps your cells make energy from food. It also supports healthy eyes and skin.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Milk, yogurt, eggs, almonds, mushrooms, and leafy greens are good sources.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Vitamin B6. Riboflavin helps your body switch B6 into its working form, so the two travel well together.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Dairy and eggs are easy daily carriers, and greens fill in the gaps.</p></div>
+  </div>
+  <div class="card" id="vitamin-b3-niacin">
+    <h2>Vitamin B3 (Niacin)</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Vitamin B3 helps your body release energy from food. It also supports healthy skin and digestion.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Chicken, turkey, tuna, peanuts, brown rice, and whole wheat all carry a good share.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Tryptophan, an amino acid found in protein foods. Your body can make some niacin from tryptophan, which is why protein-rich meals lend a hand.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>A varied diet with protein and whole grains keeps this one quietly covered.</p></div>
+  </div>
+  <div class="card" id="vitamin-b5-pantothenic-acid">
+    <h2>Vitamin B5 (Pantothenic Acid)</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Vitamin B5 helps your body make energy and build some of the hormones it needs every day.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Almost everywhere: chicken, eggs, broccoli, mushrooms, avocados, and whole grains.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>The rest of the B-vitamin family. B5 does its energy work shoulder to shoulder with its B siblings.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Shortages are rare precisely because it hides in so many everyday foods.</p></div>
+  </div>
+  <div class="card" id="vitamin-b6">
+    <h2>Vitamin B6</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Vitamin B6 helps your brain make the chemical messengers it uses to talk to the body. It also supports immunity and helps your body use protein.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Chickpeas, chicken, fish, potatoes, and bananas are friendly sources.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Magnesium. B6 helps your cells welcome magnesium in, and the two support calm nerves and steady energy together.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>A banana or a scoop of chickpeas is a simple way to say hello to this one.</p></div>
+  </div>
+  <div class="card" id="vitamin-b9-folate">
+    <h2>Vitamin B9 (Folate)</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Vitamin B9 helps your body make new cells, which matters for growth and everyday repair.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Leafy greens, beans, lentils, asparagus, and fortified grains carry it well.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Vitamin B12. Folate and B12 work side by side in the cell-making process, each needing the other to finish the job.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Greens and beans are the classic pair on the plate and partners in the body too.</p></div>
+  </div>
+  <div class="card" id="vitamin-b12">
+    <h2>Vitamin B12</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Vitamin B12 keeps nerves healthy and helps make red blood cells. It also helps your body use energy from food.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Meat, fish, dairy, and eggs. Fortified cereals and plant milks carry it for those who skip animal foods.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Folate (vitamin B9). The two work as a team in making healthy new cells.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>This one comes almost entirely from animal foods or fortified ones, so it is worth knowing where yours comes from.</p></div>
+  </div>
+  <div class="card" id="vitamin-c">
+    <h2>Vitamin C</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Vitamin C helps your body heal small cuts, keeps your gums healthy, and helps your immune system do its everyday work.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Oranges, strawberries, bell peppers, broccoli, and potatoes all carry a good share.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Iron. Vitamin C helps your body take in iron from plant foods, so they make a good pair on the plate, like bell peppers with beans.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Your body does not store vitamin C for long, so a little from food each day is the kind way to keep topped up.</p></div>
+  </div>
+  <div class="card" id="vitamin-d">
+    <h2>Vitamin D</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Vitamin D helps your body take in calcium, which keeps bones and teeth strong. It also supports everyday immune function.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Sunlight on your skin is the main source. Fatty fish like salmon, egg yolks, and fortified milk also carry it.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Calcium. Vitamin D is the helper that lets your body actually use the calcium you eat, so the two travel together.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>A little daily sunshine on your face and hands goes a long way, and food fills in the rest.</p></div>
+  </div>
+  <div class="card" id="vitamin-e">
+    <h2>Vitamin E</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Vitamin E works as an antioxidant, protecting your cells from everyday wear. It also supports your immune system.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Almonds, sunflower seeds, peanut butter, spinach, and vegetable oils are all good sources.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Vitamin C. Vitamin C helps refresh vitamin E after it has done its antioxidant work, so the two make a good team.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>A small handful of nuts a day is a kind, easy way to keep this one covered.</p></div>
+  </div>
+  <div class="card" id="vitamin-k">
+    <h2>Vitamin K</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Vitamin K helps your blood clot the way it should when you get a cut. It also helps keep bones strong.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Kale, spinach, collard greens, and broccoli are the stars. Smaller amounts show up in eggs and fermented foods.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Calcium and vitamin D. Vitamin K helps guide calcium into your bones, where the bone-building crew puts it to work.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>If you eat your greens regularly, you are giving this quiet worker everything it needs.</p></div>
+  </div>
+</div>
+
+<h2 class="fft-section">Minerals</h2>
+<div class="fft-cards">
+  <div class="card" id="calcium">
+    <h2>Calcium</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Calcium builds and keeps bones and teeth, and it helps muscles move and nerves carry their messages.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Milk, yogurt, and cheese are the familiar ones. Leafy greens like kale, almonds, and fortified plant milks carry it too.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Vitamin D. Without its buddy, much of the calcium you eat passes through unused, which is why the pair matters.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Your bones are living tissue that rebuild a little every day, and steady calcium from food is how you feed the crew.</p></div>
+  </div>
+  <div class="card" id="chloride">
+    <h2>Chloride</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Chloride works with sodium to keep your body's fluids balanced. It is also part of the stomach acid that helps digestion.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Table salt is the main source. Celery, tomatoes, and olives carry small natural amounts too.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Sodium. The two travel together in salt and in your body's fluid balance.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Like sodium, most people get plenty. A balanced diet with fruits and vegetables keeps the partnership in good shape.</p></div>
+  </div>
+  <div class="card" id="chromium">
+    <h2>Chromium</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Chromium helps your body use insulin to manage the sugar that comes from food.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Whole grains, broccoli, green beans, meat, and nuts.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>No single famous buddy. Chromium does its quiet work best as part of a varied diet with whole foods.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Choosing whole grains over refined ones is the simplest way to keep this one around.</p></div>
+  </div>
+  <div class="card" id="copper">
+    <h2>Copper</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Copper helps your body make red blood cells, supports healthy nerves, and works with iron.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Shellfish, nuts, seeds, whole grains, mushrooms, and dark chocolate.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Zinc. Copper and zinc balance each other, so eating a mix of whole foods keeps both on an even keel.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Nuts, seeds, and whole grains shared across the week keep this quiet helper steady.</p></div>
+  </div>
+  <div class="card" id="iodine">
+    <h2>Iodine</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Iodine helps your thyroid make the hormones that set the pace of your body's energy use.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Iodized salt, seafood, seaweed, dairy, and eggs.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Selenium. Selenium also serves the thyroid, so the two look after that little gland together.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>A little iodized salt in cooking is enough for most people. It is a small mineral with a big job.</p></div>
+  </div>
+  <div class="card" id="iron">
+    <h2>Iron</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Iron helps your blood carry oxygen to every part of your body. Steady iron means steady energy.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Red meat and poultry are rich sources. Beans, lentils, spinach, and fortified cereals carry the plant kind.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Vitamin C. Vitamin C helps your body take in iron from plant foods, so peppers with beans or orange with lentils is a smart plate.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Tea and coffee with meals can slow iron uptake a little, so give your iron-rich meal its own moment when you can.</p></div>
+  </div>
+  <div class="card" id="magnesium">
+    <h2>Magnesium</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Magnesium helps muscles relax, supports calm nerves, and takes part in hundreds of small jobs inside your cells.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Almonds, pumpkin seeds, leafy greens, whole grains, beans, and dark chocolate.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Vitamin D. Magnesium helps switch vitamin D into its active form, so the two support each other behind the scenes.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Leafy greens and a few squares of dark chocolate make this one a pleasant thing to keep up with.</p></div>
+  </div>
+  <div class="card" id="manganese">
+    <h2>Manganese</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Manganese helps your enzymes do their work, supports bone formation, and helps your body use carbohydrates and fats.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Whole grains, brown rice, nuts, leafy greens, and tea.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>No single famous buddy. Manganese does its quiet enzyme work best as part of a varied, balanced diet.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Whole grains and a cup of tea already give this one a comfortable home.</p></div>
+  </div>
+  <div class="card" id="molybdenum">
+    <h2>Molybdenum</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Molybdenum helps your enzymes break down certain substances found in food.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Beans, lentils, peas, whole grains, and nuts.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>No single famous buddy. It works quietly on its own and asks only for a varied diet around it.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>If beans and whole grains show up in your week, this one is already taken care of.</p></div>
+  </div>
+  <div class="card" id="phosphorus">
+    <h2>Phosphorus</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Phosphorus teams up with calcium to build bones and teeth. It also helps your cells make energy.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Dairy, meat, fish, beans, nuts, and whole grains all carry it.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Calcium. The two build bone together, which is why dairy and other calcium foods usually bring phosphorus along.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>This one is easy to get from everyday foods, so it rarely needs a second thought.</p></div>
+  </div>
+  <div class="card" id="potassium">
+    <h2>Potassium</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Potassium helps balance fluids in your body, supports healthy blood pressure, and keeps muscles and nerves working smoothly.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Bananas, potatoes, sweet potatoes, beans, oranges, and spinach.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Sodium. Potassium and sodium balance each other in your fluid systems, so the pair matters more than either one alone.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Fruits and vegetables are the natural home of potassium, another reason to keep them close.</p></div>
+  </div>
+  <div class="card" id="selenium">
+    <h2>Selenium</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Selenium works as an antioxidant and supports your thyroid and immune system.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Brazil nuts are famously rich, just one or two is plenty. Seafood, meat, and eggs carry it too.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Iodine. Both serve the thyroid, so they make a natural pair.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>A little goes a long way with this one. One Brazil nut now and then is more than enough.</p></div>
+  </div>
+  <div class="card" id="sodium">
+    <h2>Sodium</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Sodium helps your body balance fluids and keeps nerves and muscles firing properly.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Table salt is the main source, and it shows up naturally in small amounts in milk, meat, and vegetables like celery.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Potassium. The two balance each other, so plenty of fruits and vegetables helps keep the partnership even.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>Most people get plenty without trying. Flavoring with herbs and lemon lets you enjoy taste while keeping the balance.</p></div>
+  </div>
+  <div class="card" id="zinc">
+    <h2>Zinc</h2>
+    <div class="field"><div class="field-name">What it does</div><p>Zinc supports your immune system, helps cuts heal, and keeps your senses of taste and smell sharp.</p></div>
+    <div class="field"><div class="field-name">Where to find it</div><p>Meat, shellfish, chickpeas, lentils, nuts, seeds, and whole grains.</p></div>
+    <div class="field"><div class="field-name">Buddy nutrient</div><p>Copper. Zinc and copper balance each other, like two friends on a seesaw, so a varied diet keeps both steady.</p></div>
+    <div class="field"><div class="field-name">A gentle note</div><p>A mix of protein foods and whole grains through the week keeps this one in good shape.</p></div>
+  </div>
+</div>
+
+<div class="fft-note">
+ <div class="note">
+ This page teaches, it does not diagnose. It is friendly information, not medical advice. If something about your health worries you, a doctor or dietitian is the right person to ask.
+ </div>
+</div>
+
+<footer class="house-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="library.html">Library</a></li>
+          <li><a href="play.html">Play Area</a></li>
+          <li><a href="muffins-corner.html">Muffin's Corner</a></li>
+          <li><a href="free-things.html">Downloads and Printables</a></li>
+          <li><a href="toolbox.html">Toolbox</a></li>
+          <li><a href="notes/index.html">House Notes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>The House</h3>
+        <ul>
+          <li><a href="guild/request.html">Start a Project</a></li>
+          <li><a href="hypnotherapy.html">The Zen Den</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+          <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="return-policy.html">Returns</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Newsletters</h3>
+        <ul>
+          <li><a href="https://sigil-and-scribe.kit.com/0ae0deb218" target="_blank" rel="noopener">Muffin's Mailbox</a></li>
+          <li><a href="https://sigil-and-scribe.kit.com/d0dcda3bf2" target="_blank" rel="noopener">Sigil and Scribe Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+        <div class="footer-crisis">If you are in crisis in the U.S., call or text <a href="tel:988">988</a> for the Suicide and Crisis Lifeline, or text HOME to <a href="sms:741741">741741</a> for the Crisis Text Line. If someone is in immediate danger, call <a href="tel:911">911</a>.</div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Sigil and Scribe, LLC</span>
+      <span>Sigil and Scribe™, the Book House mark, and Muffin the Pitbull™ are trademarks of Sigil and Scribe, LLC.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/house-nav.js"></script>
+</body>
+</html>
