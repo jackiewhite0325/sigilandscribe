@@ -704,6 +704,13 @@
   .movie { margin: 0; text-align: center; }
   .movie video, .movie img { width: 100%; max-width: 480px; border-radius: 16px; border: 3px solid var(--mc-amber-deep); }
   .movie figcaption { margin-top: 6px; font-weight: 700; color: var(--mc-bark); }
+
+  /* Calm motion: honor OS reduced-motion and the manual calm toggle */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+  body.calm *, body.calm *::before, body.calm *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  button.holding { outline: 3px dashed var(--mc-amber-deep); outline-offset: 3px; }
 </style>
 </head>
 <body>
@@ -725,11 +732,15 @@
         <span id="sound-label">Sound on</span>
       </button>
       <span class="sound-hint">Tap me to turn sound on or off</span>
+      <button type="button" class="sound-btn" id="calm-toggle" aria-pressed="false">
+        <span aria-hidden="true">🍃</span>
+        <span id="calm-label">Calm motion off</span>
+      </button>
     </div>
   </section>
 
   <!-- WORLD MAP -->
-  <p class="doors-label">Muffin’s world: tap a place to visit</p>
+  <p class="doors-label">Muffin’s world: tap a place to visit. Hold a button to hear what it does.</p>
   <section class="world" aria-label="Muffin's world map">
     <div class="world-scroll">
       <div class="world-scene">
@@ -1173,6 +1184,62 @@
       playAudio(AUDIO.soundOn);
     }
   });
+
+  // --- Calm motion: OS reduced-motion plus a manual toggle ---
+  var calmToggle = document.getElementById('calm-toggle');
+  var calmLabel = document.getElementById('calm-label');
+  function setCalm(on) {
+    document.body.classList.toggle('calm', on);
+    if (calmToggle) calmToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+    if (calmLabel) calmLabel.textContent = on ? 'Calm motion on' : 'Calm motion off';
+  }
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) setCalm(true);
+  if (calmToggle) calmToggle.addEventListener('click', function () {
+    setCalm(!document.body.classList.contains('calm'));
+  });
+
+  // --- Tap forgiveness: accidental double-taps count as one ---
+  // --- Hold-to-hear: press and hold a button ~0.6s to hear what it does ---
+  var holdTimer = null, holdFired = false, holdBtn = null;
+  function speakLabel(text) {
+    if (!soundOn || !('speechSynthesis' in window)) return;
+    try {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.95; u.pitch = 1.1;
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+  function clearHold() {
+    if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; }
+    if (holdBtn) { holdBtn.classList.remove('holding'); holdBtn = null; }
+  }
+  document.addEventListener('pointerdown', function (e) {
+    var btn = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (!btn) return;
+    holdFired = false; holdBtn = btn;
+    holdTimer = setTimeout(function () {
+      holdFired = true;
+      btn.classList.add('holding');
+      var label = btn.getAttribute('aria-label') || btn.textContent || '';
+      label = label.replace(/\s+/g, ' ').trim();
+      if (label) speakLabel(label);
+    }, 650);
+  });
+  document.addEventListener('pointerup', clearHold);
+  document.addEventListener('pointercancel', clearHold);
+  document.addEventListener('pointermove', function (e) {
+    if (holdTimer && holdBtn && e.target && e.target.closest && !holdBtn.contains(e.target)) clearHold();
+  });
+  document.addEventListener('click', function (e) {
+    var btn = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (!btn) return;
+    if (holdFired) { holdFired = false; e.stopPropagation(); e.preventDefault(); return; }
+    var now = Date.now();
+    var last = parseInt(btn.getAttribute('data-last-tap') || '0', 10);
+    if (now - last < 700) { e.stopPropagation(); e.preventDefault(); return; }
+    btn.setAttribute('data-last-tap', String(now));
+  }, true);
 
   // --- World rooms: tap a place to step inside; Muffin welcomes you ---
   var PLACE_WELCOME = {
