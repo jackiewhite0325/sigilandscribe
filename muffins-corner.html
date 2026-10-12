@@ -661,6 +661,12 @@
   .tap-photo:active { transform: scale(.97); }
   /* The playroom keeps its own doors; the house footer stays outside. */
   .house-footer { display: none; }
+
+  /* Vet patient pop-up */
+  .patient-stage { text-align: center; min-height: 96px; margin: 8px 0 2px; }
+  .patient-pop { font-size: 4.5rem; display: inline-block; line-height: 1; }
+  .patient-pop.pop { animation: patientPop 0.55s ease; }
+  @keyframes patientPop { 0% { transform: scale(0) rotate(-12deg); } 60% { transform: scale(1.25) rotate(4deg); } 100% { transform: scale(1) rotate(0); } }
 </style>
 </head>
 <body>
@@ -790,6 +796,7 @@
       <button type="button" class="patient-btn" data-patient="Bunny"><span class="emoji" aria-hidden="true">🐰</span>Bunny</button>
       <button type="button" class="patient-btn" data-patient="Dino"><span class="emoji" aria-hidden="true">🦕</span>Dino</button>
     </div>
+    <div class="patient-stage"><span class="patient-pop pop" id="patient-pop" aria-hidden="true">🧸</span></div>
     <p class="play-feedback" id="patient-feedback" aria-live="polite">Today's patient: Bear</p>
         <div class="vet-steps">
       <button type="button" class="vet-step-btn" data-vet-step="1"><span class="step">1</span><span>Soft voice: “Hello, friend. I am the helper today.”</span></button>
@@ -1171,6 +1178,14 @@
       btn.classList.add('is-active');
       var p = btn.getAttribute('data-patient');
       if (patientFb) patientFb.textContent = "Today's patient: " + p;
+      var pop = document.getElementById('patient-pop');
+      if (pop) {
+        var em = btn.querySelector('.emoji');
+        pop.textContent = em ? em.textContent : p;
+        pop.classList.remove('pop');
+        void pop.offsetWidth;
+        pop.classList.add('pop');
+      }
       playAudio(AUDIO[patientAudio[p]]);
     });
   });
