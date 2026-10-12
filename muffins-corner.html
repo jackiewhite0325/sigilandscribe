@@ -689,6 +689,12 @@
   .feel-pic { width: 180px; height: 180px; object-fit: cover; border-radius: 16px; border: 3px solid var(--mc-amber-deep); display: none; }
   .feel-pic.show { display: inline-block; }
   .feel-pic.pop { animation: patientPop 0.55s ease; }
+
+  /* Story pictures */
+  .story-stage { text-align: center; min-height: 190px; margin: 8px 0; }
+  .story-pic { width: 180px; height: 180px; object-fit: cover; border-radius: 16px; border: 3px solid var(--mc-amber-deep); display: none; }
+  .story-pic.show { display: inline-block; }
+  .story-pic.pop { animation: patientPop 0.55s ease; }
 </style>
 </head>
 <body>
@@ -841,6 +847,7 @@
   <section class="station" id="story" aria-labelledby="story-h">
     <h2 id="story-h">Story time</h2>
     <p class="how">A tiny story you can hear out loud. Pick one, or press for another.</p>
+    <div class="story-stage"><img class="story-pic" id="story-pic" alt="Picture for the story" aria-hidden="true"></div>
     <div class="story-box" id="story-box" aria-live="polite">
       <span class="who">Muffin:</span> Once there was a small gray dog who loved pillows and people. When the wiggles came, her family stayed close. That was enough.
     </div>
@@ -1518,9 +1525,20 @@
   ];
   var storyIdx = 0;
   var storyBox = document.getElementById('story-box');
+  var storyPics = ['images/muffin-corner/story-pillow.webp', 'images/muffin-corner/story-sock.webp',
+    'images/muffin-corner/story-feelings.webp', 'images/muffin-corner/story-bubble.webp',
+    'images/muffin-corner/story-tug.webp', 'images/muffin-corner/story-sunny.webp'];
+  var storyPic = document.getElementById('story-pic');
   function showStory(idx) {
     var s = stories[idx];
     storyBox.innerHTML = '<span class="who">' + s.who + ':</span> ' + s.text;
+    if (storyPic && storyPics[idx]) {
+      storyPic.src = storyPics[idx];
+      storyPic.classList.add('show');
+      storyPic.classList.remove('pop');
+      void storyPic.offsetWidth;
+      storyPic.classList.add('pop');
+    }
   }
   function markStoryPick() {
     document.querySelectorAll('[data-story-pick]').forEach(function (x) {
