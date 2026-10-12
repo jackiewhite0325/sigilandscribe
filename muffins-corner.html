@@ -676,6 +676,13 @@
   .letter-pop { font-size: 4.5rem; display: inline-block; line-height: 1; }
   .letter-pop.pop { animation: patientPop 0.55s ease; }
   .letter-pop img { width: 104px; height: 104px; border-radius: 50%; border: 3px solid var(--mc-amber-deep); object-fit: cover; }
+
+  /* Wiggle move pictures */
+  .wiggle-stage { text-align: center; min-height: 190px; margin: 8px 0 4px; }
+  .wiggle-pic { width: 180px; height: 180px; object-fit: cover; border-radius: 16px; border: 3px solid var(--mc-amber-deep); display: none; }
+  .wiggle-pic.show { display: inline-block; }
+  .wiggle-pic.pop { animation: patientPop 0.55s ease; }
+  .wiggle-btn.doing { background: #fdf6ec; box-shadow: 0 0 0 3px var(--mc-amber-deep); }
 </style>
 </head>
 <body>
@@ -770,6 +777,7 @@
   <section class="station" id="wiggles" aria-labelledby="wiggles-h">
     <h2 id="wiggles-h">Wiggle break</h2>
     <p class="how">Pick a move. Do it with your body. Grown-up can join.</p>
+    <div class="wiggle-stage"><img class="wiggle-pic" id="wiggle-pic" alt="Muffin doing the move" aria-hidden="true"></div>
     <div class="wiggle-moves" role="group" aria-label="Movement choices">
       <button type="button" class="wiggle-btn" data-move="Stretch tall like a morning stretch.">Stretch tall</button>
       <button type="button" class="wiggle-btn" data-move="Shake the wiggles out of your paws.">Shake the wiggles</button>
@@ -777,6 +785,7 @@
       <button type="button" class="wiggle-btn" data-move="March in place: left, right, left, right.">March in place</button>
       <button type="button" class="wiggle-btn" data-move="Soft tip-toes around the room.">Tip-toe walk</button>
       <button type="button" class="wiggle-btn" data-move="Big belly breath in… and slow breath out.">Belly breath</button>
+      <button type="button" class="wiggle-btn wiggle-with-me" id="wiggle-with-me">Wiggle with me</button>
     </div>
     <p class="play-feedback" id="wiggle-feedback" aria-live="polite"></p>
   </section>
@@ -1385,15 +1394,72 @@
     'Soft tip-toes around the room.': 'wiggleTiptoe',
     'Big belly breath in… and slow breath out.': 'wiggleBreath'
   };
-  document.querySelectorAll('.wiggle-btn').forEach(function (btn) {
+  var wigglePics = {
+    'Stretch tall like a morning stretch.': 'images/muffin-corner/wiggle-stretch.webp',
+    'Shake the wiggles out of your paws.': 'images/muffin-corner/wiggle-shake.webp',
+    'Freeze! Hold still like a statue puppy.': 'images/muffin-corner/wiggle-freeze.webp',
+    'March in place: left, right, left, right.': 'images/muffin-corner/wiggle-march.webp',
+    'Soft tip-toes around the room.': 'images/muffin-corner/wiggle-tiptoe.webp',
+    'Big belly breath in… and slow breath out.': 'images/muffin-corner/wiggle-breath.webp'
+  };
+  var wigglePic = document.getElementById('wiggle-pic');
+  function showWigglePic(move) {
+    if (!wigglePic) return;
+    var src = wigglePics[move];
+    if (!src) return;
+    wigglePic.src = src;
+    wigglePic.classList.add('show');
+    wigglePic.classList.remove('pop');
+    void wigglePic.offsetWidth;
+    wigglePic.classList.add('pop');
+  }
+  var wiggleMoves = Array.prototype.slice.call(document.querySelectorAll('.wiggle-btn[data-move]'));
+  wiggleMoves.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      document.querySelectorAll('.wiggle-btn').forEach(function (x) { x.classList.remove('is-active'); });
+      wiggleMoves.forEach(function (x) { x.classList.remove('is-active'); x.classList.remove('doing'); });
+      document.getElementById('wiggle-with-me').classList.remove('is-active');
       btn.classList.add('is-active');
       var move = btn.getAttribute('data-move') || '';
       wiggleFb.textContent = move;
+      showWigglePic(move);
       var key = wiggleAudio[move];
       if (key) playAudio(AUDIO[key]);
     });
+  });
+  // --- Wiggle with me: Muffin leads three moves in a row ---
+  var wiggleBusy = false;
+  document.getElementById('wiggle-with-me').addEventListener('click', function () {
+    if (wiggleBusy) return;
+    wiggleBusy = true;
+    var btn = document.getElementById('wiggle-with-me');
+    btn.classList.add('is-active');
+    wiggleMoves.forEach(function (x) { x.classList.remove('is-active'); x.classList.remove('doing'); });
+    var pool = wiggleMoves.slice();
+    var seq = [];
+    for (var s = 0; s < 3 && pool.length; s++) {
+      seq.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+    }
+    wiggleFb.textContent = 'Wiggle with me! Copy Muffin!';
+    var i = 0;
+    function step() {
+      if (i > 0) seq[i - 1].classList.remove('doing');
+      if (i >= seq.length) {
+        wiggleBusy = false;
+        btn.classList.remove('is-active');
+        wiggleFb.textContent = 'Great wiggling! Want to go again?';
+        return;
+      }
+      var b = seq[i];
+      b.classList.add('doing');
+      var move = b.getAttribute('data-move') || '';
+      wiggleFb.textContent = (i + 1) + '. ' + move;
+      showWigglePic(move);
+      var key = wiggleAudio[move];
+      if (key) playAudio(AUDIO[key]);
+      i++;
+      setTimeout(step, 6000);
+    }
+    step();
   });
 
   // --- Feelings ---
