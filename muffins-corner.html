@@ -722,6 +722,9 @@
   .map-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--mc-amber-deep); background: var(--mc-cream); color: var(--mc-ink); font-size: 1.6rem; line-height: 1; cursor: pointer; }
   .map-prev { left: 6px; } .map-next { right: 6px; }
   body.soft main.corner { filter: saturate(0.72) contrast(0.94); }
+
+  #caption-bar { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 250; background: rgba(58,46,36,0.94); color: #FFF9F0; padding: 12px 18px; border-radius: 14px; font-size: 1.15rem; font-weight: 700; text-align: center; display: none; }
+  body.captions #caption-bar.show { display: block; }
 </style>
 </head>
 <body>
@@ -751,6 +754,14 @@
       <button type="button" class="sound-btn" id="soft-toggle" aria-pressed="false">
         <span aria-hidden="true">🎨</span>
         <span id="soft-label">Soft colors off</span>
+      </button>
+      <button type="button" class="sound-btn" id="captions-toggle" aria-pressed="false">
+        <span aria-hidden="true">💬</span>
+        <span id="captions-label">Captions off</span>
+      </button>
+      <button type="button" class="sound-btn" id="quiet-toggle" aria-pressed="false">
+        <span aria-hidden="true">🔇</span>
+        <span id="quiet-label">Quiet sounds off</span>
       </button>
     </div>
   </section>
@@ -1015,6 +1026,7 @@
   <p class="back-row">
     <a href="play.html">← Back to Play Area</a>
   </p>
+<div id="caption-bar" aria-hidden="true"></div>
 </main>
 
 <footer class="house-footer">
@@ -1159,8 +1171,90 @@
   };
 
   var AUDIO_VERSION = '20261012a';
+  var captionsOn = false;
+  var captionTimer = null;
+  var captionBar = document.getElementById('caption-bar');
+  var NUMBER_WORDS = ['zero','one','two','three','four','five','six','seven','eight','nine','ten'];
+  var WIGGLE_WORDS = { wiggleStretch: 'Stretch tall', wiggleShake: 'Shake the wiggles', wiggleFreeze: 'Freeze!', wiggleMarch: 'March in place', wiggleTiptoe: 'Tip-toe walk', wiggleBreath: 'Belly breath' };
+  var EXPLICIT_CAPTIONS = [
+    ['movie-narrate-hoses.mp3', 'I see TWO hoses! Chomp! Chomp! The yard is safe!'],
+    ['movie-narrate-metal.mp3', 'This one is made of METAL. Even metal is no match for Muffin!'],
+    ['movie-narrate-victory.mp3', 'Ten hoses, zero survivors. Time for a nap. Heroes need naps.'],
+    ['place-letters.mp3', 'Welcome to the Letter Garden!'],
+    ['place-treats.mp3', 'Welcome to the Treat Stand!'],
+    ['place-wiggles.mp3', 'Welcome to the Wiggle Meadow!'],
+    ['place-feelings.mp3', 'Welcome to the Feelings Porch!'],
+    ['place-vet.mp3', 'Welcome to the Vet Clinic!'],
+    ['place-story.mp3', 'Welcome to the Story Nook!'],
+    ['place-movies.mp3', "Welcome to Muffin's Movies!"],
+    ['room-goodbye.mp3', 'Bye for now!'],
+    ['sound-on.mp3', 'Sound on.'],
+    ['sound-off.mp3', 'Sound off.'],
+    ['hero-wooh-hi.mp3', "Woof! Hi! I'm Muffin."],
+    ['world-welcome.mp3', "Welcome to Muffin's Corner!"],
+    ['age-pill.mp3', 'Ages 3 to 7.'],
+    ['vet-step1.mp3', 'Soft voice: Hello, friend. I am the helper today.'],
+    ['vet-step2.mp3', 'Gentle check: ears, paws, tummy, one at a time.'],
+    ['vet-step3.mp3', 'A pretend bandage or a soft blanket.'],
+    ['vet-step4.mp3', 'Water and rest. You are safe.'],
+    ['vet-step5.mp3', 'A thank-you hug or high-five.'],
+    ['vet-courage.mp3', 'Care is a kind of courage.'],
+    ['feed-yum.mp3', 'Yum!']
+  ];
+  function captionFor(src) {
+    if (!src) return '';
+    for (var i = 0; i < EXPLICIT_CAPTIONS.length; i++) {
+      if (src.indexOf(EXPLICIT_CAPTIONS[i][0]) !== -1) return EXPLICIT_CAPTIONS[i][1];
+    }
+    var m;
+    if ((m = src.match(/letter-([a-z])\.mp3/))) {
+      var L = m[1].toUpperCase();
+      if (typeof letterNames !== 'undefined' && letterNames[L]) return letterNames[L] + '.';
+      return 'Letter ' + L + '.';
+    }
+    if ((m = src.match(/(?:number|count)-(\d+)\.mp3/))) {
+      var n = parseInt(m[1], 10);
+      if (n >= 0 && n <= 10) return 'Number ' + NUMBER_WORDS[n] + '.';
+    }
+    if ((m = src.match(/feel-([a-z]+)\.mp3/))) {
+      return 'Feeling: ' + m[1].charAt(0).toUpperCase() + m[1].slice(1) + '.';
+    }
+    if ((m = src.match(/(wiggle[A-Za-z]+)\.mp3/))) {
+      if (WIGGLE_WORDS[m[1]]) return 'Move: ' + WIGGLE_WORDS[m[1]] + '.';
+    }
+    if (/story(title)?-\d\.mp3/.test(src)) return 'Story time!';
+    return '';
+  }
+  function showCaption(text) {
+    if (!captionsOn || !captionBar || !text) return;
+    captionBar.textContent = text;
+    captionBar.classList.add('show');
+    if (captionTimer) clearTimeout(captionTimer);
+    captionTimer = setTimeout(function () { captionBar.classList.remove('show'); }, 3600);
+  }
+  var captionsToggle = document.getElementById('captions-toggle');
+  var captionsLabel = document.getElementById('captions-label');
+  if (captionsToggle) captionsToggle.addEventListener('click', function () {
+    captionsOn = !captionsOn;
+    document.body.classList.toggle('captions', captionsOn);
+    captionsToggle.setAttribute('aria-pressed', captionsOn ? 'true' : 'false');
+    if (captionsLabel) captionsLabel.textContent = captionsOn ? 'Captions on' : 'Captions off';
+    if (!captionsOn && captionBar) captionBar.classList.remove('show');
+  });
+  var quietEffects = false;
+  var EFFECT_RE = /feed-yum|boing|swoosh|ding|pop-sound/i;
+  var quietToggle = document.getElementById('quiet-toggle');
+  var quietLabel = document.getElementById('quiet-label');
+  if (quietToggle) quietToggle.addEventListener('click', function () {
+    quietEffects = !quietEffects;
+    quietToggle.setAttribute('aria-pressed', quietEffects ? 'true' : 'false');
+    if (quietLabel) quietLabel.textContent = quietEffects ? 'Quiet sounds on' : 'Quiet sounds off';
+  });
+
   function playAudio(src) {
     if (!soundOn || !src) return;
+    if (quietEffects && EFFECT_RE.test(src)) return;
+    showCaption(captionFor(src));
     try {
       if (currentAudio) {
         currentAudio.pause();
@@ -1229,6 +1323,7 @@
       var u = new SpeechSynthesisUtterance(text);
       u.rate = 0.95; u.pitch = 1.1;
       window.speechSynthesis.speak(u);
+      showCaption(text);
     } catch (e) {}
   }
   function clearHold() {
