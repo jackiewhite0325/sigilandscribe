@@ -698,6 +698,12 @@
   .story-pic { width: 180px; height: 180px; object-fit: cover; border-radius: 16px; border: 3px solid var(--mc-amber-deep); display: none; }
   .story-pic.show { display: inline-block; }
   .story-pic.pop { animation: patientPop 0.55s ease; }
+
+  /* Movies */
+  .movie-list { display: grid; gap: 18px; max-width: 560px; margin: 0 auto; }
+  .movie { margin: 0; text-align: center; }
+  .movie video, .movie img { width: 100%; max-width: 480px; border-radius: 16px; border: 3px solid var(--mc-amber-deep); }
+  .movie figcaption { margin-top: 6px; font-weight: 700; color: var(--mc-bark); }
 </style>
 </head>
 <body>
@@ -706,7 +712,7 @@
 <main class="corner">
   <p class="eyebrow">Play Area · Visit Muffin</p>
   <h1>Muffin’s Corner</h1>
-  <p class="lead">A playroom for little ones. Explore Muffin’s world, tap a place to play, and try letters, treats, wiggles, feelings, pretend, and stories.</p>
+  <p class="lead">A playroom for little ones. Explore Muffin’s world, tap a place to play, and try letters, treats, wiggles, feelings, pretend, stories, and movies.</p>
   <button type="button" class="age-pill" id="age-pill" aria-label="About this playroom">Ages 3 to 7</button>
 
   <!-- HERO -->
@@ -751,6 +757,10 @@
         <button type="button" class="place-btn" style="left:93%;top:60%" data-station="story" aria-label="Visit the Story Nook">
           <img src="images/muffin-corner/door-story.webp" alt="" loading="lazy">
           <span>Story</span>
+        </button>
+        <button type="button" class="place-btn" style="left:106%;top:60%" data-station="movies" aria-label="Visit Muffin's Movies">
+          <img src="images/muffin-corner/door-movies.webp" alt="" loading="lazy">
+          <span>Movies</span>
         </button>
       </div>
     </div>
@@ -867,6 +877,26 @@
     <button type="button" class="mc-btn ghost" id="story-speak" style="margin-left:8px;">Hear this story</button>
   </section>
 
+  <!-- MOVIES -->
+  <section class="station" id="movies" aria-labelledby="movies-h">
+    <h2 id="movies-h">Muffin at the movies</h2>
+    <p class="how">The legend of the hose snake. Ten hoses, zero survivors.</p>
+    <div class="movie-list">
+      <figure class="movie">
+        <video controls preload="none" src="images/muffin-corner/movies-two-hoses.mp4" aria-label="Movie: Muffin attacks two hoses"></video>
+        <figcaption>Two hoses. She collected the debt.</figcaption>
+      </figure>
+      <figure class="movie">
+        <img src="images/muffin-corner/movies-metal-showdown.webp" alt="Muffin biting the metal hose" loading="lazy">
+        <figcaption>The metal one. Even metal.</figcaption>
+      </figure>
+      <figure class="movie">
+        <video controls preload="none" src="images/muffin-corner/movies-victory.mp4" aria-label="Movie: Muffin victorious"></video>
+        <figcaption>Victory. She saved the day.</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <!-- ROOMS: places open full-screen; stations move inside via script -->
   <div class="rooms" id="rooms">
     <section class="room" data-place="letters" aria-label="Letter Garden" hidden>
@@ -933,6 +963,17 @@
         <img class="room-art tap-photo" role="button" tabindex="0" title="Hear Muffin again" aria-label="Hear Muffin’s welcome again." src="images/muffin-corner/door-story.webp" alt="Picture of the Story Nook" loading="lazy">
         <p class="room-say"><strong>Muffin says:</strong> Welcome to the Story Nook! Snuggle in for a tiny story.</p>
         <div data-room-play="story"></div>
+      </div>
+    </section>
+    <section class="room" data-place="movies" aria-label="Muffin's Movies" hidden>
+      <div class="room-inner">
+        <div class="room-top">
+          <button type="button" class="room-back" data-close-room>← Back to the world</button>
+          <h2 class="room-title">Muffin's Movies</h2>
+        </div>
+        <img class="room-art tap-photo" role="button" tabindex="0" title="Hear Muffin again" aria-label="Hear Muffin’s welcome again." src="images/muffin-corner/door-movies.webp" alt="Picture of Muffin's Movies" loading="lazy">
+        <p class="room-say"><strong>Muffin says:</strong> Welcome to my movies! The legend of the hose snake!</p>
+        <div data-room-play="movies"></div>
       </div>
     </section>
   </div>
@@ -1140,7 +1181,8 @@
     wiggles: 'images/muffin-corner/audio/place-wiggles.mp3',
     feelings: 'images/muffin-corner/audio/place-feelings.mp3',
     pretend: 'images/muffin-corner/audio/place-vet.mp3',
-    story: 'images/muffin-corner/audio/place-story.mp3'
+    story: 'images/muffin-corner/audio/place-story.mp3',
+    movies: 'images/muffin-corner/audio/place-movies.mp3'
   };
   var roomsBox = document.getElementById('rooms');
   var openRoomEl = null;
