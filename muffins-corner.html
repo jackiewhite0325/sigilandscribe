@@ -711,6 +711,8 @@
   }
   body.calm *, body.calm *::before, body.calm *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   button.holding { outline: 3px dashed var(--mc-amber-deep); outline-offset: 3px; }
+
+  .narrate-btn { margin-top: 8px; }
 </style>
 </head>
 <body>
@@ -896,14 +898,17 @@
       <figure class="movie">
         <video controls preload="none" src="images/muffin-corner/movies-two-hoses.mp4" aria-label="Movie: Muffin attacks two hoses"></video>
         <figcaption>Two hoses. She collected the debt.</figcaption>
+        <button type="button" class="mc-btn ghost narrate-btn" data-narrate="images/muffin-corner/audio/movie-narrate-hoses.mp3" aria-label="Hear Muffin narrate the two hoses movie">🔊 Muffin narrates</button>
       </figure>
       <figure class="movie">
         <img src="images/muffin-corner/movies-metal-showdown.webp" alt="Muffin biting the metal hose" loading="lazy">
         <figcaption>The metal one. Even metal.</figcaption>
+        <button type="button" class="mc-btn ghost narrate-btn" data-narrate="images/muffin-corner/audio/movie-narrate-metal.mp3" aria-label="Hear Muffin narrate the metal hose showdown">🔊 Muffin narrates</button>
       </figure>
       <figure class="movie">
         <video controls preload="none" src="images/muffin-corner/movies-victory.mp4" aria-label="Movie: Muffin victorious"></video>
         <figcaption>Victory. She saved the day.</figcaption>
+        <button type="button" class="mc-btn ghost narrate-btn" data-narrate="images/muffin-corner/audio/movie-narrate-victory.mp3" aria-label="Hear Muffin narrate the victory movie">🔊 Muffin narrates</button>
       </figure>
     </div>
   </section>
@@ -1240,6 +1245,14 @@
     if (now - last < 700) { e.stopPropagation(); e.preventDefault(); return; }
     btn.setAttribute('data-last-tap', String(now));
   }, true);
+
+  // --- Muffin narrates: audio description for the movies ---
+  document.querySelectorAll('[data-narrate]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.movie video').forEach(function (v) { try { v.pause(); } catch (e) {} });
+      playAudio(btn.getAttribute('data-narrate'));
+    });
+  });
 
   // --- World rooms: tap a place to step inside; Muffin welcomes you ---
   var PLACE_WELCOME = {
