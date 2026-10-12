@@ -858,6 +858,7 @@
       <button type="button" class="story-pick-btn" data-story-pick="3">The Bubble Chase</button>
       <button type="button" class="story-pick-btn" data-story-pick="4">Tug-of-War</button>
       <button type="button" class="story-pick-btn" data-story-pick="5">The Sunny Spot</button>
+      <button type="button" class="story-pick-btn" data-story-pick="6">Luna Says Hello</button>
     </div>
     <button type="button" class="mc-btn" id="story-btn">Another tiny story</button>
     <button type="button" class="mc-btn ghost" id="story-speak" style="margin-left:8px;">Hear this story</button>
@@ -1521,13 +1522,15 @@
     { who: 'Friend', title: 'Big Feelings', text: '“Muffin,” said the child, “I feel big feelings today.” Muffin sat close. Sitting close is a kind of answer.' },
     { who: 'Muffin', title: 'The Bubble Chase', text: 'Muffin saw a bubble floating by. She followed it, nose up, tail wagging, all the way to Luna. Pop! They laughed together and watched for the next one.' },
     { who: 'Muffin', title: 'Tug-of-War', text: 'The pillow tug-of-war was serious business. Muffin dug in, then shared a victory nose-boop. Play can be fierce and kind.' },
-    { who: 'Muffin', title: 'The Sunny Spot', text: 'Muffin found a warm patch of sun on the porch. She flopped down, rolled over, and sighed the happiest sigh. Sometimes the best place is a sunny one.' }
+    { who: 'Muffin', title: 'The Sunny Spot', text: 'Muffin found a warm patch of sun on the porch. She flopped down, rolled over, and sighed the happiest sigh. Sometimes the best place is a sunny one.' },
+    { who: 'Luna', title: 'Luna Says Hello', text: 'Luna\u2019s hello was a bounce and a bark. One ear up, one ear flopped, all the way happy. Muffin bounced back. That is how friends say good morning.' }
   ];
   var storyIdx = 0;
   var storyBox = document.getElementById('story-box');
   var storyPics = ['images/muffin-corner/story-pillow.webp', 'images/muffin-corner/story-sock.webp',
     'images/muffin-corner/story-feelings.webp', 'images/muffin-corner/story-bubble.webp',
-    'images/muffin-corner/story-tug.webp', 'images/muffin-corner/story-sunny.webp'];
+    'images/muffin-corner/story-tug.webp', 'images/muffin-corner/story-sunny.webp',
+    'images/muffin-corner/story-luna.webp'];
   var storyPic = document.getElementById('story-pic');
   function showStory(idx) {
     var s = stories[idx];
