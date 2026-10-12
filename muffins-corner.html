@@ -732,6 +732,13 @@
     background: radial-gradient(circle, var(--mc-sky) 0%, var(--mc-sage) 100%);
     animation: breathe 6s ease-in-out infinite; }
   @keyframes breathe { 0%,100% { transform: scale(0.85); opacity: 0.7; } 50% { transform: scale(1.12); opacity: 1; } }
+
+  .signs-h { text-align: center; margin: 22px 0 4px; }
+  .sign-stage { text-align: center; min-height: 10px; }
+  .sign-pic { width: 170px; height: 170px; object-fit: cover; border-radius: 16px; border: 3px solid var(--mc-amber-deep); display: none; }
+  .sign-pic.show { display: inline-block; }
+  .sign-pic.pop { animation: patientPop 0.55s ease; }
+  .sign-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 10px 0 4px; }
 </style>
 </head>
 <body>
@@ -887,6 +894,17 @@
       <button type="button" class="feel-btn" data-feel="Proud: you tried, and that matters. When you feel proud, tell someone what you did."><span class="emoji" aria-hidden="true">⭐</span>Proud</button>
     </div>
     <p class="play-feedback" id="feel-feedback" aria-live="polite"></p>
+    <h3 class="signs-h" id="signs-h">Hands can talk too</h3>
+    <p class="how">Luna's paw signs. Tap one to learn it.</p>
+    <div class="sign-stage"><img class="sign-pic" id="sign-pic" alt="Luna showing the paw sign" aria-hidden="true"></div>
+    <div class="sign-row" role="group" aria-label="Luna's paw signs">
+      <button type="button" class="mc-btn ghost sign-btn" data-sign="more" aria-label="Learn the sign for more">🐾 More</button>
+      <button type="button" class="mc-btn ghost sign-btn" data-sign="help" aria-label="Learn the sign for help">🐾 Help</button>
+      <button type="button" class="mc-btn ghost sign-btn" data-sign="rest" aria-label="Learn the sign for rest">🐾 Rest</button>
+      <button type="button" class="mc-btn ghost sign-btn" data-sign="water" aria-label="Learn the sign for water">🐾 Water</button>
+      <button type="button" class="mc-btn ghost sign-btn" data-sign="love" aria-label="Learn the sign for love">🐾 Love</button>
+    </div>
+    <p class="play-feedback" id="sign-feedback" aria-live="polite"></p>
   </section>
 
   <!-- PRETEND / VET -->
@@ -1217,7 +1235,12 @@
     ['vet-courage.mp3', 'Care is a kind of courage.'],
     ['feed-yum.mp3', 'Yum!'],
     ['place-cozy.mp3', 'Welcome to the Cozy Corner. Today we rest and breathe.'],
-    ['cozy-breath.mp3', 'Breathe in... and breathe out. Good.']
+    ['cozy-breath.mp3', 'Breathe in... and breathe out. Good.'],
+    ['sign-more.mp3', "This is 'more' in Luna's paw signs! Paw up high means more!"],
+    ['sign-help.mp3', "This is 'help' in Luna's paw signs! Paws together means help!"],
+    ['sign-rest.mp3', "This is 'rest' in Luna's paw signs! Paw tucked in means rest!"],
+    ['sign-water.mp3', "This is 'water' in Luna's paw signs! Paw down means water, please!"],
+    ['sign-love.mp3', "This is 'love' in Luna's paw signs! Paws make a heart for love!"]
   ];
   function captionFor(src) {
     if (!src) return '';
@@ -1445,6 +1468,44 @@
     document.body.classList.toggle('soft', on);
     softToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
     if (softLabel) softLabel.textContent = on ? 'Soft colors on' : 'Soft colors off';
+  });
+
+  // --- Luna's paw signs ---
+  var SIGN_AUDIO = {
+    more: 'images/muffin-corner/audio/sign-more.mp3',
+    help: 'images/muffin-corner/audio/sign-help.mp3',
+    rest: 'images/muffin-corner/audio/sign-rest.mp3',
+    water: 'images/muffin-corner/audio/sign-water.mp3',
+    love: 'images/muffin-corner/audio/sign-love.mp3'
+  };
+  var SIGN_PICS = {
+    more: 'images/muffin-corner/sign-more.webp',
+    help: 'images/muffin-corner/sign-help.webp',
+    rest: 'images/muffin-corner/sign-rest.webp',
+    water: 'images/muffin-corner/sign-water.webp',
+    love: 'images/muffin-corner/sign-love.webp'
+  };
+  var SIGN_WORDS = {
+    more: 'More: paw up high.',
+    help: 'Help: paws together.',
+    rest: 'Rest: paw tucked in.',
+    water: 'Water: paw down.',
+    love: 'Love: paws make a heart.'
+  };
+  document.querySelectorAll('.sign-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var s = btn.getAttribute('data-sign');
+      var pic = document.getElementById('sign-pic');
+      if (pic && SIGN_PICS[s]) {
+        pic.src = SIGN_PICS[s];
+        pic.classList.remove('show'); pic.classList.remove('pop');
+        void pic.offsetWidth;
+        pic.classList.add('show'); pic.classList.add('pop');
+      }
+      var fb = document.getElementById('sign-feedback');
+      if (fb && SIGN_WORDS[s]) fb.textContent = SIGN_WORDS[s];
+      if (SIGN_AUDIO[s]) playAudio(SIGN_AUDIO[s]);
+    });
   });
 
   // --- World rooms: tap a place to step inside; Muffin welcomes you ---
