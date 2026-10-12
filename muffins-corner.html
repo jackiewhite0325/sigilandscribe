@@ -1241,7 +1241,7 @@
     M: 'M says mmm, like Muffin', N: 'N says nnn, like nest', O: 'O says oh, like open',
     P: 'P says puh, like pig', Q: 'Q says kwuh, like queen', R: 'R says rrr, like rabbit',
     S: 'S says sss, like sun', T: 'T says tuh, like tiger', U: 'U says uh, like umbrella',
-    V: 'V says vvv, like van', W: 'W says wuh, like whale', X: 'X says ex, like exit',
+    V: 'V says vvv, like vet', W: 'W says wuh, like whale', X: 'X says ex, like exit',
     Y: 'Y says yuh, like yo-yo', Z: 'Z says zzz, like zebra'
   };
   var letterAudioKey = {
@@ -1256,9 +1256,9 @@
   var letterEmoji = {
     A: '\u{1F34E}', B: '\u{26BD}', C: '\u{1F431}', D: '\u{1F415}', E: '\u{1F95A}',
     F: '\u{1F389}', G: '\u{1F3C1}', H: '\u{1F917}', I: '\u{1F4E5}', J: '\u{1F998}',
-    K: '\u{1FA81}', L: '\u{1F319}', M: 'muffin', N: '\u{1FAB9}', O: '\u{1F513}',
+    K: '\u{1FA81}', L: 'luna', M: 'muffin', N: '\u{1FAB9}', O: '\u{1F513}',
     P: '\u{1F437}', Q: '\u{1F451}', R: '\u{1F430}', S: '\u{2600}\uFE0F', T: '\u{1F42F}',
-    U: '\u{2602}\uFE0F', V: '\u{1F690}', W: '\u{1F433}', X: '\u{1F6AA}', Y: '\u{1FA80}',
+    U: '\u{2602}\uFE0F', V: 'vet', W: '\u{1F433}', X: '\u{1F6AA}', Y: '\u{1FA80}',
     Z: '\u{1F993}'
   };
   letters.forEach(function (L) {
@@ -1273,9 +1273,10 @@
       var phrase = letterNames[L] || ('Letter ' + L);
       letterFb.textContent = phrase;
       var lpop = document.getElementById('letter-pop');
+      var letterPics = { M: 'images/muffin-corner/muffin-hero.webp', L: 'images/muffin-corner/luna.webp', V: 'images/muffin-corner/muffin-vet.webp' };
       if (lpop) {
-        if (letterEmoji[L] === 'muffin') {
-          lpop.innerHTML = '<img src="images/muffin-corner/muffin-hero.webp" alt="">';
+        if (letterPics[L]) {
+          lpop.innerHTML = '<img src="' + letterPics[L] + '" alt="">';
         } else {
           lpop.textContent = letterEmoji[L] || '';
         }
