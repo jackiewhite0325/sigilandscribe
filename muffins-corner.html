@@ -1866,12 +1866,12 @@
           if (bodyAgain) bodyAgain.hidden = false;
         }, 2600);
       } else {
-        setTimeout(bodyAsk, 3200);
+        setTimeout(bodyAsk, 5100);
       }
     } else {
       playAudio('images/muffin-corner/audio/body-tryagain.mp3');
       if (bodyFeedback) bodyFeedback.textContent = 'Hmm, not there. Try again!';
-      setTimeout(bodyAsk, 2200);
+      setTimeout(bodyAsk, 3500);
     }
   }
   function bodyStart() {
@@ -1880,7 +1880,7 @@
     if (bodyStars) { bodyStars.innerHTML = ''; bodyStars.setAttribute('aria-label', 'No spots found yet'); }
     if (bodyAgain) bodyAgain.hidden = true;
     playAudio('images/muffin-corner/audio/body-intro.mp3');
-    setTimeout(bodyAsk, 2600);
+    setTimeout(bodyAsk, 5400);
   }
   if (bodyHear) bodyHear.addEventListener('click', bodyStart);
   document.querySelectorAll('.body-zone').forEach(function (btn) {
