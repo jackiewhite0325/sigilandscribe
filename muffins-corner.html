@@ -1356,6 +1356,7 @@
     ['body-throat-ask.mp3', 'My throat feels scratchy. Where is my throat?'],
     ['body-throat-yes.mp3', 'Yes! My throat! Warm water helps scratchy throats.'],
     ['body-alldone.mp3', 'You found them all! You are such a good friend!'],
+    ['body-tryagain.mp3', 'Hmm, not there. Try again!'],
     ['energy-day.mp3', 'What a wonderful day! You took such good care of Muffin!'],
     ['energy-intro.mp3', 'Muffin has five energy bones! Spend them on fun things. When they run out, we rest.'],
     ['energy-wiggle.mp3', 'Wiggle time! That took two bones!'],
@@ -1530,11 +1531,6 @@
   document.addEventListener('contextmenu', function (e) {
     var t = e.target && e.target.closest ? e.target.closest('img,button,a') : null;
     if (t) e.preventDefault();
-  });
-  document.querySelectorAll('.body-map > img').forEach(function (pic) {
-    pic.addEventListener('click', function () {
-      if (typeof bodyAsk === 'function') bodyAsk();
-    });
   });
 
   // --- Tap forgiveness: accidental double-taps count as one ---
@@ -1828,6 +1824,7 @@
 
   // --- Where does Muffin feel funny? body literacy game ---
   var BODY_ROUNDS = ['tummy', 'ear', 'head', 'paw', 'throat'];
+  var BODY_POS = { head: [50,16], ear: [71,21], throat: [50,38], tummy: [50,61], paw: [39,87] };
   var bodyIdx = 0;
   var bodyStars = document.getElementById('body-stars');
   var bodyFeedback = document.getElementById('body-feedback');
@@ -1835,8 +1832,47 @@
   var bodyHear = document.getElementById('body-hear');
   function bodyAsk() {
     var zone = BODY_ROUNDS[bodyIdx];
+    if (!zone) return;
     playAudio('images/muffin-corner/audio/body-' + zone + '-ask.mp3');
     if (bodyFeedback) bodyFeedback.textContent = 'Where is Muffin\'s ' + zone + '? Tap it!';
+  }
+  function bodyZoneFromPoint(px, py) {
+    var best = null, bestD = 30;
+    for (var z in BODY_POS) {
+      var dx = px - BODY_POS[z][0], dy = (py - BODY_POS[z][1]) * 1.4;
+      var d = Math.sqrt(dx*dx + dy*dy);
+      if (d < bestD) { bestD = d; best = z; }
+    }
+    return best;
+  }
+  function bodyTapZone(zone) {
+    var target = BODY_ROUNDS[bodyIdx];
+    if (!target || !zone) return;
+    if (zone === target) {
+      var btn = document.querySelector('.body-zone[data-zone="' + zone + '"]');
+      if (btn) btn.classList.add('found');
+      playAudio('images/muffin-corner/audio/body-' + zone + '-yes.mp3');
+      if (bodyStars) {
+        var s = document.createElement('span');
+        s.textContent = '\u2B50'; s.setAttribute('aria-hidden', 'true');
+        bodyStars.appendChild(s);
+        bodyStars.setAttribute('aria-label', bodyStars.querySelectorAll('span').length + ' spots found');
+      }
+      bodyIdx++;
+      if (bodyIdx >= BODY_ROUNDS.length) {
+        setTimeout(function () {
+          playAudio('images/muffin-corner/audio/body-alldone.mp3');
+          if (bodyFeedback) bodyFeedback.textContent = 'You found them all! You are such a good friend!';
+          if (bodyAgain) bodyAgain.hidden = false;
+        }, 2600);
+      } else {
+        setTimeout(bodyAsk, 3200);
+      }
+    } else {
+      playAudio('images/muffin-corner/audio/body-tryagain.mp3');
+      if (bodyFeedback) bodyFeedback.textContent = 'Hmm, not there. Try again!';
+      setTimeout(bodyAsk, 2200);
+    }
   }
   function bodyStart() {
     bodyIdx = 0;
@@ -1848,33 +1884,20 @@
   }
   if (bodyHear) bodyHear.addEventListener('click', bodyStart);
   document.querySelectorAll('.body-zone').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var zone = btn.getAttribute('data-zone');
-      var target = BODY_ROUNDS[bodyIdx];
-      if (!target) return;
-      if (zone === target) {
-        btn.classList.add('found');
-        playAudio('images/muffin-corner/audio/body-' + zone + '-yes.mp3');
-        if (bodyStars) {
-          var s = document.createElement('span');
-          s.textContent = '⭐'; s.setAttribute('aria-hidden', 'true');
-          bodyStars.appendChild(s);
-          bodyStars.setAttribute('aria-label', bodyStars.querySelectorAll('span').length + ' spots found');
-        }
-        bodyIdx++;
-        if (bodyIdx >= BODY_ROUNDS.length) {
-          setTimeout(function () {
-            playAudio('images/muffin-corner/audio/body-alldone.mp3');
-            if (bodyFeedback) bodyFeedback.textContent = 'You found them all! You are such a good friend!';
-            if (bodyAgain) bodyAgain.hidden = false;
-          }, 2600);
-        } else {
-          setTimeout(bodyAsk, 3200);
-        }
-      } else {
-        if (bodyFeedback) bodyFeedback.textContent = 'Hmm, not there. Try again!';
-        setTimeout(bodyAsk, 1400);
-      }
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      bodyTapZone(btn.getAttribute('data-zone'));
+    });
+  });
+  document.querySelectorAll('.body-map').forEach(function (map) {
+    map.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('.body-zone')) return;
+      var r = map.getBoundingClientRect();
+      var px = ((e.clientX - r.left) / r.width) * 100;
+      var py = ((e.clientY - r.top) / r.height) * 100;
+      var zone = bodyZoneFromPoint(px, py);
+      if (zone) bodyTapZone(zone);
+      else bodyAsk();
     });
   });
   if (bodyAgain) bodyAgain.addEventListener('click', bodyStart);
