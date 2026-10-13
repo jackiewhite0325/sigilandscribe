@@ -756,6 +756,14 @@
   .bones-row { font-size: 2rem; letter-spacing: 4px; margin: 8px 0; min-height: 48px; }
   .bone.spent { opacity: 0.22; filter: grayscale(1); }
   .energy-acts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 8px; }
+
+  .energy-stage { min-height: 10px; margin-top: 8px; }
+  .energy-moment { width: 150px; height: 150px; object-fit: cover; border-radius: 16px; border: 3px solid var(--mc-amber-deep); display: none; }
+  .energy-moment.show { display: inline-block; }
+  .energy-moment.pop { animation: patientPop 0.55s ease; }
+  .energy-line { font-weight: 700; color: var(--mc-ink); min-height: 1.4em; }
+  .day-stars { font-size: 1.6rem; letter-spacing: 4px; min-height: 40px; margin-top: 6px; }
+  .day-label { font-size: 0.95rem; color: var(--mc-sage-ink); font-weight: 700; }
 </style>
 <script type="application/ld+json">
 {
@@ -933,6 +941,10 @@
       <button type="button" class="mc-btn ghost" id="energy-hear" aria-label="Hear how to play Energy Bones">🔊 How to play</button>
       <div><img class="energy-muffin" id="energy-muffin" src="images/muffin-corner/feel-happy.webp" alt="Muffin" aria-hidden="true"></div>
       <div class="bones-row" id="bones-row" role="img" aria-label="5 of 5 energy bones"></div>
+      <div class="energy-stage"><img class="energy-moment" id="energy-moment" alt="Muffin having her moment" aria-hidden="true"></div>
+      <p class="energy-line" id="energy-line" aria-live="polite"></p>
+      <p class="day-label">Today's adventures</p>
+      <div class="day-stars" id="day-stars" role="img" aria-label="No adventures yet today"></div>
       <div class="energy-acts" role="group" aria-label="Things to do with energy bones">
         <button type="button" class="mc-btn ghost energy-act" data-cost="2" data-act="wiggle" aria-label="Wiggle, costs 2 bones">🤸 Wiggle (2)</button>
         <button type="button" class="mc-btn ghost energy-act" data-cost="1" data-act="story" aria-label="Story, costs 1 bone">📖 Story (1)</button>
@@ -1301,6 +1313,7 @@
     ['vet-step5.mp3', 'A thank-you hug or high-five.'],
     ['vet-courage.mp3', 'Care is a kind of courage.'],
     ['feed-yum.mp3', 'Yum!'],
+    ['energy-day.mp3', 'What a wonderful day! You took such good care of Muffin!'],
     ['energy-intro.mp3', 'Muffin has five energy bones! Spend them on fun things. When they run out, we rest.'],
     ['energy-wiggle.mp3', 'Wiggle time! That took two bones!'],
     ['energy-story.mp3', 'Story time! That took one bone!'],
@@ -1657,11 +1670,33 @@
   var energyMuffin = document.getElementById('energy-muffin');
   var energyHear = document.getElementById('energy-hear');
   var energyRest = document.getElementById('energy-rest');
-  var ENERGY_MSGS = {
-    wiggle: 'Wiggle time! That is 2 bones.',
-    story: 'Story time! That is 1 bone.',
-    movie: 'Movie time! That is 1 bone.'
-  };
+  var energyMoment = document.getElementById('energy-moment');
+  var energyLine = document.getElementById('energy-line');
+  var dayStars = document.getElementById('day-stars');
+  var WIGGLE_IMGS = ['wiggle-stretch','wiggle-shake','wiggle-freeze','wiggle-march','wiggle-tiptoe','wiggle-breath'];
+  var STORY_IMGS = ['story-pillow','story-sunny','story-luna'];
+  var STORY_LINES = [
+    'Muffin found the sunniest spot and melted right into it.',
+    'Luna told a joke. It was not funny. They laughed anyway.',
+    'Muffin dreamed she was queen of the hose snakes.'
+  ];
+  function showMoment(src, line) {
+    if (energyMoment) {
+      energyMoment.src = src;
+      energyMoment.classList.remove('show'); energyMoment.classList.remove('pop');
+      void energyMoment.offsetWidth;
+      energyMoment.classList.add('show'); energyMoment.classList.add('pop');
+    }
+    if (energyLine) energyLine.textContent = line || '';
+  }
+  function addStar() {
+    if (!dayStars) return;
+    var s = document.createElement('span');
+    s.textContent = '⭐'; s.setAttribute('aria-hidden', 'true');
+    dayStars.appendChild(s);
+    var n = dayStars.querySelectorAll('span').length;
+    dayStars.setAttribute('aria-label', n + (n === 1 ? ' adventure' : ' adventures') + ' today');
+  }
   function renderBones() {
     if (!bonesRow) return;
     bonesRow.innerHTML = '';
@@ -1689,10 +1724,27 @@
       }
       bones -= cost;
       renderBones();
-      playAudio('images/muffin-corner/audio/energy-' + act + '.mp3');
-      if (energyFeedback) energyFeedback.textContent = ENERGY_MSGS[act] + ' ' + bones + ' left.';
-      if (bones === 0 && energyFeedback) {
-        setTimeout(function () { energyFeedback.textContent = 'All out of bones! Time to rest.'; }, 2200);
+      addStar();
+      if (act === 'wiggle') {
+        var w = WIGGLE_IMGS[Math.floor(Math.random() * WIGGLE_IMGS.length)];
+        showMoment('images/muffin-corner/' + w + '.webp', 'Wiggle time!');
+        playAudio('images/muffin-corner/audio/' + w + '.mp3');
+      } else if (act === 'story') {
+        var si = Math.floor(Math.random() * STORY_IMGS.length);
+        showMoment('images/muffin-corner/' + STORY_IMGS[si] + '.webp', STORY_LINES[si]);
+        playAudio('images/muffin-corner/audio/energy-story.mp3');
+      } else if (act === 'movie') {
+        showMoment('images/muffin-corner/movies-metal-showdown.webp', 'Muffin watches the legend of the hose snake!');
+        playAudio('images/muffin-corner/audio/energy-movie.mp3');
+      }
+      if (energyFeedback) energyFeedback.textContent = bones + (bones === 1 ? ' bone' : ' bones') + ' left.';
+      if (bones === 0) {
+        setTimeout(function () {
+          if (energyMuffin) energyMuffin.src = 'images/muffin-corner/feel-tired.webp';
+          playAudio('images/muffin-corner/audio/energy-day.mp3');
+          if (energyFeedback) energyFeedback.textContent = 'Muffin is a puddle! What a wonderful day!';
+          if (energyLine) energyLine.textContent = 'Muffin flopped. She is a puddle now.';
+        }, 1800);
       }
     });
   });
@@ -1702,13 +1754,18 @@
       return;
     }
     if (energyFeedback) energyFeedback.textContent = 'Resting...';
+    if (dayStars) { dayStars.innerHTML = ''; dayStars.setAttribute('aria-label', 'A new day begins'); }
     var iv = setInterval(function () {
       bones++;
       renderBones();
       if (bones >= BONE_MAX) {
         clearInterval(iv);
+        if (energyMuffin) {
+          energyMuffin.classList.remove('pop'); void energyMuffin.offsetWidth; energyMuffin.classList.add('pop');
+        }
         playAudio('images/muffin-corner/audio/energy-rested.mp3');
-        if (energyFeedback) energyFeedback.textContent = 'All rested! Bones are back!';
+        if (energyFeedback) energyFeedback.textContent = 'All rested! Bones are back! A brand-new day!';
+        if (energyLine) energyLine.textContent = '';
       }
     }, 700);
   });
