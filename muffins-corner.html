@@ -764,6 +764,14 @@
   .energy-line { font-weight: 700; color: var(--mc-ink); min-height: 1.4em; }
   .day-stars { font-size: 1.6rem; letter-spacing: 4px; min-height: 40px; margin-top: 6px; }
   .day-label { font-size: 0.95rem; color: var(--mc-sage-ink); font-weight: 700; }
+
+  .body-game { margin-top: 26px; border-top: 2px dashed var(--mc-amber); padding-top: 18px; text-align: center; }
+  .body-map { position: relative; display: inline-block; max-width: 340px; margin: 10px auto; }
+  .body-map img { width: 100%; border-radius: 16px; border: 3px solid var(--mc-amber-deep); display: block; }
+  .body-zone { position: absolute; width: 58px; height: 58px; border-radius: 50%; border: 3px solid var(--mc-amber-deep);
+    background: rgba(232,184,74,0.35); cursor: pointer; transform: translate(-50%,-50%); font-size: 1.3rem; }
+  .body-zone.found { background: rgba(126,154,114,0.55); border-color: var(--mc-sage-ink); }
+  .body-stars { font-size: 1.6rem; letter-spacing: 4px; min-height: 40px; margin-top: 6px; }
 </style>
 <script type="application/ld+json">
 {
@@ -983,6 +991,22 @@
       <button type="button" class="mc-btn ghost sign-btn" data-sign="love" aria-label="Learn the sign for love">🐾 Love</button>
     </div>
     <p class="play-feedback" id="sign-feedback" aria-live="polite"></p>
+    <div class="body-game" aria-labelledby="body-h">
+      <h3 id="body-h">Where does Muffin feel funny?</h3>
+      <p class="how">Muffin feels funny somewhere. Tap the spot on Muffin to find it.</p>
+      <button type="button" class="mc-btn ghost" id="body-hear" aria-label="Hear how to play Where does Muffin feel funny">🔊 How to play</button>
+      <div class="body-map">
+        <img src="images/muffin-corner/muffin-body.webp" alt="Muffin standing, ready to be checked" loading="lazy">
+        <button type="button" class="body-zone" data-zone="head" style="left:50%;top:24%" aria-label="Muffin's head">✋</button>
+        <button type="button" class="body-zone" data-zone="ear" style="left:70%;top:22%" aria-label="Muffin's ear">✋</button>
+        <button type="button" class="body-zone" data-zone="throat" style="left:50%;top:42%" aria-label="Muffin's throat">✋</button>
+        <button type="button" class="body-zone" data-zone="tummy" style="left:50%;top:60%" aria-label="Muffin's tummy">✋</button>
+        <button type="button" class="body-zone" data-zone="paw" style="left:38%;top:88%" aria-label="Muffin's paw">✋</button>
+      </div>
+      <div class="body-stars" id="body-stars" role="img" aria-label="No spots found yet"></div>
+      <p class="play-feedback" id="body-feedback" aria-live="polite"></p>
+      <button type="button" class="mc-btn" id="body-again" hidden>🔍 Play again</button>
+    </div>
   </section>
 
   <!-- PRETEND / VET -->
@@ -1313,6 +1337,18 @@
     ['vet-step5.mp3', 'A thank-you hug or high-five.'],
     ['vet-courage.mp3', 'Care is a kind of courage.'],
     ['feed-yum.mp3', 'Yum!'],
+    ['body-intro.mp3', 'Muffin feels funny somewhere! Can you find where? Tap the spot on Muffin!'],
+    ['body-tummy-ask.mp3', 'My tummy feels rumbly. Where is my tummy?'],
+    ['body-tummy-yes.mp3', 'Yes! My tummy! A warm hug helps rumbly tummies.'],
+    ['body-ear-ask.mp3', 'My ear feels buzzy. Where is my ear?'],
+    ['body-ear-yes.mp3', 'Yes! My ear! Being still and quiet helps buzzy ears.'],
+    ['body-head-ask.mp3', 'My head feels hurty. Where is my head?'],
+    ['body-head-yes.mp3', 'Yes! My head! Rest and water help hurty heads.'],
+    ['body-paw-ask.mp3', 'My paw feels ouchy. Where is my paw?'],
+    ['body-paw-yes.mp3', 'Yes! My paw! A soft bandage helps ouchy paws.'],
+    ['body-throat-ask.mp3', 'My throat feels scratchy. Where is my throat?'],
+    ['body-throat-yes.mp3', 'Yes! My throat! Warm water helps scratchy throats.'],
+    ['body-alldone.mp3', 'You found them all! You are such a good friend!'],
     ['energy-day.mp3', 'What a wonderful day! You took such good care of Muffin!'],
     ['energy-intro.mp3', 'Muffin has five energy bones! Spend them on fun things. When they run out, we rest.'],
     ['energy-wiggle.mp3', 'Wiggle time! That took two bones!'],
@@ -1770,6 +1806,59 @@
     }, 700);
   });
   renderBones();
+
+  // --- Where does Muffin feel funny? body literacy game ---
+  var BODY_ROUNDS = ['tummy', 'ear', 'head', 'paw', 'throat'];
+  var bodyIdx = 0;
+  var bodyStars = document.getElementById('body-stars');
+  var bodyFeedback = document.getElementById('body-feedback');
+  var bodyAgain = document.getElementById('body-again');
+  var bodyHear = document.getElementById('body-hear');
+  function bodyAsk() {
+    var zone = BODY_ROUNDS[bodyIdx];
+    playAudio('images/muffin-corner/audio/body-' + zone + '-ask.mp3');
+    if (bodyFeedback) bodyFeedback.textContent = 'Where is Muffin\'s ' + zone + '? Tap it!';
+  }
+  function bodyStart() {
+    bodyIdx = 0;
+    document.querySelectorAll('.body-zone').forEach(function (z) { z.classList.remove('found'); });
+    if (bodyStars) { bodyStars.innerHTML = ''; bodyStars.setAttribute('aria-label', 'No spots found yet'); }
+    if (bodyAgain) bodyAgain.hidden = true;
+    playAudio('images/muffin-corner/audio/body-intro.mp3');
+    setTimeout(bodyAsk, 2600);
+  }
+  if (bodyHear) bodyHear.addEventListener('click', bodyStart);
+  document.querySelectorAll('.body-zone').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var zone = btn.getAttribute('data-zone');
+      var target = BODY_ROUNDS[bodyIdx];
+      if (!target) return;
+      if (zone === target) {
+        btn.classList.add('found');
+        playAudio('images/muffin-corner/audio/body-' + zone + '-yes.mp3');
+        if (bodyStars) {
+          var s = document.createElement('span');
+          s.textContent = '⭐'; s.setAttribute('aria-hidden', 'true');
+          bodyStars.appendChild(s);
+          bodyStars.setAttribute('aria-label', bodyStars.querySelectorAll('span').length + ' spots found');
+        }
+        bodyIdx++;
+        if (bodyIdx >= BODY_ROUNDS.length) {
+          setTimeout(function () {
+            playAudio('images/muffin-corner/audio/body-alldone.mp3');
+            if (bodyFeedback) bodyFeedback.textContent = 'You found them all! You are such a good friend!';
+            if (bodyAgain) bodyAgain.hidden = false;
+          }, 2600);
+        } else {
+          setTimeout(bodyAsk, 3200);
+        }
+      } else {
+        if (bodyFeedback) bodyFeedback.textContent = 'Hmm, not there. Try again!';
+        setTimeout(bodyAsk, 1400);
+      }
+    });
+  });
+  if (bodyAgain) bodyAgain.addEventListener('click', bodyStart);
 
   // --- World rooms: tap a place to step inside; Muffin welcomes you ---
   var PLACE_WELCOME = {
