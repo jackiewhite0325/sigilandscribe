@@ -768,7 +768,7 @@
   .body-game { margin-top: 26px; border-top: 2px dashed var(--mc-amber); padding-top: 18px; text-align: center; }
   .body-map { position: relative; display: inline-block; max-width: 340px; margin: 10px auto; }
   .body-map img { width: 100%; border-radius: 16px; border: 3px solid var(--mc-amber-deep); display: block; }
-  .body-zone { position: absolute; width: 58px; height: 58px; border-radius: 50%; border: 3px solid var(--mc-amber-deep);
+  .body-zone { position: absolute; width: 66px; height: 66px; border-radius: 50%; border: 3px solid var(--mc-amber-deep);
     background: rgba(232,184,74,0.35); cursor: pointer; transform: translate(-50%,-50%); font-size: 1.3rem; }
   .body-zone.found { background: rgba(126,154,114,0.55); border-color: var(--mc-sage-ink); }
   .body-stars { font-size: 1.6rem; letter-spacing: 4px; min-height: 40px; margin-top: 6px; }
@@ -997,11 +997,11 @@
       <button type="button" class="mc-btn ghost" id="body-hear" aria-label="Hear how to play Where does Muffin feel funny">🔊 How to play</button>
       <div class="body-map">
         <img src="images/muffin-corner/muffin-body.webp" alt="Muffin standing, ready to be checked" loading="lazy">
-        <button type="button" class="body-zone" data-zone="head" style="left:50%;top:24%" aria-label="Muffin's head">✋</button>
-        <button type="button" class="body-zone" data-zone="ear" style="left:70%;top:22%" aria-label="Muffin's ear">✋</button>
-        <button type="button" class="body-zone" data-zone="throat" style="left:50%;top:42%" aria-label="Muffin's throat">✋</button>
-        <button type="button" class="body-zone" data-zone="tummy" style="left:50%;top:60%" aria-label="Muffin's tummy">✋</button>
-        <button type="button" class="body-zone" data-zone="paw" style="left:38%;top:88%" aria-label="Muffin's paw">✋</button>
+        <button type="button" class="body-zone" data-zone="head" style="left:50%;top:16%" aria-label="Muffin's head">✋</button>
+        <button type="button" class="body-zone" data-zone="ear" style="left:71%;top:21%" aria-label="Muffin's ear">✋</button>
+        <button type="button" class="body-zone" data-zone="throat" style="left:50%;top:38%" aria-label="Muffin's throat">✋</button>
+        <button type="button" class="body-zone" data-zone="tummy" style="left:50%;top:61%" aria-label="Muffin's tummy">✋</button>
+        <button type="button" class="body-zone" data-zone="paw" style="left:39%;top:87%" aria-label="Muffin's paw">✋</button>
       </div>
       <div class="body-stars" id="body-stars" role="img" aria-label="No spots found yet"></div>
       <p class="play-feedback" id="body-feedback" aria-live="polite"></p>
@@ -1539,6 +1539,7 @@
   document.addEventListener('pointerdown', function (e) {
     var btn = e.target && e.target.closest ? e.target.closest('button') : null;
     if (!btn) return;
+    if (btn.closest('.water-break,.energy-game,.body-game')) return; // game buttons: every press plays
     holdFired = false; holdBtn = btn;
     holdTimer = setTimeout(function () {
       holdFired = true;
