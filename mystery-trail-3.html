@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#f4ead5" />
+  <link rel="icon" href="data:," />
+  <title>The Case of the Vanishing Library Books</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@500;650;750;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f7eedc;
+      --paper-deep: #ecddbd;
+      --ink: #34251d;
+      --muted: #675347;
+      --walnut: #5a3827;
+      --walnut-dark: #3b251b;
+      --gold: #b8832d;
+      --gold-soft: #e4c783;
+      --sage: #708262;
+      --rose: #bb7161;
+      --sky: #b9d3cf;
+      --card: rgba(255, 251, 242, .92);
+      --line: rgba(90, 56, 39, .22);
+      --focus: #176b78;
+      --shadow: 0 18px 50px rgba(74, 48, 31, .15);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #201914;
+        --paper-deep: #2e241c;
+        --ink: #f8ead1;
+        --muted: #decbb0;
+        --walnut: #d4a56e;
+        --walnut-dark: #f0d5ad;
+        --gold: #e0b85e;
+        --gold-soft: #8b692e;
+        --sage: #9eb28f;
+        --rose: #d9907d;
+        --sky: #527774;
+        --card: rgba(47, 36, 28, .94);
+        --line: rgba(244, 222, 188, .2);
+        --focus: #7fd5df;
+        --shadow: 0 18px 50px rgba(0, 0, 0, .3);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: var(--paper); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      color: var(--ink);
+      font-family: "Nunito", sans-serif;
+      background:
+        radial-gradient(circle at 12% 7%, rgba(184, 131, 45, .09) 0 2px, transparent 3px),
+        radial-gradient(circle at 88% 93%, rgba(112, 130, 98, .12) 0 3px, transparent 4px),
+        linear-gradient(135deg, var(--paper), var(--paper-deep));
+      background-size: 31px 31px, 41px 41px, auto;
+    }
+    button { font: inherit; }
+    button:focus-visible { outline: 4px solid var(--focus); outline-offset: 3px; }
+    .page {
+      width: min(1180px, 100%);
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: 0 auto;
+      padding: clamp(16px, 3vw, 34px);
+      display: grid;
+      grid-template-columns: minmax(270px, .8fr) minmax(480px, 1.25fr);
+      gap: clamp(18px, 3vw, 38px);
+      align-items: center;
+    }
+    .scene-card {
+      position: relative;
+      min-height: 560px;
+      border-radius: 34px 34px 110px 34px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: var(--sky);
+      isolation: isolate;
+    }
+    .scene-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,.2), transparent 45%), repeating-linear-gradient(104deg, transparent 0 13px, rgba(255,255,255,.025) 13px 14px);
+      mix-blend-mode: soft-light;
+    }
+    .scene-art { width: 100%; height: 100%; position: absolute; inset: 0; }
+    .art-sky { fill: var(--sky); }
+    .art-grass { fill: #819368; }
+    .art-grass-light { fill: #9dad7c; }
+    .art-wood { fill: #6b4430; }
+    .art-wood-dark { fill: #432a20; }
+    .art-cream { fill: #f4e6c7; }
+    .art-gold { fill: #c69743; }
+    .art-green { fill: #516c4a; }
+    .art-dog { fill: #1d1b19; }
+    .art-dog-light { fill: #fffdf7; }
+    .art-dog-eye { fill: #a86620; }
+    .art-dark { fill: #2e2420; }
+    .art-shirt { fill: #d69066; }
+    .art-book1 { fill: #b86f5f; }
+    .art-book2 { fill: #527b73; }
+    .art-book3 { fill: #d2aa55; }
+    .art-paper { fill: #fff1d3; }
+    .art-clue { opacity: 0; transform-origin: center; transform: scale(.85); transition: opacity .45s ease, transform .45s ease; }
+    .scene-card[data-step="1"] .clue-bookmark,
+    .scene-card[data-step="2"] .clue-wagon,
+    .scene-card[data-step="3"] .clue-books,
+    .scene-card[data-step="4"] .clue-child,
+    .scene-card[data-step="5"] .clue-child,
+    .scene-card[data-step="end"] .clue-child,
+    .scene-card[data-step="end"] .ending-stars { opacity: 1; transform: scale(1); }
+    .art-label {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 2;
+      max-width: calc(100% - 36px);
+      padding: 9px 14px;
+      border-radius: 12px;
+      background: rgba(49, 35, 26, .78);
+      color: #fff6e5;
+      font-size: .88rem;
+      font-weight: 800;
+      letter-spacing: .01em;
+      backdrop-filter: blur(3px);
+    }
+    .story-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 28px 28px 28px 9px;
+      padding: clamp(22px, 4vw, 48px);
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .trail-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .chapter {
+      color: var(--walnut);
+      font-weight: 800;
+      font-size: .93rem;
+    }
+    .progress-wrap { display: flex; align-items: center; gap: 10px; }
+    .progress-label { color: var(--muted); font-size: .9rem; font-weight: 800; white-space: nowrap; }
+    .clues { display: flex; gap: 6px; }
+    .clue-dot {
+      width: 17px;
+      height: 22px;
+      border-radius: 3px 3px 7px 7px;
+      border: 2px solid var(--gold);
+      background: transparent;
+      position: relative;
+      transition: background .3s ease, transform .3s ease;
+    }
+    .clue-dot::after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      right: 3px;
+      top: 5px;
+      height: 2px;
+      background: currentColor;
+      box-shadow: 0 4px currentColor;
+      opacity: .5;
+    }
+    .clue-dot.found { background: var(--gold); color: var(--paper); transform: rotate(-4deg); }
+    h1 {
+      margin: 0 0 10px;
+      max-width: 720px;
+      color: var(--walnut-dark);
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.05rem, 5vw, 4.4rem);
+      line-height: .98;
+      letter-spacing: -.035em;
+    }
+    h2 {
+      margin: 0 0 14px;
+      color: var(--walnut-dark);
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.6rem, 3vw, 2.35rem);
+      line-height: 1.05;
+    }
+    .story-text {
+      margin: 0;
+      max-width: 760px;
+      color: var(--ink);
+      font-size: clamp(1.08rem, 2.1vw, 1.34rem);
+      line-height: 1.68;
+      font-weight: 500;
+    }
+    .prompt {
+      margin: 24px 0 13px;
+      color: var(--walnut-dark);
+      font-size: 1.08rem;
+      font-weight: 800;
+    }
+    .read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 15px;
+      color: var(--walnut-dark);
+      background: transparent;
+      cursor: pointer;
+      font-weight: 800;
+      transition: background .2s ease;
+    }
+    .read-btn:hover { background: color-mix(in srgb, var(--gold-soft) 24%, transparent); }
+    .speaker { width: 22px; height: 22px; fill: currentColor; }
+    .choices { display: grid; gap: 11px; }
+    .choice {
+      width: 100%;
+      min-height: 64px;
+      border: 0;
+      border-radius: 17px 17px 17px 5px;
+      padding: 15px 18px;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+      color: #fff8ea;
+      background: var(--walnut);
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: 800;
+      box-shadow: 0 6px 0 var(--walnut-dark);
+      transform: translateY(0);
+      transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+    }
+    .choice:nth-child(2) { background: var(--sage); box-shadow: 0 6px 0 #46553d; }
+    .choice:hover { filter: brightness(1.08); transform: translateY(-2px); }
+    .choice:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--walnut-dark); }
+    .choice-icon {
+      width: 30px;
+      height: 30px;
+      border: 2px solid rgba(255,255,255,.65);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .start-row { margin-top: 28px; }
+    .start-btn, .restart-btn {
+      min-height: 58px;
+      border: 0;
+      border-radius: 16px 16px 16px 5px;
+      padding: 14px 24px;
+      color: #fff8ea;
+      background: var(--walnut);
+      box-shadow: 0 6px 0 var(--walnut-dark);
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 1.08rem;
+    }
+    .ending-note {
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      color: var(--walnut-dark);
+      background: color-mix(in srgb, var(--gold-soft) 30%, transparent);
+      font-weight: 750;
+      line-height: 1.5;
+    }
+    .restart-btn { margin-top: 22px; background: var(--rose); box-shadow: 0 6px 0 #804a40; }
+    .trail-stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      margin-bottom: 14px;
+      color: var(--sage);
+      font-weight: 800;
+    }
+    .trail-stamp svg { width: 28px; height: 28px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    @media (max-width: 820px) {
+      .page { grid-template-columns: 1fr; align-items: start; padding: 12px; gap: 12px; }
+      .scene-card { min-height: 245px; border-radius: 24px 24px 64px 24px; }
+      .scene-art { transform: none; }
+      .story-card { min-height: auto; border-radius: 22px 22px 22px 7px; padding: 22px 18px 28px; }
+      h1 { font-size: clamp(2.2rem, 12vw, 3.6rem); }
+      .story-text { font-size: 1.08rem; line-height: 1.58; }
+      .choice { min-height: 66px; }
+    }
+    @media (max-width: 440px) {
+      .scene-card { min-height: 205px; }
+      .scene-art { transform: none; }
+      .art-label { font-size: .78rem; left: 12px; bottom: 12px; }
+      .trail-meta { align-items: flex-start; }
+      .progress-wrap { width: 100%; justify-content: space-between; }
+      .read-btn { width: 100%; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="scene-card" id="sceneCard" data-step="intro" aria-label="Illustration of Muffin investigating the little free library">
+      <svg class="scene-art" viewBox="0 0 520 700" role="img" aria-labelledby="artTitle artDesc" preserveAspectRatio="xMidYMid slice">
+        <title id="artTitle">Muffin at the park library</title>
+        <desc id="artDesc">A warm storybook scene with Muffin, a black-and-white pitbull with an eye patch, investigating a little library near a wagon, books, a child, and a tree.</desc>
+        <rect class="art-sky" width="520" height="700"/>
+        <circle fill="#f2d58d" opacity=".75" cx="412" cy="104" r="55"/>
+        <path class="art-grass-light" d="M0 430 Q115 390 225 426 T520 416 V700 H0Z"/>
+        <path class="art-grass" d="M0 502 Q125 440 264 492 T520 472 V700 H0Z"/>
+        <g opacity=".28" fill="#fff5d8">
+          <circle cx="62" cy="168" r="26"/><circle cx="91" cy="167" r="35"/><circle cx="128" cy="174" r="23"/>
+        </g>
+        <g aria-hidden="true">
+          <path class="art-wood-dark" d="M74 253 h184 v246 H74z"/>
+          <path class="art-wood" d="M62 244 L166 177 270 244Z"/>
+          <path class="art-gold" d="M81 270h170v18H81z"/>
+          <rect class="art-cream" x="92" y="302" width="148" height="118" rx="5"/>
+          <rect class="art-book1" x="105" y="340" width="18" height="67" rx="2"/>
+          <rect class="art-book2" x="126" y="325" width="21" height="82" rx="2"/>
+          <rect class="art-book3" x="151" y="351" width="17" height="56" rx="2"/>
+          <path class="art-wood-dark" d="M151 499h30v148h-30z"/>
+          <path class="art-gold" d="M105 220h122v39H105z"/>
+          <path fill="#4d3226" d="M124 234h84v6h-84zm10 12h64v5h-64z" opacity=".65"/>
+        </g>
+        <g aria-hidden="true">
+          <path class="art-green" d="M364 83q-68 28-69 105-55 12-55 76 45 28 110 8l-7 220h57l-8-217q82 9 101-40-7-62-61-73 2-57-68-79z"/>
+          <path class="art-wood" d="M348 275q10 81-8 222h70q-20-143-7-222z"/>
+        </g>
+        <g aria-hidden="true" transform="translate(224 486)">
+          <path class="art-dog" d="M17 84q5-63 58-73 50-9 77 37l15 80H19z"/>
+          <defs><clipPath id="muffinBodyClip"><path d="M17 84q5-63 58-73 50-9 77 37l15 80H19z"/></clipPath></defs>
+          <g clip-path="url(#muffinBodyClip)" class="art-dog-light">
+            <path d="M78 88q27 15 54 0l8 48H67z"/>
+            <ellipse cx="48" cy="126" rx="23" ry="14"/>
+            <ellipse cx="145" cy="126" rx="23" ry="14"/>
+          </g>
+          <ellipse class="art-dog-light" cx="103" cy="51" rx="41" ry="38"/>
+          <path class="art-dog-light" d="M72 28 45 2q-9 32 10 54z"/>
+          <path class="art-dog" d="m132 30 27-25q8 34-10 53z"/>
+          <path class="art-dog" d="M103 15q27-9 39 14 11 22-1 42-7 12-19 16-10-11-11-27-2-25-8-45z"/>
+          <ellipse class="art-dog-eye" cx="92" cy="48" rx="5" ry="6"/>
+          <ellipse class="art-dog-eye" cx="120" cy="48" rx="5" ry="6"/>
+          <circle fill="#fff" cx="90" cy="46" r="1.5"/>
+          <circle fill="#fff" cx="118" cy="46" r="1.5"/>
+          <path class="art-dark" d="M100 61q7-6 14 0-4 9-7 9t-7-9z"/>
+          <path fill="none" stroke="#2e2420" stroke-width="4" stroke-linecap="round" d="M107 70q7 8 15 0"/>
+          <path class="art-gold" d="M65 79q41 16 79 0l3 15q-43 17-85 0z"/>
+          <circle class="art-paper" cx="106" cy="95" r="10"/>
+          <path fill="#6b4430" d="M101 90h10v10h-10z"/>
+        </g>
+        <g class="art-clue clue-bookmark" aria-hidden="true" transform="translate(293 428) rotate(18)">
+          <path class="art-book1" d="M0 0h24v72l-12-12L0 72z"/>
+          <path fill="#f5d98f" d="M7 10h10v28H7z"/>
+        </g>
+        <g class="art-clue clue-wagon" aria-hidden="true" transform="translate(28 520)">
+          <path class="art-book1" d="M0 24h89l-10 66H15z"/>
+          <path fill="none" stroke="#594033" stroke-width="7" stroke-linecap="round" d="M86 31 116 0"/>
+          <circle class="art-dark" cx="24" cy="96" r="13"/><circle class="art-dark" cx="70" cy="96" r="13"/>
+          <circle class="art-gold" cx="70" cy="96" r="4"/>
+        </g>
+        <g class="art-clue clue-books" aria-hidden="true" transform="translate(388 425)">
+          <path class="art-book2" d="M0 45h101v24H0z"/><path class="art-book1" d="M14 20h83v25H14z"/><path class="art-book3" d="M5 0h72v20H5z"/>
+          <path fill="#fff0cf" d="M8 51h80v10H8zM23 27h63v10H23z"/>
+        </g>
+        <g class="art-clue clue-child" aria-hidden="true" transform="translate(409 300)">
+          <circle fill="#8d583d" cx="28" cy="23" r="23"/>
+          <path fill="#3d2a23" d="M4 20Q11-8 37 3q17 7 12 31-13-18-45-14z"/>
+          <path class="art-shirt" d="M2 51q27-17 53 0l9 72H-6z"/>
+          <path class="art-book2" d="M-7 72h70v49H-7z"/>
+          <path class="art-paper" d="M0 78h27v35H0zm34 0h22v35H34z"/>
+        </g>
+        <g class="art-clue ending-stars" opacity="0" aria-hidden="true" fill="#f5d98f">
+          <path d="m303 122 6 15 16 1-13 10 4 16-13-9-14 9 4-16-13-10 17-1z"/>
+          <path d="m90 116 4 10 11 1-9 7 3 11-9-6-9 6 3-11-9-7 11-1z"/>
+        </g>
+      </svg>
+      <div class="art-label" id="artLabel">The little free library at Maple Park</div>
+    </section>
+
+    <article class="story-card" aria-live="polite" aria-atomic="true">
+      <div class="trail-meta">
+        <span class="chapter" id="chapter">Mystery Trail</span>
+        <div class="progress-wrap" aria-label="Clue progress">
+          <span class="progress-label" id="progressText">0 of 4 clues</span>
+          <div class="clues" aria-hidden="true">
+            <span class="clue-dot"></span><span class="clue-dot"></span><span class="clue-dot"></span><span class="clue-dot"></span>
+          </div>
+        </div>
+      </div>
+
+      <div id="content"></div>
+    </article>
+  </main>
+
+  <script>
+    (function () {
+      var state = { step: "intro", clues: 0, lastChoice: "" };
+      var story = {
+        intro: {
+          chapter: "Mystery Trail",
+          title: "The Case of the Vanishing Library Books",
+          text: "Muffin loved the little free library at Maple Park. It was a tiny wooden house filled with adventures, jokes, facts, and faraway worlds. But this week, every shelf was nearly empty. New books went in, then vanished by the next morning. Muffin adjusted her gold detective tag. This was a mystery worth sniffing out.",
+          label: "The little free library at Maple Park"
+        },
+        1: {
+          chapter: "Decision 1 of 5",
+          title: "Where should Muffin begin?",
+          base: "The library door hung open. No torn pages, no muddy pawprints, and no signs of a struggle. Just one quiet park and one very curious detective.",
+          prompt: "Choose the first place to investigate:",
+          choices: [
+            { text: "Sniff along the path", result: "Muffin lowered her nose and followed the dusty path. Near a bench, something red fluttered under a leaf: a bookmark painted with tiny gold stars. It smelled faintly of paper and peppermint." },
+            { text: "Inspect the library shelves", result: "Muffin examined every shelf. Tucked behind the bottom ledge was a red bookmark painted with tiny gold stars. It smelled faintly of paper and peppermint." }
+          ],
+          clue: 1,
+          label: "Clue 1: a red bookmark with gold stars"
+        },
+        2: {
+          chapter: "Decision 2 of 5",
+          title: "A sound at dusk",
+          base: "The bookmark was the first clue. Muffin remembered that the books usually disappeared near sunset, when long shadows stretched across the park. Then she heard it: squeak... squeak... squeak.",
+          prompt: "How should Muffin follow the sound?",
+          choices: [
+            { text: "Take the winding garden path", result: "The garden path curved past tall sunflowers. Around the bend sat a small red wagon. One wheel gave a cheerful squeak each time the breeze nudged it." },
+            { text: "Climb the grassy hill for a better view", result: "From the hill, Muffin spotted a small red wagon near the sunflowers. As it rolled an inch in the breeze, one wheel chirped: squeak!" }
+          ],
+          clue: 2,
+          label: "Clue 2: a red wagon with a squeaky wheel"
+        },
+        3: {
+          chapter: "Decision 3 of 5",
+          title: "The wagon's trail",
+          base: "Inside the wagon lay a peppermint wrapper and a dusting of golden leaf bits, just like the ones around the old oak tree. The wagon tracks split near the picnic tables.",
+          prompt: "Which trail should Muffin check?",
+          choices: [
+            { text: "Follow the golden leaf bits", result: "The leaves made a dotted trail to the old oak. Under its lowest branch sat a neat stack of library books, sorted from tallest to shortest." },
+            { text: "Follow the wagon wheel marks", result: "The wobbly wheel marks zigzagged behind the old oak. There Muffin found a neat stack of library books, protected from the grass by a folded picnic blanket." }
+          ],
+          clue: 3,
+          label: "Clue 3: books carefully stacked under the oak"
+        },
+        4: {
+          chapter: "Decision 4 of 5",
+          title: "The rustle in the bushes",
+          base: "The missing books were safe and dry. Each one had a tiny paper note marking a favorite page. Whoever brought them here seemed to care about them very much. A branch rustled behind the nearby bushes.",
+          prompt: "What should Muffin do next?",
+          choices: [
+            { text: "Sit quietly and wag hello", result: "Muffin sat down, softened her ears, and thumped her tail against the grass. After a moment, a shy child peeked through the leaves, hugging one last book." },
+            { text: "Leave the starry bookmark where it can be seen", result: "Muffin placed the starry bookmark beside the stack and stepped back. A shy child emerged from the bushes. 'You found it,' they whispered, holding one last book." }
+          ],
+          clue: 4,
+          label: "Clue 4: a shy young reader behind the bushes"
+        },
+        5: {
+          chapter: "Decision 5 of 5",
+          title: "The kindest solution",
+          base: "The child explained that they had only recently learned to read on their own. Every book felt like a treasure. They thought the little library was giving books away forever, so they carried each new one home, read it twice, and kept it safe. They had not known the books were meant to travel from reader to reader.",
+          prompt: "How should Muffin explain the library?",
+          choices: [
+            { text: "Show how to take one, then return or swap it", result: "Muffin nudged one book toward the library, then pointed her nose to another book in the wagon. The child understood: take a story, bring it back, or swap it for another so everyone gets a turn." },
+            { text: "Invite the child to help care for the shelves", result: "Muffin led the child to the empty shelves and showed them where each book belonged. The child understood that sharing a story does not make it smaller. It lets the story grow." }
+          ],
+          clue: 4,
+          label: "All four clues found. Mystery solved!"
+        },
+        end: {
+          chapter: "Mystery solved",
+          title: "Stories Are Better When They Travel",
+          text: "Together, Muffin and the child rolled the wagon back to the little library. They dusted every cover, returned every book, and made a bright new sign: TAKE A BOOK. RETURN IT OR SWAP IT. SHARE THE STORY. From then on, the child checked the shelves each afternoon, straightened crooked books, and helped younger readers choose their next adventure. They became the library's best helper. Muffin curled beneath the oak with a satisfied sigh. A shared story could travel farther than any detective trail.",
+          label: "The library's newest helper shares the stories"
+        }
+      };
+
+      var content = document.getElementById("content");
+      var chapter = document.getElementById("chapter");
+      var progressText = document.getElementById("progressText");
+      var dots = Array.prototype.slice.call(document.querySelectorAll(".clue-dot"));
+      var sceneCard = document.getElementById("sceneCard");
+      var artLabel = document.getElementById("artLabel");
+      var currentSpeech = null;
+
+      function stopSpeech() {
+        if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+        currentSpeech = null;
+        var btn = document.querySelector(".read-btn span");
+        if (btn) btn.textContent = "Read to Me";
+      }
+
+      function getReadableText() {
+        var title = content.querySelector("h1, h2");
+        var body = content.querySelector(".story-text");
+        var prompt = content.querySelector(".prompt");
+        var options = Array.prototype.slice.call(content.querySelectorAll(".choice")).map(function (b) { return b.textContent.trim(); });
+        return [title && title.textContent, body && body.textContent, prompt && prompt.textContent, options.length ? "Your choices are: " + options.join(". Or, ") : ""].filter(Boolean).join(". ");
+      }
+
+      function readPage() {
+        if (!("speechSynthesis" in window)) return;
+        if (window.speechSynthesis.speaking) { stopSpeech(); return; }
+        var utterance = new SpeechSynthesisUtterance(getReadableText());
+        currentSpeech = utterance;
+        utterance.rate = 0.92;
+        utterance.pitch = 1.02;
+        function finishReading() {
+          if (currentSpeech !== utterance) return;
+          currentSpeech = null;
+          var readLabel = document.querySelector(".read-btn span");
+          if (readLabel) readLabel.textContent = "Read to Me";
+        }
+        utterance.onend = finishReading;
+        utterance.onerror = finishReading;
+        var btn = document.querySelector(".read-btn span");
+        if (btn) btn.textContent = "Stop Reading";
+        window.speechSynthesis.speak(utterance);
+      }
+
+      function speakChoice(choiceText, onComplete) {
+        stopSpeech();
+        if (!("speechSynthesis" in window)) {
+          onComplete();
+          return;
+        }
+        var utterance = new SpeechSynthesisUtterance("You have chosen " + choiceText);
+        var finished = false;
+        currentSpeech = utterance;
+        utterance.rate = 0.92;
+        utterance.pitch = 1.02;
+        function finishChoice() {
+          if (finished) return;
+          finished = true;
+          if (currentSpeech === utterance) currentSpeech = null;
+          onComplete();
+        }
+        utterance.onend = finishChoice;
+        utterance.onerror = finishChoice;
+        window.speechSynthesis.speak(utterance);
+      }
+
+      function readButton() {
+        return '<button class="read-btn" type="button" data-action="read" aria-label="Read this page aloud"><svg class="speaker" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.1-3.8v7.6a4.5 4.5 0 0 0 2.1-3.8zm-2.1-8.8v2.1a7.5 7.5 0 0 1 0 13.4v2.1a9.5 9.5 0 0 0 0-17.6z"/></svg><span>Read to Me</span></button>';
+      }
+
+      function updateProgress() {
+        progressText.textContent = state.clues + " of 4 clues";
+        dots.forEach(function (dot, i) { dot.classList.toggle("found", i < state.clues); });
+      }
+
+      function render() {
+        stopSpeech();
+        var page = story[state.step];
+        chapter.textContent = page.chapter;
+        artLabel.textContent = page.label;
+        sceneCard.setAttribute("data-step", state.step);
+        updateProgress();
+
+        if (state.step === "intro") {
+          content.innerHTML = '<div class="trail-stamp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M8 3h16a3 3 0 0 1 3 3v21l-11-5-11 5V6a3 3 0 0 1 3-3zm3 6v2h10V9H11zm0 5v2h10v-2H11z"/></svg>Choose-your-path mystery</div><h1>' + page.title + '</h1><p class="story-text">' + page.text + '</p><div class="trail-meta start-row">' + readButton() + '<button class="start-btn" type="button" data-action="start">Begin the clue trail</button></div>';
+          return;
+        }
+
+        if (state.step === "end") {
+          content.innerHTML = '<h2>' + page.title + '</h2><p class="story-text">' + page.text + '</p><div class="ending-note">Case closed: the books were never lost. They were loved by a reader who just needed to learn how sharing works.</div><div class="trail-meta start-row">' + readButton() + '<button class="restart-btn" type="button" data-action="restart">Start Over</button></div>';
+          return;
+        }
+
+        var introText = page.base;
+        if (state.lastChoice && Number(state.step) > 1) introText = state.lastChoice + " " + introText;
+        var choices = page.choices.map(function (choice, i) {
+          return '<button class="choice" type="button" data-choice="' + i + '"><span class="choice-icon">' + (i === 0 ? 'A' : 'B') + '</span><span>' + choice.text + '</span></button>';
+        }).join("");
+        content.innerHTML = '<h2>' + page.title + '</h2><p class="story-text">' + introText + '</p><div class="trail-meta start-row">' + readButton() + '</div><p class="prompt">' + page.prompt + '</p><div class="choices">' + choices + '</div>';
+      }
+
+      content.addEventListener("click", function (event) {
+        var button = event.target.closest("button");
+        if (!button) return;
+        var action = button.getAttribute("data-action");
+        if (action === "read") { readPage(); return; }
+        if (action === "start") {
+          state.step = "1";
+          state.clues = 0;
+          state.lastChoice = "";
+          render();
+          content.querySelector("h2").focus && content.querySelector("h2").focus();
+          return;
+        }
+        if (action === "restart") {
+          state = { step: "intro", clues: 0, lastChoice: "" };
+          render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+        if (button.hasAttribute("data-choice")) {
+          var page = story[state.step];
+          var picked = page.choices[Number(button.getAttribute("data-choice"))];
+          Array.prototype.forEach.call(content.querySelectorAll(".choice"), function (choiceButton) {
+            choiceButton.disabled = true;
+          });
+          speakChoice(picked.text, function () {
+            state.lastChoice = picked.result;
+            state.clues = Math.max(state.clues, page.clue);
+            state.step = state.step === "5" ? "end" : String(Number(state.step) + 1);
+            render();
+            if (window.innerWidth < 821) document.querySelector(".story-card").scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        }
+      });
+
+      window.addEventListener("pagehide", stopSpeech);
+      render();
+    }());
+  </script>
+</body>
+</html>
