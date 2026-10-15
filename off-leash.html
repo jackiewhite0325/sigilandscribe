@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Muffin Off Leash: free stories, mood journaling, and coping tools for teens." />
+  <link rel="icon" href="data:," />
+  <title>Muffin Off Leash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #e9edf0;
+      --ink: #17202d;
+      --muted: #4f5c69;
+      --walnut: #7b4f3c;
+      --gold: #c18a55;
+      --card: #f4f5f4;
+      --line: #9ba8b2;
+      --focus: #9f542f;
+      --radius-lg: 4px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #0d1420;
+        --ink: #f0e9df;
+        --muted: #b8c1ca;
+        --walnut: #d39a6a;
+        --gold: #d49b63;
+        --card: #121c29;
+        --line: #526174;
+        --focus: #f0ad72;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Nunito", sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      padding: 2rem 1rem;
+    }
+    main { max-width: 800px; margin: 0 auto; }
+    h1 {
+      font-family: "Fraunces", serif;
+      font-size: 2.2rem;
+      color: var(--walnut);
+      margin-bottom: 0.5rem;
+    }
+    .age-note { color: var(--muted); font-size: 0.95rem; margin-bottom: 0; }
+    .hero p { font-size: 1.1rem; }
+    h2 {
+      font-family: "Fraunces", serif;
+      font-size: 1.5rem;
+      color: var(--walnut);
+      margin-top: 2.5rem;
+    }
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .story-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+    }
+    .story-card h3 {
+      font-family: "Fraunces", serif;
+      margin-top: 0;
+      color: var(--walnut);
+    }
+    .hook { color: var(--muted); font-size: 0.95rem; }
+    .button {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      font-weight: 700;
+      margin-top: 0.5rem;
+    }
+    .button-primary {
+      background: var(--walnut);
+      color: #fff;
+    }
+    .button-primary:hover { opacity: 0.9; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+    footer a { color: var(--focus); }
+  </style>
+</head>
+<body>
+  <main id="main">
+    <section class="hero" aria-labelledby="hub-title">
+      <p class="age-note">For ages 13 to 17.</p>
+      <h1 id="hub-title">Muffin Off Leash</h1>
+      <p>You get to read books here. No explaining required.</p>
+    </section>
+
+    <section aria-labelledby="sections-title">
+      <h2 id="sections-title">Choose where to go</h2>
+      <p>Three doors. Pick the one you need.</p>
+
+      <div class="story-grid">
+        <article class="story-card">
+          <h3>Stories</h3>
+          <p class="hook">Free books about being disabled, neurodivergent, misread, exhausted, loyal, angry, funny, and still here.</p>
+          <a href="off-leash-stories.html" class="button button-primary">Read stories</a>
+        </article>
+
+        <article class="story-card">
+          <h3>Mood Weather Journaling</h3>
+          <p class="hook">Pick a mood and work through it with gentle prompts.</p>
+          <a href="off-leash-mood-journal.html" class="button button-primary">Open journal</a>
+        </article>
+
+        <article class="story-card">
+          <h3>Coping Micro-Library</h3>
+          <p class="hook">Seven small tools for hard moments.</p>
+          <a href="off-leash-coping.html" class="button button-primary">Browse tools</a>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <p><a href="index.html">&larr; Back to Sigil and Scribe</a></p>
+    </footer>
+  </main>
+</body>
+</html>
