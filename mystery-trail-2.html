@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <title>The Case of the Midnight Garden Visitor</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper:#fffaf0; --paper-2:#f8ecd4; --ink:#3c2418; --muted:#6d4d39;
+      --walnut:#573421; --walnut-2:#392116; --gold:#c5902f; --gold-soft:#f0d38a;
+      --leaf:#496541; --leaf-deep:#314c32; --line:#b98b54; --night:#22314c;
+      --shadow:0 16px 38px rgba(64,39,20,.16); --focus:#236a80;
+    }
+    @media (prefers-color-scheme:dark){
+      :root{--paper:#241b17;--paper-2:#33261e;--ink:#fff4dc;--muted:#e0c7aa;--walnut:#f0ce96;--walnut-2:#f8dfb7;--gold:#e3b65d;--gold-soft:#654f2d;--leaf:#8fb48a;--leaf-deep:#b8d4aa;--line:#80603d;--night:#141b2d;--shadow:0 18px 44px rgba(0,0,0,.4);--focus:#7bd1e8}
+    }
+    *{box-sizing:border-box}
+    html{min-height:100%;background:var(--paper-2)}
+    body{margin:0;min-height:100vh;color:var(--ink);font-family:"Nunito",sans-serif;background:
+      radial-gradient(circle at 15% 4%,color-mix(in srgb,var(--gold-soft) 50%,transparent),transparent 28rem),
+      linear-gradient(180deg,var(--paper-2),var(--paper));}
+    button{font:inherit}
+    button:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+    .page{width:min(1180px,100%);margin:0 auto;padding:clamp(14px,3vw,34px)}
+    .story-shell{background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;border-radius:26px}
+    .story-top{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);min-height:670px}
+    .art{position:relative;min-height:560px;background:var(--night);overflow:hidden}
+    .art img{width:100%;height:100%;object-fit:cover;display:block}
+    .art:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(25,20,15,.28));pointer-events:none}
+    .chapter-tab{position:absolute;z-index:2;left:18px;top:18px;background:rgba(255,250,240,.94);color:#402618;border:2px solid #c99642;border-radius:999px;padding:10px 15px;font-weight:800;box-shadow:0 6px 16px rgba(35,22,14,.18)}
+    .story{display:flex;flex-direction:column;padding:clamp(24px,4vw,52px);background:linear-gradient(180deg,var(--paper),color-mix(in srgb,var(--paper-2) 45%,var(--paper)))}
+    .meta{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:26px}
+    .progress-wrap{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:800}
+    .dots{display:flex;gap:7px}
+    .dot{width:18px;height:18px;border:2px solid var(--gold);border-radius:50%;background:transparent;transition:background .2s}
+    .dot.found{background:var(--gold);box-shadow:inset 0 0 0 3px var(--paper)}
+    .read{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:var(--paper);color:var(--walnut);border-radius:12px;padding:11px 14px;min-height:48px;font-weight:800;cursor:pointer;box-shadow:0 3px 0 color-mix(in srgb,var(--line) 70%,transparent)}
+    .read:hover{background:var(--paper-2)}
+    .read svg{width:21px;height:21px;fill:currentColor}
+    .kicker{color:var(--leaf-deep);font-weight:800;margin:0 0 8px;font-size:.96rem}
+    h1,h2{font-family:"Fraunces",serif;color:var(--walnut-2);line-height:1.07;margin:0}
+    h1{font-size:clamp(2rem,4vw,3.45rem);max-width:12ch}
+    h2{font-size:clamp(1.7rem,3vw,2.45rem)}
+    .body{font-size:clamp(1.12rem,1.8vw,1.31rem);line-height:1.64;margin:22px 0;color:var(--ink)}
+    .question{font-family:"Fraunces",serif;font-size:clamp(1.32rem,2vw,1.7rem);line-height:1.25;color:var(--walnut);margin:6px 0 16px}
+    .choices{display:grid;gap:12px;margin-top:auto}
+    .choice{width:100%;border:2px solid var(--gold);background:color-mix(in srgb,var(--gold-soft) 38%,var(--paper));color:var(--walnut-2);border-radius:15px;padding:16px 18px;min-height:66px;text-align:left;font-weight:800;font-size:1.06rem;cursor:pointer;box-shadow:0 4px 0 color-mix(in srgb,var(--gold) 75%,var(--walnut));transition:transform .12s,box-shadow .12s,background .12s}
+    .choice:hover{background:color-mix(in srgb,var(--gold-soft) 64%,var(--paper));transform:translateY(-1px);box-shadow:0 5px 0 color-mix(in srgb,var(--gold) 75%,var(--walnut))}
+    .choice:active{transform:translateY(3px);box-shadow:0 1px 0 var(--gold)}
+    .choice small{display:block;color:var(--muted);font-weight:600;margin-top:3px}
+    .clue-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:16px 20px;background:var(--walnut-2);color:#fff5df}
+    .clue{display:flex;align-items:center;justify-content:center;gap:8px;min-width:0;font-size:.9rem;font-weight:800;opacity:.55}
+    .clue.found{opacity:1;color:#ffe6a8}
+    .clue svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+    .ending-note{background:color-mix(in srgb,var(--leaf) 14%,var(--paper));border:1px solid color-mix(in srgb,var(--leaf) 50%,var(--paper));padding:15px 17px;border-radius:13px;margin:4px 0 18px;font-weight:700;color:var(--leaf-deep)}
+    .restart{border:0;background:var(--leaf-deep);color:var(--paper);border-radius:14px;padding:15px 20px;min-height:58px;font-weight:800;font-size:1.06rem;cursor:pointer;text-align:center;box-shadow:0 4px 0 color-mix(in srgb,var(--leaf-deep) 65%,#000)}
+    .restart:hover{filter:brightness(1.08)}
+    .nospeech{font-size:.92rem;color:var(--muted);margin:10px 0 0}
+    @media(max-width:800px){
+      .page{padding:0}.story-shell{border-radius:0;border-left:0;border-right:0}.story-top{grid-template-columns:1fr;min-height:0}.art{min-height:clamp(280px,72vw,500px)}.story{padding:24px 20px 30px}.clue-strip{grid-template-columns:1fr 1fr;padding:16px}.clue{justify-content:flex-start}.meta{margin-bottom:20px}h1{max-width:none}
+    }
+    @media(max-width:420px){.dot{width:15px;height:15px}.story{padding-inline:17px}.chapter-tab{left:12px;top:12px;font-size:.88rem}.clue-strip{gap:9px 12px}.clue{font-size:.82rem}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="story-shell" aria-live="polite">
+      <div class="story-top">
+        <section class="art" aria-label="Muffin investigates the moonlit garden">
+          <img src="assets/media-generation-muffin-midnight-garden-canon-4-0-7c642452-c882-4dc5-add2-5b6d5e00cfd9.webp" alt="Warm watercolor illustration of Muffin, a black-and-white pitbull with a black patch over her left eye and ear" />
+          <div class="chapter-tab" id="chapterTab">Mystery begins</div>
+        </section>
+        <section class="story">
+          <div class="meta">
+            <div class="progress-wrap" aria-label="Clue progress"><span id="progressText">Clues found: 0 of 4</span><span class="dots" id="dots" aria-hidden="true"></span></div>
+            <button class="read" id="readBtn" type="button" aria-label="Read this page aloud">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.05A4.5 4.5 0 0 0 16.5 12zm-2.5-9v2.06a7.5 7.5 0 0 1 0 13.88V21a9.5 9.5 0 0 0 0-18z"/></svg>
+              <span id="readLabel">Read to Me</span>
+            </button>
+          </div>
+          <p class="kicker" id="kicker"></p>
+          <h1 id="title"></h1>
+          <div class="body" id="body"></div>
+          <p class="question" id="question"></p>
+          <div class="choices" id="choices"></div>
+          <p class="nospeech" id="speechNote" hidden>Read-aloud is not available in this browser, but you can keep exploring the mystery.</p>
+        </section>
+      </div>
+      <div class="clue-strip" id="clueStrip" aria-label="Mystery clues"></div>
+    </article>
+  </main>
+<script>
+(function(){
+  var CLUES={
+    prints:{label:"Tiny hand-like prints",icon:'<svg viewBox="0 0 24 24"><path d="M8 10c-1.8-1.1-2.7-2.3-2-3.4.8-1.2 2.3.2 3.5 1.5-.4-2-.2-3.6 1.1-3.8 1.4-.2 1.7 1.9 1.8 3.6.8-2 1.7-3.3 2.9-2.8 1.2.5.4 2.4-.5 3.9 1.7-1.1 3.2-1.5 3.8-.4.7 1.3-1.1 2.7-2.6 3.5 1.5 2.7.7 5.5-2.4 6.3-3.4.9-6.5-.6-6.8-3.5-.2-1.7.2-3.1 1.2-4.9z"/></svg>'},
+    tail:{label:"Striped tail",icon:'<svg viewBox="0 0 24 24"><path d="M4 18c4 1 9 0 12-3 4-4 3-9 1-11M7 17l-1-4m5 3-2-4m6 1-3-3m6-1-4-2"/></svg>'},
+    can:{label:"Overturned trash can",icon:'<svg viewBox="0 0 24 24"><path d="M5 7h14M9 7V4h6v3m-8 0 1 13h8l1-13M10 10v7m4-7v7"/></svg>'},
+    sounds:{label:"Soft chittering",icon:'<svg viewBox="0 0 24 24"><path d="M4 10v4m4-7v10m4-13v16m4-13v10m4-7v4"/></svg>'}
+  };
+  var scenes={
+    start:{step:"Decision 1 of 5",kicker:"A new Mystery Trail",title:"The Case of the Midnight Garden Visitor",body:"Every morning, Muffin finds new holes in the garden. A tomato plant is tipped sideways. The marigolds look as if someone danced through them in the dark.<br><br>Tonight, Muffin brings a notebook, a magnifying glass, and you. The garden is quiet beneath the moon.",question:"Where should Muffin investigate first?",choices:[
+      {label:"Study the fresh hole by the tomatoes",next:"prints",clue:"prints",hint:"The soft soil may hold a visitor's tracks."},
+      {label:"Check the overturned trash can",next:"can",clue:"can",hint:"Something left apple peels scattered nearby."}
+    ]},
+    prints:{step:"Decision 2 of 5",kicker:"Clue found",title:"Little prints in the soil",body:"Around the hole are tiny prints shaped almost like little hands. Muffin sniffs carefully. The visitor was not digging for mischief. It was searching for something.<br><br>A leaf trembles beside the fence, though the breeze has stopped.",question:"What should Muffin do next?",choices:[
+      {label:"Follow the prints toward the bushes",next:"tail",clue:"tail",hint:"Something just slipped behind the leaves."},
+      {label:"Look for what the visitor was seeking",next:"canAfterPrints",clue:"can",hint:"A trail of apple peels leads away from the soil."}
+    ]},
+    can:{step:"Decision 2 of 5",kicker:"Clue found",title:"A midnight snack trail",body:"The lid is tipped over, but the trash is not scattered everywhere. Only apple peels and a corn cob have been pulled out. Beside them, Muffin spots tiny hand-like prints pressed into the dust.<br><br>Whoever came here was hungry and surprisingly tidy.",question:"Which trail should Muffin follow?",choices:[
+      {label:"Follow the tiny prints",next:"tail",clue:"prints",hint:"They wander toward the thick bushes."},
+      {label:"Sniff along the garden fence",next:"sounds",clue:"sounds",hint:"A faint rustle is coming from the far corner."}
+    ]},
+    canAfterPrints:{step:"Decision 3 of 5",kicker:"Another clue",title:"The snack stop",body:"The apple-peel trail ends at the overturned trash can. Only food scraps were touched. Muffin writes in the notebook: “Our visitor may be looking for dinner.”<br><br>Then two leaves bounce near the fence.",question:"Where should Muffin watch from?",choices:[
+      {label:"Settle behind the watering cans",next:"stakeTail",clue:"tail",hint:"There is a clear view of the bushes."},
+      {label:"Hide beside the marigolds",next:"stakeSounds",clue:"sounds",hint:"It is close to the quietest corner."}
+    ]},
+    tail:{step:"Decision 3 of 5",kicker:"Another clue",title:"A striped flash",body:"Muffin follows slowly. Just ahead, a fluffy striped tail slips into the bushes. It is too small to belong to a big animal, and too ringed to belong to a cat.<br><br>From behind the leaves comes a soft scrape, then silence.",question:"How should Muffin set up the stakeout?",choices:[
+      {label:"Watch quietly from behind the watering cans",next:"stakeSounds",clue:"sounds",hint:"Good detectives know when to be still."},
+      {label:"Leave an apple slice where the moonlight shines",next:"stakeCan",clue:"can",hint:"A kind invitation may bring the visitor closer."}
+    ]},
+    sounds:{step:"Decision 3 of 5",kicker:"Another clue",title:"Chitters in the shadows",body:"Muffin pauses beside the fence. A soft chitter-chitter answers from the bushes. It does not sound angry. It sounds like several tiny voices trying to whisper at once.<br><br>A striped tail vanishes behind a squash leaf.",question:"How should Muffin continue the stakeout?",choices:[
+      {label:"Sit still and listen",next:"stakeTail",clue:"tail",hint:"The visitors may come out when they feel safe."},
+      {label:"Place a corn cob near the garden edge",next:"stakeCan",clue:"can",hint:"The missing food might explain the visits."}
+    ]},
+    stakeTail:{step:"Decision 4 of 5",kicker:"The stakeout",title:"Three striped tails",body:"Muffin waits without making a sound. Soon one striped tail appears, then a smaller one, then the tiniest tail of all. Three masked faces peek through the leaves.<br><br>It is a raccoon parent with two curious kits. They look tired, not troublesome.",question:"How should Muffin say hello?",choices:[
+      {label:"Stay low and give a friendly tail wag",next:"revealWarm",clue:"sounds",hint:"A calm greeting gives everyone space."},
+      {label:"Slide the apple slice closer, then step back",next:"revealSnack",clue:"can",hint:"Kindness can be quiet."}
+    ]},
+    stakeSounds:{step:"Decision 4 of 5",kicker:"The stakeout",title:"A family whisper",body:"Muffin settles down and listens. The chittering becomes a gentle conversation. A raccoon parent peeks out, followed by two little kits. One kit has a marigold petal balanced on its head.<br><br>They are not vandals. They are searching for food and a safe place to sleep.",question:"How should Muffin welcome them?",choices:[
+      {label:"Offer a quiet, friendly bow",next:"revealWarm",clue:"tail",hint:"Muffin can show that this garden is peaceful."},
+      {label:"Point out the untouched apple slice",next:"revealSnack",clue:"can",hint:"A small snack helps everyone talk."}
+    ]},
+    stakeCan:{step:"Decision 4 of 5",kicker:"The stakeout",title:"Visitors in the moonlight",body:"The apple slice glows pale in the moonlight. A raccoon parent creeps forward, followed by two kits with round ears and striped tails. They share the apple neatly.<br><br>The parent chitters softly. Their old hollow tree fell, and they have been searching every night for a safe home.",question:"What should Muffin do?",choices:[
+      {label:"Show them a sheltered spot by the old stump",next:"homeChoice",clue:"sounds",hint:"It is quiet and away from the vegetables."},
+      {label:"Walk with them along the garden edge",next:"homeChoice",clue:"prints",hint:"Together, you can look for the best place."}
+    ]},
+    revealWarm:{step:"Decision 5 of 5",kicker:"Mystery solved",title:"Not a vandal after all",body:"The raccoon parent explains in gentle chitters: their hollow tree fell in a storm. The family has been looking for food and a dry place to rest. The kits dug holes because they smelled beetle grubs beneath the soil.<br><br>Muffin has one last case to solve: where can the family live without disturbing the plants?",question:"Choose a cozy new home.",choices:[
+      {label:"The leafy nook beside the old stump",next:"endingStump",hint:"It is dry, hidden, and far from the garden beds."},
+      {label:"The brushy corner beyond the garden fence",next:"endingBrush",hint:"It has shade, fallen branches, and room to explore."}
+    ]},
+    revealSnack:{step:"Decision 5 of 5",kicker:"Mystery solved",title:"A family looking for home",body:"The raccoons nibble the apple, then explain with soft chitters. Their hollow tree fell in a storm. The little ones were hungry, and the garden smelled full of beetle grubs and fallen vegetables.<br><br>Muffin understands. The last clue is not about who made the mess. It is about how everyone can share this space.",question:"Where should their cozy new home be?",choices:[
+      {label:"The leafy nook beside the old stump",next:"endingStump",hint:"It is dry, hidden, and far from the garden beds."},
+      {label:"The brushy corner beyond the garden fence",next:"endingBrush",hint:"It has shade, fallen branches, and room to explore."}
+    ]},
+    homeChoice:{step:"Decision 5 of 5",kicker:"One kind choice",title:"A home at the garden's edge",body:"The family follows Muffin past the marigolds. There are two peaceful places where they could curl up together. Both are away from the tender plants and close to the wild edge of the yard.",question:"Which spot feels just right?",choices:[
+      {label:"The leafy nook beside the old stump",next:"endingStump",hint:"It is dry, hidden, and close to a patch of beetles."},
+      {label:"The brushy corner beyond the garden fence",next:"endingBrush",hint:"It has shade, fallen branches, and room to explore."}
+    ]},
+    endingStump:{step:"Case complete",kicker:"A warm ending",title:"Room for everyone",body:"Together, Muffin and the raccoon family carry leaves and soft grass to the old stump. The kits curl into a striped bundle while their parent tucks branches around the nook.<br><br>From then on, fallen fruit is placed near the wild edge, and a small fence guards the garden beds. The raccoons leave the tomatoes alone and help by eating beetle grubs nearby.",note:"Sharing space does not mean everyone needs the same spot. Sometimes kindness is helping each other find the place that fits.",choices:[{label:"Start Over",next:"start",restart:true}]},
+    endingBrush:{step:"Case complete",kicker:"A warm ending",title:"Good neighbors under the stars",body:"Muffin leads the family to the brushy corner beyond the fence. They weave fallen branches into a snug little shelter. The kits test every corner, then choose one big pile of leaves for their bed.<br><br>After that, Muffin leaves fallen fruit at the garden's edge. The raccoons stay out of the flower beds, and everyone has room to grow.",note:"A garden can belong to flowers, vegetables, beetles, birds, dogs, and visiting families. Good neighbors make space for one another.",choices:[{label:"Start Over",next:"start",restart:true}]}
+  };
+  var state={scene:"start",clues:[]};
+  var els={tab:document.getElementById("chapterTab"),kicker:document.getElementById("kicker"),title:document.getElementById("title"),body:document.getElementById("body"),question:document.getElementById("question"),choices:document.getElementById("choices"),dots:document.getElementById("dots"),progress:document.getElementById("progressText"),strip:document.getElementById("clueStrip"),read:document.getElementById("readBtn"),readLabel:document.getElementById("readLabel"),speechNote:document.getElementById("speechNote")};
+  function addClue(name){if(name&&state.clues.indexOf(name)<0)state.clues.push(name)}
+  function renderProgress(){
+    els.progress.textContent="Clues found: "+state.clues.length+" of 4";
+    els.dots.innerHTML="";
+    for(var i=0;i<4;i++){var d=document.createElement("span");d.className="dot"+(i<state.clues.length?" found":"");els.dots.appendChild(d)}
+    els.strip.innerHTML="";
+    Object.keys(CLUES).forEach(function(key){var c=document.createElement("div");c.className="clue"+(state.clues.indexOf(key)>=0?" found":"");c.innerHTML=CLUES[key].icon+"<span>"+CLUES[key].label+"</span>";els.strip.appendChild(c)});
+  }
+  function speakText(){
+    if(!("speechSynthesis" in window)){els.speechNote.hidden=false;return}
+    if(window.speechSynthesis.speaking){window.speechSynthesis.cancel();els.readLabel.textContent="Read to Me";return}
+    var s=scenes[state.scene];var text=[s.title,els.body.textContent,s.question||"",s.note||""].join(". ");
+    var u=new SpeechSynthesisUtterance(text);u.rate=.92;u.pitch=1.02;u.onend=u.onerror=function(){els.readLabel.textContent="Read to Me"};els.readLabel.textContent="Stop Reading";window.speechSynthesis.speak(u)
+  }
+  function go(next,clue,restart){
+    if("speechSynthesis" in window)window.speechSynthesis.cancel();els.readLabel.textContent="Read to Me";
+    if(restart){state.clues=[]}else addClue(clue);
+    state.scene=next;render();document.querySelector(".story-shell").scrollIntoView({behavior:"smooth",block:"start"})
+  }
+  var choosing=false;
+  function choose(ch){
+    if(choosing)return;
+    if(!("speechSynthesis" in window)){go(ch.next,ch.clue,ch.restart);return}
+    choosing=true;
+    window.speechSynthesis.cancel();
+    els.readLabel.textContent="Read to Me";
+    Array.prototype.forEach.call(els.choices.querySelectorAll("button"),function(button){button.disabled=true});
+    var finished=false;
+    function finish(){if(finished)return;finished=true;go(ch.next,ch.clue,ch.restart)}
+    var u=new SpeechSynthesisUtterance("You have chosen "+ch.label+".");
+    u.rate=.92;u.pitch=1.02;u.onend=finish;u.onerror=finish;
+    try{window.speechSynthesis.speak(u)}catch(error){finish()}
+  }
+  function render(){
+    choosing=false;
+    var s=scenes[state.scene];els.tab.textContent=s.step;els.kicker.textContent=s.kicker;els.title.textContent=s.title;els.body.innerHTML=s.body;els.question.textContent=s.question||"";els.question.hidden=!s.question;els.choices.innerHTML="";
+    if(s.note){var n=document.createElement("div");n.className="ending-note";n.textContent=s.note;els.body.appendChild(n)}
+    s.choices.forEach(function(ch){var b=document.createElement("button");b.type="button";b.className=ch.restart?"restart":"choice";b.innerHTML="<span>"+ch.label+"</span>"+(ch.hint?"<small>"+ch.hint+"</small>":"");b.addEventListener("click",function(){choose(ch)});els.choices.appendChild(b)});
+    renderProgress()
+  }
+  els.read.addEventListener("click",speakText);
+  if(!("speechSynthesis" in window))els.speechNote.hidden=false;
+  render();
+})();
+</script>
+</body>
+</html>
