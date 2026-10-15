@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Quest Board</title>
+  <style>
+    :root { color-scheme: light dark; --paper:#fbf3dd; --paper-deep:#f1dfb7; --ink:#3c291e; --muted:#6f5542; --walnut:#5a3926; --walnut-2:#76513a; --gold:#bd8626; --gold-soft:#efd99e; --leaf:#426542; --line:#d3b878; --shadow:rgba(73,43,25,.16); --white:#fffdf7; --focus:#176b8d; --completed:#edf3df; }
+    @media (prefers-color-scheme: dark) { :root { --paper:#241d18; --paper-deep:#34281f; --ink:#fff1cf; --muted:#dbc9a6; --walnut:#e4bd79; --walnut-2:#b89060; --gold:#f2c866; --gold-soft:#59451f; --leaf:#9fca86; --line:#6d5731; --shadow:rgba(0,0,0,.32); --white:#2f2721; --focus:#74d6ff; --completed:#2d3a28; } }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-height:100vh; color:var(--ink); background:radial-gradient(circle at 8% 10%,rgba(189,134,38,.12) 0 2px,transparent 3px),linear-gradient(180deg,var(--paper-deep) 0,var(--paper) 260px,var(--paper) 100%); font-family:"Avenir Next","Trebuchet MS",sans-serif; line-height:1.55; }
+    button,input { font:inherit; } button { color:inherit; }
+    button:focus-visible,input:focus-visible,label:has(input:focus-visible) { outline:4px solid var(--focus); outline-offset:3px; }
+    .page { width:min(1120px,100%); margin:0 auto; padding:38px 24px 72px; }
+    .intro { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr); gap:34px; align-items:end; margin-bottom:32px; }
+    h1,h2,h3 { font-family:Georgia,"Times New Roman",serif; line-height:1.12; margin:0; color:var(--walnut); }
+    h1 { font-size:clamp(2.6rem,7vw,5.5rem); letter-spacing:-.045em; max-width:760px; }
+    .intro p { font-size:clamp(1.08rem,2.5vw,1.35rem); margin:18px 0 0; max-width:650px; }
+    .promise { position:relative; padding:22px 22px 20px 32px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted); font-size:1.02rem; }
+    .promise::before { content:"✦"; position:absolute; left:4px; top:18px; color:var(--gold); font-size:1.4rem; }
+    .promise strong { display:block; color:var(--ink); font-size:1.1rem; }
+    .quest-tabs { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:0 0 24px; }
+    .quest-tab { min-height:76px; border:1px solid var(--line); border-radius:18px 18px 8px 8px; background:color-mix(in srgb,var(--white) 88%,transparent); padding:12px 14px; cursor:pointer; text-align:left; box-shadow:0 5px 16px var(--shadow); transition:background .2s,transform .2s; }
+    .quest-tab:hover { transform:translateY(-2px); }
+    .quest-tab[aria-selected="true"] { background:var(--walnut); color:var(--paper); border-color:var(--walnut); }
+    .tab-number { display:block; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; opacity:.82; }
+    .tab-title { display:block; font-weight:800; font-size:1rem; line-height:1.25; margin-top:3px; }
+    .quest-panel { display:none; } .quest-panel.active { display:block; }
+    .quest-shell { background:var(--white); border:1px solid var(--line); border-radius:26px 10px 26px 10px; box-shadow:0 20px 55px var(--shadow); overflow:hidden; }
+    .quest-hero { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(330px,.92fr); min-height:370px; }
+    .hero-copy { padding:clamp(28px,5vw,56px); align-self:center; }
+    .quest-kicker { color:var(--gold); font-weight:900; letter-spacing:.08em; text-transform:uppercase; font-size:.8rem; }
+    .hero-copy h2 { font-size:clamp(2rem,5vw,3.6rem); margin-top:7px; letter-spacing:-.025em; }
+    .hero-copy p { font-size:1.1rem; color:var(--muted); margin:18px 0 24px; max-width:54ch; }
+    .hero-art { min-height:320px; position:relative; overflow:hidden; background:var(--paper-deep); }
+    .hero-art img { width:100%; height:100%; object-fit:cover; display:block; }
+    .art-caption { position:absolute; left:14px; bottom:14px; margin:0; padding:7px 10px; background:rgba(42,28,19,.82); color:#fff7e3; border-radius:8px; font-size:.8rem; }
+    .controls { display:flex; flex-wrap:wrap; gap:11px; align-items:center; }
+    .read-button,.reset-button,.celebration-button { border:0; border-radius:12px; min-height:50px; padding:11px 17px; font-weight:900; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
+    .read-button { background:var(--walnut); color:var(--paper); }
+    .reset-button { background:transparent; border:2px solid var(--line); color:var(--walnut); }
+    .button-icon { width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .visit-note { font-size:.86rem!important; color:var(--muted); margin:10px 0 0!important; }
+    .quest-work { padding:clamp(22px,5vw,52px); border-top:1px solid var(--line); }
+    .progress-row { display:flex; gap:18px; justify-content:space-between; align-items:end; margin-bottom:20px; }
+    .progress-row h3 { font-size:clamp(1.45rem,3vw,2rem); }
+    .count { color:var(--muted); font-weight:800; white-space:nowrap; }
+    .progress-track { height:10px; background:var(--paper-deep); border-radius:999px; overflow:hidden; margin-bottom:26px; }
+    .progress-fill { width:0; height:100%; background:linear-gradient(90deg,var(--leaf),var(--gold)); transition:width .35s ease; }
+    .steps { display:grid; gap:18px; }
+    .step { padding:20px; border:1px solid var(--line); border-radius:12px 24px 12px 24px; background:color-mix(in srgb,var(--paper) 52%,var(--white)); transition:background .2s,border-color .2s; }
+    .step.done { background:var(--completed); border-color:var(--leaf); }
+    .step-heading { display:grid; grid-template-columns:46px minmax(0,1fr) 54px; align-items:center; gap:14px; }
+    .step-number { width:42px; height:42px; display:grid; place-items:center; border-radius:50%; background:var(--paper-deep); color:var(--walnut); font-family:Georgia,"Times New Roman",serif; font-size:1.25rem; font-weight:700; }
+    .step-copy strong { display:block; font-size:1.08rem; line-height:1.25; }
+    .step-copy span { display:block; color:var(--muted); margin-top:3px; font-size:.93rem; }
+    .mini-badge { width:48px; height:48px; display:grid; place-items:center; border-radius:50%; border:2px dashed var(--line); color:var(--line); background:var(--white); transform:scale(.8) rotate(-8deg); opacity:.52; transition:transform .28s,opacity .28s; }
+    .mini-badge svg { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:2; }
+    .step.done .mini-badge { color:var(--gold); border-style:solid; opacity:1; transform:scale(1) rotate(0); box-shadow:inset 0 0 0 4px var(--gold-soft); }
+    .question-block { margin:16px 0 0 60px; padding-top:15px; border-top:1px solid color-mix(in srgb,var(--line) 72%,transparent); }
+    .question-type { display:block; color:var(--leaf); font-size:.78rem; font-weight:900; letter-spacing:.06em; text-transform:uppercase; }
+    .question-block h4 { margin:4px 0 13px; font-family:Georgia,"Times New Roman",serif; color:var(--ink); font-size:clamp(1.08rem,2.4vw,1.28rem); line-height:1.35; }
+    .answer-choices { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+    .answer-button { min-height:48px; padding:10px 13px; border:2px solid var(--line); border-radius:10px; background:var(--white); color:var(--ink); text-align:left; font-weight:800; cursor:pointer; transition:border-color .16s,background .16s; }
+    .answer-button:hover:not(:disabled) { border-color:var(--gold); background:var(--paper); }
+    .answer-button:disabled { cursor:default; opacity:.68; }
+    .answer-button.answer-correct { border-color:var(--leaf); background:var(--completed); color:var(--ink); opacity:1; }
+    .answer-button.try-again { border-color:var(--gold); background:var(--gold-soft); }
+    .answer-feedback { min-height:1.6em; margin:10px 0 0; color:var(--muted); font-weight:800; }
+    .step.done .answer-feedback { color:var(--leaf); }
+    .celebration { position:fixed; inset:0; z-index:50; display:none; align-items:center; justify-content:center; padding:20px; background:rgba(41,28,20,.76); }
+    .celebration.show { display:flex; }
+    .celebration-card { width:min(720px,100%); max-height:min(92vh,850px); overflow-y:auto; background:var(--paper); color:var(--ink); border:3px solid var(--gold); border-radius:30px 10px 30px 10px; padding:clamp(28px,6vw,58px); text-align:center; box-shadow:0 28px 80px rgba(0,0,0,.35); }
+    .celebration-sparkles { color:var(--gold); font-size:2rem; letter-spacing:.4rem; }
+    .celebration-card h2 { font-size:clamp(2.2rem,7vw,4.5rem); margin:7px 0 14px; }
+    .celebration-card p { font-size:1.13rem; max-width:50ch; margin:0 auto; }
+    .badge-rack { display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin:28px 0; }
+    .badge-earned { width:94px; display:grid; justify-items:center; gap:7px; font-size:.78rem; font-weight:900; color:var(--muted); line-height:1.15; }
+    .badge-medal { width:70px; height:70px; border-radius:50%; background:var(--gold-soft); color:var(--gold); border:3px solid var(--gold); display:grid; place-items:center; box-shadow:inset 0 0 0 5px var(--paper); }
+    .badge-medal svg { width:34px; height:34px; fill:none; stroke:currentColor; stroke-width:2; }
+    .celebration-button { background:var(--walnut); color:var(--paper); min-width:180px; }
+    .toast { position:fixed; z-index:70; left:50%; bottom:max(22px,env(safe-area-inset-bottom)); transform:translate(-50%,20px); width:min(460px,calc(100% - 32px)); padding:14px 18px; border-radius:14px; background:var(--walnut); color:var(--paper); box-shadow:0 12px 35px rgba(0,0,0,.3); text-align:center; font-weight:800; opacity:0; pointer-events:none; transition:opacity .22s,transform .22s; }
+    .toast.show { opacity:1; transform:translate(-50%,0); }
+    @media (max-width:760px) {
+      .page { padding:26px 16px 60px; } .intro { grid-template-columns:1fr; gap:18px; align-items:start; } .quest-tabs { grid-template-columns:1fr; gap:8px; }
+      .quest-tab { min-height:62px; border-radius:14px; display:grid; grid-template-columns:70px 1fr; align-items:center; } .tab-title { margin:0; }
+      .quest-hero { grid-template-columns:1fr; } .hero-art { min-height:245px; grid-row:1; } .hero-copy { grid-row:2; }
+      .step { padding:15px; } .step-heading { grid-template-columns:40px minmax(0,1fr) 44px; gap:10px; } .step-number { width:38px; height:38px; } .mini-badge { width:42px; height:42px; }
+      .question-block { margin-left:0; } .answer-choices { grid-template-columns:1fr; }
+      .progress-row { align-items:start; } .count { font-size:.9rem; }
+    }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
+    @media print { .quest-tabs,.controls,.visit-note { display:none; } .quest-panel { display:block!important; break-after:page; margin-bottom:30px; } .quest-shell { box-shadow:none; } .celebration,.toast { display:none!important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="intro" aria-labelledby="page-title">
+      <div><h1 id="page-title">Choose a quest. Take your time.</h1><p>Every path is waiting for you, and there is no wrong order. Pick the adventure that feels right today.</p></div>
+      <div class="promise"><strong>Your quest, your pace.</strong>No timers, no scores, and no failing. Each right answer earns a badge, and every question has unlimited tries.</div>
+    </section>
+    <nav class="quest-tabs" aria-label="Choose a quest" role="tablist">
+      <button class="quest-tab" role="tab" aria-selected="true" aria-controls="quest-star" id="tab-star" data-quest="star"><span class="tab-number">Quest one</span><span class="tab-title">The Lost Star Map</span></button>
+      <button class="quest-tab" role="tab" aria-selected="false" aria-controls="quest-dragon" id="tab-dragon" data-quest="dragon" tabindex="-1"><span class="tab-number">Quest two</span><span class="tab-title">The Sleepy Dragon’s Treasure</span></button>
+      <button class="quest-tab" role="tab" aria-selected="false" aria-controls="quest-garden" id="tab-garden" data-quest="garden" tabindex="-1"><span class="tab-number">Quest three</span><span class="tab-title">The Great Garden Rescue</span></button>
+    </nav>
+    <div id="quest-panels"></div>
+  </main>
+  <div class="celebration" id="celebration" role="dialog" aria-modal="true" aria-labelledby="celebration-title"><div class="celebration-card"><div class="celebration-sparkles" aria-hidden="true">✦ ✧ ✦</div><h2 id="celebration-title">Quest complete!</h2><p id="celebration-message"></p><div class="badge-rack" id="celebration-badges" aria-label="All five badges earned"></div><button class="celebration-button" id="close-celebration">Back to the board</button></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    var quests={
+      star:{number:"Quest one",title:"The Lost Star Map",image:"assets/lost-star-map-new.png",alt:"Watercolor scene of Muffin, a black-and-white pitbull, exploring a magical garden beneath a glowing star map",intro:"Five pieces of a star map are hiding in the magical garden. Muffin has found the path, but she needs a thoughtful adventurer to help bring the map back together.",finish:"You helped Muffin gather every piece and bring the stars back together. The garden sky is glowing because you kept exploring, one step at a time.",steps:[
+        {badge:"Oak Finder",action:"Find the first piece by the old oak.",clue:"Look where the roots curl like sleepy dragon tails.",type:"Math challenge",question:"Muffin finds 7 silver stars and 5 gold stars. How many stars did she find altogether?",choices:["10 stars","11 stars","12 stars","13 stars"],answer:2},
+        {badge:"Riddle Reader",action:"Solve the riddle of the stone bench.",clue:"Take all the thinking time you need.",type:"Book trivia",question:"Which part of a book helps you find the page where a chapter starts?",choices:["The table of contents","The back cover","The spine","The dedication"],answer:0},
+        {badge:"Firefly Friend",action:"Follow the firefly trail.",clue:"Their tiny lights know the safest path.",type:"Math challenge",question:"Three groups of fireflies have 4 fireflies each. How many fireflies are there?",choices:["7 fireflies","10 fireflies","12 fireflies","16 fireflies"],answer:2},
+        {badge:"Kind Heart",action:"Befriend the shy hedgehog who has a piece.",clue:"A quiet hello can be very brave.",type:"Animal trivia",question:"What covers a hedgehog's back?",choices:["Feathers","Spines","Scales","Fur only"],answer:1},
+        {badge:"Star Builder",action:"Assemble the star map.",clue:"Turn and fit the pieces until the whole sky appears.",type:"Space trivia",question:"Which object in our sky is a star?",choices:["The Moon","Mars","The Sun","A comet"],answer:2}
+      ]},
+      dragon:{number:"Quest two",title:"The Sleepy Dragon’s Treasure",image:"assets/sleepy-dragon-treasure-new.png",alt:"Watercolor scene of Muffin, a black-and-white pitbull, beside a gentle dragon and glowing colored stones",intro:"A gentle dragon cannot find the lullaby stones that help the cave settle down for sleep. Muffin is ready to search, trade stories, and even sing along with you.",finish:"All four lullaby stones are resting around the dragon. The cave is peaceful, the dragon is cozy, and your kind help made it happen.",steps:[
+        {badge:"Brook Scout",action:"Find the blue stone by the babbling brook.",clue:"Listen for water dancing over the pebbles.",type:"Math challenge",question:"There are 18 pebbles by the brook. The water carries 7 away. How many are left?",choices:["9 pebbles","10 pebbles","11 pebbles","12 pebbles"],answer:2},
+        {badge:"Story Trader",action:"Trade a story for the green stone with the talking turtle.",clue:"Any story you like is worth sharing.",type:"Animal trivia",question:"What hard covering protects a turtle's body?",choices:["A shell","A nest","A mane","A wing"],answer:0},
+        {badge:"Berry Spotter",action:"Spot the red stone in the berry bushes.",clue:"Search gently between the leaves.",type:"Math challenge",question:"Four berry bushes each hold 3 bright berries. How many berries is that in all?",choices:["7 berries","10 berries","12 berries","16 berries"],answer:2},
+        {badge:"Song Keeper",action:"Sing the dragon’s favorite song to wake the yellow stone.",clue:"Hum, sing, or make up your own tune.",type:"Muffin trivia",question:"Which sense helps a dog like Muffin explore a trail most closely?",choices:["Smell","Taste","Sight only","Balance"],answer:0},
+        {badge:"Dream Guardian",action:"Place all the stones around the dragon.",clue:"Make a quiet circle where peaceful dreams can begin.",type:"Math challenge",question:"Muffin has 20 tiny moonstones to share equally among 4 cave corners. How many go in each corner?",choices:["4 stones","5 stones","6 stones","8 stones"],answer:1}
+      ]},
+      garden:{number:"Quest three",title:"The Great Garden Rescue",image:"assets/garden-rescue-new.png",alt:"Watercolor scene of Muffin, a black-and-white pitbull, carrying magical seeds through a moonlit garden",intro:"A wild storm scattered the garden’s magic seeds. Muffin needs your care and clever thinking to gather them, plant them, and help the garden grow again.",finish:"Every magic seed is safe in the soil, with just enough silver water to grow. You and Muffin helped the whole garden begin again.",steps:[
+        {badge:"Sun Seeker",action:"Gather seeds from the sunflower patch.",clue:"Check beneath the golden petals and broad leaves.",type:"Nature trivia",question:"What gives a sunflower the energy it needs to make food?",choices:["Moonlight","Sunlight","Pebbles","Wind"],answer:1},
+        {badge:"Puddle Helper",action:"Rescue seeds from the puddle.",clue:"Lift them out carefully, one at a time.",type:"Math challenge",question:"Fifteen seeds fell into a puddle. Muffin rescued 6. How many are still in the puddle?",choices:["8 seeds","9 seeds","10 seeds","11 seeds"],answer:1},
+        {badge:"Worm Friend",action:"Ask the worms for help digging.",clue:"Good teamwork can happen underground too.",type:"Nature trivia",question:"How do earthworms help garden soil?",choices:["They make it glow","They loosen and mix it","They turn it to stone","They dry it out"],answer:1},
+        {badge:"Moon Planter",action:"Plant seeds in the moonlight circle.",clue:"Give each seed a soft bed of soil.",type:"Math challenge",question:"There are 4 planting circles with 5 seeds in each circle. How many seeds are planted?",choices:["9 seeds","16 seeds","20 seeds","25 seeds"],answer:2},
+        {badge:"Silver Gardener",action:"Water them with the silver watering can.",clue:"A gentle sprinkle is all they need.",type:"Math challenge",question:"Twenty-four sprouts are arranged in rows of 6. How many rows are there?",choices:["3 rows","4 rows","5 rows","6 rows"],answer:1}
+      ]}
+    };
+    var progress={star:[false,false,false,false,false],dragon:[false,false,false,false,false],garden:[false,false,false,false,false]};
+    var celebrated={star:false,dragon:false,garden:false},activeQuest="star",lastFocused=null,toastTimer=null;
+    function icon(kind){var paths={speaker:'<path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"/>',reset:'<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>'};return '<svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">'+paths[kind]+'</svg>';}
+    function badgeIcon(){return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 8.6l6.2-.9L12 2Z"/></svg>';}
+    function render(){
+      var holder=document.getElementById("quest-panels");
+      holder.innerHTML=Object.keys(quests).map(function(key){
+        var q=quests[key],active=key===activeQuest?" active":"";
+        var steps=q.steps.map(function(step,i){
+          var questionId="question-"+key+"-"+i,feedbackId="feedback-"+key+"-"+i;
+          var choices=step.choices.map(function(choice,j){return '<button class="answer-button" type="button" data-choice="'+j+'" aria-describedby="'+feedbackId+'">'+choice+'</button>';}).join("");
+          return '<article class="step" data-step="'+i+'"><div class="step-heading"><span class="step-number" aria-hidden="true">'+(i+1)+'</span><div class="step-copy"><strong>'+step.action+'</strong><span>'+step.clue+'</span></div><span class="mini-badge" aria-label="Badge waiting: '+step.badge+'">'+badgeIcon()+'</span></div><div class="question-block"><span class="question-type">'+step.type+'</span><h4 id="'+questionId+'">'+step.question+'</h4><div class="answer-choices" role="group" aria-labelledby="'+questionId+'">'+choices+'</div><p class="answer-feedback" id="'+feedbackId+'" role="status" aria-live="polite"></p></div></article>';
+        }).join("");
+        return '<section class="quest-panel'+active+'" id="quest-'+key+'" role="tabpanel" aria-labelledby="tab-'+key+'" data-key="'+key+'"><div class="quest-shell"><div class="quest-hero"><div class="hero-copy"><div class="quest-kicker">'+q.number+'</div><h2>'+q.title+'</h2><p>'+q.intro+'</p><div class="controls"><button class="read-button" data-read="'+key+'">'+icon('speaker')+'<span>Read to Me</span></button><button class="reset-button" data-reset="'+key+'">'+icon('reset')+'<span>Start Over</span></button></div><p class="visit-note">Progress stays only for this visit.</p></div><div class="hero-art"><img src="'+q.image+'" alt="'+q.alt+'" /><span class="art-caption">Muffin is ready when you are.</span></div></div><div class="quest-work"><div class="progress-row"><h3>Answer any step</h3><span class="count" aria-live="polite">0 of 5 badges</span></div><div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div><div class="steps">'+steps+'</div></div></div></section>';
+      }).join("");
+      bindQuestEvents();updateAll();
+    }
+    function bindQuestEvents(){
+      document.querySelectorAll('.answer-button').forEach(function(button){button.addEventListener('click',function(){
+        var stepEl=button.closest('.step'),panel=button.closest('.quest-panel'),key=panel.dataset.key,index=Number(stepEl.dataset.step),choice=Number(button.dataset.choice),step=quests[key].steps[index];
+        if(progress[key][index])return;
+        var feedback=stepEl.querySelector('.answer-feedback');
+        if(choice===step.answer){
+          progress[key][index]=true;feedback.textContent="That's right! Badge earned: "+step.badge+".";updateQuest(key);showToast('Badge earned: '+step.badge+'!');
+          if(progress[key].every(Boolean)&&!celebrated[key]){celebrated[key]=true;window.setTimeout(function(){showCelebration(key);},420);}
+        }else{
+          feedback.textContent="Not this one yet. Try again. No penalty, and you can keep guessing.";button.classList.add('try-again');window.setTimeout(function(){button.classList.remove('try-again');},500);
+        }
+      });});
+      document.querySelectorAll('[data-read]').forEach(function(button){button.addEventListener('click',function(){readQuest(button.dataset.read,button);});});
+      document.querySelectorAll('[data-reset]').forEach(function(button){button.addEventListener('click',function(){resetQuest(button.dataset.reset);});});
+    }
+    function updateQuest(key){
+      var panel=document.getElementById('quest-'+key),done=progress[key].filter(Boolean).length;
+      panel.querySelectorAll('.step').forEach(function(stepEl,i){
+        var earned=progress[key][i],answer=quests[key].steps[i].answer;stepEl.classList.toggle('done',earned);
+        stepEl.querySelector('.mini-badge').setAttribute('aria-label',(earned?'Badge earned: ':'Badge waiting: ')+quests[key].steps[i].badge);
+        stepEl.querySelectorAll('.answer-button').forEach(function(button){var correct=Number(button.dataset.choice)===answer;button.disabled=earned;button.classList.toggle('answer-correct',earned&&correct);});
+      });
+      panel.querySelector('.count').textContent=done+' of 5 badge'+(done===1?'':'s');panel.querySelector('.progress-fill').style.width=(done*20)+'%';
+    }
+    function updateAll(){Object.keys(quests).forEach(updateQuest);}
+    document.querySelectorAll('.quest-tab').forEach(function(tab){tab.addEventListener('click',function(){selectQuest(tab.dataset.quest);});tab.addEventListener('keydown',function(e){if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;var tabs=Array.prototype.slice.call(document.querySelectorAll('.quest-tab')),at=tabs.indexOf(tab),next=e.key==='ArrowRight'?(at+1)%tabs.length:(at-1+tabs.length)%tabs.length;tabs[next].focus();selectQuest(tabs[next].dataset.quest);});});
+    function stopReadingLabels(){document.querySelectorAll('[data-read] span').forEach(function(span){span.textContent='Read to Me';});}
+    function selectQuest(key){activeQuest=key;document.querySelectorAll('.quest-tab').forEach(function(tab){var selected=tab.dataset.quest===key;tab.setAttribute('aria-selected',selected?'true':'false');tab.tabIndex=selected?0:-1;});document.querySelectorAll('.quest-panel').forEach(function(panel){panel.classList.toggle('active',panel.dataset.key===key);});if('speechSynthesis' in window)window.speechSynthesis.cancel();stopReadingLabels();}
+    function readQuest(key,button){
+      if(!('speechSynthesis' in window)){showToast('Read aloud is not available in this browser.');return;}
+      if(window.speechSynthesis.speaking){window.speechSynthesis.cancel();stopReadingLabels();return;}
+      var q=quests[key],text=q.title+'. '+q.intro+' Your five challenges are: '+q.steps.map(function(s,i){return 'Step '+(i+1)+': '+s.action+' '+s.question+' Your choices are '+s.choices.join(', ')+'.';}).join(' '),utterance=new SpeechSynthesisUtterance(text);
+      utterance.rate=.88;utterance.pitch=1.03;button.querySelector('span').textContent='Stop Reading';utterance.onend=utterance.onerror=stopReadingLabels;window.speechSynthesis.speak(utterance);
+    }
+    function resetQuest(key){
+      progress[key]=[false,false,false,false,false];celebrated[key]=false;updateQuest(key);
+      var panel=document.getElementById('quest-'+key);panel.querySelectorAll('.answer-feedback').forEach(function(feedback){feedback.textContent='';});panel.querySelectorAll('.try-again').forEach(function(button){button.classList.remove('try-again');});
+      if('speechSynthesis' in window)window.speechSynthesis.cancel();stopReadingLabels();showToast(quests[key].title+' is ready for a fresh start.');
+    }
+    function showToast(message){var toast=document.getElementById('toast');toast.textContent=message;toast.classList.add('show');window.clearTimeout(toastTimer);toastTimer=window.setTimeout(function(){toast.classList.remove('show');},2200);}
+    function showCelebration(key){var q=quests[key],dialog=document.getElementById('celebration');document.getElementById('celebration-title').textContent=q.title+' complete!';document.getElementById('celebration-message').textContent=q.finish;document.getElementById('celebration-badges').innerHTML=q.steps.map(function(step){return '<div class="badge-earned"><span class="badge-medal">'+badgeIcon()+'</span><span>'+step.badge+'</span></div>';}).join('');lastFocused=document.activeElement;dialog.classList.add('show');document.body.style.overflow='hidden';document.getElementById('close-celebration').focus();}
+    function closeCelebration(){document.getElementById('celebration').classList.remove('show');document.body.style.overflow='';if(lastFocused)lastFocused.focus();}
+    document.getElementById('close-celebration').addEventListener('click',closeCelebration);document.getElementById('celebration').addEventListener('click',function(e){if(e.target.id==='celebration')closeCelebration();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('celebration').classList.contains('show'))closeCelebration();});
+    render();
+  </script>
+</body>
+</html>
