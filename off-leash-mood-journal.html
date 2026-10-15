@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#e9ede2" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0e1722" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href="data:," />
+  <title>Mood Weather Journaling</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --page: #e9ede2;
+      --ink: #17202a;
+      --muted: #4c5b5e;
+      --panel: #f7f8f2;
+      --line: #27343b;
+      --soft-line: #aab5ab;
+      --signal: #bde958;
+      --signal-ink: #17220c;
+      --coral: #ed725f;
+      --sky: #4e9fbd;
+      --focus: #146c88;
+      --shadow: rgba(23, 32, 42, .16);
+      --tape: #f0c95d;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page: #0e1722;
+        --ink: #f0f3e9;
+        --muted: #bdc9c6;
+        --panel: #172330;
+        --line: #d6ded7;
+        --soft-line: #52616a;
+        --signal: #c4ee68;
+        --signal-ink: #14200a;
+        --coral: #ff8875;
+        --sky: #6dbad5;
+        --focus: #9bdcf1;
+        --shadow: rgba(0, 0, 0, .28);
+        --tape: #eac45f;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background-color: var(--page);
+      background-image: linear-gradient(rgba(91,112,111,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(91,112,111,.08) 1px, transparent 1px);
+      background-size: 26px 26px;
+      font-family: "Nunito Sans", sans-serif;
+      line-height: 1.55;
+    }
+    button, textarea, input { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; }
+    .shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 54px 0 72px; }
+    .intro { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(240px,.7fr); gap: 40px; align-items: end; margin-bottom: 38px; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; }
+    h1 { max-width: 760px; margin-bottom: 16px; font-size: clamp(2.35rem,6vw,4.9rem); line-height: .99; letter-spacing: -.045em; }
+    .lede { max-width: 650px; margin: 0; color: var(--muted); font-size: clamp(1.02rem,2vw,1.22rem); }
+    .note-card { position: relative; margin: 0 8px 5px 0; padding: 22px 24px 20px; color: #1e2320; background: #f4df8d; box-shadow: 7px 8px 0 var(--line); transform: rotate(1.2deg); }
+    .note-card::before { content: ""; position: absolute; top: -9px; left: 50%; width: 82px; height: 18px; background: rgba(241,202,93,.86); transform: translateX(-50%) rotate(-2deg); }
+    .note-card strong { display: block; margin-bottom: 5px; font-size: 1.03rem; }
+    .note-card p { margin: 0; font-size: .92rem; }
+    .stage { position: relative; background: var(--panel); border: 2px solid var(--line); box-shadow: 10px 10px 0 var(--shadow); }
+    .stage-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 22px; border-bottom: 2px solid var(--line); }
+    .step-mark { display: inline-flex; align-items: center; gap: 9px; margin: 0; font-weight: 800; font-size: .83rem; letter-spacing: .08em; text-transform: uppercase; }
+    .step-mark span { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; color: var(--signal-ink); background: var(--signal); letter-spacing: 0; }
+    .privacy { margin: 0; color: var(--muted); font-size: .84rem; text-align: right; }
+    .panel { padding: clamp(24px,4vw,46px); }
+    .panel[hidden] { display: none !important; }
+    .panel h2 { margin-bottom: 8px; font-size: clamp(1.65rem,3vw,2.35rem); line-height: 1.1; }
+    .section-copy { margin-bottom: 25px; color: var(--muted); }
+    .mood-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+    .mood { min-height: 154px; padding: 18px 16px 15px; text-align: left; background: transparent; border: 2px solid var(--soft-line); border-radius: 5px; cursor: pointer; transition: background-color .16s ease,color .16s ease,border-color .16s ease,transform .16s ease; }
+    .mood:hover { border-color: var(--line); transform: translateY(-2px); }
+    .mood:focus-visible, .choice:focus-visible, .primary:focus-visible, .secondary:focus-visible, textarea:focus-visible, input:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+    .mood.selected { color: var(--signal-ink); background: var(--signal); border-color: var(--line); box-shadow: 4px 4px 0 var(--line); transform: translate(-2px,-2px); }
+    .weather-icon { width: 45px; height: 45px; margin-bottom: 22px; stroke: currentColor; stroke-width: 1.7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .mood strong { display: block; margin-bottom: 2px; font-size: 1rem; }
+    .mood small { color: var(--muted); font-size: .82rem; }
+    .mood.selected small { color: #31411d; }
+    .picker-actions, .form-actions, .report-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; }
+    .primary, .secondary { min-height: 47px; padding: 11px 20px; border: 2px solid var(--line); border-radius: 4px; font-weight: 800; cursor: pointer; }
+    .primary { color: var(--signal-ink); background: var(--signal); box-shadow: 4px 4px 0 var(--line); }
+    .primary:hover { transform: translate(1px,1px); box-shadow: 3px 3px 0 var(--line); }
+    .primary:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; transform: none; }
+    .secondary { background: transparent; }
+    .secondary:hover { background: color-mix(in srgb,var(--sky) 18%,transparent); }
+    .soft-link { margin-left: auto; color: var(--muted); background: none; border: 0; text-decoration: underline; cursor: pointer; }
+    .weather-banner { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; margin-bottom: 32px; padding: 18px 20px; color: #14200a; background: var(--signal); border: 2px solid var(--line); box-shadow: 5px 5px 0 var(--line); }
+    .weather-banner .weather-icon { width: 54px; height: 54px; margin: 0; }
+    .weather-banner p { margin: 1px 0 0; color: #31411d; }
+    .weather-banner strong { font-size: 1.18rem; }
+    .field { margin-bottom: 28px; }
+    label, .field-label { display: block; margin-bottom: 8px; font-weight: 800; }
+    .helper { display: block; margin-top: -4px; margin-bottom: 10px; color: var(--muted); font-size: .87rem; }
+    textarea { width: 100%; min-height: 112px; resize: vertical; padding: 14px 15px; color: var(--ink); background: var(--page); border: 2px solid var(--soft-line); border-radius: 3px; }
+    textarea:focus { border-color: var(--focus); }
+    .range-wrap { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; padding: 15px 16px; background: var(--page); border: 2px solid var(--soft-line); }
+    input[type="range"] { width: 100%; accent-color: var(--coral); cursor: pointer; }
+    .range-value { display: grid; place-items: center; width: 44px; height: 44px; color: #fff; background: var(--coral); border-radius: 50%; font-weight: 800; }
+    .choice-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; }
+    .choice { min-height: 45px; padding: 9px 12px; color: var(--ink); background: transparent; border: 2px solid var(--soft-line); border-radius: 3px; cursor: pointer; text-align: left; font-weight: 700; }
+    .choice[aria-pressed="true"] { color: var(--signal-ink); background: var(--signal); border-color: var(--line); }
+    .report { position: relative; padding: clamp(24px,4vw,42px); background: var(--page); border: 2px solid var(--line); }
+    .report::after { content: ""; position: absolute; top: -10px; right: 38px; width: 72px; height: 18px; background: color-mix(in srgb,var(--tape) 82%,transparent); transform: rotate(2deg); }
+    .report-date { margin-bottom: 6px; color: var(--muted); font-size: .83rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; }
+    .report h2 { display: flex; gap: 13px; align-items: center; margin-bottom: 25px; font-size: clamp(2rem,4vw,3.3rem); }
+    .report h2 .weather-icon { width: 44px; height: 44px; margin: 0; flex: 0 0 auto; }
+    .report-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 0 34px; }
+    .report-item { padding: 17px 0; border-top: 1px solid var(--soft-line); }
+    .report-item.wide { grid-column: 1/-1; }
+    .report-item dt { margin-bottom: 4px; color: var(--muted); font-size: .82rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+    .report-item dd { margin: 0; white-space: pre-wrap; }
+    .closing { margin-top: 26px; padding: 18px 20px; color: var(--signal-ink); background: var(--signal); font-weight: 700; }
+    .save-note { margin: 18px 0 0; color: var(--muted); font-size: .84rem; }
+    .toast { position: fixed; right: 18px; bottom: 18px; z-index: 5; max-width: min(340px,calc(100% - 36px)); padding: 12px 16px; color: var(--signal-ink); background: var(--signal); border: 2px solid var(--line); box-shadow: 4px 4px 0 var(--line); font-weight: 800; }
+    .toast[hidden] { display: none; }
+    .support { display: grid; grid-template-columns: auto 1fr; gap: 15px; align-items: start; margin-top: 34px; padding: 22px 24px; color: var(--ink); background: color-mix(in srgb,var(--coral) 14%,var(--panel)); border: 2px solid var(--line); }
+    .support-mark { font-family: "Fraunces", Georgia, serif; font-size: 2rem; line-height: 1; }
+    .support h2 { margin-bottom: 5px; font-size: 1.15rem; }
+    .support p { margin: 0; color: var(--muted); }
+    .support a { font-weight: 800; text-underline-offset: 3px; }
+    @media (max-width: 850px) { .intro { grid-template-columns: 1fr; gap: 28px; } .note-card { max-width: 460px; } .mood-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 20px,1120px); padding: 28px 0 48px; }
+      .intro { margin-bottom: 24px; }
+      h1 { font-size: clamp(2.6rem,14vw,4rem); }
+      .stage-head { align-items: flex-start; padding: 14px 15px; }
+      .privacy { max-width: 130px; }
+      .panel { padding: 22px 15px 27px; }
+      .mood-grid { gap: 8px; }
+      .mood { min-height: 135px; padding: 14px 12px 12px; }
+      .weather-icon { width: 38px; height: 38px; margin-bottom: 16px; }
+      .choice-grid { grid-template-columns: repeat(2,1fr); }
+      .report-grid { grid-template-columns: 1fr; }
+      .report-item.wide { grid-column: auto; }
+      .soft-link { width: 100%; margin-left: 0; text-align: left; }
+      .support { padding: 18px 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <svg aria-hidden="true" width="0" height="0" style="position:absolute">
+    <symbol id="icon-clear" viewBox="0 0 48 48"><circle cx="24" cy="24" r="8"/><path d="M24 5v6M24 37v6M5 24h6M37 24h6M10.5 10.5l4.3 4.3M33.2 33.2l4.3 4.3M37.5 10.5l-4.3 4.3M14.8 33.2l-4.3 4.3"/></symbol>
+    <symbol id="icon-sunny" viewBox="0 0 48 48"><circle cx="19" cy="18" r="7"/><path d="M19 5v4M19 27v4M6 18h4M28 18h4M9.8 8.8l2.8 2.8M25.4 24.4l2.8 2.8M28.2 8.8l-2.8 2.8M12.6 24.4l-2.8 2.8"/><path d="M15 38h22a6 6 0 0 0 .2-12A9 9 0 0 0 21 27.5 5.5 5.5 0 0 0 15 38Z"/></symbol>
+    <symbol id="icon-breeze" viewBox="0 0 48 48"><path d="M7 18h25c5 0 6-7 1-8-3-.5-5 1.5-5 4M7 27h32M7 36h20"/><path d="M33 32c2.5 0 4.5 2 4.5 4.5S35.5 41 33 41"/></symbol>
+    <symbol id="icon-drizzle" viewBox="0 0 48 48"><path d="M13 29h23a8 8 0 0 0 .3-16A12 12 0 0 0 14 16.5 6.4 6.4 0 0 0 13 29Z"/><path d="M17 35l-2 4M26 35l-2 4M35 35l-2 4"/></symbol>
+    <symbol id="icon-storm" viewBox="0 0 48 48"><path d="M12 28h24a8 8 0 0 0 .2-16A12 12 0 0 0 14 15.5 6.5 6.5 0 0 0 12 28Z"/><path d="M26 27l-7 10h6l-3 7 10-12h-7l1-5Z"/></symbol>
+    <symbol id="icon-fog" viewBox="0 0 48 48"><path d="M8 14h25M14 21h26M7 28h27M12 35h28"/></symbol>
+    <symbol id="icon-wind" viewBox="0 0 48 48"><path d="M6 15h26c7 0 7-9 1-9-3 0-4 2-4 4M6 24h34M6 33h25c7 0 7 9 1 9-3 0-4-2-4-4"/></symbol>
+    <symbol id="icon-heat" viewBox="0 0 48 48"><path d="M20 29V10a4 4 0 0 1 8 0v19a9 9 0 1 1-8 0Z"/><path d="M24 17v17M34 13h7M35 20h5"/></symbol>
+    <symbol id="icon-mixed" viewBox="0 0 48 48"><path d="M24 7a10 10 0 0 0-9.5 13H12a7 7 0 0 0 0 14h24a7 7 0 0 0 2-13.7A14 14 0 0 0 24 7Z"/><path d="M11 41h11M28 41h9"/></symbol>
+    <symbol id="icon-other" viewBox="0 0 48 48"><path d="M9 24h30M24 9v30"/><circle cx="24" cy="24" r="17"/></symbol>
+  </svg>
+  <main class="shell">
+    <section class="intro" aria-labelledby="page-heading">
+      <div><h1 id="page-heading">What’s the weather in your head?</h1><p class="lede">Whatever is here gets room, including the good stuff. Notice it, put a few words around it, and decide whether you want to enjoy it, understand it, or figure out what might help next.</p></div>
+      <aside class="note-card" aria-label="A note before you begin"><strong>No perfect answers.</strong><p>Skip anything that feels annoying. One honest sentence is enough.</p></aside>
+    </section>
+    <section class="stage" aria-label="Mood weather journal">
+      <header class="stage-head"><p class="step-mark"><span id="stepNumber">1</span><b id="stepTitle">Check the sky</b></p><p class="privacy">Nothing is saved after you leave.</p></header>
+      <section class="panel" id="pickPanel">
+        <h2>Pick the closest forecast</h2>
+        <p class="section-copy">It does not have to fit exactly. Choose the one that feels least wrong.</p>
+        <div class="mood-grid" id="moodGrid">
+          <button class="mood" type="button" data-mood="clear" aria-pressed="false"><svg class="weather-icon"><use href="#icon-clear"></use></svg><strong>Clear-ish</strong><small>Okay, steady, content</small></button>
+          <button class="mood" type="button" data-mood="sunny" aria-pressed="false"><svg class="weather-icon"><use href="#icon-sunny"></use></svg><strong>Sunbreak</strong><small>Happy, excited, playful</small></button>
+          <button class="mood" type="button" data-mood="breeze" aria-pressed="false"><svg class="weather-icon"><use href="#icon-breeze"></use></svg><strong>Warm breeze</strong><small>Safe, proud, connected</small></button>
+          <button class="mood" type="button" data-mood="drizzle" aria-pressed="false"><svg class="weather-icon"><use href="#icon-drizzle"></use></svg><strong>Drizzle</strong><small>Sad, low, heavy</small></button>
+          <button class="mood" type="button" data-mood="storm" aria-pressed="false"><svg class="weather-icon"><use href="#icon-storm"></use></svg><strong>Storm</strong><small>Angry, hurt, charged</small></button>
+          <button class="mood" type="button" data-mood="fog" aria-pressed="false"><svg class="weather-icon"><use href="#icon-fog"></use></svg><strong>Fog</strong><small>Numb, unsure, stuck</small></button>
+          <button class="mood" type="button" data-mood="wind" aria-pressed="false"><svg class="weather-icon"><use href="#icon-wind"></use></svg><strong>High wind</strong><small>Anxious, restless, wired</small></button>
+          <button class="mood" type="button" data-mood="heat" aria-pressed="false"><svg class="weather-icon"><use href="#icon-heat"></use></svg><strong>Heatwave</strong><small>Overloaded, done, too much</small></button>
+          <button class="mood" type="button" data-mood="mixed" aria-pressed="false"><svg class="weather-icon"><use href="#icon-mixed"></use></svg><strong>Mixed sky</strong><small>A lot of things at once</small></button>
+          <button class="mood" type="button" data-mood="other" aria-pressed="false"><svg class="weather-icon"><use href="#icon-other"></use></svg><strong>Something else</strong><small>My own forecast</small></button>
+        </div>
+        <div class="picker-actions"><button class="primary" id="continueButton" type="button" disabled>Work through it</button></div>
+      </section>
+      <section class="panel" id="journalPanel" hidden>
+        <div class="weather-banner" id="weatherBanner"></div>
+        <form id="journalForm">
+          <div class="field"><label for="intensity" id="intensityLabel">How loud is this feeling right now?</label><span class="helper" id="intensityHelper">1 is barely there. 10 is taking up the whole room.</span><div class="range-wrap"><input id="intensity" type="range" min="1" max="10" value="5" aria-valuetext="5 out of 10"><output class="range-value" id="intensityValue" for="intensity">5</output></div></div>
+          <div class="field"><label for="why" id="whyLabel">What is feeding this weather?</label><span class="helper" id="whyHelper">A moment, a person, a thought, or “I honestly don’t know” all count.</span><textarea id="why" placeholder="Right now, I think…"></textarea></div>
+          <div class="field"><label for="body" id="bodyLabel">Where do you notice it in your body?</label><span class="helper" id="bodyHelper">Examples: tight jaw, fast thoughts, heavy arms, buzzy hands. “Nowhere” is an answer too.</span><textarea id="body" placeholder="My body feels…"></textarea></div>
+          <fieldset class="field" style="border:0;padding:0;margin-inline:0"><legend class="field-label" id="needsLabel">What might help, even 1%?</legend><span class="helper" id="needsHelper">Pick as many as you want.</span><div class="choice-grid" id="needsGrid">
+            <button class="choice" type="button" aria-pressed="false">Stay with it</button><button class="choice" type="button" aria-pressed="false">Share it</button><button class="choice" type="button" aria-pressed="false">Make something</button><button class="choice" type="button" aria-pressed="false">Music</button><button class="choice" type="button" aria-pressed="false">Space</button><button class="choice" type="button" aria-pressed="false">Company</button><button class="choice" type="button" aria-pressed="false">Rest</button><button class="choice" type="button" aria-pressed="false">Movement</button><button class="choice" type="button" aria-pressed="false">Food or water</button><button class="choice" type="button" aria-pressed="false">To be heard</button><button class="choice" type="button" aria-pressed="false">A distraction</button><button class="choice" type="button" aria-pressed="false">Help from someone</button><button class="choice" type="button" aria-pressed="false">Not sure yet</button>
+          </div></fieldset>
+          <div class="field"><label for="next" id="nextLabel">What is one tiny next move?</label><span class="helper" id="nextHelper">Keep it small enough to do without becoming a whole project.</span><textarea id="next" placeholder="For the next five minutes, I can…"></textarea></div>
+          <div class="field"><label for="steady" id="steadyLabel">What is one thing you are grateful for, or one thing that feels steady?</label><span class="helper" id="steadyHelper">No silver lining required. It can be a person, a pet, a song, warm socks, or nothing today.</span><textarea id="steady" placeholder="One small thing…"></textarea></div>
+          <div class="form-actions"><button class="primary" type="submit">Make my weather report</button><button class="secondary" id="backButton" type="button">Choose a different mood</button></div>
+        </form>
+      </section>
+      <section class="panel" id="reportPanel" hidden>
+        <article class="report" id="report" aria-live="polite"></article>
+        <div class="report-actions"><button class="primary" id="downloadButton" type="button">Download this note</button><button class="secondary" id="copyButton" type="button">Copy text</button><button class="soft-link" id="resetButton" type="button">Start a new check-in</button></div>
+        <p class="save-note">Download or copy it if you want to keep it. This page does not store journal entries.</p>
+      </section>
+    </section>
+    <aside class="support" aria-labelledby="support-heading"><div class="support-mark" aria-hidden="true">!</div><div><h2 id="support-heading">If this feels bigger than a journal prompt</h2><p>If you might hurt yourself or someone else, tell a trusted adult now. In the U.S., call or text <a href="tel:988">988</a> for the Suicide &amp; Crisis Lifeline. If there is immediate danger, call emergency services.</p></div></aside>
+  </main>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script>
+    (function () {
+      const moods = {
+        clear: { name: "Clear-ish", icon: "clear", line: "Things feel fairly steady right now.", prompt: "What is helping things feel steady?", good: true },
+        sunny: { name: "Sunbreak", icon: "sunny", line: "Something feels happy, exciting, or playful.", prompt: "What is making this moment feel good?", good: true },
+        breeze: { name: "Warm breeze", icon: "breeze", line: "Something feels safe, proud, or connected.", prompt: "What is giving you this good feeling?", good: true },
+        drizzle: { name: "Drizzle", icon: "drizzle", line: "Things feel low, sad, or heavy.", prompt: "What has been weighing on you?" },
+        storm: { name: "Storm", icon: "storm", line: "There is anger, hurt, or a lot of charge here.", prompt: "What happened, and what part of it feels unfair or painful?" },
+        fog: { name: "Fog", icon: "fog", line: "Things feel numb, unclear, or hard to name.", prompt: "What is the last thing you remember feeling clearly?" },
+        wind: { name: "High wind", icon: "wind", line: "Your thoughts or body might feel restless and on alert.", prompt: "What is your mind trying to prepare for?" },
+        heat: { name: "Heatwave", icon: "heat", line: "Your system feels overloaded or completely done.", prompt: "What has been asking too much of you?" },
+        mixed: { name: "Mixed sky", icon: "mixed", line: "More than one feeling is showing up at the same time.", prompt: "What feelings are sharing the sky right now?" },
+        other: { name: "My own forecast", icon: "other", line: "Your weather gets to have its own name.", prompt: "How would you describe what is happening inside?" }
+      };
+      const state = { mood: null, reportText: "" };
+      const moodButtons = Array.from(document.querySelectorAll(".mood"));
+      const choiceButtons = Array.from(document.querySelectorAll(".choice"));
+      const pickPanel = document.getElementById("pickPanel");
+      const journalPanel = document.getElementById("journalPanel");
+      const reportPanel = document.getElementById("reportPanel");
+      const continueButton = document.getElementById("continueButton");
+      const backButton = document.getElementById("backButton");
+      const resetButton = document.getElementById("resetButton");
+      const intensity = document.getElementById("intensity");
+      const intensityValue = document.getElementById("intensityValue");
+      const stepNumber = document.getElementById("stepNumber");
+      const stepTitle = document.getElementById("stepTitle");
+      const form = document.getElementById("journalForm");
+      const toast = document.getElementById("toast");
+      function setStep(number, title) { stepNumber.textContent = number; stepTitle.textContent = title; }
+      function showOnly(panel) { [pickPanel,journalPanel,reportPanel].forEach(function (item) { item.hidden = item !== panel; }); document.querySelector(".stage").scrollIntoView({ behavior: "smooth", block: "start" }); }
+      function iconMarkup(id) { return '<svg class="weather-icon" aria-hidden="true"><use href="#icon-' + id + '"></use></svg>'; }
+      moodButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          state.mood = button.dataset.mood;
+          moodButtons.forEach(function (item) { const selected = item === button; item.classList.toggle("selected", selected); item.setAttribute("aria-pressed", String(selected)); });
+          continueButton.disabled = false;
+        });
+      });
+      function setJournalCopy(mood) {
+        document.getElementById("whyLabel").textContent = mood.prompt;
+        document.getElementById("whyHelper").textContent = mood.good ? "A moment, a person, a thought, or a small surprise all count." : "A moment, a person, a thought, or “I honestly don’t know” all count.";
+        document.getElementById("intensityLabel").textContent = mood.good ? "How present is this feeling right now?" : "How loud is this feeling right now?";
+        document.getElementById("intensityHelper").textContent = mood.good ? "1 is a small flicker. 10 is filling the whole room." : "1 is barely there. 10 is taking up the whole room.";
+        document.getElementById("bodyLabel").textContent = mood.good ? "How does this good feeling show up for you, if it does?" : "Where do you notice it in your body?";
+        document.getElementById("bodyHelper").textContent = mood.good ? "Maybe easier breathing, more energy, a loose jaw, or nothing noticeable. All answers count." : "Examples: tight jaw, fast thoughts, heavy arms, buzzy hands. “Nowhere” is an answer too.";
+        document.getElementById("needsLabel").textContent = mood.good ? "What would help you enjoy or keep some of this?" : "What might help, even 1%?";
+        document.getElementById("needsHelper").textContent = mood.good ? "Stay with it, share it, build on it, or choose nothing. Pick any that fit." : "Pick as many as you want.";
+        document.getElementById("nextLabel").textContent = mood.good ? "What would you like to do with this feeling?" : "What is one tiny next move?";
+        document.getElementById("nextHelper").textContent = mood.good ? "Enjoy it as it is, share it, remember it, or let it carry you into something." : "Keep it small enough to do without becoming a whole project.";
+        document.getElementById("steadyLabel").textContent = mood.good ? "What part of this moment feels worth remembering?" : "What is one thing you are grateful for, or one thing that feels steady?";
+        document.getElementById("steadyHelper").textContent = mood.good ? "You are allowed to name what is good without waiting for something to go wrong." : "No silver lining required. It can be a person, a pet, a song, warm socks, or nothing today.";
+        document.getElementById("next").placeholder = mood.good ? "I want to…" : "For the next five minutes, I can…";
+        document.getElementById("steady").placeholder = mood.good ? "I want to remember…" : "One small thing…";
+      }
+      continueButton.addEventListener("click", function () {
+        if (!state.mood) return;
+        const mood = moods[state.mood];
+        document.getElementById("weatherBanner").innerHTML = iconMarkup(mood.icon) + '<div><strong>' + mood.name + '</strong><p>' + mood.line + '</p></div>';
+        setJournalCopy(mood);
+        setStep("2", "Name what’s here"); showOnly(journalPanel); document.getElementById("intensity").focus({ preventScroll: true });
+      });
+      backButton.addEventListener("click", function () { setStep("1", "Check the sky"); showOnly(pickPanel); });
+      intensity.addEventListener("input", function () { intensityValue.textContent = intensity.value; intensity.setAttribute("aria-valuetext", intensity.value + " out of 10"); });
+      choiceButtons.forEach(function (button) { button.addEventListener("click", function () { const next = button.getAttribute("aria-pressed") !== "true"; button.setAttribute("aria-pressed", String(next)); }); });
+      function answer(id) { const value = document.getElementById(id).value.trim(); return value || "Skipped for now"; }
+      function escapeHtml(value) { return value.replace(/[&<>'"]/g, function (char) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]; }); }
+      function selectedNeeds() { const chosen = choiceButtons.filter(function (button) { return button.getAttribute("aria-pressed") === "true"; }).map(function (button) { return button.textContent.trim(); }); return chosen.length ? chosen.join(", ") : "Not sure yet"; }
+      function formatDate() { return new Intl.DateTimeFormat(undefined, { month: "long", day: "numeric", year: "numeric" }).format(new Date()); }
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const mood = moods[state.mood];
+        const values = { why: answer("why"), body: answer("body"), needs: selectedNeeds(), next: answer("next"), steady: answer("steady") };
+        const labels = mood.good ? { why: "What is making it feel good", body: "How it shows up", needs: "What could help me enjoy it", next: "What I want to do with it", steady: "What I want to remember" } : { why: "What is feeding it", body: "In my body", needs: "What might help", next: "My tiny next move", steady: "Something grateful or steady" };
+        const closing = mood.good ? "You noticed something good and let it be real. You do not have to shrink it or wait for the other shoe to drop." : (Number(intensity.value) >= 8 ? "This is a lot to carry. Bringing in another person is a strong next move, not an overreaction." : "You noticed what is here. That counts, even if the weather does not change right away.");
+        document.getElementById("report").innerHTML = '<p class="report-date">' + formatDate() + '</p><h2>' + iconMarkup(mood.icon) + escapeHtml(mood.name) + ', ' + intensity.value + '/10</h2><dl class="report-grid"><div class="report-item wide"><dt>' + labels.why + '</dt><dd>' + escapeHtml(values.why) + '</dd></div><div class="report-item"><dt>' + labels.body + '</dt><dd>' + escapeHtml(values.body) + '</dd></div><div class="report-item"><dt>' + labels.needs + '</dt><dd>' + escapeHtml(values.needs) + '</dd></div><div class="report-item wide"><dt>' + labels.next + '</dt><dd>' + escapeHtml(values.next) + '</dd></div><div class="report-item wide"><dt>' + labels.steady + '</dt><dd>' + escapeHtml(values.steady) + '</dd></div></dl><div class="closing">' + closing + '</div>';
+        state.reportText = ["MOOD WEATHER CHECK-IN",formatDate(),"","Forecast: " + mood.name,(mood.good ? "Presence: " : "Intensity: ") + intensity.value + "/10","",labels.why + ":",values.why,"",labels.body + ":",values.body,"",labels.needs + ":",values.needs,"",labels.next + ":",values.next,"",labels.steady + ":",values.steady,"",closing].join("\n");
+        setStep("3", "Your weather report"); showOnly(reportPanel);
+      });
+      function showToast(message) { toast.textContent = message; toast.hidden = false; window.clearTimeout(showToast.timer); showToast.timer = window.setTimeout(function () { toast.hidden = true; }, 2400); }
+      document.getElementById("downloadButton").addEventListener("click", function () { const blob = new Blob([state.reportText], { type: "text/plain;charset=utf-8" }); const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.href = url; link.download = "mood-weather-check-in.txt"; document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url); showToast("Downloaded."); });
+      document.getElementById("copyButton").addEventListener("click", function () { if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(state.reportText).then(function () { showToast("Copied to your clipboard."); }).catch(function () { fallbackCopy(); }); } else { fallbackCopy(); } });
+      function fallbackCopy() { const area = document.createElement("textarea"); area.value = state.reportText; area.style.position = "fixed"; area.style.opacity = "0"; document.body.appendChild(area); area.select(); const copied = document.execCommand("copy"); area.remove(); showToast(copied ? "Copied to your clipboard." : "Copy was not available. Try Download instead."); }
+      resetButton.addEventListener("click", function () { form.reset(); intensityValue.textContent = "5"; intensity.setAttribute("aria-valuetext", "5 out of 10"); choiceButtons.forEach(function (button) { button.setAttribute("aria-pressed", "false"); }); moodButtons.forEach(function (button) { button.classList.remove("selected"); button.setAttribute("aria-pressed", "false"); }); state.mood = null; state.reportText = ""; continueButton.disabled = true; setStep("1", "Check the sky"); showOnly(pickPanel); });
+    }());
+  </script>
+</body>
+</html>
