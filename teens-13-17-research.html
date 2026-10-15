@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#f4ecd9" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1d1713" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,750&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Teens 13-17 Research</title>
+  <style>
+    :root {
+      --paper: #f4ecd9;
+      --paper-deep: #eadcc0;
+      --surface: #fffaf0;
+      --surface-2: #efe2c7;
+      --ink: #332218;
+      --muted: #6f5544;
+      --walnut: #563821;
+      --walnut-soft: #765235;
+      --gold: #a97822;
+      --gold-pale: #dfc477;
+      --sage: #587052;
+      --sage-pale: #dbe1d2;
+      --rose: #8e5d59;
+      --line: #cdbb96;
+      --shadow: rgba(69, 45, 25, .10);
+      --focus: #186aa5;
+      color-scheme: light dark;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #1d1713;
+        --paper-deep: #271e18;
+        --surface: #2b211b;
+        --surface-2: #34271f;
+        --ink: #f4e9d2;
+        --muted: #d0baa2;
+        --walnut: #f0d6a8;
+        --walnut-soft: #d6b78a;
+        --gold: #dfb85f;
+        --gold-pale: #8d6f31;
+        --sage: #abc49e;
+        --sage-pale: #30402f;
+        --rose: #d9a7a1;
+        --line: #604b3a;
+        --shadow: rgba(0, 0, 0, .24);
+        --focus: #7bc5ff;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 1.25rem; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Nunito", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--walnut-soft); text-underline-offset: .18em; text-decoration-thickness: .08em; }
+    a:hover { color: var(--gold); }
+    a:focus-visible, summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; border-radius: 3px; }
+    .page { width: min(100% - 2rem, 1140px); margin: 0 auto; }
+    .masthead { padding: clamp(3rem, 9vw, 7rem) 0 2.5rem; border-bottom: 1px solid var(--line); }
+    .mast-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(260px, .8fr); gap: clamp(2rem, 6vw, 5rem); align-items: end; }
+    .eyebrow { margin: 0 0 .9rem; color: var(--gold); font-size: .86rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    h1, h2, h3, .display { font-family: "Fraunces", serif; color: var(--walnut); line-height: 1.08; }
+    h1 { margin: 0; max-width: 820px; font-size: clamp(2.65rem, 7vw, 5.85rem); letter-spacing: -.04em; }
+    .dek { margin: 1.4rem 0 0; max-width: 760px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.28rem); line-height: 1.62; }
+    .north-star { padding: 1.35rem 0 1.15rem 1.35rem; border-left: 3px solid var(--gold); }
+    .north-star strong { display: block; margin-bottom: .35rem; color: var(--walnut); font-family: "Fraunces", serif; font-size: 1.25rem; }
+    .north-star p { margin: 0; color: var(--muted); }
+
+    .toc { display: flex; flex-wrap: wrap; gap: .55rem .85rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+    .toc strong { margin-right: .4rem; color: var(--ink); }
+    .toc a { color: var(--muted); font-weight: 700; text-decoration: none; border-bottom: 1px solid transparent; }
+    .toc a:hover { border-color: var(--gold); color: var(--walnut); }
+
+    section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; border-bottom: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: minmax(200px, .62fr) minmax(0, 1.38fr); gap: 2rem 5rem; margin-bottom: 2.5rem; align-items: start; }
+    .section-num { color: var(--gold); font-weight: 800; font-size: .9rem; letter-spacing: .08em; }
+    h2 { margin: .3rem 0 0; font-size: clamp(2.2rem, 4.8vw, 4.1rem); letter-spacing: -.035em; }
+    .section-intro { margin: .35rem 0 0; color: var(--muted); font-size: 1.08rem; max-width: 720px; }
+    .citation { white-space: nowrap; font-size: .8em; vertical-align: .1em; font-weight: 800; text-decoration: none; color: var(--gold); }
+
+    .need-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2.5rem; border-top: 1px solid var(--line); }
+    .need-list li { display: grid; grid-template-columns: 2.25rem 1fr; gap: .8rem; padding: 1.4rem 0; border-bottom: 1px solid var(--line); }
+    .need-list .n { color: var(--gold); font-family: "Fraunces", serif; font-weight: 750; font-size: 1.25rem; }
+    .need-list h3 { margin: .05rem 0 .35rem; font-size: 1.22rem; }
+    .need-list p { margin: 0; color: var(--muted); }
+    .principle { margin: 3rem 0 0; padding: 2rem clamp(1.3rem, 4vw, 3rem); background: var(--walnut); color: var(--paper); box-shadow: 0 12px 30px var(--shadow); }
+    .principle p { margin: 0; font-family: "Fraunces", serif; font-size: clamp(1.5rem, 3.3vw, 2.6rem); line-height: 1.25; }
+    @media (prefers-color-scheme: dark) { .principle { background: #e6cfa5; color: #2c1d14; } }
+
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .stat { padding: 1.55rem 1.3rem 1.7rem; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat strong { display: block; color: var(--walnut); font-family: "Fraunces", serif; font-size: clamp(2rem, 4vw, 3.15rem); line-height: 1; }
+    .stat span { display: block; margin-top: .7rem; color: var(--muted); font-size: .95rem; line-height: 1.45; }
+    .scope-note { margin: .75rem 0 0; color: var(--muted); font-size: .88rem; }
+
+    .translation { margin-top: 3rem; display: grid; grid-template-columns: .65fr 1.35fr; gap: 2rem 4rem; }
+    .translation h3 { margin: 0; font-size: 1.7rem; }
+    .signal-list { margin: 0; padding: 0; list-style: none; }
+    .signal-list li { display: grid; grid-template-columns: minmax(125px, .42fr) 1fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--line); }
+    .signal-list li:last-child { border-bottom: 1px solid var(--line); }
+    .signal-list strong { color: var(--walnut); }
+    .signal-list span { color: var(--muted); }
+
+    .gap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .gap { background: var(--surface); padding: clamp(1.3rem, 3vw, 2rem); box-shadow: 0 10px 24px var(--shadow); }
+    .gap .marker { color: var(--gold); font-family: "Fraunces", serif; font-size: 2.35rem; font-weight: 750; line-height: 1; }
+    .gap h3 { margin: .85rem 0 .6rem; font-size: 1.45rem; }
+    .gap p { margin: 0; color: var(--muted); }
+    .gap .act { display: block; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--ink); font-weight: 700; }
+    .callout { display: grid; grid-template-columns: .78fr 1.22fr; gap: 1.75rem 3rem; margin-top: 2rem; padding: 1.7rem; background: var(--sage-pale); }
+    .callout h3 { margin: 0; color: var(--sage); font-size: 1.5rem; }
+    .callout p { margin: 0; color: var(--ink); }
+
+    .muffin-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 2rem 4rem; align-items: start; }
+    .muffin-thesis { padding: 2rem; background: var(--surface-2); }
+    .muffin-thesis .display { margin: 0; font-size: clamp(2rem, 4vw, 3.3rem); }
+    .muffin-thesis p:last-child { margin-bottom: 0; }
+    .story-uses { margin: 0; padding: 0; list-style: none; counter-reset: uses; }
+    .story-uses li { counter-increment: uses; position: relative; padding: 1.1rem 0 1.1rem 3.1rem; border-top: 1px solid var(--line); }
+    .story-uses li:last-child { border-bottom: 1px solid var(--line); }
+    .story-uses li::before { content: counter(uses); position: absolute; left: 0; top: 1.05rem; width: 2rem; height: 2rem; display: grid; place-items: center; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); font-weight: 800; }
+    .story-uses strong { color: var(--walnut); }
+    .story-uses p { margin: .25rem 0 0; color: var(--muted); }
+
+    .pillars { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .pillar { display: grid; grid-template-columns: 3.4rem minmax(180px, .75fr) minmax(0, 1.35fr); gap: 1rem 2rem; padding: 1.55rem 0; border-bottom: 1px solid var(--line); align-items: start; }
+    .pillar-num { font-family: "Fraunces", serif; color: var(--gold); font-size: 1.55rem; font-weight: 750; }
+    .pillar h3 { margin: .1rem 0 0; font-size: 1.35rem; }
+    .pillar p { margin: 0; color: var(--muted); }
+    .pillar .first { margin-top: .55rem; color: var(--ink); }
+    .first strong { color: var(--sage); }
+
+    .tone-layout { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(260px, .92fr); gap: 2rem 4rem; align-items: start; }
+    .checklist { list-style: none; margin: 0; padding: 0; counter-reset: check; }
+    .checklist li { counter-increment: check; display: grid; grid-template-columns: 2.3rem 1fr; gap: .9rem; padding: 1rem 0; border-top: 1px solid var(--line); }
+    .checklist li:last-child { border-bottom: 1px solid var(--line); }
+    .checklist li::before { content: counter(check, decimal-leading-zero); color: var(--gold); font-family: "Fraunces", serif; font-weight: 750; }
+    .checklist strong { color: var(--walnut); }
+    .voice-guide { background: var(--walnut); color: var(--paper); padding: 1.6rem; }
+    .voice-guide h3 { margin: 0 0 1rem; color: inherit; font-size: 1.5rem; }
+    .voice-guide dl { margin: 0; }
+    .voice-guide dt { margin-top: 1rem; color: var(--gold-pale); font-size: .82rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+    .voice-guide dd { margin: .2rem 0 0; }
+    @media (prefers-color-scheme: dark) { .voice-guide { background: #e6cfa5; color: #2c1d14; } .voice-guide dt { color: #795717; } }
+
+    .decision { display: grid; grid-template-columns: .8fr 1.2fr; gap: 2rem 4rem; }
+    .decision h3 { margin: 0; font-size: 1.75rem; }
+    .decision ul { margin: 0; padding-left: 1.2rem; }
+    .decision li + li { margin-top: .7rem; }
+    .decision-note { margin-top: 2rem; padding: 1.35rem 1.5rem; border: 1px solid var(--gold); color: var(--muted); }
+    .decision-note strong { color: var(--walnut); }
+
+    details { border-top: 1px solid var(--line); }
+    details:last-of-type { border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; list-style: none; padding: 1.2rem .15rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; color: var(--walnut); font-family: "Fraunces", serif; font-size: 1.25rem; font-weight: 650; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--gold); font-family: "Nunito", sans-serif; font-size: 1.4rem; }
+    details[open] summary::after { content: "−"; }
+    .sources { margin: 0 0 1.5rem; padding-left: 1.4rem; columns: 2; column-gap: 3rem; }
+    .sources li { break-inside: avoid; margin: 0 0 .85rem; padding-right: 1rem; }
+    .sources a { overflow-wrap: anywhere; }
+    .source-note { color: var(--muted); font-size: .92rem; }
+
+    footer { padding: 2.2rem 0 3.5rem; color: var(--muted); font-size: .9rem; }
+    footer strong { color: var(--walnut); }
+
+    @media (max-width: 820px) {
+      .mast-grid, .section-head, .translation, .callout, .muffin-grid, .tone-layout, .decision { grid-template-columns: 1fr; gap: 1.4rem; }
+      .north-star { max-width: 520px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: 0; }
+      .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .gap-grid { grid-template-columns: 1fr; }
+      .pillar { grid-template-columns: 2.4rem 1fr; }
+      .pillar p { grid-column: 2; }
+      .sources { columns: 1; }
+    }
+    @media (max-width: 580px) {
+      .page { width: min(100% - 1.25rem, 1140px); }
+      .masthead { padding-top: 2.6rem; }
+      .need-list { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .stat, .stat:nth-child(2) { border-right: 0; border-bottom: 1px solid var(--line); }
+      .stat:last-child { border-bottom: 0; }
+      .signal-list li { grid-template-columns: 1fr; gap: .25rem; }
+      .toc { gap: .55rem .75rem; }
+      .pillar { gap: .7rem; }
+      .principle { margin-left: -.625rem; margin-right: -.625rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print {
+      :root { --paper: #fff; --surface: #fff; --surface-2: #f4efe4; --ink: #24180f; --muted: #594737; --walnut: #4d321f; --line: #c9b99b; }
+      body { font-size: 10.5pt; }
+      .page { width: 100%; }
+      .masthead, section { padding: 2rem 0; }
+      .toc { display: none; }
+      .principle, .voice-guide { background: #f4efe4; color: #24180f; box-shadow: none; }
+      details { break-inside: avoid; }
+      details > * { display: block; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="page mast-grid">
+      <div>
+        <p class="eyebrow">Research brief · ages 13 to 17</p>
+        <h1>What teens need from a digital space</h1>
+        <p class="dek">A practical foundation for a warm teen section: development, digital habits, disability inclusion, voice, and the role Muffin can play as a steady friend.</p>
+      </div>
+      <aside class="north-star" aria-label="Design north star">
+        <strong>Respect before engagement</strong>
+        <p>Trust their intelligence. Give them choices. Let them participate quietly or contribute meaningfully. Never confuse attention with care.</p>
+      </aside>
+    </div>
+  </header>
+
+  <div class="page">
+    <nav class="toc" aria-label="On this page">
+      <strong>Jump to</strong>
+      <a href="#development">Development</a>
+      <a href="#digital">Digital preferences</a>
+      <a href="#gaps">Missing pieces</a>
+      <a href="#muffin">Muffin’s role</a>
+      <a href="#pillars">Content pillars</a>
+      <a href="#tone">Tone check</a>
+      <a href="#caveats">Caveats</a>
+      <a href="#sources">Sources</a>
+    </nav>
+
+    <main>
+      <section id="development" aria-labelledby="development-title">
+        <div class="section-head">
+          <div><span class="section-num">01</span><h2 id="development-title">The developmental brief</h2></div>
+          <p class="section-intro">Adolescence is not a waiting room for adulthood. It is a period of rapid learning, identity formation, heightened social awareness, and growing agency. A teen space should give young people room to try, choose, belong, and matter.<a class="citation" href="#src-1" aria-label="See source 1">[1]</a></p>
+        </div>
+
+        <ol class="need-list">
+          <li><span class="n">1</span><div><h3>Identity exploration</h3><p>Offer low-stakes ways to test ideas, interests, roles, and values without locking anyone into a label.</p></div></li>
+          <li><span class="n">2</span><div><h3>Real autonomy</h3><p>Give options, explain consequences plainly, and let teens decide how deeply they want to participate.</p></div></li>
+          <li><span class="n">3</span><div><h3>Regulation through practice</h3><p>Emotion and reward systems can run ahead of planning skills. Interactive practice works better than lectures.</p></div></li>
+          <li><span class="n">4</span><div><h3>Belonging and respect</h3><p>A respected role among peers and adults is a developmental need, especially when discrimination is already making the hill steeper.</p></div></li>
+          <li><span class="n">5</span><div><h3>Meaning through contribution</h3><p>Teens benefit from doing something useful for others. Invite them to shape the space, not merely consume it.</p></div></li>
+          <li><span class="n">6</span><div><h3>Action-based learning</h3><p>Trying, getting something wrong, and reflecting with support strengthens decision-making and self-trust.</p></div></li>
+          <li><span class="n">7</span><div><h3>Rest without pressure</h3><p>Sleep supports development, learning, and mental health. Avoid engagement loops while keeping help easy to reach at night.</p></div></li>
+        </ol>
+
+        <div class="principle"><p>Design for a capable person who is still practicing, not a problem to be corrected.</p></div>
+      </section>
+
+      <section id="digital" aria-labelledby="digital-title">
+        <div class="section-head">
+          <div><span class="section-num">02</span><h2 id="digital-title">What earns attention</h2></div>
+          <p class="section-intro">The pattern is consistent: visual storytelling, relatable situations, friendship, hopeful framing, and participation that feels optional rather than demanding.</p>
+        </div>
+
+        <div class="stats" aria-label="Key digital preference findings">
+          <div class="stat"><strong>48.5%</strong><span>preferred animation over live action in a 2025 survey of 1,500 people ages 10 to 24.<a class="citation" href="#src-2" aria-label="See source 2">[2]</a></span></div>
+          <div class="stat"><strong>~60%</strong><span>of ages 14 to 24 wanted more stories with friendship at the center rather than romance.<a class="citation" href="#src-2" aria-label="See source 2">[2]</a></span></div>
+          <div class="stat"><strong>32.7%</strong><span>wanted stories that felt like their own lives, above fantasy, real-world issues, or aspiration in that same survey.<a class="citation" href="#src-2" aria-label="See source 2">[2]</a></span></div>
+          <div class="stat"><strong>46%</strong><span>of teens reported being online almost constantly in Pew’s December 2025 findings.<a class="citation" href="#src-14" aria-label="See source 14">[14]</a></span></div>
+        </div>
+        <p class="scope-note">Important scope note: several preference studies group teens with young adults. The direction is useful, but it is not a precise age-13-to-17 split.</p>
+
+        <div class="translation">
+          <h3>Translate the evidence into experience</h3>
+          <ul class="signal-list">
+            <li><strong>Story format</strong><span>Short illustrated or animated moments, with text and captions always available.</span></li>
+            <li><strong>Relationship center</strong><span>Platonic friendship, including cross-gender friendships without an automatic romance track.</span></li>
+            <li><strong>Participation</strong><span>Mood check-ins, quizzes, polls, and choices that return something useful, never a diagnosis.</span></li>
+            <li><strong>Reading rhythm</strong><span>Bite-sized sections, vertical scrolling, clear language, and permission to lurk without posting.</span></li>
+            <li><strong>Emotional register</strong><span>Honest about hard things, but never hopeless. Validate first, then offer options.</span></li>
+            <li><strong>Control</strong><span>No pressure loops. Teens asked for more privacy, less pressure, and more control over their online experience.<a class="citation" href="#src-17" aria-label="See source 17">[17]</a></span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="gaps" aria-labelledby="gaps-title">
+        <div class="section-head">
+          <div><span class="section-num">03</span><h2 id="gaps-title">The missing pieces</h2></div>
+          <p class="section-intro">Disabled, chronically ill, and neurodivergent teens are not a side audience. The strongest opportunity is to build the whole space around access, authentic representation, peer connection, and voice from the beginning.</p>
+        </div>
+
+        <div class="gap-grid">
+          <article class="gap"><div class="marker">2.4%</div><h3>Representation</h3><p>Only 2.4% of speaking characters in the top 100 films were depicted with any disability in cited 2024 data. Visible disability occupied under 1% of TV and streaming screen time.<a class="citation" href="#src-4" aria-label="See source 4">[4]</a> Neurodivergent characters are often flattened into familiar stereotypes.</p><span class="act">Build complex people with strengths, friction, humor, wants, and ordinary days.</span></article>
+          <article class="gap"><div class="marker">Access</div><h3>Accessibility</h3><p>Guidance exists, but youth sites often lag: captions, meaningful alt text, short paragraphs, subdued color, minimal motion, keyboard access, and playback control.<a class="citation" href="#src-5" aria-label="See source 5">[5]</a></p><span class="act">Treat accessibility as the starting structure, not a later patch.</span></article>
+          <article class="gap"><div class="marker">1%</div><h3>Voice</h3><p>A 2025 review reported that only 1% of adolescent health research included adolescent voice.<a class="citation" href="#src-18" aria-label="See source 18">[18]</a> The people with the most at stake are too often left out of design.</p><span class="act">Create a continuing teen input loop with real influence and compensation.</span></article>
+        </div>
+
+        <div class="callout">
+          <h3>Peer connection is not an extra</h3>
+          <p>Disabled students use digital spaces to build relationships, explore disability identity, learn coping strategies, and control when and how they engage.<a class="citation" href="#src-6" aria-label="See source 6">[6]</a> Chronically ill teens also need peers who understand absence, appointments, fatigue, and taking a growing role in their own care.<a class="citation" href="#src-9" aria-label="See source 9">[9]</a> Racial and ethnic minority teens face additional gaps in access to therapy, medication, virtual care, and community support.<a class="citation" href="#src-7" aria-label="See source 7">[7]</a></p>
+        </div>
+      </section>
+
+      <section id="muffin" aria-labelledby="muffin-title">
+        <div class="section-head">
+          <div><span class="section-num">04</span><h2 id="muffin-title">Why Muffin belongs here</h2></div>
+          <p class="section-intro">Muffin can bridge warmth and credibility if she is written as a companion, not a mascot who arrives to deliver a lesson.</p>
+        </div>
+
+        <div class="muffin-grid">
+          <div class="muffin-thesis">
+            <p class="display">A gentle friend who knows what it feels like to be judged by a label.</p>
+            <p>Research on teens and dogs links stronger companionship with more problem-solving, positive thinking, and emotional regulation, plus less rumination.<a class="citation" href="#src-8" aria-label="See source 8">[8]</a></p>
+            <p>Pitbull-type dogs also carry a powerful judged-by-appearance stigma. Shelter-label studies found that the label itself can change adoption outcomes even when appearance and observed behavior are comparable.<a class="citation" href="#src-21" aria-label="See source 21">[21]</a></p>
+          </div>
+          <ol class="story-uses">
+            <li><strong>Let Muffin model, not preach.</strong><p>She can take a sensory break, rest without apologizing, breathe through a hard moment, or ask a friend to stay.</p></li>
+            <li><strong>Keep friendship at the center.</strong><p>Use loyal, varied, platonic bonds. A friend does not need to fix the problem to help.</p></li>
+            <li><strong>Use animation with purpose.</strong><p>Short reactions can make emotion visible: ears lower, breathing settles, posture softens. Keep motion optional and captioned.</p></li>
+            <li><strong>Make the anti-label theme light-touch.</strong><p>Show it through situations and choices. Let teens make the connection instead of turning Muffin into a moral.</p></li>
+            <li><strong>Protect the truth boundary.</strong><p>Dog companionship research is about real dogs generally. The special resonance of a pitbull character is a thoughtful inference, not a tested engagement result.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="pillars" aria-labelledby="pillars-title">
+        <div class="section-head">
+          <div><span class="section-num">05</span><h2 id="pillars-title">Six content pillars</h2></div>
+          <p class="section-intro">These are strong starting structures for the teen section. Each one ties an observed need to a first buildable version.</p>
+        </div>
+
+        <ol class="pillars">
+          <li class="pillar"><span class="pillar-num">01</span><h3>Peer-story library</h3><div><p>Short, first-person stories about school, friendship, disability, illness, identity, rest, and ordinary life. Reading peers’ stories can normalize and validate experience even when a teen never posts.<a class="citation" href="#src-3" aria-label="See source 3">[3]</a></p><p class="first"><strong>First version:</strong> three paid, consented stories, clearly labeled by topic and reading time.</p></div></li>
+          <li class="pillar"><span class="pillar-num">02</span><h3>Mood check-ins</h3><div><p>Ask “What kind of day is it?” with an easy way to change an answer. Return a small set of options, not a score, label, or diagnosis.</p><p class="first"><strong>First version:</strong> a calm check-in with a confirmation step and three matched choices: stay, shift, or reach out.</p></div></li>
+          <li class="pillar"><span class="pillar-num">03</span><h3>Coping micro-library</h3><div><p>Grounding, breathing, reframing, movement, sensory breaks, sleep support, and asking for help, each in a short, practical format.</p><p class="first"><strong>First version:</strong> six tools, each readable in under two minutes, with text, audio, and no autoplay.</p></div></li>
+          <li class="pillar"><span class="pillar-num">04</span><h3>Teen contribution roles</h3><div><p>Invite art, writing, advice, accessibility review, and ongoing advisory input. Contribution supports purpose and a respected role.</p><p class="first"><strong>First version:</strong> a paid advisory review with a clear brief and a visible “changed because teens told us” log.</p></div></li>
+          <li class="pillar"><span class="pillar-num">05</span><h3>Late-night friendly support</h3><div><p>Keep navigation calm and predictable at 2 a.m. Put crisis support within easy reach, but do not make every hard feeling look like an emergency.</p><p class="first"><strong>First version:</strong> a persistent help route, low-light palette, quiet audio defaults, and no streaks or endless feed.</p></div></li>
+          <li class="pillar"><span class="pillar-num">06</span><h3>Accessibility from day one</h3><div><p>Captions, alt text, keyboard navigation, short paragraphs, scalable type, reduced motion, descriptive links, and no meaning carried by color alone.</p><p class="first"><strong>First version:</strong> make these launch requirements and test them with disabled and neurodivergent teens.</p></div></li>
+        </ol>
+      </section>
+
+      <section id="tone" aria-labelledby="tone-title">
+        <div class="section-head">
+          <div><span class="section-num">06</span><h2 id="tone-title">The five-point tone check</h2></div>
+          <p class="section-intro">Use this before any teen-facing page, story, quiz, prompt, or piece of advice ships.</p>
+        </div>
+
+        <div class="tone-layout">
+          <ol class="checklist">
+            <li><div><strong>Would a 15-year-old roll their eyes at this?</strong><br />If yes, rewrite it without trying to sound younger.</div></li>
+            <li><div><strong>Is the lesson embedded in a story, or lectured?</strong><br />Choose the story and trust the reader to understand.</div></li>
+            <li><div><strong>Am I curious or corrective?</strong><br />Ask and listen before assuming what needs fixing.</div></li>
+            <li><div><strong>Did a teen read this before it shipped?</strong><br />Make youth review part of the process, not a ceremonial last look.</div></li>
+            <li><div><strong>Does Muffin sound like a warm friend?</strong><br />She is a companion, not a mascot delivering morals.</div></li>
+          </ol>
+
+          <aside class="voice-guide" aria-label="Voice guidance">
+            <h3>Voice in practice</h3>
+            <dl>
+              <dt>Lead with</dt><dd>“That makes sense.”</dd>
+              <dt>Then offer</dt><dd>“Want a few options?”</dd>
+              <dt>Use</dt><dd>Plain, specific, honest language.</dd>
+              <dt>Avoid</dt><dd>Faux-cool slang, pity, forced positivity, and “you should.”</dd>
+              <dt>Hold together</dt><dd>Strengths and struggles, without turning either into the whole person.</dd>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section id="caveats" aria-labelledby="caveats-title">
+        <div class="section-head">
+          <div><span class="section-num">07</span><h2 id="caveats-title">What still needs teen voices</h2></div>
+          <p class="section-intro">The research gives a strong direction, not permission to skip co-design. These questions should stay open until teens help answer them.</p>
+        </div>
+
+        <div class="decision">
+          <h3>Open questions</h3>
+          <ul>
+            <li>Which stories and tools feel most useful to 13 to 17 year olds specifically, rather than the broader 10-to-24 samples used in several studies?</li>
+            <li>Does Muffin’s pitbull identity resonate the way the stigma research suggests, or does another framing feel more natural to teens?</li>
+            <li>What balance of reading, animation, audio, and interaction works for teens with different energy, attention, sensory, and access needs?</li>
+            <li>How should private contribution, public contribution, moderation, consent, and compensation work in practice?</li>
+            <li>Which crisis resources are appropriate for the intended audience and geography at launch?</li>
+          </ul>
+        </div>
+        <p class="decision-note"><strong>Recommended next move:</strong> sketch one peer story, one mood check-in, and one coping tool. Put those in front of a small, paid group of teens, including disabled, chronically ill, and neurodivergent teens, before naming the full teen section.</p>
+      </section>
+
+      <section id="sources" aria-labelledby="sources-title">
+        <div class="section-head">
+          <div><span class="section-num">08</span><h2 id="sources-title">Sources</h2></div>
+          <p class="section-intro">Research was compiled on October 15, 2026. Links below are the sources used in the research report. Several findings came through institutional or industry summaries of underlying studies.</p>
+        </div>
+
+        <details open>
+          <summary>Development, engagement, and youth voice</summary>
+          <ol class="sources">
+            <li id="src-1"><a href="https://developingadolescent.semel.ucla.edu/steps-for-youth/item/key-developmental-needs-of-adolescence">UCLA Center for the Developing Adolescent: Key Developmental Needs of Adolescence</a></li>
+            <li id="src-2"><a href="https://kidscreen.com/2025/10/22/5-things-us-teens-are-looking-for-in-their-content/">Kidscreen: Teens and Screens 2025 findings</a></li>
+            <li id="src-3"><a href="https://www.nationalelfservice.net/treatment/digital-health/social-connection-is-the-key-for-engaging-young-people-with-digital-mental-health-interventions/">National Elf Service: social connection in digital mental health interventions</a></li>
+            <li id="src-10"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8787665/">PMC: user-centered design of web-based mental health assessment</a></li>
+            <li id="src-14"><a href="https://www.pewresearch.org/internet/2025/12/09/teens-social-media-and-ai-chatbots-2025/pi_2025-12-09_teens-social-media-ai_0-01/">Pew Research Center: Teens, Social Media and AI Chatbots 2025</a></li>
+            <li id="src-17"><a href="https://publications.aap.org/aapnews/news/35490/AAP-teen-advisers-release-top-10-recommendations">AAP News: teen advisers’ platform recommendations</a></li>
+            <li id="src-18"><a href="https://insightplus.mja.com.au/2025/19/supporting-adolescent-wellbeing-in-the-digital-age/">MJA Insight+: Supporting adolescent wellbeing in the digital age</a></li>
+            <li><a href="https://www.childrenssociety.org.uk/sites/default/files/2025-01/Youth%20Voice%20Report-v2.pdf">The Children’s Society: Youth Voice Report</a></li>
+          </ol>
+        </details>
+
+        <details open>
+          <summary>Disability, chronic illness, and access</summary>
+          <ol class="sources">
+            <li id="src-4"><a href="https://www.mmm-online.com/opinion/beyond-awareness-why-neurodivergent-people-need-more-media-representation/">MM+M: neurodivergent media representation</a></li>
+            <li id="src-5"><a href="https://academictech.uchicago.edu/2024/04/22/udl-course-materials-neurodivergence/">University of Chicago: designing course materials for neurodivergence</a></li>
+            <li id="src-6"><a href="https://phys.org/news/2025-02-social-media-bridges-gaps-students.pdf">Phys.org: social media bridges gaps for students with disabilities</a></li>
+            <li id="src-7"><a href="https://pubmed.ncbi.nlm.nih.gov/40791627/">PubMed: racial and ethnic disparities in adolescent mental health access</a></li>
+            <li id="src-9"><a href="https://www.sciencedaily.com/releases/2014/05/140519092829.htm">ScienceDaily: teens with chronic disease and self-management support</a></li>
+            <li><a href="https://www.sciencedaily.com/releases/1999/05/990505065747.htm">ScienceDaily: Hopkins Teen Central peer support</a></li>
+            <li><a href="https://kvnutalk.com/schoolchildren-with-disabilities-face-digital-gap/">KVNU/AP: digital accessibility gaps in schools</a></li>
+          </ol>
+        </details>
+
+        <details open>
+          <summary>Dogs, pitbull stigma, and coping</summary>
+          <ol class="sources">
+            <li id="src-8"><a href="https://www.thebrighterside.news/post/spending-time-with-a-dog-helps-teens-to-better-cope-with-social-anxiety/">The Brighter Side: teen-dog relationships and coping</a></li>
+            <li><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0305959">PLOS ONE: racialization of pitbull-type dogs</a></li>
+            <li><a href="https://escholarship.org/content/qt9hb380vz/qt9hb380vz.pdf?v=lg">Animals 2025: changing portraits of pitbull-type dogs</a></li>
+            <li id="src-21"><a href="https://discovermagazine.com/planet-earth/labels-not-looks-matter-most-at-the-dog-shelter">Discover Magazine: breed labels and shelter outcomes</a></li>
+          </ol>
+        </details>
+        <p class="source-note">Caveat: the report did not live-browser-verify these pages. It used indexed web results and page-text retrieval. Claims are presented with the same hedges and scope limits carried in that report.</p>
+      </section>
+    </main>
+
+    <footer><strong>Bottom line:</strong> build a place that assumes competence, makes room for hard days, and lets teens choose whether to read, try, contribute, or simply be there.</footer>
+  </div>
+</body>
+</html>
