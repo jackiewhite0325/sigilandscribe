@@ -53,6 +53,20 @@
       .whimsy-home .card:hover { transform: none; }
     }
   </style>
+
+  <style>
+    @media (max-width: 760px) {
+      .secondary {
+        display: flex;
+        flex-direction: column;
+      }
+      .secondary a[href="muffins-corner.html"] { order: 1; }
+      .secondary a[href="adventure-zone.html"] { order: 2; }
+      .secondary a[href="off-leash.html"] { order: 3; }
+      .secondary a[href="play.html"] { order: 4; }
+      .secondary a[href="gift-shop.html"] { order: 5; }
+    }
+  </style>
 </head>
 <body class="whimsy-home">
   <nav class="house-nav" aria-label="Primary">
@@ -134,6 +148,8 @@
 
     <p class="quiet-links">
       <a href="muffins-corner.html">Muffin’s Corner</a>
+      &nbsp;·&nbsp;
+      <a href="muffin-memorial.html">Muffin’s Memorial</a>
       &nbsp;·&nbsp;
       <a href="about.html">About the house</a>
       &nbsp;·&nbsp;
