@@ -67,3 +67,44 @@
     init();
   }
 })();
+
+
+/**
+ * External link redirect notice.
+ * Any link leaving sigilandscribe shows "You are now being redirected"
+ * and opens in a new tab.
+ */
+(function () {
+  var SITE_HOST = 'jackiewhite0325.github.io';
+  function isExternal(href) {
+    if (!href) return false;
+    if (href.charAt(0) === '#' || href.charAt(0) === '/') return false;
+    if (href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0 || href.indexOf('sms:') === 0) return false;
+    try {
+      var url = new URL(href, window.location.href);
+      return url.hostname !== window.location.hostname && url.hostname !== '';
+    } catch (e) {
+      return href.indexOf('http') === 0;
+    }
+  }
+  function showNotice() {
+    var existing = document.getElementById('redirect-notice');
+    if (existing) existing.remove();
+    var notice = document.createElement('div');
+    notice.id = 'redirect-notice';
+    notice.setAttribute('role', 'status');
+    notice.textContent = 'You are now being redirected.';
+    notice.style.cssText = 'position:fixed;top:18px;left:50%;transform:translateX(-50%);background:#5a3827;color:#fbf6e9;padding:12px 22px;border-radius:10px;font-family:Nunito,system-ui,sans-serif;font-size:15px;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.25);';
+    document.body.appendChild(notice);
+    setTimeout(function () { if (notice.parentNode) notice.parentNode.removeChild(notice); }, 2500);
+  }
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!isExternal(href)) return;
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener');
+    showNotice();
+  }, true);
+})();
