@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:,">
+  <title>Muffin's Adventure Zone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Nunito:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: light dark; --paper:#fbf6e9; --ink:#5a3827; --muted:#704f3c; --gold:#b77a1f; --gold-deep:#8f5b16; --leaf:#466548; --leaf-soft:#dce5cd; --rose:#8b4d49; --sky:#dce8e8; --card:#fffdf5; --line:#d8c59e; --shadow:rgba(75,48,33,.13); }
+    @media (prefers-color-scheme:dark) { :root { --paper:#241b17; --ink:#f7ead0; --muted:#e1ccb1; --gold:#e4ad58; --gold-deep:#f2c87d; --leaf:#9db995; --leaf-soft:#303d2e; --rose:#d89089; --sky:#263c3d; --card:#31241d; --line:#70573e; --shadow:rgba(0,0,0,.3); } }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-width:320px; font-family:"Nunito",sans-serif; color:var(--ink); background:radial-gradient(circle at 16px 16px,color-mix(in srgb,var(--gold) 10%,transparent) 1.3px,transparent 1.5px) 0 0/32px 32px,var(--paper); line-height:1.55; }
+    a { color:inherit; }
+    a:focus-visible { outline:4px solid var(--gold); outline-offset:4px; }
+    .page { width:min(1120px,calc(100% - 32px)); margin:0 auto; }
+    .back { display:inline-flex; align-items:center; gap:10px; min-height:52px; margin:22px 0 18px; padding:10px 17px; border:2px solid var(--line); border-radius:999px; background:var(--card); color:var(--muted); font-weight:800; text-decoration:none; box-shadow:0 4px 0 var(--line); }
+    .back:hover { border-color:var(--gold); }
+    .back svg { width:20px; height:20px; }
+    .hero { display:grid; grid-template-columns:1.05fr .95fr; align-items:center; overflow:hidden; min-height:480px; border:2px solid var(--line); border-radius:34px 12px 34px 12px; background:var(--card); box-shadow:0 16px 42px var(--shadow); }
+    .hero-copy { padding:clamp(34px,6vw,72px); }
+    .age { display:inline-block; margin-bottom:16px; padding:7px 13px; border-radius:999px; background:var(--leaf-soft); color:var(--leaf); font-size:.88rem; font-weight:800; letter-spacing:.03em; }
+    h1,h2,h3 { font-family:"Fraunces",serif; line-height:1.08; }
+    h1 { margin:0; max-width:650px; font-size:clamp(2.8rem,6.5vw,5.6rem); letter-spacing:-.045em; text-wrap:balance; }
+    .subtitle { max-width:620px; margin:22px 0 0; font-size:clamp(1.12rem,2.1vw,1.45rem); font-weight:800; line-height:1.42; color:var(--gold-deep); }
+    .intro { max-width:620px; margin:17px 0 0; font-size:1.08rem; color:var(--muted); }
+    .hero-art { position:relative; height:100%; min-height:480px; }
+    .hero-art img { width:100%; height:100%; object-fit:cover; object-position:54% center; display:block; }
+    .hero-art:after { content:""; position:absolute; inset:0; box-shadow:inset 22px 0 28px -30px rgba(58,35,24,.65); pointer-events:none; }
+    .section-heading { margin:72px 0 28px; text-align:center; }
+    .section-heading h2 { margin:0; font-size:clamp(2rem,4.5vw,3.5rem); }
+    .section-heading p { margin:10px 0 0; color:var(--muted); font-size:1.05rem; }
+    .cards { display:grid; grid-template-columns:repeat(6,1fr); gap:20px; }
+    .card { position:relative; display:flex; grid-column:span 2; flex-direction:column; min-height:300px; overflow:hidden; padding:28px 27px 26px; border:2px solid var(--line); border-radius:14px 30px 14px 30px; background:var(--card); box-shadow:0 8px 0 color-mix(in srgb,var(--line) 75%,transparent); text-decoration:none; transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+    .card:nth-child(4) { grid-column:2/span 2; }
+    .card:nth-child(5) { grid-column:4/span 2; }
+    .card:hover { transform:translateY(-4px); border-color:var(--gold); box-shadow:0 12px 0 color-mix(in srgb,var(--gold) 38%,transparent); }
+    .card-icon { display:grid; place-items:center; width:72px; height:72px; margin-bottom:24px; border-radius:50%; background:var(--tone,var(--leaf-soft)); color:var(--tone-ink,var(--leaf)); }
+    .card-icon svg { width:39px; height:39px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .number { color:var(--gold-deep); font-size:.85rem; font-weight:800; }
+    h3 { margin:7px 0 10px; font-size:1.5rem; }
+    .card p { margin:0 0 24px; color:var(--muted); }
+    .go { display:flex; align-items:center; gap:8px; margin-top:auto; color:var(--gold-deep); font-weight:800; }
+    .go svg { width:20px; transition:transform .18s ease; }
+    .card:hover .go svg { transform:translateX(4px); }
+    .seeds { --tone:#efe0b7; --tone-ink:#8f5b16; }
+    .garden { --tone:var(--sky); --tone-ink:#356466; }
+    .books { --tone:#ead8d3; --tone-ink:var(--rose); }
+    .quest { --tone:var(--leaf-soft); --tone-ink:var(--leaf); }
+    .create { --tone:#e6dded; --tone-ink:#6a5474; }
+    .rest { display:grid; grid-template-columns:auto 1fr; align-items:center; gap:24px; max-width:760px; margin:74px auto 34px; padding:28px 34px; border:2px solid var(--line); border-radius:38px 16px 38px 16px; background:var(--leaf-soft); }
+    .rest svg { width:54px; height:54px; color:var(--leaf); }
+    .rest h2 { margin:0 0 4px; font-size:1.55rem; }
+    .rest p { margin:0; color:var(--muted); font-size:1.05rem; }
+    footer { padding:18px 0 max(42px,env(safe-area-inset-bottom)); text-align:center; }
+    footer a { font-weight:800; color:var(--gold-deep); text-underline-offset:4px; }
+    @media (max-width:840px) { .hero { grid-template-columns:1fr; } .hero-art { min-height:360px; order:-1; } .hero-copy { padding:36px clamp(24px,7vw,48px) 46px; } h1 { font-size:clamp(2.75rem,11vw,4.5rem); } .cards { grid-template-columns:repeat(2,1fr); } .card,.card:nth-child(4),.card:nth-child(5) { grid-column:auto; } .card:nth-child(5) { grid-column:1/-1; max-width:540px; width:100%; justify-self:center; } }
+    @media (max-width:580px) { .page { width:min(100% - 22px,1120px); } .back { margin-top:13px; } .hero { border-radius:24px 9px 24px 9px; } .hero-art { min-height:280px; } .hero-copy { padding:28px 22px 34px; } .section-heading { margin-top:52px; padding:0 12px; } .cards { grid-template-columns:1fr; gap:17px; } .card,.card:nth-child(5) { grid-column:auto; min-height:0; padding:24px 23px; } .card-icon { width:62px; height:62px; margin-bottom:18px; } .rest { grid-template-columns:1fr; text-align:center; margin-top:54px; padding:27px 22px; } .rest svg { margin:0 auto; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .card,.go svg { transition:none; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="play-area.html" aria-label="Back to the Play Area"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Play Area</a>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy"><span class="age">For ages 7 to 12</span><h1 id="page-title">Muffin's Adventure Zone</h1><p class="subtitle">Mysteries to solve, quests to complete, stories to create.</p><p class="intro">Muffin is waiting with new adventures for bigger kids. Take your time, there are no timers and no way to fail here.</p></div>
+      <div class="hero-art"><img src="assets/muffin-garden.jpg" alt="Watercolor illustration of Muffin resting in a sunny garden while a friend watches a butterfly"></div>
+    </section>
+    <section aria-labelledby="choose-heading">
+      <div class="section-heading"><h2 id="choose-heading">Choose your adventure</h2><p>Follow a clue, take on a quest, or make something completely your own.</p></div>
+      <div class="cards">
+        <a class="card seeds" href="mystery-trail-1.html"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="20" cy="20" r="11"/><path d="m28 28 10 10M17 16c4 0 7 3 7 7M11 9c9-1 16 4 18 12"/><path d="M36 14c-5 1-8 4-9 9 5-1 8-4 9-9Z"/></svg></div><span class="number">Mystery Trail 1</span><h3>The Case of the Missing Sunflower Seeds</h3><p>Follow the clues and solve the mystery.</p><span class="go">Begin the trail <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></a>
+        <a class="card garden" href="mystery-trail-2.html"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M31 8a16 16 0 1 0 9 27A18 18 0 0 1 31 8Z"/><path d="M8 32c8-1 14-6 16-14M13 39c1-8 6-14 14-17"/><circle cx="36" cy="14" r="1.5" fill="currentColor" stroke="none"/></svg></div><span class="number">Mystery Trail 2</span><h3>The Case of the Midnight Garden Visitor</h3><p>Someone has been visiting the garden at night.</p><span class="go">Begin the trail <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></a>
+        <a class="card books" href="mystery-trail-3.html"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 10h12a6 6 0 0 1 6 6v24a7 7 0 0 0-7-7H8Z"/><path d="M40 10H28a2 2 0 0 0-2 2v28a7 7 0 0 1 7-7h7Z"/><path d="M13 17h7M13 22h7"/></svg></div><span class="number">Mystery Trail 3</span><h3>The Case of the Vanishing Library Books</h3><p>Books are disappearing from the library.</p><span class="go">Begin the trail <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></a>
+        <a class="card quest" href="quest-board.html"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M13 6h22v36H13Z"/><path d="M19 6V3h10v3M19 17l3 3 7-7M19 29l3 3 7-7M31 29h3"/></svg></div><span class="number">Challenges and badges</span><h3>Quest Board</h3><p>Answer questions, earn badges, complete quests.</p><span class="go">Choose a quest <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></a>
+        <a class="card create" href="create-corner.html"><div class="card-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M10 36 8 42l6-2 25-25-4-4Z"/><path d="m31 15 4 4M14 30l4 4"/><path d="M12 9v8M8 13h8M35 30v10M30 35h10"/></svg></div><span class="number">Make it yours</span><h3>Create Corner</h3><p>Story starters, comic creator, and story dice to make your own tales.</p><span class="go">Start creating <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></a>
+      </div>
+    </section>
+    <aside class="rest" aria-label="A note about rest"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M22 49c17 0 27-11 27-27-15 0-27 10-27 27Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M22 49c7-10 13-16 26-25M18 51C7 40 9 24 14 14c11 9 13 20 8 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M14 15c2 14 4 22 8 31" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><div><h2>Rest is part of the adventure too.</h2><p>Come back anytime.</p></div></aside>
+  </main>
+  <footer class="page"><a href="play-area.html">Back to the Play Area</a></footer>
+</body>
+</html>
