@@ -143,6 +143,20 @@
       font-weight: 600;
     }
 
+    .intro .order-help {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .order-help a {
+      color: var(--gold-deep);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
     .bouquet {
       width: 100%;
       color: var(--gold);
@@ -306,11 +320,32 @@
 
     .journal-grid .product:nth-child(3n + 2) { border-radius: 20px 6px 20px 6px; }
 
+    .promise {
+      margin-top: 72px;
+      padding: clamp(26px, 5vw, 42px);
+      background: var(--paper-soft);
+      border-radius: 24px 7px 24px 7px;
+      text-align: center;
+    }
+
+    .promise p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--walnut);
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      font-weight: 600;
+      line-height: 1.42;
+      text-wrap: balance;
+    }
+
+    .promise strong { color: var(--gold-deep); }
+
     .ending {
       display: grid;
       justify-items: center;
       gap: 16px;
-      margin-top: 72px;
+      margin-top: 48px;
       padding-top: 36px;
       border-top: 1px solid var(--line);
       text-align: center;
@@ -381,6 +416,7 @@
       <div class="intro-copy">
         <h1>Muffin's Gift Shop</h1>
         <p>Everything here was made with love. Books for every age, journals for every day.</p>
+        <p class="order-help">Questions about an order? Write to jackiewhite0325@gmail.com. See our <a href="return-policy.html">return policy</a> for details.</p>
       </div>
       <svg class="bouquet" viewBox="0 0 220 270" role="img" aria-label="A soft bouquet of flowers and leaves">
         <path class="stem" d="M111 248C112 181 111 110 76 54M112 246c5-70 34-113 74-146M109 243c-11-62-35-96-74-123"/>
@@ -530,6 +566,10 @@
         <p>Calendars and office creations will join this shelf soon.</p>
         <svg class="sprig" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 91C38 58 64 33 93 10"/><path d="M37 62c-1-15 5-23 16-27 3 13-2 22-16 27ZM56 44c2-13 10-18 21-19-1 12-8 18-21 19ZM29 72c-14 1-21-4-25-14 12-3 21 2 25 14Z"/></svg>
       </div>
+    </section>
+
+    <section class="promise" aria-label="Our promise">
+      <p><strong>Our promise:</strong> Everything here is made with care. If something arrives damaged or isn't what you expected, write to us and we'll make it right.</p>
     </section>
 
     <footer class="ending">
