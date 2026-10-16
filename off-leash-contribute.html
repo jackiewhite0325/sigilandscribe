@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Contribute (Beta) | Muffin Off Leash</title>
+  <link rel="canonical" href="https://jackiewhite0325.github.io/sigilandscribe/off-leash-contribute.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Nunito:wght@500;600;700;800&amp;display=swap" rel="stylesheet" />
+  <style>
+    :root { color-scheme: light dark; --paper:#fbf6e9; --ink:#5a3827; --muted:#704f3c; --gold:#b77a1f; --gold-deep:#8f5b16; --leaf:#466548; --leaf-soft:#dce5cd; --rose:#8b4d49; --card:#fffdf5; --line:#d8c59e; --shadow:rgba(75,48,33,.13); --focus:#176b8d; --beta:#7b5ea7; --beta-soft:#e8e0f5; }
+    @media (prefers-color-scheme: dark) { :root { --paper:#1e1a24; --ink:#f7ead0; --muted:#e1ccb1; --gold:#e4ad58; --gold-deep:#f2c87d; --leaf:#9db995; --leaf-soft:#303d2e; --rose:#d89089; --card:#2a2433; --line:#6b5a7a; --shadow:rgba(0,0,0,.3); --focus:#74d6ff; --beta:#b79ce0; --beta-soft:#3a3049; } }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-width:320px; font-family:"Nunito",sans-serif; color:var(--ink); background:var(--paper); line-height:1.6; }
+    a { color:inherit; }
+    a:focus-visible, button:focus-visible { outline:4px solid var(--focus); outline-offset:3px; }
+    .page { width:min(880px,calc(100% - 32px)); margin:0 auto; padding:0 0 72px; }
+    .back { display:inline-flex; align-items:center; gap:10px; min-height:52px; margin:22px 0 18px; padding:10px 17px; border:2px solid var(--line); border-radius:999px; background:var(--card); color:var(--muted); font-weight:800; text-decoration:none; box-shadow:0 4px 0 var(--line); }
+    .back:hover { transform:translateY(-2px); }
+    .beta-banner { display:inline-block; padding:6px 16px; border-radius:999px; background:var(--beta-soft); color:var(--beta); font-weight:800; font-size:.85rem; letter-spacing:.06em; text-transform:uppercase; margin-bottom:16px; border:2px solid var(--beta); }
+    .hero h1 { font-family:"Fraunces",serif; font-size:clamp(2.2rem,6vw,3.8rem); margin:0 0 12px; color:var(--ink); letter-spacing:-.02em; }
+    .hero p { font-size:clamp(1.05rem,2.5vw,1.25rem); color:var(--muted); margin:0 0 8px; }
+    .how-it-works { margin:32px 0; padding:24px 28px; background:var(--card); border:2px solid var(--line); border-radius:18px; box-shadow:0 6px 18px var(--shadow); }
+    .how-it-works h2 { font-family:"Fraunces",serif; font-size:1.4rem; margin:0 0 12px; color:var(--ink); }
+    .how-it-works ol { margin:0; padding-left:22px; color:var(--muted); }
+    .how-it-works li { margin-bottom:10px; }
+    .how-it-works strong { color:var(--ink); }
+    .roles { display:grid; gap:18px; margin:32px 0; }
+    .role-card { background:var(--card); border:2px solid var(--line); border-radius:18px; padding:26px 24px; box-shadow:0 6px 18px var(--shadow); }
+    .role-card h3 { font-family:"Fraunces",serif; font-size:1.35rem; margin:0 0 4px; color:var(--ink); }
+    .role-tag { display:inline-block; font-size:.75rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--beta); margin-bottom:12px; }
+    .role-card p { margin:0 0 14px; color:var(--muted); }
+    .role-card ul { margin:0 0 16px; padding-left:20px; color:var(--ink); }
+    .role-card li { margin-bottom:6px; }
+    .contribute-btn { display:inline-block; min-height:50px; padding:11px 28px; border:0; border-radius:12px; background:var(--beta); color:#fff; font-weight:800; font-size:1rem; text-decoration:none; cursor:pointer; }
+    .contribute-btn:hover { filter:brightness(1.1); }
+    .safety { margin:36px 0; padding:24px 28px; background:var(--leaf-soft); border:2px solid var(--leaf); border-radius:18px; }
+    .safety h2 { font-family:"Fraunces",serif; font-size:1.3rem; margin:0 0 10px; color:var(--ink); }
+    .safety ul { margin:0; padding-left:20px; color:var(--ink); }
+    .safety li { margin-bottom:8px; }
+    .crisis { margin:32px 0; padding:20px 24px; border:2px solid var(--rose); border-radius:16px; text-align:center; }
+    .crisis p { margin:0; font-weight:700; }
+    .crisis a { color:var(--rose); font-weight:800; }
+    footer.page-footer { text-align:center; padding:36px 20px 0; }
+    footer.page-footer a { display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:10px 24px; border:2px solid var(--line); border-radius:999px; background:var(--card); color:var(--muted); font-weight:800; text-decoration:none; box-shadow:0 4px 0 var(--line); }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none!important; scroll-behavior:auto!important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="off-leash.html">← Back to Off Leash</a>
+    <div class="hero">
+      <span class="beta-banner">Beta test</span>
+      <h1>Help shape Off Leash</h1>
+      <p>This zone is for teens, so teens should help build it. These are ways to contribute. Nothing goes live without a review first.</p>
+      <p>We are trying this out. If it works, it stays. If it does not, we will change it. Your feedback on the process itself counts too.</p>
+    </div>
+
+    <div class="how-it-works">
+      <h2>How contributing works</h2>
+      <ol>
+        <li><strong>Pick a role</strong> below that sounds like you.</li>
+        <li><strong>Send your contribution</strong> by email. You can use a nickname if you prefer.</li>
+        <li><strong>It gets reviewed.</strong> Every submission is read by a real person before anything happens with it. Nothing is automatic.</li>
+        <li><strong>You will hear back</strong> about whether it is a fit, and why or why not.</li>
+      </ol>
+    </div>
+
+    <div class="roles">
+      <article class="role-card">
+        <span class="role-tag">Share your story</span>
+        <h3>Story Contributor</h3>
+        <p>Write about something you have lived through. It does not have to be dramatic. Small true things count.</p>
+        <ul>
+          <li>A hard day and what got you through it</li>
+          <li>Something about your body or brain that you wish people understood</li>
+          <li>A moment you felt truly seen by someone</li>
+        </ul>
+        <p>Stories are 300 to 800 words. You choose whether to use your first name, a nickname, or stay anonymous.</p>
+        <a class="contribute-btn" href="mailto:hello@sigilandscribe.com?subject=Off%20Leash%20Story%20Submission%20(Beta)">Submit a story</a>
+      </article>
+
+      <article class="role-card">
+        <span class="role-tag">Test what helps</span>
+        <h3>Coping Tool Tester</h3>
+        <p>Try the tools in the coping library and say honestly what worked, what did not, and what felt off.</p>
+        <ul>
+          <li>Pick any tool from the coping micro-library</li>
+          <li>Try it on a real hard day (not a good day)</li>
+          <li>Tell us: did it help even a little? Did anything feel wrong about it?</li>
+        </ul>
+        <p>Your feedback shapes which tools stay, which get rewritten, and which get removed.</p>
+        <a class="contribute-btn" href="mailto:hello@sigilandscribe.com?subject=Off%20Leash%20Tool%20Feedback%20(Beta)">Share feedback</a>
+      </article>
+
+      <article class="role-card">
+        <span class="role-tag">Keep it real</span>
+        <h3>Wording Reviewer</h3>
+        <p>Read pages on Off Leash and flag any wording that feels preachy, fake, condescending, or just off.</p>
+        <ul>
+          <li>Quote the line that bugged you</li>
+          <li>Say why in your own words (one sentence is enough)</li>
+          <li>Suggest a better way to say it, if you want to</li>
+        </ul>
+        <p>You know when an adult is trying too hard. That instinct is the whole job.</p>
+        <a class="contribute-btn" href="mailto:hello@sigilandscribe.com?subject=Off%20Leash%20Wording%20Flag%20(Beta)">Flag wording</a>
+      </article>
+
+      <article class="role-card">
+        <span class="role-tag">Point the way</span>
+        <h3>Topic Suggester</h3>
+        <p>Tell us what you wish someone would write about. What is missing? What do you need that is not here?</p>
+        <ul>
+          <li>A topic for a new story</li>
+          <li>A coping tool for a situation we have not covered</li>
+          <li>A question you wish had an honest answer somewhere</li>
+        </ul>
+        <p>One line is enough. "Someone should write about ___" is a complete suggestion.</p>
+        <a class="contribute-btn" href="mailto:hello@sigilandscribe.com?subject=Off%20Leash%20Topic%20Suggestion%20(Beta)">Suggest a topic</a>
+      </article>
+    </div>
+
+    <div class="safety">
+      <h2>Safety and privacy</h2>
+      <ul>
+        <li><strong>Nothing is automatic.</strong> Every submission is read by a person. Nothing goes on the site without review.</li>
+        <li><strong>Use a nickname if you want.</strong> You never have to use your real name.</li>
+        <li><strong>No personal details.</strong> Please do not include your last name, school, address, or phone number.</li>
+        <li><strong>You can withdraw anytime.</strong> Changed your mind about something you sent? Say so and it will be removed.</li>
+        <li><strong>This is not a crisis service.</strong> If you are in crisis, please reach out to someone who can help right now (see below).</li>
+      </ul>
+    </div>
+
+    <div class="crisis">
+      <p>If this moment feels bigger than a contribution form: call or text <a href="tel:988">988</a> (US). You matter, and support is there.</p>
+    </div>
+
+    <footer class="page-footer">
+      <a href="off-leash.html">← Back to Off Leash</a>
+    </footer>
+  </main>
+</body>
+</html>
