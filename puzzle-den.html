@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Puzzle Den | Muffin's Adventure Zone</title>
+  <link rel="canonical" href="https://jackiewhite0325.github.io/sigilandscribe/puzzle-den.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Nunito:wght@500;600;700;800&amp;display=swap" rel="stylesheet" />
+  <style>
+    :root { color-scheme: light dark; --paper:#fbf6e9; --ink:#5a3827; --muted:#704f3c; --gold:#b77a1f; --gold-deep:#8f5b16; --leaf:#466548; --leaf-soft:#dce5cd; --rose:#8b4d49; --card:#fffdf5; --line:#d8c59e; --shadow:rgba(75,48,33,.13); --focus:#176b8d; }
+    @media (prefers-color-scheme: dark) { :root { --paper:#241b17; --ink:#f7ead0; --muted:#e1ccb1; --gold:#e4ad58; --gold-deep:#f2c87d; --leaf:#9db995; --leaf-soft:#303d2e; --rose:#d89089; --card:#31241d; --line:#70573e; --shadow:rgba(0,0,0,.3); --focus:#74d6ff; } }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-width:320px; font-family:"Nunito",sans-serif; color:var(--ink); background:radial-gradient(circle at 16px 16px,color-mix(in srgb,var(--gold) 10%,transparent) 1.3px,transparent 1.5px) 0 0/32px 32px,var(--paper); line-height:1.55; }
+    a { color:inherit; }
+    a:focus-visible, button:focus-visible { outline:4px solid var(--focus); outline-offset:3px; }
+    .page { width:min(1120px,calc(100% - 32px)); margin:0 auto; padding:0 0 72px; }
+    .back { display:inline-flex; align-items:center; gap:10px; min-height:52px; margin:22px 0 18px; padding:10px 17px; border:2px solid var(--line); border-radius:999px; background:var(--card); color:var(--muted); font-weight:800; text-decoration:none; box-shadow:0 4px 0 var(--line); }
+    .back:hover { transform:translateY(-2px); }
+    .hero { text-align:center; padding:28px 20px 36px; }
+    .hero h1 { font-family:"Fraunces",serif; font-size:clamp(2.4rem,7vw,4.5rem); margin:0 0 12px; color:var(--ink); letter-spacing:-.02em; }
+    .hero p { font-size:clamp(1.05rem,2.5vw,1.3rem); color:var(--muted); max-width:620px; margin:0 auto; }
+    .promise { max-width:720px; margin:0 auto 36px; padding:18px 22px 16px 32px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted); font-size:1rem; position:relative; }
+    .promise::before { content:"✦"; position:absolute; left:6px; top:16px; color:var(--gold); font-size:1.3rem; }
+    .promise strong { display:block; color:var(--ink); font-size:1.08rem; }
+    .puzzle-tabs { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:0 0 28px; }
+    .puzzle-tab { min-height:56px; padding:12px 22px; border:2px solid var(--line); border-radius:999px; background:var(--card); color:var(--muted); font-weight:800; font-size:1rem; cursor:pointer; box-shadow:0 3px 0 var(--line); transition:all .18s; }
+    .puzzle-tab:hover { transform:translateY(-2px); }
+    .puzzle-tab[aria-selected="true"] { background:var(--gold); border-color:var(--gold-deep); color:#fff; box-shadow:0 3px 0 var(--gold-deep); }
+    .puzzle-panel { display:none; }
+    .puzzle-panel.active { display:block; }
+    .puzzle-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; }
+    .puzzle-card { background:var(--card); border:2px solid var(--line); border-radius:18px; padding:24px 22px; box-shadow:0 6px 18px var(--shadow); }
+    .puzzle-card h3 { font-family:"Fraunces",serif; font-size:1.25rem; margin:0 0 4px; color:var(--ink); }
+    .puzzle-type { display:inline-block; font-size:.75rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--leaf); margin-bottom:10px; }
+    .puzzle-question { font-size:1.08rem; margin:0 0 16px; color:var(--ink); }
+    .choices { display:grid; gap:8px; }
+    .choice-btn { min-height:48px; padding:10px 14px; border:2px solid var(--line); border-radius:10px; background:var(--paper); color:var(--ink); text-align:left; font-weight:700; font-size:.98rem; cursor:pointer; transition:border-color .15s,background .15s; }
+    .choice-btn:hover:not(:disabled) { border-color:var(--gold); }
+    .choice-btn:disabled { cursor:default; }
+    .choice-btn.correct { border-color:var(--leaf); background:var(--leaf-soft); }
+    .choice-btn.wrong-try { border-color:var(--gold); background:color-mix(in srgb,var(--gold) 12%,var(--paper)); }
+    .feedback { min-height:1.6em; margin:10px 0 0; font-weight:800; color:var(--muted); font-size:.95rem; }
+    .feedback.good { color:var(--leaf); }
+    .riddle-answer { display:none; margin-top:12px; padding:14px; background:var(--leaf-soft); border-radius:10px; font-weight:700; color:var(--ink); }
+    .riddle-answer.show { display:block; }
+    .reveal-btn { min-height:48px; padding:10px 20px; border:0; border-radius:12px; background:var(--gold); color:#fff; font-weight:800; font-size:1rem; cursor:pointer; }
+    .reveal-btn:hover { background:var(--gold-deep); }
+    .scramble-word { font-family:"Fraunces",serif; font-size:1.8rem; letter-spacing:.3em; text-align:center; margin:0 0 16px; color:var(--gold-deep); }
+    .scramble-input { width:100%; min-height:52px; padding:12px 16px; border:2px solid var(--line); border-radius:10px; font-size:1.1rem; font-weight:700; text-align:center; letter-spacing:.1em; background:var(--paper); color:var(--ink); margin-bottom:10px; }
+    .check-btn { width:100%; min-height:50px; border:0; border-radius:12px; background:var(--leaf); color:#fff; font-weight:800; font-size:1rem; cursor:pointer; }
+    .check-btn:hover { filter:brightness(1.08); }
+    .hint { font-size:.88rem; color:var(--muted); margin-top:10px; font-style:italic; }
+    footer.page-footer { text-align:center; padding:36px 20px 0; }
+    footer.page-footer a { display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:10px 24px; border:2px solid var(--line); border-radius:999px; background:var(--card); color:var(--muted); font-weight:800; text-decoration:none; box-shadow:0 4px 0 var(--line); }
+    @media (max-width:640px) { .puzzle-grid { grid-template-columns:1fr; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none!important; scroll-behavior:auto!important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="adventure-zone.html">← Back to Adventure Zone</a>
+    <div class="hero">
+      <h1>Puzzle Den</h1>
+      <p>Muffin loves a good puzzle. Riddles, brain teasers, and word scrambles are waiting. Take your time, there is no rush here.</p>
+    </div>
+    <div class="promise"><strong>No timers, no scores, no failing.</strong>Every puzzle has unlimited tries. Stuck? Peek at the answer and try the next one. That counts too.</div>
+    <nav class="puzzle-tabs" aria-label="Puzzle types" role="tablist">
+      <button class="puzzle-tab" role="tab" aria-selected="true" aria-controls="panel-riddles" id="tab-riddles">Riddles</button>
+      <button class="puzzle-tab" role="tab" aria-selected="false" aria-controls="panel-logic" id="tab-logic" tabindex="-1">Logic Puzzles</button>
+      <button class="puzzle-tab" role="tab" aria-selected="false" aria-controls="panel-words" id="tab-words" tabindex="-1">Word Scrambles</button>
+    </nav>
+
+    <div class="puzzle-panel active" id="panel-riddles" role="tabpanel" aria-labelledby="tab-riddles">
+      <div class="puzzle-grid" id="riddle-grid"></div>
+    </div>
+    <div class="puzzle-panel" id="panel-logic" role="tabpanel" aria-labelledby="tab-logic">
+      <div class="puzzle-grid" id="logic-grid"></div>
+    </div>
+    <div class="puzzle-panel" id="panel-words" role="tabpanel" aria-labelledby="tab-words">
+      <div class="puzzle-grid" id="word-grid"></div>
+    </div>
+
+    <footer class="page-footer">
+      <a href="adventure-zone.html">← Back to Adventure Zone</a>
+    </footer>
+  </main>
+  <script>
+    var riddles = [
+      { q: "I am always hungry and must always be fed. The finger I touch soon turns red. What am I?", a: "Fire" },
+      { q: "The more of me you take, the more you leave behind. What am I?", a: "Footsteps" },
+      { q: "I have a face and two hands but no arms or legs. What am I?", a: "A clock" },
+      { q: "What has keys but cannot open a single lock?", a: "A piano" },
+      { q: "What runs but never walks, has a mouth but never talks?", a: "A river" },
+      { q: "Muffin buried 3 bones on Monday and dug up 1 on Tuesday. She buried 2 more on Wednesday. How many bones are buried now?", a: "4 bones (3 - 1 + 2 = 4)" }
+    ];
+    var logicPuzzles = [
+      { type: "Number puzzle", q: "Muffin is counting her treats. She has 12. She gives 4 to a friend, then finds 3 more. How many does she have now?", choices: ["9 treats", "10 treats", "11 treats", "12 treats"], answer: 2 },
+      { type: "Pattern puzzle", q: "Red, blue, red, blue, red... What color comes next?", choices: ["Red", "Blue", "Green", "Yellow"], answer: 1 },
+      { type: "Logic puzzle", q: "Three dogs are in a line. Muffin is not first. Rosie is not last. Zero is in the middle. Who is first?", choices: ["Muffin", "Rosie", "Zero", "Cannot tell"], answer: 1 },
+      { type: "Number puzzle", q: "A garden has 5 rows of flowers with 4 flowers in each row. How many flowers total?", choices: ["9 flowers", "15 flowers", "20 flowers", "25 flowers"], answer: 2 },
+      { type: "Logic puzzle", q: "If all pitbulls love belly rubs, and Muffin is a pitbull, does Muffin love belly rubs?", choices: ["Yes", "No", "Maybe", "Only on Tuesdays"], answer: 0 },
+      { type: "Pattern puzzle", q: "2, 4, 8, 16... What number comes next?", choices: ["18", "20", "24", "32"], answer: 3 }
+    ];
+    var wordScrambles = [
+      { scrambled: "F M U F I N", answer: "MUFFIN", hint: "A black-and-white pitbull who loves adventures" },
+      { scrambled: "G D E N A R", answer: "GARDEN", hint: "Where flowers grow" },
+      { scrambled: "Z Z U P L E", answer: "PUZZLE", hint: "What you are solving right now" },
+      { scrambled: "D V A E N U T R E", answer: "ADVENTURE", hint: "An exciting journey" },
+      { scrambled: "R D N F I E", answer: "FRIEND", hint: "Someone kind to you" },
+      { scrambled: "S R A T", answer: "STAR", hint: "Twinkles in the night sky" }
+    ];
+
+    function buildRiddles() {
+      var grid = document.getElementById("riddle-grid");
+      grid.innerHTML = riddles.map(function(r, i) {
+        return '<article class="puzzle-card"><span class="puzzle-type">Riddle ' + (i+1) + '</span><p class="puzzle-question">' + r.q + '</p><button class="reveal-btn" data-riddle="' + i + '">Reveal answer</button><div class="riddle-answer" id="riddle-a-' + i + '">' + r.a + '</div></article>';
+      }).join("");
+      grid.querySelectorAll(".reveal-btn").forEach(function(btn) {
+        btn.addEventListener("click", function() {
+          var ans = document.getElementById("riddle-a-" + btn.dataset.riddle);
+          ans.classList.toggle("show");
+          btn.textContent = ans.classList.contains("show") ? "Hide answer" : "Reveal answer";
+        });
+      });
+    }
+
+    function buildLogic() {
+      var grid = document.getElementById("logic-grid");
+      grid.innerHTML = logicPuzzles.map(function(p, i) {
+        var choices = p.choices.map(function(c, j) {
+          return '<button class="choice-btn" data-puzzle="' + i + '" data-choice="' + j + '">' + c + '</button>';
+        }).join("");
+        return '<article class="puzzle-card"><span class="puzzle-type">' + p.type + '</span><h3>Puzzle ' + (i+1) + '</h3><p class="puzzle-question">' + p.q + '</p><div class="choices">' + choices + '</div><p class="feedback" id="logic-f-' + i + '"></p></article>';
+      }).join("");
+      grid.querySelectorAll(".choice-btn").forEach(function(btn) {
+        btn.addEventListener("click", function() {
+          var pi = parseInt(btn.dataset.puzzle, 10);
+          var ci = parseInt(btn.dataset.choice, 10);
+          var puzzle = logicPuzzles[pi];
+          var feedback = document.getElementById("logic-f-" + pi);
+          var card = btn.closest(".puzzle-card");
+          var allBtns = card.querySelectorAll(".choice-btn");
+          if (ci === puzzle.answer) {
+            allBtns.forEach(function(b) { b.disabled = true; });
+            btn.classList.add("correct");
+            feedback.textContent = "That's right! Nicely puzzled out.";
+            feedback.classList.add("good");
+          } else {
+            btn.classList.add("wrong-try");
+            btn.disabled = true;
+            feedback.textContent = "Not quite. Try another one, you have unlimited tries.";
+            feedback.classList.remove("good");
+          }
+        });
+      });
+    }
+
+    function buildWords() {
+      var grid = document.getElementById("word-grid");
+      grid.innerHTML = wordScrambles.map(function(w, i) {
+        return '<article class="puzzle-card"><span class="puzzle-type">Word scramble ' + (i+1) + '</span><p class="scramble-word">' + w.scrambled + '</p><input class="scramble-input" id="scramble-in-' + i + '" maxlength="20" placeholder="Your answer" aria-label="Unscramble the word" /><button class="check-btn" data-scramble="' + i + '">Check it</button><p class="feedback" id="word-f-' + i + '"></p><p class="hint">Hint: ' + w.hint + '</p></article>';
+      }).join("");
+      grid.querySelectorAll(".check-btn").forEach(function(btn) {
+        btn.addEventListener("click", function() {
+          var i = parseInt(btn.dataset.scramble, 10);
+          var input = document.getElementById("scramble-in-" + i);
+          var feedback = document.getElementById("word-f-" + i);
+          var guess = input.value.trim().toUpperCase().replace(/\s/g, "");
+          var target = wordScrambles[i].answer.replace(/\s/g, "");
+          if (guess === target) {
+            feedback.textContent = "You got it! The word was " + wordScrambles[i].answer + ".";
+            feedback.classList.add("good");
+            input.disabled = true;
+            btn.disabled = true;
+          } else if (guess === "") {
+            feedback.textContent = "Type your guess first, then check it.";
+            feedback.classList.remove("good");
+          } else {
+            feedback.textContent = "Not quite. Look at the hint and try again.";
+            feedback.classList.remove("good");
+          }
+        });
+      });
+      grid.querySelectorAll(".scramble-input").forEach(function(input) {
+        input.addEventListener("keydown", function(e) {
+          if (e.key === "Enter") {
+            var card = input.closest(".puzzle-card");
+            card.querySelector(".check-btn").click();
+          }
+        });
+      });
+    }
+
+    function setupTabs() {
+      var tabs = document.querySelectorAll(".puzzle-tab");
+      tabs.forEach(function(tab) {
+        tab.addEventListener("click", function() {
+          tabs.forEach(function(t) {
+            t.setAttribute("aria-selected", "false");
+            t.setAttribute("tabindex", "-1");
+          });
+          tab.setAttribute("aria-selected", "true");
+          tab.removeAttribute("tabindex");
+          document.querySelectorAll(".puzzle-panel").forEach(function(p) { p.classList.remove("active"); });
+          document.getElementById(tab.getAttribute("aria-controls")).classList.add("active");
+        });
+      });
+    }
+
+    buildRiddles();
+    buildLogic();
+    buildWords();
+    setupTabs();
+  </script>
+</body>
+</html>
