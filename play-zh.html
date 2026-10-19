@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muffin 咖啡馆 | Sigil and Scribe</title>
+  <meta name="description" content="Muffin's Cafe for adults: writing prompts, writer tools, printables, and quiet creative space.">
+  <link rel="canonical" href="https://jackiewhite0325.github.io/sigilandscribe/play.html">
+  <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Play Area | Sigil and Scribe">
+  <meta property="og:description" content="Writing play and printables for grown-ups, and Muffin-led learning for ages 3 to 7.">
+  <meta property="og:url" content="https://jackiewhite0325.github.io/sigilandscribe/play.html">
+  <meta property="og:image" content="https://jackiewhite0325.github.io/sigilandscribe/images/site/social-share-new.jpg">
+  <link rel="stylesheet" href="book.css">
+  <link rel="stylesheet" href="house.css?v=8">  <style>
+    /* whimsy kit */
+    .play-hero h1,
+    .play-grid h2,
+    .play-card h2 {
+      font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+    }
+    .play-hero p.lead,
+    .play-grid p,
+    .play-card p,
+    .play-note {
+      font-family: 'Nunito', system-ui, sans-serif;
+    }
+    .play-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .play-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 22px rgba(56,37,26,0.14);
+    }
+    .play-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    .play-grid h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .play-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .play-card {
+      display: block;
+      background: #fffdf8;
+      border: 1px solid #e8dcc8;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    .play-card h2 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.4rem;
+    }
+    .play-card p {
+      margin: 0;
+      line-height: 1.6;
+    }
+    .play-note {
+      text-align: center;
+      font-style: italic;
+    }
+    .room-art {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      margin: 0 auto 1.2rem;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .play-card { transition: none; }
+      .play-card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="house-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">Sigil <span>&amp;</span> Scribe</a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gift-shop.html">Gift Shop</a></li>
+        <li><a href="play.html" aria-current="page">Muffin&rsquo;s Cafe</a></li>
+        <li><a href="scriptorium.html">Scriptorium</a></li>
+        <li><a href="toolbox.html">Toolbox</a></li>
+        <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">Common Questions</a></li>
+        <li><a href="notes/index.html">House Notes</a></li>
+              <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="play-hero">
+    <h1>Muffin 咖啡馆</h1>
+    <img class="room-art" src="images/site/study_illustration.jpg" alt="A cozy grown-up study with a writing desk, bookshelves, and a warm lamp">
+    <p class="lead">这是小屋里大人的角落。进来吧，把脚搁起来，做点东西。写作室、工作台工具，还有可以带回家打印的东西，全部免费，全都属于你。</p>
+    <!-- Keepsake offer retired 2026-10-12 -->
+  </header>
+
+  <main class="play-grid">
+    <h2>三个房间，都开着门</h2>
+    <div class="play-cards">
+      <a class="play-card" href="scriptorium.html">
+        <h2>写作室</h2>
+        <p>给写作者的一个房间，有两种天气。在安静的一半坐下来，呼吸、写温柔的提示、静静观察。或者去捣蛋的一半，玩提示大乱斗、词语混搭和混沌硬币。在这里写作没有错的方式。</p>
+      </a>
+      <a class="play-card" href="toolbox.html">
+        <h2>工具箱</h2>
+        <p>工作台。给独立作者的全套出版工具、日记提示、78 张反思卡、打气语录，还有标题变故事开头。所有东西都在你的浏览器里运行，不需要注册账号。</p>
+      </a>
+      <a class="play-card" href="free-things.html">
+        <h2>下载和打印</h2>
+        <p>可以带走的东西。涂色页、每日写作表、一页日计划、节日清单、备餐速查表、残障维权医疗手册，还有每晚的烦恼倾倒页。新的页面做好了就会加上来。</p>
+      </a>
+    </div>
+    <p class="play-note">第一次来？<a href="faq.html">常见问题</a>页面回答了大家最常问的问题。</p>
+  </main>
+
+  <footer class="house-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gift-shop.html">Gift Shop</a></li>
+            <li><a href="play.html">Muffin&rsquo;s Cafe</a></li>
+            <li><a href="scriptorium.html">The Scriptorium</a></li>
+            <li><a href="muffins-corner.html">Muffin's Corner</a></li>
+            <li><a href="free-things.html">Downloads and Printables</a></li>
+            <li><a href="toolbox.html">Toolbox</a></li>
+            <li><a href="notes/index.html">House Notes</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>The House</h3>
+          <ul>
+            
+            
+            <li><a href="about.html">About</a></li>
+            <li><a href="mailto:jackiewhite0325@gmail.com">Contact</a></li>
+            <li><a href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Ko-fi</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="return-policy.html">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Newsletters</h3>
+          <ul>
+            <li><a href="https://sigil-and-scribe.kit.com/0ae0deb218" target="_blank" rel="noopener">Muffin's Mailbox</a></li>
+            <li><a href="https://sigil-and-scribe.kit.com/d0dcda3bf2" target="_blank" rel="noopener">Sigil and Scribe Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+          <div class="footer-crisis">If you are in crisis in the U.S., call or text <a href="tel:988">988</a> for the Suicide and Crisis Lifeline, or text HOME to <a href="sms:741741">741741</a> for the Crisis Text Line. If someone is in immediate danger, call <a href="tel:911">911</a>.</div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Sigil and Scribe, LLC</span>
+        <span>Sigil and Scribe™, the Book House mark, and Muffin the Pitbull™ are trademarks of Sigil and Scribe, LLC.</span>
+      <span>A human owns this house and answers for it.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="js/house-nav.js"></script>
+</body>
+</html>
