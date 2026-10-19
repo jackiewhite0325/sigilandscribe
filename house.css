@@ -14,6 +14,15 @@
 }
 
 /* ---- House nav: one thin line; doors open on demand only ---- */
+/* Body links look like links: house gold with underline. Nav and footer keep their own styles. */
+main a {
+  color: #8f6c3a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+main a:hover {
+  color: #6d5228;
+}
 .house-nav {
   --hn-ink: #2b2620;
   --hn-muted: #6b6255;
