@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muffin 教營養</title>
+<meta name="description" content="Muffin the pitbull teaches little ones about the tiny helpers hiding in food. 26 gentle audio lessons for ages 3 to 7."><style>
+  body { background: #faf6ec; color: #4a3a2a; font-family: 'Nunito', sans-serif; margin: 0; padding: 0; }
+  .back { max-width: 640px; margin: 0 auto; padding: 1rem 1.25rem 0; }
+  .back a { color: #8a6f4d; font-weight: 700; text-decoration: none; font-size: 1.05rem; }
+  .hero { text-align: center; padding: 1.5rem 1.25rem 1rem; max-width: 640px; margin: 0 auto; }
+  .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 6vw, 3rem); margin: 0 0 1rem; }
+  .cover-img { width: 100%; border-radius: 16px; border: 3px solid #b08d4f; box-shadow: 0 4px 18px rgba(74,58,42,0.12); }
+  .intro-listen { margin: 1.25rem 0 0.25rem; }
+  .intro-listen p { font-weight: 800; color: #8a6f4d; margin-bottom: 0.5rem; font-size: 1.05rem; }
+  audio { width: 100%; max-width: 420px; }
+  .hero .hello { font-size: 1.2rem; color: #8a6f4d; line-height: 1.6; margin: 1rem 0 0; }
+  .picker-label { text-align: center; font-weight: 800; color: #8a6f4d; font-size: 1.1rem; margin: 1.5rem 0 0.75rem; }
+  .picker { max-width: 640px; margin: 0 auto; padding: 0 1.25rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.6rem; }
+  .pick { background: #fffdf7; border: 2px solid #b08d4f; border-radius: 12px; padding: 0.6rem 0.5rem; text-align: center; color: #4a3a2a; display: flex; flex-direction: column; cursor: pointer; font-family: 'Nunito', sans-serif; }
+  .pick:active { background: #f5edd9; }
+  .pick.active { background: #f5edd9; border-color: #8a6f4d; }
+  .pick-food { font-weight: 800; font-size: 0.95rem; }
+  .pick-name { font-size: 0.8rem; color: #8a6f4d; }
+  .stage { max-width: 620px; margin: 1.5rem auto 0; padding: 0 1.25rem; }
+  .lesson { text-align: center; }
+  .lesson[hidden] { display: none; }
+  .lesson h2 { font-family: 'Fraunces', serif; font-size: 2rem; margin: 0 0 0.25rem; }
+  .food-line { color: #8a6f4d; font-size: 1.05rem; margin: 0 0 1rem; }
+  .lesson-img { width: 100%; border-radius: 16px; border: 3px solid #b08d4f; box-shadow: 0 4px 18px rgba(74,58,42,0.12); }
+  .listen { margin: 1.25rem 0 0.5rem; }
+  .listen p { font-weight: 800; color: #8a6f4d; margin-bottom: 0.5rem; font-size: 1.05rem; }
+  .words { text-align: left; background: #fffdf7; border: 2px solid #b08d4f; border-radius: 14px; padding: 1.4rem; margin-top: 1.25rem; font-size: 1.2rem; line-height: 1.75; }
+  .words p { margin: 0 0 1rem; } .words p:last-child { margin-bottom: 0; }
+  .spin-nav { display: flex; justify-content: space-between; max-width: 620px; margin: 1rem auto 0; padding: 0 1.25rem; }
+  .spin-nav button { background: #fffdf7; border: 2px solid #b08d4f; border-radius: 12px; padding: 0.7rem 1.2rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem; color: #4a3a2a; cursor: pointer; }
+  .spin-nav button:active { background: #f5edd9; }
+  .grownup { max-width: 620px; margin: 3rem auto 0; padding: 0 1.25rem 3rem; }
+  .grownup .note { border-left: 4px solid #b08d4f; padding: 0.75rem 1rem; background: #f5edd9; border-radius: 0 10px 10px 0; font-size: 0.95rem; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="back"><a href="play-zh.html">&larr; 回到 Muffin 咖啡館</a></div>
+<div class="hero">
+  <h1>Muffin 教營養</h1>
+  <img class="cover-img" src="images/muffin-nutrition/muffin-nutrition-cover.webp" alt="Muffin the pitbull sitting at a table full of colorful foods">
+  <div class="intro-listen">
+    <p>點一下，聽 Muffin 打招呼：</p>
+    <audio controls preload="none" src="images/muffin-nutrition/audio/muffin-nutrition-intro.mp3"></audio>
+  </div>
+  <p class="hello">歡迎來到我的營養學校！每種食物裡都藏着一個小幫手。在下面選一種食物，我來告訴你它的祕密。</p>
+</div>
+
+<p class="picker-label">選一種食物，桌子會把它的卡片轉給你：</p>
+<div class="picker" id="picker">
+    <button type="button" class="pick" data-goto="0"><span class="pick-food">胡蘿蔔</span><span class="pick-name">維生素 A</span></button>
+    <button type="button" class="pick" data-goto="1"><span class="pick-food">全麥麪包</span><span class="pick-name">維生素 B1</span></button>
+    <button type="button" class="pick" data-goto="2"><span class="pick-food">牛奶</span><span class="pick-name">維生素 B2</span></button>
+    <button type="button" class="pick" data-goto="3"><span class="pick-food">花生</span><span class="pick-name">維生素 B3</span></button>
+    <button type="button" class="pick" data-goto="4"><span class="pick-food">雞蛋</span><span class="pick-name">維生素 B5</span></button>
+    <button type="button" class="pick" data-goto="5"><span class="pick-food">香蕉</span><span class="pick-name">維生素 B6</span></button>
+    <button type="button" class="pick" data-goto="6"><span class="pick-food">綠葉菜</span><span class="pick-name">維生素 B9</span></button>
+    <button type="button" class="pick" data-goto="7"><span class="pick-food">雞蛋和牛奶</span><span class="pick-name">維生素 B12</span></button>
+    <button type="button" class="pick" data-goto="8"><span class="pick-food">橙子</span><span class="pick-name">維生素 C</span></button>
+    <button type="button" class="pick" data-goto="9"><span class="pick-food">陽光和牛奶</span><span class="pick-name">維生素 D</span></button>
+    <button type="button" class="pick" data-goto="10"><span class="pick-food">杏仁</span><span class="pick-name">維生素 E</span></button>
+    <button type="button" class="pick" data-goto="11"><span class="pick-food">西蘭花</span><span class="pick-name">維生素 K</span></button>
+    <button type="button" class="pick" data-goto="12"><span class="pick-food">牛奶</span><span class="pick-name">鈣</span></button>
+    <button type="button" class="pick" data-goto="13"><span class="pick-food">芹菜</span><span class="pick-name">氯</span></button>
+    <button type="button" class="pick" data-goto="14"><span class="pick-food">四季豆</span><span class="pick-name">鉻</span></button>
+    <button type="button" class="pick" data-goto="15"><span class="pick-food">葵花籽</span><span class="pick-name">銅</span></button>
+    <button type="button" class="pick" data-goto="16"><span class="pick-food">魚</span><span class="pick-name">碘</span></button>
+    <button type="button" class="pick" data-goto="17"><span class="pick-food">豆子</span><span class="pick-name">鐵</span></button>
+    <button type="button" class="pick" data-goto="18"><span class="pick-food">南瓜籽</span><span class="pick-name">鎂</span></button>
+    <button type="button" class="pick" data-goto="19"><span class="pick-food">燕麥粥</span><span class="pick-name">錳</span></button>
+    <button type="button" class="pick" data-goto="20"><span class="pick-food">扁豆</span><span class="pick-name">鉬</span></button>
+    <button type="button" class="pick" data-goto="21"><span class="pick-food">優格</span><span class="pick-name">磷</span></button>
+    <button type="button" class="pick" data-goto="22"><span class="pick-food">香蕉</span><span class="pick-name">鉀</span></button>
+    <button type="button" class="pick" data-goto="23"><span class="pick-food">雞蛋</span><span class="pick-name">硒</span></button>
+    <button type="button" class="pick" data-goto="24"><span class="pick-food">一小撮鹽</span><span class="pick-name">鈉</span></button>
+    <button type="button" class="pick" data-goto="25"><span class="pick-food">鷹嘴豆</span><span class="pick-name">鋅</span></button>
+</div>
+
+<div class="stage" id="stage">
+    <section class="lesson" id="lesson-vitamin-a" data-index="0">
+      <h2>維生素 A</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>胡蘿蔔</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-a.webp" alt="Muffin with carrots" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-a.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天我們來學維生素 A。跟我一起說一說，好不好？</p>
+<p>維生素 A。真棒！維生素 A 能幫你的眼睛，晚上也能看清東西，就像一盞小夜燈。</p>
+<p>胡蘿蔔、紅薯和綠葉菜裡都有它。維生素 A 有個好朋友，叫好油，比如一點點橄欖油，它們手拉手一起幫你的身體。所以咬一口胡蘿蔔，跟維生素 A 打個招呼吧！</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b1" data-index="1" hidden>
+      <h2>維生素 B1</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>全麥麪包</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b1.webp" alt="Muffin with whole grain bread" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b1.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是維生素 B1。跟我一起說一說，好不好？</p>
+<p>維生素 B1。太好啦！維生素 B1 把你的食物變成嗖嗖的能量，讓你去玩。</p>
+<p>全麥麪包、糙米和豆子裡都有它。維生素 B1 有個叫鎂的好朋友，它們手拉手幫你的身體。所以喫你的吐司時，想想維生素 B1 吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b2" data-index="2" hidden>
+      <h2>維生素 B2</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>牛奶</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b2.webp" alt="Muffin with milk" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b2.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是維生素 B2。跟我一起說一說，好不好？</p>
+<p>維生素 B2。太好啦！維生素 B2 幫你的身體從食物裡造能量，這樣你就能跑能笑。</p>
+<p>牛奶、優格和雞蛋裡都有它。維生素 B2 有個叫維生素 B6 的好朋友，它們手拉手幫你的身體。所以喝掉你的牛奶，笑一個吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b3" data-index="3" hidden>
+      <h2>維生素 B3</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>花生</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b3.webp" alt="Muffin with peanuts" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b3.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天我們來學維生素 B3。跟我一起說一說，好不好？</p>
+<p>維生素 B3。太好啦！它幫你的身體把食物變成能量，還讓你的皮膚開開心心。</p>
+<p>花生、雞肉和糙米里都有它。蛋白質食物是它最好的朋友，它們手拉手幫你的身體。所以嚼一顆花生，揮手打個招呼吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b5" data-index="4" hidden>
+      <h2>維生素 B5</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>雞蛋</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b5.webp" alt="Muffin with eggs" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b5.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是維生素 B5。跟我一起說一說，好不好？</p>
+<p>維生素 B5。太好啦！維生素 B5 幫你的身體每天都造出能量。</p>
+<p>雞蛋、雞肉和西蘭花裡都有它。維生素 B5 有一羣叫 B 族維生素的好朋友，它們都手拉手幫你的身體。所以喫掉你的雞蛋，感覺棒棒的吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b6" data-index="5" hidden>
+      <h2>維生素 B6</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>香蕉</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b6.webp" alt="Muffin with bananas" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b6.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。我們一起來學維生素 B6。跟我一起說一說它的名字，好不好？</p>
+<p>維生素 B6。太好啦！維生素 B6 幫你的大腦把開心的消息送到全身。</p>
+<p>香蕉、鷹嘴豆和土豆裡都有它。維生素 B6 有個叫鎂的好朋友，它們手拉手幫你的身體。所以剝一根香蕉，咧嘴笑吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b9" data-index="6" hidden>
+      <h2>維生素 B9</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>綠葉菜</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b9.webp" alt="Muffin with leafy greens" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b9.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天我們來學維生素 B9。跟我一起說一說，好不好？</p>
+<p>維生素 B9。太好啦！這個小幫手造出新的細胞，讓你長得又高又壯。</p>
+<p>綠葉菜、豆子和扁豆裡都有它。它有個叫維生素 B12 的好朋友，它們手拉手幫你的身體。所以像冠軍一樣喫掉你的青菜吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-b12" data-index="7" hidden>
+      <h2>維生素 B12</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>雞蛋和牛奶</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-b12.webp" alt="Muffin with eggs and milk" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-b12.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天我們來學維生素 B12。跟我一起說一說，好不好？</p>
+<p>維生素 B12。太好啦！維生素 B12 幫你的身體造出健康的血液，讓你的能量滿滿。</p>
+<p>雞蛋、牛奶和魚裡都有它。它有個叫維生素 B9 的好朋友，它們手拉手幫你的身體。所以好好喫早餐，閃閃發光吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-c" data-index="8" hidden>
+      <h2>維生素 C</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>橙子</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-c.webp" alt="Muffin with oranges" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-c.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天我想告訴你一種藏在食物裡的小東西，它叫維生素 C。</p>
+<p>跟我一起說一說，好不好？維生素 C。真棒！</p>
+<p>維生素 C 讓你的身體棒棒的，還幫小擦傷快快好起來。橙子、草莓和好喫的紅甜椒裡都有它。我最喜歡橙子。</p>
+<p>橙子圓圓的，黃澄澄的，像一個個小太陽。維生素 C 有個叫鐵的好朋友，它們手拉手一起幫你的身體。</p>
+<p>所以喫橙子的時候要記住，維生素 C 就在裡面，給你加油呢！下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-d" data-index="9" hidden>
+      <h2>維生素 D</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>陽光和牛奶</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-d.webp" alt="Muffin with sunshine and milk" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-d.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是維生素 D。跟我一起說一說，好不好？</p>
+<p>維生素 D。太好啦！維生素 D 幫你的骨頭長得又壯又結實。</p>
+<p>曬在皮膚上的暖暖陽光裡有它，牛奶和魚裡也有。它有個叫鈣的好朋友，它們手拉手幫你的身體。所以在陽光下玩吧，笑一個。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-e" data-index="10" hidden>
+      <h2>維生素 E</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>杏仁</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-e.webp" alt="Muffin with almonds" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-e.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是維生素 E。跟我一起說一說，好不好？</p>
+<p>維生素 E。太好啦！維生素 E 就像一面小盾牌，保護你的細胞。</p>
+<p>杏仁、葵花籽和菠菜裡都有它。維生素 E 有個叫維生素 C 的好朋友，它們手拉手幫你的身體。所以嚼幾顆杏仁，感覺安心吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-vitamin-k" data-index="11" hidden>
+      <h2>維生素 K</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>西蘭花</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-vitamin-k.webp" alt="Muffin with broccoli" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-vitamin-k.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天我們來學維生素 K。跟我一起說一說，好不好？</p>
+<p>維生素 K。太好啦！維生素 K 幫你的身體修好小傷口，讓骨頭強壯。</p>
+<p>西蘭花和菠菜裡都有它。它有個叫鈣的好朋友，它們手拉手幫你的身體。所以喫掉你的西蘭花小樹吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-calcium" data-index="12" hidden>
+      <h2>鈣</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>牛奶</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-calcium.webp" alt="Muffin with milk" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-calcium.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天我們來學鈣。跟我一起說一說，好不好？</p>
+<p>鈣。太好啦！鈣讓你的骨頭和牙齒變強壯，還幫你的肌肉動起來。</p>
+<p>牛奶、優格和起司裡都有它。鈣有個叫維生素 D 的好朋友，它們手拉手幫你的身體。所以喝一口牛奶，挺起小胸膛吧！</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-chloride" data-index="13" hidden>
+      <h2>氯</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>芹菜</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-chloride.webp" alt="Muffin with celery" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-chloride.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是氯。跟我一起說一說，好不好？</p>
+<p>氯。太好啦！氯幫你的身體平衡水分，就像它的好朋友一樣。</p>
+<p>芹菜、西紅柿和一小撮鹽裡都有它。氯有個叫鈉的好朋友，它們手拉手幫你的身體。所以嚼你的芹菜，歡呼吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-chromium" data-index="14" hidden>
+      <h2>鉻</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>四季豆</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-chromium.webp" alt="Muffin with green beans" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-chromium.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是鉻。跟我一起說一說，好不好？</p>
+<p>鉻。太好啦！鉻是個安靜的小幫手，和你喫的食物一起工作。</p>
+<p>四季豆、西蘭花和全穀物裡都有它。鉻安安靜靜地和盤子裡其他食物一起工作。所以喫掉你的四季豆，感覺自己真聰明吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-copper" data-index="15" hidden>
+      <h2>銅</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>葵花籽</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-copper.webp" alt="Muffin with sunflower seeds" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-copper.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是銅。跟我一起說一說，好不好？</p>
+<p>銅。太好啦！銅用很多安靜的小方式幫你的身體。</p>
+<p>葵花籽、堅果和全穀物裡都有它。銅有個叫鋅的好朋友，它們手拉手幫你的身體。所以撒一點籽，閃閃發光吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-iodine" data-index="16" hidden>
+      <h2>碘</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>魚</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-iodine.webp" alt="Muffin with fish" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-iodine.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是碘。跟我一起說一說，好不好？</p>
+<p>碘。太好啦！碘幫你脖子裡一個小小的腺體，讓你身體的能量剛剛好。</p>
+<p>魚、雞蛋和奶製品裡都有它。碘有個叫硒的好朋友，它們手拉手幫你的身體。所以好好喫魚，感覺美美的吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-iron" data-index="17" hidden>
+      <h2>鐵</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>豆子</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-iron.webp" alt="Muffin with beans" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-iron.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是鐵。跟我一起說一說，好不好？</p>
+<p>鐵。太好啦！鐵幫你的血液把開心的空氣送到全身。</p>
+<p>豆子、扁豆和菠菜裡都有它。鐵有個叫維生素 C 的好朋友，它們手拉手幫你的身體。所以喫掉你的豆子，感覺自己威風吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-magnesium" data-index="18" hidden>
+      <h2>鎂</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>南瓜籽</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-magnesium.webp" alt="Muffin with pumpkin seeds" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-magnesium.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是鎂。跟我一起說一說，好不好？</p>
+<p>鎂。太好啦！鎂幫你的肌肉放鬆，讓你感覺平靜。</p>
+<p>南瓜籽、杏仁和綠葉菜裡都有它。鎂有個叫維生素 D 的好朋友，它們手拉手幫你的身體。所以喫點籽，放鬆一下吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-manganese" data-index="19" hidden>
+      <h2>錳</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>燕麥粥</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-manganese.webp" alt="Muffin with oatmeal" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-manganese.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是錳。跟我一起說一說，好不好？</p>
+<p>錳。太好啦！錳是個安靜的小幫手，每天在你身體裡工作。</p>
+<p>燕麥粥、糙米和堅果裡都有它。錳安安靜靜地和盤子裡其他食物一起工作。所以好好喫你的燕麥粥，開始新的一天吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-molybdenum" data-index="20" hidden>
+      <h2>鉬</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>扁豆</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-molybdenum.webp" alt="Muffin with lentils" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-molybdenum.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是鉬。跟我一起說一說，好不好？</p>
+<p>鉬。太好啦！鉬是個安靜的小幫手，在你身體裡工作。</p>
+<p>扁豆、豆子和豌豆裡都有它。鉬安安靜靜地和盤子裡其他食物一起工作。所以舀起你的扁豆，笑一個吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-phosphorus" data-index="21" hidden>
+      <h2>磷</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>優格</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-phosphorus.webp" alt="Muffin with yogurt" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-phosphorus.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天我們來學一個叫磷的小幫手。聽起來像"磷-福-阿斯"。</p>
+<p>跟我一起說一說，好不好？磷。太好啦！</p>
+<p>它組隊造出強壯的骨頭和牙齒。優格、牛奶和豆子裡都有它。它有個叫鈣的好朋友，它們手拉手幫你的身體。</p>
+<p>所以舀起你的優格，笑一個吧。下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-potassium" data-index="22" hidden>
+      <h2>鉀</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>香蕉</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-potassium.webp" alt="Muffin with bananas" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-potassium.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是鉀。跟我一起說一說，好不好？</p>
+<p>鉀。太好啦！鉀幫你的肌肉順暢地動，讓你的身體保持平衡。</p>
+<p>香蕉、土豆和橙子裡都有它。鉀有個叫鈉的好朋友，它們手拉手幫你的身體。所以喫一根香蕉，蹦躂吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-selenium" data-index="23" hidden>
+      <h2>硒</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>雞蛋</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-selenium.webp" alt="Muffin with eggs" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-selenium.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是硒。跟我一起說一說，好不好？</p>
+<p>硒。太好啦！硒是個小小的幫手，每天照顧你的身體。</p>
+<p>雞蛋、魚和肉裡都有它。硒有個叫碘的好朋友，它們手拉手幫你的身體。一點點就有大作用。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-sodium" data-index="24" hidden>
+      <h2>鈉</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>一小撮鹽</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-sodium.webp" alt="Muffin with a tiny pinch of salt" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-sodium.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是鈉。跟我一起說一說，好不好？</p>
+<p>鈉。太好啦！鈉幫你的身體平衡水分，讓肌肉好好工作。</p>
+<p>鹽裡有一點點，芹菜這樣的食物裡也有。鈉有個叫鉀的好朋友，它們手拉手幫你的身體。一小撮就足夠了。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+    <section class="lesson" id="lesson-zinc" data-index="25" hidden>
+      <h2>鋅</h2>
+      <p class="food-line">Muffin 今天帶來的食物：<strong>鷹嘴豆</strong></p>
+      <img class="lesson-img" src="images/muffin-nutrition/lesson-zinc.webp" alt="Muffin with chickpeas" loading="lazy">
+      <div class="listen">
+        <p>點一下，聽 Muffin 講：</p>
+        <audio controls preload="none" src="images/muffin-nutrition/audio/lesson-zinc.mp3"></audio>
+      </div>
+      <div class="words">
+<p>你好呀，我是 Muffin。今天是鋅。跟我一起說一說，好不好？</p>
+<p>鋅。太好啦！鋅幫你的身體保持健康，還幫小傷口癒合。</p>
+<p>鷹嘴豆、肉和堅果裡都有它。鋅有個叫銅的好朋友，它們手拉手幫你的身體。所以嚼鷹嘴豆，保持活力吧。</p>
+<p>下次見！</p>
+      </div>
+    </section>
+</div>
+<div class="spin-nav">
+  <button type="button" id="prevBtn">&larr; 上一個</button>
+  <button type="button" id="nextBtn">下一個 &rarr;</button>
+</div>
+
+<div class="grownup">
+  <div class="note">給大人：這些課是教知識的，不是看病的。3 至 7 歲的友好學習，不是醫療建議。如果孩子的健康讓你擔心，兒科醫生纔是該問的人。</div>
+</div>
+
+<script>
+(function() {
+  var lessons = Array.prototype.slice.call(document.querySelectorAll('.lesson'));
+  var picks = Array.prototype.slice.call(document.querySelectorAll('.pick'));
+  var current = 0;
+  function show(i) {
+    current = (i + lessons.length) % lessons.length;
+    lessons.forEach(function(el, k) {
+      if (k === current) { el.removeAttribute('hidden'); }
+      else { el.setAttribute('hidden', ''); var a = el.querySelector('audio'); if (a) { a.pause(); } }
+    });
+    picks.forEach(function(p, k) {
+      if (k === current) { p.classList.add('active'); }
+      else { p.classList.remove('active'); }
+    });
+    document.getElementById('stage').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  picks.forEach(function(p) {
+    p.addEventListener('click', function() { show(parseInt(p.getAttribute('data-goto'), 10)); });
+  });
+  document.getElementById('prevBtn').addEventListener('click', function() { show(current - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function() { show(current + 1); });
+  show(0);
+})();
+</script>
+</body>
+</html>
