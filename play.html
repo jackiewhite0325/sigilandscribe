@@ -39,6 +39,43 @@
       transform: translateY(-4px);
       box-shadow: 0 10px 22px rgba(56,37,26,0.14);
     }
+    .play-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    .play-grid h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .play-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .play-card {
+      display: block;
+      background: #fffdf8;
+      border: 1px solid #e8dcc8;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    .play-card h2 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.4rem;
+    }
+    .play-card p {
+      margin: 0;
+      line-height: 1.6;
+    }
+    .play-note {
+      text-align: center;
+      font-style: italic;
+    }
     .room-art {
       width: 100%;
       height: auto;
@@ -61,8 +98,8 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="gift-shop.html">Gift Shop</a></li>
         <li><a href="play.html" aria-current="page">Muffin&rsquo;s Cafe</a></li>
-        
-        
+        <li><a href="scriptorium.html">Scriptorium</a></li>
+        <li><a href="toolbox.html">Toolbox</a></li>
         <li><a href="about.html">About</a></li>
             <li><a href="faq.html">Common Questions</a></li>
         <li><a href="notes/index.html">House Notes</a></li>
@@ -74,7 +111,28 @@
   <header class="play-hero">
     <h1>Muffin&rsquo;s Cafe</h1>
     <img class="room-art" src="images/site/study_illustration.jpg" alt="A cozy grown-up study with a writing desk, bookshelves, and a warm lamp">
+    <p class="lead">This is the grown-ups&rsquo; corner of the house. Come in, put your feet up, and make something. Writing rooms, workbench tools, and things to take home and print, all free, all yours.</p>
     <!-- Keepsake offer retired 2026-10-12 -->
+  </header>
+
+  <main class="play-grid">
+    <h2>Three rooms, all open</h2>
+    <div class="play-cards">
+      <a class="play-card" href="scriptorium.html">
+        <h2>The Scriptorium</h2>
+        <p>One room for writers, in two weathers. Settle into the calm half for breathing room, gentle prompts, and quiet noticing. Or stir up the mischief half for prompt scrambles, word mash, and chaos coins. No wrong way to write here.</p>
+      </a>
+      <a class="play-card" href="toolbox.html">
+        <h2>Toolbox</h2>
+        <p>The workbench. A full publishing toolkit for indie authors, journal prompts, a 78-card reflection deck, pick-me-up quotes, and a title-to-story starter. Everything runs in your browser, nothing asks for an account.</p>
+      </a>
+      <a class="play-card" href="free-things.html">
+        <h2>Downloads and Printables</h2>
+        <p>Things to take along. Coloring pages, a daily scribe worksheet, a one-page planner, a holiday checklist, a meal prep cheat-sheet, a medical binder for disability advocacy, and a nightly worry dump page. New pages arrive as they are made.</p>
+      </a>
+    </div>
+    <p class="play-note">New to the house? The <a href="faq.html">Common Questions</a> page answers the things people ask most.</p>
+  </main>
 
   <footer class="house-footer">
     <div class="footer-inner">
@@ -85,6 +143,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="gift-shop.html">Gift Shop</a></li>
             <li><a href="play.html">Muffin&rsquo;s Cafe</a></li>
+            <li><a href="scriptorium.html">The Scriptorium</a></li>
             <li><a href="muffins-corner.html">Muffin's Corner</a></li>
             <li><a href="free-things.html">Downloads and Printables</a></li>
             <li><a href="toolbox.html">Toolbox</a></li>
