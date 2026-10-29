@@ -7,6 +7,49 @@
   <meta name="theme-color" content="#101923" />
   <link rel="icon" href="data:," />
   <title>Coping micro-library</title>  <style>
+    /* Self-hosted house fonts. No Google Fonts requests. */
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: italic;
+      font-weight: 500;
+      font-display: swap;
+      src: url('fonts/fraunces-500i.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('fonts/fraunces-400.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('fonts/fraunces-600.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('fonts/nunito-400.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('fonts/nunito-600.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('fonts/nunito-700.woff2') format('woff2');
+    }
     :root {
       color-scheme: light dark;
       --bg: #f2eee5;
@@ -53,7 +96,7 @@
         radial-gradient(circle at 18% 2%, color-mix(in srgb, var(--sky) 65%, transparent) 0, transparent 27rem),
         var(--bg);
       color: var(--ink);
-      font-family: "Public Sans", sans-serif;
+      font-family: "Nunito", sans-serif;
       line-height: 1.55;
     }
     button, textarea { font: inherit; }
@@ -101,11 +144,11 @@
       pointer-events: none;
     }
     .intro-copy { position: relative; max-width: 690px; z-index: 1; }
-    .kicker { margin: 0 0 14px; font: 500 .76rem/1.2 "DM Mono", monospace; letter-spacing: .05em; color: #bcd9da; }
-    h1, h2, h3 { font-family: "Newsreader", serif; text-wrap: balance; }
+    .kicker { margin: 0 0 14px; font: 500 .76rem/1.2 "Nunito", sans-serif; letter-spacing: .05em; color: #bcd9da; }
+    h1, h2, h3 { font-family: "Fraunces", serif; text-wrap: balance; }
     h1 { margin: 0; max-width: 650px; font-size: clamp(2.7rem, 7vw, 5.5rem); line-height: .94; letter-spacing: -.045em; }
     .intro p { margin: 20px 0 0; max-width: 590px; font-size: clamp(1rem, 2vw, 1.18rem); color: #d9e3df; }
-    .intro-note { display: inline-flex; gap: 9px; align-items: center; margin-top: 22px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,.24); font: 500 .78rem/1.3 "DM Mono", monospace; color: #f0d9a4; }
+    .intro-note { display: inline-flex; gap: 9px; align-items: center; margin-top: 22px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,.24); font: 500 .78rem/1.3 "Nunito", sans-serif; color: #f0d9a4; }
 
     .chooser { padding: 38px 0 12px; }
     .section-heading { display: flex; gap: 20px; justify-content: space-between; align-items: end; margin-bottom: 18px; }
@@ -137,12 +180,12 @@
     .guide-top { display: flex; justify-content: space-between; gap: 20px; align-items: start; }
     .guide h2 { margin: 5px 0 8px; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; }
     .guide-summary { margin: 0 0 24px; color: var(--muted); max-width: 640px; }
-    .close-guide { border: 0; background: transparent; cursor: pointer; padding: 6px 0 6px 12px; font: 500 .78rem "DM Mono", monospace; text-decoration: underline; text-underline-offset: 4px; }
-    .guide-side .mini { margin: 0; font: 500 .72rem/1.5 "DM Mono", monospace; color: #c9d7d4; }
-    .guide-side .side-line { font-family: "Newsreader", serif; font-size: 1.75rem; line-height: 1.15; margin: 20px 0; }
+    .close-guide { border: 0; background: transparent; cursor: pointer; padding: 6px 0 6px 12px; font: 500 .78rem "Nunito", sans-serif; text-decoration: underline; text-underline-offset: 4px; }
+    .guide-side .mini { margin: 0; font: 500 .72rem/1.5 "Nunito", sans-serif; color: #c9d7d4; }
+    .guide-side .side-line { font-family: "Fraunces", serif; font-size: 1.75rem; line-height: 1.15; margin: 20px 0; }
     .steps { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
     .steps li { display: grid; grid-template-columns: 34px 1fr; gap: 13px; align-items: start; }
-    .step-num { width: 32px; height: 32px; border: 1px solid var(--line); display: grid; place-items: center; font: 500 .76rem "DM Mono", monospace; }
+    .step-num { width: 32px; height: 32px; border: 1px solid var(--line); display: grid; place-items: center; font: 500 .76rem "Nunito", sans-serif; }
     .steps p { margin: 4px 0 0; }
     .action-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
     .primary, .secondary {
@@ -164,14 +207,14 @@
       border: 2px solid color-mix(in srgb, var(--mint) 72%, var(--ink));
       display: grid; place-items: center;
       transition: transform 4s ease-in-out, background 1s ease;
-      font: 700 .78rem/1.2 "DM Mono", monospace;
+      font: 700 .78rem/1.2 "Nunito", sans-serif;
       text-align: center; color: var(--night);
     }
     .breath-orb.inhale { transform: scale(1.32); }
     .breath-orb.exhale { transform: scale(.82); }
-    .breath-count { font-family: "Newsreader", serif; font-size: 1.45rem; }
+    .breath-count { font-family: "Fraunces", serif; font-size: 1.45rem; }
     .sense-card { padding: 18px 0; }
-    .sense-number { font-family: "Newsreader", serif; font-size: 4.5rem; line-height: .8; color: var(--coral); }
+    .sense-number { font-family: "Fraunces", serif; font-size: 4.5rem; line-height: .8; color: var(--coral); }
     .sense-prompt { font-size: 1.2rem; font-weight: 700; margin: 15px 0 0; }
     .choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
     .choice-grid button { text-align: left; min-height: 64px; padding: 12px; background: transparent; border: 1px solid var(--line); cursor: pointer; font-weight: 600; }
@@ -194,7 +237,7 @@
     .tool:nth-child(6) { background: color-mix(in srgb, var(--sky) 58%, var(--paper)); }
     .tool:hover { border-color: var(--ink); transform: translateY(-2px); }
     .tool.hidden { display: none; }
-    .tool-meta { display: flex; justify-content: space-between; gap: 12px; font: 500 .71rem/1.2 "DM Mono", monospace; color: var(--muted); }
+    .tool-meta { display: flex; justify-content: space-between; gap: 12px; font: 500 .71rem/1.2 "Nunito", sans-serif; color: var(--muted); }
     .tool:nth-child(3) .tool-meta { color: #bfd0cc; }
     .tool h3 { margin: 28px 0 9px; font-size: clamp(1.6rem, 3vw, 2.25rem); line-height: 1; }
     .tool-desc { margin: 0; color: var(--muted); }
@@ -215,7 +258,7 @@
     .support p { margin: 0; color: var(--muted); max-width: 620px; }
     .support-links { padding: 28px; background: color-mix(in srgb, var(--coral) 12%, var(--paper)); display: grid; align-content: center; gap: 11px; }
     .support-links a { display: block; min-height: 46px; padding: 11px 14px; border: 1px solid var(--coral); font-weight: 700; text-align: center; }
-    .support-small { margin-top: 14px !important; font: 500 .72rem/1.5 "DM Mono", monospace; }
+    .support-small { margin-top: 14px !important; font: 500 .72rem/1.5 "Nunito", sans-serif; }
     footer { padding: 28px 0 0; color: var(--muted); font-size: .82rem; }
     footer p { margin: 0; }
     footer a { text-underline-offset: 3px; }
