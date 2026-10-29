@@ -8,6 +8,49 @@
   <meta name="theme-color" content="#0e1722" media="(prefers-color-scheme: dark)" />
   <link rel="icon" href="data:," />
   <title>Mood Weather Journaling</title>  <style>
+    /* Self-hosted house fonts. No Google Fonts requests. */
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: italic;
+      font-weight: 500;
+      font-display: swap;
+      src: url('fonts/fraunces-500i.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('fonts/fraunces-400.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('fonts/fraunces-600.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('fonts/nunito-400.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('fonts/nunito-600.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('fonts/nunito-700.woff2') format('woff2');
+    }
     :root {
       --page: #e9ede2;
       --ink: #17202a;
@@ -49,7 +92,7 @@
       background-color: var(--page);
       background-image: linear-gradient(rgba(91,112,111,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(91,112,111,.08) 1px, transparent 1px);
       background-size: 26px 26px;
-      font-family: "Nunito Sans", sans-serif;
+      font-family: "Nunito", sans-serif;
       line-height: 1.55;
     }
     button, textarea, input { font: inherit; }
