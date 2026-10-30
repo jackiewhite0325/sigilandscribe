@@ -408,6 +408,114 @@
       html { scroll-behavior: auto; }
       .button { transition: none; }
     }
+
+    .love-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .love-nav { display: flex; gap: 8px; }
+
+    .love-nav button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      background: var(--paper);
+      color: var(--gold-deep);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .love-nav button:hover { border-color: var(--gold); }
+
+    .love-nav button svg { width: 20px; height: 20px; }
+
+    .love-row {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 6px 2px 16px;
+      scrollbar-width: thin;
+    }
+
+    .love-card {
+      position: relative;
+      flex: 0 0 242px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 6px 22px 6px 22px;
+      box-shadow: 0 10px 28px var(--shadow);
+    }
+
+    .love-card img {
+      width: 100%;
+      height: 168px;
+      object-fit: contain;
+      background: #ffffff;
+      border-radius: 4px;
+      margin-bottom: 14px;
+    }
+
+    .love-card .eyeline {
+      margin: 0 0 8px;
+      color: var(--gold-deep);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .love-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.18rem;
+      font-weight: 600;
+    }
+
+    .love-card p.desc {
+      margin: 0 0 16px;
+      color: var(--ink-muted);
+      font-size: 0.95rem;
+    }
+
+    .love-card .button {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    .love-sprig {
+      position: absolute;
+      right: -12px;
+      bottom: -16px;
+      width: 104px;
+      color: var(--gold);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .love-disclosure {
+      margin: 4px 0 0;
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+      .love-card { flex-basis: 208px; }
+    }
   </style>
 </head>
 <body>
@@ -587,6 +695,90 @@
     </section>
 
     <section class="rooms" style="margin-top:28px;"><h2>Support the house</h2><p class="lead">If the rooms have helped you, you can keep the lights on through Ko-fi. Optional, only if you want to.</p><div class="cta-row" style="margin-top:8px;"><a class="btn" href="https://ko-fi.com/sigilandscribe" target="_blank" rel="noopener">Support on Ko-fi</a></div></section>
+    <section class="section" aria-labelledby="things-we-love">
+      <div class="love-head">
+        <div class="section-heading" style="margin:0;">
+          <h2 id="things-we-love">Things We Love</h2>
+          <p>A few good things from other shelves, shared the same way we share our own: honestly, and only if they help.</p>
+        </div>
+        <div class="love-nav">
+          <button type="button" id="love-prev" aria-label="Show previous items"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+          <button type="button" id="love-next" aria-label="Show next items"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+      <div class="love-row" id="love-row" tabindex="0" aria-label="Things we love, scrollable list">
+        <article class="love-card">
+          <img src="https://m.media-amazon.com/images/I/31cTZ1yV6eL._AC_CX679_.jpg" alt="EFAN women's sweatsuit two piece set in a modal blend" loading="lazy" />
+          <p class="eyeline">Comfort Apparel</p>
+          <h3>EFAN Women's Sweatsuit 2 Piece Set</h3>
+          <p class="desc">A soft two piece lounge set in a modal blend. Easy on tired days, kind all day.</p>
+          <a class="button" href="https://www.amazon.com/dp/B0H6PGBBMJ/?tag=jwhitemuffin-20" target="_blank" rel="sponsored nofollow noopener">See it on Amazon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+        <article class="love-card">
+          <img src="https://images.amazon.com/images/P/B000AYN7LU.01._SCLZZZZZZZ_.jpg" alt="KONG Classic dog toy, medium" loading="lazy" />
+          <p class="eyeline">Pets</p>
+          <h3>KONG Classic Dog Toy</h3>
+          <p class="desc">The classic red rubber toy. Stuff it, freeze it, and let the dog do the happy work.</p>
+          <a class="button" href="https://www.amazon.com/dp/B000AYN7LU/?tag=jwhitemuffin-20" target="_blank" rel="sponsored nofollow noopener">See it on Amazon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+        <article class="love-card">
+          <img src="https://m.media-amazon.com/images/I/71AWva4EJmL.jpg" alt="Glocusent LED neck reading light" loading="lazy" />
+          <p class="eyeline">Books &amp; Reading</p>
+          <h3>Glocusent LED Neck Reading Light</h3>
+          <p class="desc">A reading light that rests on your neck, so the pages get the light and the room stays restful.</p>
+          <a class="button" href="https://www.amazon.com/dp/B07WNRN9WQ/?tag=jwhitemuffin-20" target="_blank" rel="sponsored nofollow noopener">See it on Amazon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+        <article class="love-card">
+          <p class="eyeline">Rest &amp; Comfort</p>
+          <h3>Bedsure GentleSoft Sherpa Fleece Blanket</h3>
+          <p class="desc">A thick, soft sherpa fleece blanket for couch days, flare days, and long slow evenings.</p>
+          <a class="button" href="https://www.amazon.com/dp/B07YKWWXSJ/?tag=jwhitemuffin-20" target="_blank" rel="sponsored nofollow noopener">See it on Amazon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <svg class="love-sprig" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 91C38 58 64 33 93 10"/><path d="M37 62c-1-15 5-23 16-27 3 13-2 22-16 27ZM56 44c2-13 10-18 21-19-1 12-8 18-21 19ZM29 72c-14 1-21-4-25-14 12-3 21 2 25 14Z"/></svg>
+        </article>
+        <article class="love-card">
+          <img src="https://images.amazon.com/images/P/B08HVXZW8X.01._SCLZZZZZZZ_.jpg" alt="LEGO Botanicals Bonsai Tree building set, set 10281" loading="lazy" />
+          <p class="eyeline">Gifting</p>
+          <h3>LEGO Botanicals Bonsai Tree Building Set</h3>
+          <p class="desc">A buildable bonsai tree for a desk or a shelf. Calm work, piece by piece.</p>
+          <a class="button" href="https://www.amazon.com/dp/B08HVXZW8X/?tag=jwhitemuffin-20" target="_blank" rel="sponsored nofollow noopener">See it on Amazon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+        <article class="love-card">
+          <p class="eyeline">Gifting</p>
+          <h3>Italian Genuine Suede Tote Bag</h3>
+          <p class="desc">Real Italian suede with fringe, handmade in Florence by TAKEASY. A bag with some soul to it.</p>
+          <a class="button" href="https://www.amazon.com/dp/B0G4CJQWWV/?tag=jwhitemuffin-20" target="_blank" rel="sponsored nofollow noopener">See it on Amazon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <svg class="love-sprig" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 91C38 58 64 33 93 10"/><path d="M37 62c-1-15 5-23 16-27 3 13-2 22-16 27ZM56 44c2-13 10-18 21-19-1 12-8 18-21 19ZM29 72c-14 1-21-4-25-14 12-3 21 2 25 14Z"/></svg>
+        </article>
+        <article class="love-card">
+          <img src="https://m.media-amazon.com/images/I/41jnFTd838L._AC_.jpg" alt="ONO Roller handheld fidget toy in sapphire aluminum" loading="lazy" />
+          <p class="eyeline">Fidget &amp; Sensory</p>
+          <h3>ONO Roller Handheld Fidget Toy</h3>
+          <p class="desc">A smooth, quiet roller that gives busy hands something kind to do.</p>
+          <a class="button" href="https://www.amazon.com/dp/B079T416DB/?tag=jwhitemuffin-20" target="_blank" rel="sponsored nofollow noopener">See it on Amazon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+        <article class="love-card">
+          <img src="https://images.amazon.com/images/P/B07CZDXVH5.01._SCLZZZZZZZ_.jpg" alt="Rocketbook Core reusable smart notebook" loading="lazy" />
+          <p class="eyeline">Home &amp; Office</p>
+          <h3>Rocketbook Core Reusable Smart Notebook</h3>
+          <p class="desc">Write it, scan it to keep, wipe the page clean, and use it again.</p>
+          <a class="button" href="https://www.amazon.com/dp/B07CZDXVH5/?tag=jwhitemuffin-20" target="_blank" rel="sponsored nofollow noopener">See it on Amazon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+      </div>
+      <p class="love-disclosure">As an Amazon Associate, Sigil and Scribe earns from qualifying purchases.</p>
+      <script>
+        (function () {
+          var row = document.getElementById('love-row');
+          if (!row) return;
+          function step() {
+            var c = row.querySelector('.love-card');
+            return c ? c.getBoundingClientRect().width + 16 : 320;
+          }
+          document.getElementById('love-prev').addEventListener('click', function () { row.scrollBy({ left: -step(), behavior: 'smooth' }); });
+          document.getElementById('love-next').addEventListener('click', function () { row.scrollBy({ left: step(), behavior: 'smooth' }); });
+        })();
+      </script>
+    </section>
+
 <section class="promise" aria-label="Our promise">
       <p><strong>Our promise:</strong> Everything here is made with care. If something arrives damaged or isn't what you expected, write to us and we'll make it right.</p>
     </section>
