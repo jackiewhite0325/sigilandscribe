@@ -417,9 +417,9 @@
       margin-bottom: 18px;
     }
 
-    .love-nav { display: flex; gap: 8px; }
+    .love-nav, .carousel-nav { display: flex; gap: 8px; }
 
-    .love-nav button {
+    .love-nav button, .carousel-nav button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -434,9 +434,9 @@
       box-shadow: 0 4px 12px var(--shadow);
     }
 
-    .love-nav button:hover { border-color: var(--gold); }
+    .love-nav button:hover, .carousel-nav button:hover { border-color: var(--gold); }
 
-    .love-nav button svg { width: 20px; height: 20px; }
+    .love-nav button svg, .carousel-nav button svg { width: 20px; height: 20px; }
 
     .love-row {
       display: flex;
@@ -516,6 +516,33 @@
     @media (max-width: 640px) {
       .love-card { flex-basis: 208px; }
     }
+
+    .section-heading.has-nav {
+      grid-template-columns: 1fr auto auto;
+    }
+
+    .carousel-row {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 6px 2px 16px;
+      scrollbar-width: thin;
+    }
+
+    .carousel-row > .product,
+    .carousel-row > .coming-soon {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+    }
+
+    @media (max-width: 640px) {
+      .carousel-row > .product,
+      .carousel-row > .coming-soon { flex-basis: 78vw; }
+    }
+
+    @media (max-width: 600px) {
+      .section-heading.has-nav { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -546,12 +573,16 @@
       </svg>
     </header>
 
-    <section class="section" aria-labelledby="ages-3-7">
-      <div class="section-heading">
+    <section class="section" aria-labelledby="ages-3-7" data-carousel>
+      <div class="section-heading has-nav">
         <h2 id="ages-3-7">Children's Books</h2>
         <p>Ages 3 to 7</p>
+        <div class="carousel-nav">
+          <button type="button" data-carousel-prev aria-label="Show previous children's books"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+          <button type="button" data-carousel-next aria-label="Show next children's books"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
       </div>
-      <div class="product-list">
+      <div class="product-list carousel-row" tabindex="0" aria-label="Children's Books, scrollable list">
         <article class="product">
           <img src="images/muffin-wiggles-cover.jpg" alt="Cover of Muffin Gets the Wiggles, Book 1 in the Muffin the Pitbull series" width="300" style="max-width:200px;height:auto;border-radius:4px;margin-bottom:0.75rem;" />
           <p class="eyeline">Muffin the Pitbull, Book 1</p>
@@ -592,12 +623,16 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="adult-books">
-      <div class="section-heading">
+    <section class="section" aria-labelledby="adult-books" data-carousel>
+      <div class="section-heading has-nav">
         <h2 id="adult-books">Books for Adults</h2>
         <p>Words to keep close</p>
+        <div class="carousel-nav">
+          <button type="button" data-carousel-prev aria-label="Show previous books for adults"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+          <button type="button" data-carousel-next aria-label="Show next books for adults"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
       </div>
-      <div class="product-list">
+      <div class="product-list carousel-row" tabindex="0" aria-label="Books for Adults, scrollable list">
         <article class="product">
           <img src="images/love-mom-cover.jpg" alt="Cover of Love, Mom: A Journal on Life" width="300" style="max-width:200px;height:auto;border-radius:4px;margin-bottom:0.75rem;" />
           <p class="eyeline">Coming soon</p>
@@ -630,12 +665,16 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="journals">
-      <div class="section-heading">
+    <section class="section" aria-labelledby="journals" data-carousel>
+      <div class="section-heading has-nav">
         <h2 id="journals">Journals, Planners, and More</h2>
         <p>Small places to begin</p>
+        <div class="carousel-nav">
+          <button type="button" data-carousel-prev aria-label="Show previous journals and planners"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+          <button type="button" data-carousel-next aria-label="Show next journals and planners"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
       </div>
-      <div class="journal-grid">
+      <div class="journal-grid carousel-row" tabindex="0" aria-label="Journals, Planners, and More, scrollable list">
         <article class="product">
           <img src="images/journal-78-days-cover.jpg" alt="Cover of 78 Days of Noticing, a guided journal" width="300" style="max-width:200px;height:auto;border-radius:4px;margin-bottom:0.75rem;" />
           <h3>78 Days of Noticing</h3>
@@ -797,6 +836,24 @@
         Back to home
       </a>
     </footer>
+    <script>
+      (function () {
+        document.querySelectorAll('[data-carousel]').forEach(function (section) {
+          var row = section.querySelector('.carousel-row');
+          if (!row) return;
+          function step() {
+            var c = row.querySelector('.product, .coming-soon');
+            if (!c) return 320;
+            var gap = parseFloat(window.getComputedStyle(row).columnGap) || 0;
+            return c.getBoundingClientRect().width + gap;
+          }
+          var prev = section.querySelector('[data-carousel-prev]');
+          var next = section.querySelector('[data-carousel-next]');
+          if (prev) prev.addEventListener('click', function () { row.scrollBy({ left: -step(), behavior: 'smooth' }); });
+          if (next) next.addEventListener('click', function () { row.scrollBy({ left: step(), behavior: 'smooth' }); });
+        });
+      })();
+    </script>
   </main>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3ed6e2372c4e4558835c98b0e4d93da4"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
