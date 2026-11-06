@@ -1300,6 +1300,7 @@
     story3: 'images/muffin-corner/audio/story-3.mp3',
     story4: 'images/muffin-corner/audio/story-4.mp3',
     story5: 'images/muffin-corner/audio/story-5.mp3',
+    story6: 'images/muffin-corner/audio/story-6.mp3',
     worldWelcome: 'images/muffin-corner/audio/world-welcome.mp3',
     heroWoohHi: 'images/muffin-corner/audio/hero-wooh-hi.mp3',
     agePill: 'images/muffin-corner/audio/age-pill.mp3',
@@ -1310,10 +1311,11 @@
     storyTitle2: 'images/muffin-corner/audio/story-title-2.mp3',
     storyTitle3: 'images/muffin-corner/audio/story-title-3.mp3',
     storyTitle4: 'images/muffin-corner/audio/story-title-4.mp3',
-    storyTitle5: 'images/muffin-corner/audio/story-title-5.mp3'
+    storyTitle5: 'images/muffin-corner/audio/story-title-5.mp3',
+    storyTitle6: 'images/muffin-corner/audio/story-title-6.mp3'
   };
 
-  var AUDIO_VERSION = '20261012a';
+  var AUDIO_VERSION = '20261106a';
   var captionsOn = false;
   var captionTimer = null;
   var captionBar = document.getElementById('caption-bar');
@@ -1323,26 +1325,26 @@
     ['movie-narrate-hoses.mp3', 'I see TWO hoses! Chomp! Chomp! The yard is safe!'],
     ['movie-narrate-metal.mp3', 'This one is made of METAL. Even metal is no match for Muffin!'],
     ['movie-narrate-victory.mp3', 'Ten hoses, zero survivors. Time for a nap. Heroes need naps.'],
-    ['place-letters.mp3', 'Welcome to the Letter Garden!'],
-    ['place-treats.mp3', 'Welcome to the Treat Stand!'],
-    ['place-wiggles.mp3', 'Welcome to the Wiggle Meadow!'],
-    ['place-feelings.mp3', 'Welcome to the Feelings Porch!'],
-    ['place-vet.mp3', 'Welcome to the Vet Clinic!'],
-    ['place-story.mp3', 'Welcome to the Story Nook!'],
-    ['place-movies.mp3', "Welcome to Muffin's Movies!"],
-    ['room-goodbye.mp3', 'Bye for now!'],
+    ['place-letters.mp3', 'Welcome to the Letter Garden! Tap a letter and say it with me.'],
+    ['place-treats.mp3', 'Welcome to the Treat Stand! Add a treat, then count with me.'],
+    ['place-wiggles.mp3', 'Welcome to the Wiggle Meadow! Pick a move and wiggle with me.'],
+    ['place-feelings.mp3', 'Welcome to the Feelings Porch! Tap a feeling. All feelings are welcome here.'],
+    ['place-vet.mp3', 'Welcome to the Vet Clinic! Let us take gentle care of a friend.'],
+    ['place-story.mp3', 'Welcome to the Story Nook! Snuggle in for a tiny story.'],
+    ['place-movies.mp3', "Welcome to Muffin's Movies! The legend of the Hose Snake."],
+    ['room-goodbye.mp3', 'Thanks for playing with me. See you soon!'],
     ['sound-on.mp3', 'Sound on.'],
     ['sound-off.mp3', 'Sound off.'],
-    ['hero-wooh-hi.mp3', "Woof! Hi! I'm Muffin."],
-    ['world-welcome.mp3', "Welcome to Muffin's Corner!"],
-    ['age-pill.mp3', 'Ages 3 to 7.'],
-    ['vet-step1.mp3', 'Soft voice: Hello, friend. I am the helper today.'],
-    ['vet-step2.mp3', 'Gentle check: ears, paws, tummy, one at a time.'],
-    ['vet-step3.mp3', 'A pretend bandage or a soft blanket.'],
-    ['vet-step4.mp3', 'Water and rest. You are safe.'],
-    ['vet-step5.mp3', 'A thank-you hug or high-five.'],
+    ['hero-wooh-hi.mp3', "Woo! Hi there! I'm Muffin. Come play with me!"],
+    ['world-welcome.mp3', "Welcome to my world! Swipe to explore, then tap a place, and we will play together."],
+    ['age-pill.mp3', "Muffin's Corner is for kids ages 3 to 7, and it's free."],
+    ['vet-step1.mp3', 'Step one. Soft voice. Say, hello, friend. I am the helper today.'],
+    ['vet-step2.mp3', 'Step two. Gentle check: ears, paws, tummy, one at a time.'],
+    ['vet-step3.mp3', 'Step three. A pretend bandage or a soft blanket.'],
+    ['vet-step4.mp3', 'Step four. Water and rest. You are safe.'],
+    ['vet-step5.mp3', 'Step five. A thank-you hug or a high-five.'],
     ['vet-courage.mp3', 'Care is a kind of courage.'],
-    ['feed-yum.mp3', 'Yum!'],
+    ['feed-yum.mp3', 'Yum yum! Thank you for the treats! That was delicious!'],
     ['body-intro.mp3', 'Muffin feels funny somewhere! Can you find where? Tap the spot on Muffin!'],
     ['body-tummy-ask.mp3', 'My tummy feels rumbly. Where is my tummy?'],
     ['body-tummy-yes.mp3', 'Yes! My tummy! A warm hug helps rumbly tummies.'],
@@ -1357,7 +1359,7 @@
     ['body-alldone.mp3', 'You found them all! You are such a good friend!'],
     ['body-tryagain.mp3', 'Hmm, not there. Try again!'],
     ['energy-day.mp3', 'What a wonderful day! You took such good care of Muffin!'],
-    ['energy-intro.mp3', 'Muffin has five energy bones! Spend them on fun things. When they run out, we rest.'],
+    ['energy-intro.mp3', 'Muffin has five energy bones! Spend them on fun things. When they run out, we rest. Resting is a kind of playing.'],
     ['energy-wiggle.mp3', 'Wiggle time! That took two bones!'],
     ['energy-story.mp3', 'Story time! That took one bone!'],
     ['energy-movie.mp3', 'Movie time! That took one bone!'],
@@ -1365,8 +1367,8 @@
     ['energy-rested.mp3', 'Mmm, all rested! The bones are back!'],
     ['water-intro.mp3', 'Some flowers are thirsty! Tap the water drops to give them a drink. Count with me!'],
     ['water-bloom.mp3', 'Beautiful! The flower bloomed! Drinking water helps you grow, just like flowers!'],
-    ['place-cozy.mp3', 'Welcome to the Cozy Corner. Today we rest and breathe.'],
-    ['cozy-breath.mp3', 'Breathe in... and breathe out. Good.'],
+    ['place-cozy.mp3', 'Welcome to the Cozy Corner. Today we rest and breathe. Resting is a kind of playing.'],
+    ['cozy-breath.mp3', 'Breathe in and breathe out. Good. One more. Breathe in and breathe out. Soft and slow. You are doing beautifully.'],
     ['sign-more.mp3', "This is 'more' in Luna's paw signs! Paw up high means more!"],
     ['sign-help.mp3', "This is 'help' in Luna's paw signs! Paws together means help!"],
     ['sign-rest.mp3', "This is 'rest' in Luna's paw signs! Paw tucked in means rest!"],
@@ -1779,6 +1781,17 @@
         var w = WIGGLE_IMGS[Math.floor(Math.random() * WIGGLE_IMGS.length)];
         showMoment('images/muffin-corner/' + w + '.webp', 'Wiggle time!');
         playAudio('images/muffin-corner/audio/' + w + '.mp3');
+        var moveAudio = currentAudio;
+        if (moveAudio) {
+          var wiggleAdvanced = false;
+          var advanceWiggle = function () {
+            if (wiggleAdvanced) return;
+            wiggleAdvanced = true;
+            if (currentAudio === moveAudio) playAudio('images/muffin-corner/audio/energy-wiggle.mp3');
+          };
+          moveAudio.addEventListener('ended', advanceWiggle);
+          moveAudio.addEventListener('error', advanceWiggle);
+        }
       } else if (act === 'story') {
         var si = Math.floor(Math.random() * STORY_IMGS.length);
         showMoment('images/muffin-corner/' + STORY_IMGS[si] + '.webp', STORY_LINES[si]);
@@ -2320,23 +2333,40 @@
       x.classList.toggle('is-active', (parseInt(x.getAttribute('data-story-pick'), 10) || 0) === storyIdx);
     });
   }
+  function playStory(idx) {
+    var storySrc = AUDIO['story' + idx];
+    playAudio(AUDIO['storyTitle' + idx]);
+    var titleAudio = currentAudio;
+    if (!titleAudio || (titleAudio.src || '').indexOf('story-title-' + idx + '.mp3') === -1) {
+      playAudio(storySrc);
+      return;
+    }
+    var advanced = false;
+    function advanceStory() {
+      if (advanced) return;
+      advanced = true;
+      if (currentAudio === titleAudio) playAudio(storySrc);
+    }
+    titleAudio.addEventListener('ended', advanceStory);
+    titleAudio.addEventListener('error', advanceStory);
+  }
   document.querySelectorAll('[data-story-pick]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       storyIdx = parseInt(btn.getAttribute('data-story-pick'), 10) || 0;
       markStoryPick();
       showStory(storyIdx);
-      playAudio(AUDIO['story' + storyIdx]);
+      playStory(storyIdx);
     });
   });
   document.getElementById('story-btn').addEventListener('click', function () {
     storyIdx = (storyIdx + 1) % stories.length;
     markStoryPick();
     showStory(storyIdx);
-    playAudio(AUDIO['story' + storyIdx]);
+    playStory(storyIdx);
   });
   markStoryPick();
   document.getElementById('story-speak').addEventListener('click', function () {
-    playAudio(AUDIO['story' + storyIdx]);
+    playStory(storyIdx);
   });
 })();
 </script>
