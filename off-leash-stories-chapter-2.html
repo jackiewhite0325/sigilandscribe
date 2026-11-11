@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Chapter 2 of When the Dice Roll by S.J. Helix, free to read in Muffin Off Leash Stories." />
+  <link rel="icon" href="data:," />
+  <title>Muffin Off Leash: When the Dice Roll, Chapter 2</title>  <style>
+    /* Self-hosted house fonts. No Google Fonts requests. */
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: italic;
+      font-weight: 500;
+      font-display: swap;
+      src: url('fonts/fraunces-500i.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('fonts/fraunces-400.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('fonts/fraunces-600.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('fonts/nunito-400.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('fonts/nunito-600.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('fonts/nunito-700.woff2') format('woff2');
+    }
+  </style>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #e9edf0;
+      --paper-soft: #dbe1e5;
+      --ink: #17202d;
+      --muted: #4f5c69;
+      --walnut: #7b4f3c;
+      --walnut-deep: #17283c;
+      --gold: #c18a55;
+      --gold-soft: #e4c7a6;
+      --sage: #536d70;
+      --line: #9ba8b2;
+      --card: #f4f5f4;
+      --card-alt: #dfe5e7;
+      --focus: #9f542f;
+      --shadow: 8px 9px 0 rgba(23, 40, 60, .14);
+      --radius-lg: 4px;
+      --radius-md: 3px;
+      --radius-sm: 2px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #0d1420;
+        --paper-soft: #151f2d;
+        --ink: #f0e9df;
+        --muted: #b8c1ca;
+        --walnut: #d39a6a;
+        --walnut-deep: #f1d0ac;
+        --gold: #d49b63;
+        --gold-soft: #583f31;
+        --sage: #9db4b5;
+        --line: #526174;
+        --card: #121c29;
+        --card-alt: #1d2937;
+        --focus: #f0ad72;
+        --shadow: 8px 9px 0 rgba(0, 0, 0, .35);
+      }
+    }
+
+    html[data-theme="light"] {
+      --paper: #e9edf0;
+      --paper-soft: #dbe1e5;
+      --ink: #17202d;
+      --muted: #4f5c69;
+      --walnut: #7b4f3c;
+      --walnut-deep: #17283c;
+      --gold: #c18a55;
+      --gold-soft: #e4c7a6;
+      --sage: #536d70;
+      --line: #9ba8b2;
+      --card: #f4f5f4;
+      --card-alt: #dfe5e7;
+      --focus: #9f542f;
+      --shadow: 8px 9px 0 rgba(23, 40, 60, .14);
+    }
+
+    html[data-theme="dark"] {
+      --paper: #0d1420;
+      --paper-soft: #151f2d;
+      --ink: #f0e9df;
+      --muted: #b8c1ca;
+      --walnut: #d39a6a;
+      --walnut-deep: #f1d0ac;
+      --gold: #d49b63;
+      --gold-soft: #583f31;
+      --sage: #9db4b5;
+      --line: #526174;
+      --card: #121c29;
+      --card-alt: #1d2937;
+      --focus: #f0ad72;
+      --shadow: 8px 9px 0 rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background-color: var(--paper);
+      background-image: repeating-linear-gradient(0deg, transparent 0, transparent 31px, color-mix(in srgb, var(--line) 18%, transparent) 32px);
+      color: var(--ink);
+      font-family: "Nunito", sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      transition: background-color .2s ease, color .2s ease;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+      border-radius: 6px;
+    }
+    .skip-link {
+      position: fixed;
+      left: 12px;
+      top: 10px;
+      transform: translateY(-150%);
+      background: var(--ink);
+      color: var(--paper);
+      padding: 10px 14px;
+      z-index: 100;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 800;
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 18px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      border-bottom: 2px solid var(--ink);
+    }
+    .wordmark {
+      margin: 0;
+      color: var(--walnut-deep);
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .wordmark span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-family: "Nunito", sans-serif;
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .045em;
+    }
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+    }
+    .help-link, .theme-toggle {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 2px;
+      font-weight: 800;
+      font-size: .9rem;
+      text-decoration: none;
+    }
+    .help-link {
+      color: var(--ink);
+      background: var(--paper-soft);
+      border: 1px solid var(--line);
+    }
+    .help-link:hover { background: var(--gold-soft); }
+    .theme-toggle {
+      color: var(--paper);
+      background: var(--walnut-deep);
+      border: 1px solid var(--walnut-deep);
+      cursor: pointer;
+    }
+    html[data-theme="dark"] .theme-toggle { color: #1d1712; }
+    .theme-icon { width: 18px; height: 18px; }
+
+    main { overflow: hidden; }
+    .hero {
+      width: min(1180px, calc(100% - 36px));
+      margin: 42px auto 0;
+      display: grid;
+      grid-template-columns: .88fr 1.12fr;
+      gap: 54px;
+      align-items: center;
+      min-height: 510px;
+    }
+    .hero-copy { padding: 28px 0; }
+    .age-note {
+      display: inline-block;
+      margin: 0 0 20px;
+      padding: 6px 10px 5px;
+      color: var(--ink);
+      background: var(--gold-soft);
+      border-left: 4px solid var(--walnut);
+      font-weight: 800;
+      font-size: .86rem;
+      letter-spacing: .025em;
+    }
+    .hero h2 {
+      font-family: "Fraunces", serif;
+      color: var(--walnut-deep);
+      font-size: clamp(2.55rem, 5.7vw, 5.15rem);
+      line-height: .98;
+      letter-spacing: -.035em;
+      margin: 0 0 27px;
+      text-wrap: balance;
+      max-width: 760px;
+    }
+    .hero-copy > p:not(.age-note) {
+      font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+      max-width: 625px;
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+    .hero-copy strong { color: var(--ink); }
+    .hero-image {
+      margin: 0;
+      padding: 9px;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      box-shadow: var(--shadow);
+      background: var(--card);
+      transform: rotate(.35deg);
+    }
+    .hero-image img {
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+      filter: saturate(.8) contrast(1.04);
+    }
+    .hero-caption {
+      margin: 0;
+      padding: 13px 10px 9px;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.45;
+      font-style: italic;
+    }
+
+    .shelf-wrap {
+      margin-top: 76px;
+      padding: 72px 0 82px;
+      background: var(--paper-soft);
+      border-block: 2px solid var(--ink);
+    }
+    .section-inner { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
+    .section-heading {
+      display: grid;
+      grid-template-columns: 1fr minmax(240px, 430px);
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 38px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed var(--line);
+    }
+    .section-heading h2, .about h2 {
+      font-family: "Fraunces", serif;
+      color: var(--walnut-deep);
+      font-size: clamp(2.1rem, 4.6vw, 3.75rem);
+      line-height: 1.05;
+      margin: 0;
+      letter-spacing: -.03em;
+    }
+    .section-heading p { margin: 0; color: var(--muted); }
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+    .story-card {
+      grid-column: span 4;
+      position: relative;
+      overflow: hidden;
+      min-height: 390px;
+      display: flex;
+      flex-direction: column;
+      padding: 27px;
+      background: var(--card);
+      border: 1px solid var(--ink);
+      border-radius: 2px;
+      box-shadow: 5px 6px 0 color-mix(in srgb, var(--ink) 13%, transparent);
+    }
+    .story-card:nth-child(1) { transform: rotate(-.25deg); }
+    .story-card:nth-child(2) { transform: translateY(9px); }
+    .story-card:nth-child(3) { transform: rotate(.2deg); }
+    .story-card:nth-child(4), .story-card:nth-child(5) { grid-column: span 6; min-height: 340px; }
+    .story-card:nth-child(4) { transform: translateY(6px) rotate(.15deg); }
+    .story-card:nth-child(5) { transform: rotate(-.15deg); }
+    .story-number {
+      display: inline-block;
+      align-self: flex-start;
+      color: var(--walnut);
+      border-bottom: 3px solid var(--gold);
+      font-family: "Nunito", sans-serif;
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      margin-bottom: 42px;
+      padding-bottom: 3px;
+    }
+    .story-card h3 {
+      font-family: "Fraunces", serif;
+      color: var(--walnut-deep);
+      font-size: clamp(1.55rem, 2.8vw, 2.05rem);
+      line-height: 1.08;
+      margin: 0 0 13px;
+    }
+    .hook { margin: 0 0 20px; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 18px; }
+    .tag {
+      padding: 2px 0;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      font-size: .76rem;
+      font-weight: 800;
+    }
+    .tag + .tag::before { content: "/"; padding-right: 7px; color: var(--gold); }
+    .card-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+      padding: 10px 15px;
+      font-weight: 800;
+      font-size: .9rem;
+      cursor: pointer;
+    }
+    .status-label { cursor: default; }
+    .button-primary { color: var(--paper); background: var(--walnut-deep); border: 1px solid var(--walnut-deep); }
+    html[data-theme="dark"] .button-primary { color: #1d1712; }
+    .button-secondary { color: var(--walnut-deep); background: transparent; border: 1px solid var(--walnut); }
+    .button:hover { filter: brightness(.94); }
+    .sample-note { margin: 24px 0 0; color: var(--muted); font-size: .9rem; }
+
+    .about {
+      width: min(1000px, calc(100% - 36px));
+      margin: 88px auto;
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      gap: 58px;
+      align-items: start;
+    }
+    .about-copy {
+      padding: 18px 22px 20px;
+      border-left: 4px solid var(--gold);
+      background: color-mix(in srgb, var(--card) 80%, transparent);
+      box-shadow: 5px 6px 0 color-mix(in srgb, var(--ink) 10%, transparent);
+      transform: rotate(-.2deg);
+    }
+    .about-copy p { margin: 0 0 15px; color: var(--muted); font-size: 1.08rem; }
+    .about-copy p:first-child { color: var(--ink); font-size: 1.24rem; }
+    .signature { font-family: "Fraunces", serif; font-weight: 700; color: var(--walnut-deep); }
+
+    footer {
+      background: #101b29;
+      color: #fff8ef;
+      padding: 34px 0 calc(34px + env(safe-area-inset-bottom));
+    }
+    .footer-inner {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-links { display: flex; gap: 12px 22px; flex-wrap: wrap; }
+    footer a { color: #fff8ef; font-weight: 800; text-underline-offset: 4px; }
+    footer p { margin: 0; color: #eadbcf; font-size: .9rem; max-width: 510px; }
+
+    dialog {
+      width: min(560px, calc(100% - 28px));
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 0;
+      background: var(--card);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+    }
+    dialog::backdrop { background: rgba(25, 21, 18, .68); }
+    .dialog-inner { padding: 28px; }
+    .dialog-inner h2 { font-family: "Fraunces", serif; color: var(--walnut-deep); margin: 0 0 12px; line-height: 1.1; }
+    .dialog-inner p { color: var(--muted); }
+    .dialog-close { margin-top: 12px; }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; gap: 24px; }
+      .hero-copy { padding-bottom: 0; }
+      .hero-image { min-height: 390px; border-radius: 2px; }
+      .hero-image img { min-height: 390px; }
+      .section-heading { grid-template-columns: 1fr; gap: 14px; }
+      .story-card { grid-column: span 6; }
+      .story-card:nth-child(3) { grid-column: span 12; min-height: 330px; }
+      .about { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+      .site-header { align-items: flex-start; flex-direction: column; }
+      .header-actions { width: 100%; justify-content: flex-start; }
+      .help-link, .theme-toggle { flex: 1; }
+      .hero { margin-top: 12px; min-height: 0; }
+      .hero h2 { font-size: clamp(2.6rem, 16vw, 4.2rem); }
+      .hero-image, .hero-image img { min-height: 330px; }
+      .hero-caption { inset: auto 12px 12px 12px; max-width: none; }
+      .shelf-wrap { margin-top: 48px; padding: 54px 0; }
+      .story-grid { display: block; }
+      .story-card, .story-card:nth-child(1), .story-card:nth-child(2), .story-card:nth-child(3), .story-card:nth-child(4), .story-card:nth-child(5) {
+        min-height: 0;
+        margin-bottom: 18px;
+        border-radius: 2px;
+        transform: none;
+      }
+      .story-number { margin-bottom: 25px; }
+      .about { margin-block: 64px; }
+      .about-copy { padding-left: 20px; }
+      .footer-inner { align-items: flex-start; }
+      .footer-links { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+
+  <style>
+    /* Reader page additions (draft): single reading column, site classes reused elsewhere. */
+    .reader { width: min(720px, calc(100% - 36px)); margin: 0 auto; padding: 30px 0 70px; }
+    .reader-back { font-weight: 800; color: var(--walnut-deep); text-underline-offset: 4px; }
+    .book-line { margin: 26px 0 6px; color: var(--muted); font-size: .86rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .chapter-title { font-family: "Fraunces", serif; color: var(--walnut-deep); font-size: clamp(2.1rem, 5.4vw, 3.3rem); line-height: 1.05; letter-spacing: -.03em; margin: 0 0 14px; }
+    .intro-line { color: var(--muted); margin: 0 0 8px; }
+    .reader-body { margin-top: 30px; }
+    .reader-body p { font-size: 1.09rem; line-height: 1.85; margin: 0 0 1.35em; }
+    .scene-break { border: none; text-align: center; margin: 2.4em 0; }
+    .scene-break::after { content: "\00B7  \00B7  \00B7"; color: var(--gold); font-weight: 800; letter-spacing: .4em; }
+    .reader-nav { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 44px; padding-top: 24px; border-top: 1px dashed var(--line); }
+    .reader-nav .spacer { flex: 1; }
+    .next-note { color: var(--muted); font-weight: 800; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to stories</a>
+
+  <header class="site-header">
+    <p class="wordmark">Muffin Off Leash<span>Stories for teens who deserve to be heard.</span></p>
+    <div class="header-actions" aria-label="Reading controls">
+      <a class="help-link" href="tel:988" aria-label="Call 988 for crisis support in the United States">Need support? Call 988</a>
+      <button class="theme-toggle" type="button" id="theme-toggle" aria-pressed="false">
+        <svg class="theme-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <span id="theme-label">Night reading</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="reader">
+      <p><a class="reader-back" href="off-leash-stories.html">&larr; Back to Stories</a></p>
+      <p class="book-line">When the Dice Roll &middot; Book 1 &middot; S.J. Helix</p>
+      <h1 class="chapter-title">Chapter 2: The Static</h1>
+      <p class="intro-line">Read at your own pace. Come back when you want, leave when you need to.</p>
+      <div class="reader-body">
+        <p>The dice roll at 6:40 every morning.</p>
+        <p>Today they roll and then they keep rolling, rattling around inside my ribs like they cannot settle on a number. I sit up slow, because fast is how you find out, and I run the check. Ankles: left puffy, right fine, same as yesterday. Knees: clicky. Hips: the left one is behaving, which is suspicious, because hips that behave on a Wednesday usually invoice you on a Thursday.</p>
+        <p>Then I reach for the salt water and my fingers spark.</p>
+        <p>Not a metaphor. A real spark, tiny and blue-white, jumping from my fingertip to the glass with a sound like a struck match. The jam jar does not care. I stare at my hand.</p>
+        <p>"Okay," I say to the ceiling. "That is new."</p>
+        <p>From downstairs, Minnie calls up: "Everything all right?"</p>
+        <p>She asks it too fast. Like she was already listening.</p>
+        <p>"Fine," I say. "Just the usual circus."</p>
+        <p>I do not tell her about the spark. I am not sure why. Maybe because yesterday the candle flared a foot high and then died, and this morning my hair stood up when I brushed it, and there is a pattern forming that I do not want to look at directly. If I do not name it, maybe it stays small.</p>
+        <p>This is the kind of thinking that gets wizards in trouble. Minnie has said so, many times, in those exact words.</p>
+        <hr class="scene-break" aria-hidden="true" />
+        <p>Minnie is already in the kitchen when I get downstairs, and she is doing three things at once, which for Minnie means she is worried. Eggs on the stove. My wrap laid out on the table. And she is looking at the back door, the one that opens onto the garden, the way you look at a door when you are checking that it is locked.</p>
+        <p>She checks it twice while I eat.</p>
+        <p>"Something wrong with the door?" I ask.</p>
+        <p>"The latch sticks," she says, which is not an answer. The latch has stuck for three years. She has never looked at it like that.</p>
+        <p>Muffin is under the table, working on a piece of eggshell she stole off my plate with the precision of a surgeon. When she notices me watching, she freezes, eggshell halfway into her mouth, and gives me the wide amber-eyed stare of a dog who is absolutely not doing what she is doing.</p>
+        <p>"You are going to crunch that so loud," I tell her.</p>
+        <p>We hold eye contact for one full second. Then Muffin crunches down, defiant, and the sound echoes through the whole kitchen. Then she looks proud. Then she sneezes, which startles her so badly she falls over sideways into the table leg.</p>
+        <p>"Graceful," Minnie says, without looking up from the stove. "A dancer."</p>
+        <p>Muffin rights herself, shakes off the indignity, and comes to lean her full sixty pounds against my wrapped ankle like a furry sandbag. This is her apology. It is also her claiming the ankle. With Muffin it is always both.</p>
+        <p>"School," Minnie says. "Elevator."</p>
+        <p>"I know."</p>
+        <p>"All the way. No stairs. Not even if it is empty."</p>
+        <p>I open my mouth.</p>
+        <p>"S.J."</p>
+        <p>"Fine." I say it too fast and she narrows her eyes, because she knows my tells, because she has been reading me since I was a screaming baby in the woods.</p>
+        <p>After breakfast she walks me to the door, which she does not usually do, and she puts her hands on my shoulders, and her hands are cold, colder than the physio's, and I realize she has not slept. The gray in her hair looks sharper today. The tiredness is turned up a notch.</p>
+        <p>"If anything feels wrong today," she says, "not the usual wrong, the other wrong, you come straight home. You do not wait for the bell. You do not explain it to anyone. You just come home."</p>
+        <p>"What other wrong?"</p>
+        <p>She looks at me for a long moment. "You will know it if it happens."</p>
+        <p>That is not an answer either. It is the opposite of one. But her hands are shaking, just barely, and I do not push, because Minnie with shaking hands is Minnie at the edge of something, and I have learned not to crowd the edge.</p>
+        <p>"Okay," I say.</p>
+        <p>She lets go. Muffin noses at the door like she wants to come, and Minnie says, "Guard the house," in the serious voice, and Muffin sits down immediately, ears up, suddenly the most professional dog in the borderlands. Then the door closes and Muffin farts, long and satisfied, and I hear Minnie laugh through the door, and for a second it is a normal morning.</p>
+        <hr class="scene-break" aria-hidden="true" />
+        <p>The elevator smells like floor wax and other people's mornings. I ride it up with a seventh grader who is holding a frog in a jar, and we do not speak, because some rides are just like that.</p>
+        <p>Second floor. The hallway is the usual river of people, and I am doing the usual thing, moving with the current, keeping my left side to the wall in case the hip decides to file a complaint, when I hear it.</p>
+        <p>"Come on, Wells. It is just the ramp. You used to run stairs."</p>
+        <p>Three boys by the stairwell. Laughing. Not the mean kind of laughing, the worse kind, the kind where they think they are being funny and inclusive and have no idea they are being neither.</p>
+        <p>Parker Wells is at the bottom of the ramp in his wheelchair, and his jaw is doing the thing, the tight thing, and his hands are white on the wheels, and he is not moving.</p>
+        <p>Something hot and wrong climbs up the back of my neck.</p>
+        <p>I do not decide to walk over. My feet just do it, which is annoying, because my feet are supposed to check with me first. But there I am, standing next to Parker Wells, and the three boys are looking at me, and Parker is looking straight ahead like I am not there.</p>
+        <p>"Hi," I say to the boys. "Are you the welcoming committee?"</p>
+        <p>One of them blinks. "We were just-"</p>
+        <p>"He knows it is a ramp," I say. "He can see it. It is right there. Big ramp. Hard to miss."</p>
+        <p>"It was a joke," the tallest one says.</p>
+        <p>"It was not a good one." I turn to Parker. "Do you want a push or do you want them to leave?"</p>
+        <p>He finally looks at me. His eyes are brown, which I have never noticed before, which is stupid, because I have definitely noticed Parker Wells before, just never this close, never with his jaw that tight and his hands that white.</p>
+        <p>"I do not need a push," he says. It comes out flat.</p>
+        <p>"Okay." I look at the boys. "You heard him. Scatter."</p>
+        <p>They scatter. Not because I am scary. Because the moment broke and they remembered they have somewhere to be.</p>
+        <p>Parker and I stand there at the bottom of the ramp. The hallway is emptying. The bell is going to ring.</p>
+        <p>"Thanks," he says, and it sounds like it costs him. "You did not have to do that."</p>
+        <p>"I know."</p>
+        <p>"I am not, like. A project."</p>
+        <p>"I know that too."</p>
+        <p>He studies me. "You are the elevator girl."</p>
+        <p>"I am the elevator girl," I agree. "You are the ramp guy. We are a very exclusive club."</p>
+        <p>Something twitches at the corner of his mouth. Not a smile. The ghost of one, the kind that shows up and leaves before you can be sure.</p>
+        <p>"They were on the team with me," he says quietly. "Before."</p>
+        <p>I do not say I know. Everybody knows.</p>
+        <p>"They do not know what to do with me now," he says. "So they joke. It is better than the other thing."</p>
+        <p>"What is the other thing?"</p>
+        <p>"Pity." He says it like a swear word. "I would rather they laugh."</p>
+        <p>The bell rings. He wheels himself up the ramp, smooth and practiced, and I take the elevator, and we do not say goodbye, but at the top he glances back, just for a second, and nods, and my chest does the stupid thing, and under that something else, a warmth in my palms like I am holding something too hot.</p>
+        <p>I look down. My fingertips are faintly blue at the edges, like the spark this morning left a stain.</p>
+        <p>I shove my hands in my pockets and do not think about it.</p>
+        <hr class="scene-break" aria-hidden="true" />
+        <p>Fourth period, Ms. Abernathy's history group meets again. The two girls are nice. The boy is asleep with his eyes open. I contribute a fact about border treaties, this one about the Hearth Realm accords, and one of the girls says, "How do you know all this?" and I say, "My guardian is into old politics," which is true in the way that saying the ocean is damp is true.</p>
+        <p>At lunch I sit under the tree. It is gold this week, but there is a branch on the east side that has gone a deep red, like it is blushing or warning. I eat my sandwich and read and try not to think about Parker Wells' hands white on the wheels, or the heat in my palms, or Minnie checking the back door twice.</p>
+        <p>The hip holds. The dizziness stays away. By every measure it is a better body day than yesterday. So why do I feel like I am holding my breath?</p>
+        <hr class="scene-break" aria-hidden="true" />
+        <p>The wizardry lesson is at dusk. Minnie is already in the garden when I get home, sitting on the bench, and she has the candle out, and something else too, a shallow bowl of water, which is not part of the usual lesson.</p>
+        <p>"What is the bowl for?" I ask.</p>
+        <p>"Stillness," she says. "A different kind."</p>
+        <p>Muffin is already in position, chin on my ankle, on duty. The wrap is off now, the day is done, and the ankle is puffy but holding. Muffin sighs theatrically and goes boneless.</p>
+        <p>"Stillness first," Minnie says. "Breathe. Feel the magic the way you feel a room when someone walks into it."</p>
+        <p>I breathe. I reach. Not with my whole arm this time. With a finger, like she taught me.</p>
+        <p>The candle lights. Small, ordinary, trembling.</p>
+        <p>"Good," Minnie says. "Now the water. Do not touch it. Just hold the stillness and look at it."</p>
+        <p>I look at the bowl. The water is flat and dark, reflecting the dusk sky.</p>
+        <p>It ripples.</p>
+        <p>I am not touching it. My hands are in my lap. Muffin's chin is on my ankle, heavy and warm. The air is still. The water ripples, a slow spreading ring from the center, like something dropped in.</p>
+        <p>"Minnie," I say.</p>
+        <p>"I see it," she says quietly.</p>
+        <p>The candle flame leans toward the bowl, stretches thin and tall, then splits. Two flames. Side by side on one wick. Impossibly.</p>
+        <p>My palms are hot. The blue is back at my fingertips, brighter now, crawling.</p>
+        <p>"Stop," Minnie says. Not loud. But sharp enough that I yank my hand back, and the flames snap back into one, and the water goes flat, and my hands are tingling like nettles, and Muffin lifts her head and looks at me with her amber eyes, then she sneezes directly into the bowl, splashing water everywhere. The moment shatters.</p>
+        <p>Minnie laughs, but it is the wrong kind of laugh, high and fast. "That dog," she says. "That dog is a menace."</p>
+        <p>"Minnie," I say. "What was that?"</p>
+        <p>She is quiet, looking at the bowl, at the candle, at my hands, which I have tucked under my thighs like that will hide the blue.</p>
+        <p>"Your magic is growing," she says finally. "Faster than I expected."</p>
+        <p>"Is that bad?"</p>
+        <p>She does not answer right away. She reaches out and takes my hands, turns them over, looks at the blue fading from my fingertips. Her own hands are shaking again.</p>
+        <p>"It means we need to be careful," she says. "That is all it means right now."</p>
+        <p>But she is lying. I can tell she is lying because Minnie is a terrible liar, she always has been, and her face tries to be calm and overshoots into worried. Whatever this is, it is not just growing. It is something else. Something she knows and I do not.</p>
+        <p>"Come inside," she says, standing. "It is getting cold."</p>
+        <p>We go inside. Muffin shakes water all over the kitchen. Minnie does not scold her. That is how I know something is really wrong, because Minnie always scolds Muffin for shaking in the kitchen, it is practically a ritual, and tonight she just stands there with water on her shoes and says nothing.</p>
+        <hr class="scene-break" aria-hidden="true" />
+        <p>Later, I am supposed to be in bed. Instead I am at the top of the stairs, because these stairs creak in a way that tells you things, and I hear Minnie in the kitchen below, and she is not alone.</p>
+        <p>I cannot hear the other voice clearly. It is low, and it sounds like it is coming from far away, or from underwater. Minnie says, "Not yet." The voice answers too low to make out. Then Minnie says, "She is not ready." Then a long silence, and then Minnie says, very quietly, "I know what it will cost."</p>
+        <p>My palms go hot again. The blue crawls back up my fingertips.</p>
+        <p>I press my hands flat against the stair tread, hard, until the tingle fades.</p>
+        <p>When I get back to bed, Muffin is already there, taking up two-thirds of the mattress like she pays rent. She opens one amber eye, thumps her tail once, and then she does the nighttime thing, licking my fingers, over and over, her tongue warm and insistent, until she gets sleepy, and then she just holds my fingers in her mouth, gentle, like a pacifier, and her breathing slows.</p>
+        <p>I lie there in the dark and think about the water rippling without a touch. About two flames on one wick. About Minnie lying badly and talking to someone underwater in the kitchen.</p>
+        <p>Tomorrow the dice will roll again at 6:40.</p>
+        <p>I am starting to think the dice are not the only thing rolling anymore.</p>
+        <p>And that has to mean something. Even if I do not know what yet.</p>
+      </div>
+      <nav class="reader-nav" aria-label="Chapter navigation">
+        <a class="button button-secondary" href="off-leash-stories-chapter-1.html">&larr; Chapter 1: The Morning Roll</a>
+        <span class="spacer"></span>
+        <span class="next-note">Chapter 3 arrives next week</span>
+      </nav>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="https://jackiewhite0325.github.io/sigilandscribe">Back to Sigil and Scribe</a>
+        <a href="tel:988">Call 988</a>
+        <a href="sms:988">Text 988</a>
+      </div>
+      <p>If you are in the United States and need immediate crisis support, call or text 988. If you are in immediate danger, contact local emergency services.</p>
+    </div>
+  </footer>
+
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById('theme-toggle');
+      var label = document.getElementById('theme-label');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var activeTheme = prefersDark ? 'dark' : 'light';
+
+      function setTheme(theme) {
+        activeTheme = theme;
+        root.setAttribute('data-theme', theme);
+        var isDark = theme === 'dark';
+        toggle.setAttribute('aria-pressed', String(isDark));
+        label.textContent = isDark ? 'Day reading' : 'Night reading';
+      }
+
+      setTheme(activeTheme);
+      toggle.addEventListener('click', function () {
+        setTheme(activeTheme === 'dark' ? 'light' : 'dark');
+      });
+    })();
+  </script>
+</body>
+</html>
