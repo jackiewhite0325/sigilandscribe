@@ -110,7 +110,7 @@ Shared primary nav + expanded footer (css/house.css, js/house-nav.js)
 
 
 
-Standard legal links; Ko-fi at https://ko-fi.com/sigilandscribe
+Standard legal links; shop at https://payhip.com/SigilandScribe
 
 Stack
 
